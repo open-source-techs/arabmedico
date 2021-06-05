@@ -4,8 +4,6 @@ $siteData = get_site_data();
 get_languages();
 $lang_con = $_SESSION['language'];
 
-
-
 if(isset($_GET['lang']))
 {
     $_SESSION['lang'] = $_GET['lang'];
