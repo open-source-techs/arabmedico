@@ -1,0 +1,468 @@
+[09-Nov-2020 09:28:10 UTC] PHP Notice:  Undefined index: pkg_name_arabic in /home/filmyapa/public_html/medical/admin/model/packageModel.php on line 43
+[09-Nov-2020 09:31:25 UTC] PHP Notice:  Undefined index: pkg_name_arabic in /home/filmyapa/public_html/medical/admin/model/packageModel.php on line 43
+[09-Nov-2020 09:35:17 UTC] PHP Notice:  Undefined index: pkg_name_arabic in /home/filmyapa/public_html/medical/admin/model/packageModel.php on line 43
+[09-Nov-2020 09:35:59 UTC] PHP Notice:  Undefined index: pkg_name_arabic in /home/filmyapa/public_html/medical/admin/model/packageModel.php on line 43
+[09-Nov-2020 09:36:08 UTC] PHP Notice:  Undefined index: pkg_name_arabic in /home/filmyapa/public_html/medical/admin/model/packageModel.php on line 43
+[09-Nov-2020 09:39:45 UTC] PHP Notice:  Undefined index: pkg_name_arabic in /home/filmyapa/public_html/medical/admin/model/packageModel.php on line 43
+[09-Nov-2020 09:49:58 UTC] PHP Notice:  Undefined index: pkg_name_arabic in /home/filmyapa/public_html/medical/admin/model/packageModel.php on line 43
+[09-Nov-2020 11:10:53 UTC] PHP Notice:  Undefined index: pkg_name_arabic in /home/filmyapa/public_html/medical/admin/model/packageModel.php on line 43
+[09-Nov-2020 14:16:10 UTC] PHP Notice:  Undefined index: pkg_name_arabic in /home/filmyapa/public_html/medical/admin/model/packageModel.php on line 43
+[09-Nov-2020 19:54:35 UTC] PHP Notice:  Undefined index: pkg_name_arabic in /home/filmyapa/public_html/medical/admin/model/packageModel.php on line 43
+[09-Nov-2020 20:47:54 UTC] PHP Notice:  Undefined index: pkg_name_arabic in /home/filmyapa/public_html/medical/admin/model/packageModel.php on line 45
+[10-Nov-2020 22:27:02 UTC] PHP Warning:  move_uploaded_file(../../upload/5fab13b62fdfc.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/config/db.php on line 573
+[10-Nov-2020 22:27:02 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpdtc4PW' to '../../upload/5fab13b62fdfc.jpg' in /home/hospiweb/public_html/admin/config/db.php on line 573
+[10-Nov-2020 22:28:05 UTC] PHP Warning:  move_uploaded_file(../../upload/5fab13f509d2f.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/config/db.php on line 573
+[10-Nov-2020 22:28:05 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpiq5QEI' to '../../upload/5fab13f509d2f.jpg' in /home/hospiweb/public_html/admin/config/db.php on line 573
+[10-Nov-2020 22:28:24 UTC] PHP Warning:  move_uploaded_file(../../upload/5fab1408f2fa9.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/config/db.php on line 573
+[10-Nov-2020 22:28:24 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpD40Thy' to '../../upload/5fab1408f2fa9.jpg' in /home/hospiweb/public_html/admin/config/db.php on line 573
+[10-Nov-2020 22:29:24 UTC] PHP Warning:  move_uploaded_file(../../upload/5fab144486b5a.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/config/db.php on line 573
+[10-Nov-2020 22:29:24 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/php0Tg3zC' to '../../upload/5fab144486b5a.jpg' in /home/hospiweb/public_html/admin/config/db.php on line 573
+[10-Nov-2020 22:29:45 UTC] PHP Warning:  move_uploaded_file(../../upload/5fab1459b6713.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/config/db.php on line 573
+[10-Nov-2020 22:29:45 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phprGnlNM' to '../../upload/5fab1459b6713.jpg' in /home/hospiweb/public_html/admin/config/db.php on line 573
+[10-Nov-2020 22:30:03 UTC] PHP Warning:  move_uploaded_file(../../upload/5fab146b30b7e.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/config/db.php on line 573
+[10-Nov-2020 22:30:03 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phppXtYmV' to '../../upload/5fab146b30b7e.jpg' in /home/hospiweb/public_html/admin/config/db.php on line 573
+[10-Nov-2020 22:33:41 UTC] PHP Warning:  move_uploaded_file(../../upload/5fab1545507ae.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/config/db.php on line 573
+[10-Nov-2020 22:33:41 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpciInwE' to '../../upload/5fab1545507ae.jpg' in /home/hospiweb/public_html/admin/config/db.php on line 573
+[10-Nov-2020 22:38:04 UTC] PHP Warning:  move_uploaded_file(../../upload/5fab164ce484f.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/config/db.php on line 573
+[10-Nov-2020 22:38:04 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpRArGGm' to '../../upload/5fab164ce484f.jpg' in /home/hospiweb/public_html/admin/config/db.php on line 573
+[10-Nov-2020 22:38:20 UTC] PHP Warning:  move_uploaded_file(../../upload/5fab165cb09d5.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/config/db.php on line 573
+[10-Nov-2020 22:38:20 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpXIjCEl' to '../../upload/5fab165cb09d5.jpg' in /home/hospiweb/public_html/admin/config/db.php on line 573
+[10-Nov-2020 22:39:27 UTC] PHP Warning:  move_uploaded_file(../../upload/5fab169f72df1.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/config/db.php on line 573
+[10-Nov-2020 22:39:27 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/php0Ci3lS' to '../../upload/5fab169f72df1.jpg' in /home/hospiweb/public_html/admin/config/db.php on line 573
+[10-Nov-2020 22:40:57 UTC] PHP Warning:  move_uploaded_file(../../upload/5fab16f9edebe.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/config/db.php on line 573
+[10-Nov-2020 22:40:57 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpurT2hA' to '../../upload/5fab16f9edebe.jpg' in /home/hospiweb/public_html/admin/config/db.php on line 573
+[10-Nov-2020 22:43:00 UTC] PHP Warning:  move_uploaded_file(../../upload/5fab1774b5751.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/config/db.php on line 573
+[10-Nov-2020 22:43:00 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpfCqefC' to '../../upload/5fab1774b5751.jpg' in /home/hospiweb/public_html/admin/config/db.php on line 573
+[10-Nov-2020 23:07:05 UTC] PHP Warning:  move_uploaded_file(../../upload/5fab1d1946731.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/config/db.php on line 573
+[10-Nov-2020 23:07:05 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpR47TJy' to '../../upload/5fab1d1946731.jpg' in /home/hospiweb/public_html/admin/config/db.php on line 573
+[10-Nov-2020 23:19:04 UTC] PHP Warning:  move_uploaded_file(../../upload/5fab1fe80f47f.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/config/db.php on line 573
+[10-Nov-2020 23:19:04 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpXTS6a3' to '../../upload/5fab1fe80f47f.jpg' in /home/hospiweb/public_html/admin/config/db.php on line 573
+[11-Nov-2020 09:51:06 UTC] PHP Warning:  move_uploaded_file(../../upload/5fabb40a05225.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/config/db.php on line 573
+[11-Nov-2020 09:51:06 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/php7KN0zd' to '../../upload/5fabb40a05225.jpg' in /home/hospiweb/public_html/admin/config/db.php on line 573
+[11-Nov-2020 12:18:30 UTC] PHP Warning:  move_uploaded_file(../../upload/5fabd696167dd.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/config/db.php on line 573
+[11-Nov-2020 12:18:30 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpY6pxlL' to '../../upload/5fabd696167dd.jpg' in /home/hospiweb/public_html/admin/config/db.php on line 573
+[11-Nov-2020 12:32:21 UTC] PHP Warning:  move_uploaded_file(../../upload/5fabd9d506f0f.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/config/db.php on line 573
+[11-Nov-2020 12:32:21 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phphJ3Q46' to '../../upload/5fabd9d506f0f.jpeg' in /home/hospiweb/public_html/admin/config/db.php on line 573
+[11-Nov-2020 12:32:40 UTC] PHP Warning:  move_uploaded_file(../../upload/5fabd9e8a2440.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/config/db.php on line 573
+[11-Nov-2020 12:32:40 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/php2yFaCJ' to '../../upload/5fabd9e8a2440.jpeg' in /home/hospiweb/public_html/admin/config/db.php on line 573
+[11-Nov-2020 12:37:04 UTC] PHP Warning:  move_uploaded_file(../../upload/5fabdaf0aaa25.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/config/db.php on line 573
+[11-Nov-2020 12:37:04 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpQZ1sSn' to '../../upload/5fabdaf0aaa25.jpeg' in /home/hospiweb/public_html/admin/config/db.php on line 573
+[11-Nov-2020 12:37:26 UTC] PHP Warning:  move_uploaded_file(../../upload/5fabdb06e28a0.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/config/db.php on line 573
+[11-Nov-2020 12:37:26 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpjdchQC' to '../../upload/5fabdb06e28a0.jpeg' in /home/hospiweb/public_html/admin/config/db.php on line 573
+[13-Nov-2020 03:33:54 UTC] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/hospiweb/public_html/admin/model/visitorModel.php on line 170
+[16-Nov-2020 00:41:09 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function admin_base_ur() in /home/hospiweb/public_html/admin/model/adminUser.php:144
+Stack trace:
+#0 {main}
+  thrown in /home/hospiweb/public_html/admin/model/adminUser.php on line 144
+[20-Nov-2020 17:56:13 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function admin_base_ur() in /home/hospiweb/public_html/admin/model/adminUser.php:144
+Stack trace:
+#0 {main}
+  thrown in /home/hospiweb/public_html/admin/model/adminUser.php on line 144
+[23-Nov-2020 13:16:48 UTC] PHP Warning:  array_keys() expects parameter 1 to be array, null given in /home/hospiweb/public_html/admin/config/db.php on line 259
+[23-Nov-2020 13:16:48 UTC] PHP Warning:  array_values() expects parameter 1 to be array, null given in /home/hospiweb/public_html/admin/config/db.php on line 260
+[23-Nov-2020 13:16:48 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/hospiweb/public_html/admin/config/db.php on line 262
+[23-Nov-2020 13:21:44 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/hospiweb/public_html/admin/model/webModel.php:303) in /home/hospiweb/public_html/admin/config/db.php on line 170
+[23-Nov-2020 13:25:35 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function htmlentityencode() in /home/hospiweb/public_html/admin/model/webModel.php:305
+Stack trace:
+#0 {main}
+  thrown in /home/hospiweb/public_html/admin/model/webModel.php on line 305
+[30-Nov-2020 16:02:11 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/hospiweb/public_html/admin/model/doctorModel.php on line 79
+[01-Dec-2020 15:08:45 UTC] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/hospiweb/public_html/admin/model/certificateModel.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/hospiweb/public_html/admin/model/certificateModel.php on line 8
+[01-Dec-2020 15:10:40 UTC] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/hospiweb/public_html/admin/model/certificateModel.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/hospiweb/public_html/admin/model/certificateModel.php on line 8
+[15-Dec-2020 16:44:17 UTC] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/hospiweb/public_html/admin/model/timingModel.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/hospiweb/public_html/admin/model/timingModel.php on line 9
+[15-Dec-2020 16:47:57 UTC] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/hospiweb/public_html/admin/model/timingModel.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/hospiweb/public_html/admin/model/timingModel.php on line 9
+[15-Dec-2020 16:49:16 UTC] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/hospiweb/public_html/admin/model/timingModel.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/hospiweb/public_html/admin/model/timingModel.php on line 9
+[15-Dec-2020 16:51:07 UTC] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/hospiweb/public_html/admin/model/timingModel.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/hospiweb/public_html/admin/model/timingModel.php on line 9
+[15-Dec-2020 16:51:27 UTC] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/hospiweb/public_html/admin/model/timingModel.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/hospiweb/public_html/admin/model/timingModel.php on line 9
+[15-Dec-2020 16:56:36 UTC] PHP Fatal error:  Cannot use [] for reading in /home/hospiweb/public_html/admin/model/timingModel.php on line 11
+[15-Dec-2020 16:56:42 UTC] PHP Fatal error:  Cannot use [] for reading in /home/hospiweb/public_html/admin/model/timingModel.php on line 11
+[16-Dec-2020 06:45:25 UTC] PHP Warning:  Use of undefined constant timeID - assumed 'timeID' (this will throw an Error in a future version of PHP) in /home/hospiweb/public_html/admin/model/timingModel.php on line 51
+[16-Dec-2020 06:45:40 UTC] PHP Warning:  Use of undefined constant timeID - assumed 'timeID' (this will throw an Error in a future version of PHP) in /home/hospiweb/public_html/admin/model/timingModel.php on line 51
+[22-Dec-2020 18:05:12 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function admin_base_ur() in /home/hospiweb/public_html/admin/model/adminUser.php:144
+Stack trace:
+#0 {main}
+  thrown in /home/hospiweb/public_html/admin/model/adminUser.php on line 144
+[31-Dec-2020 09:51:34 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function admin_base_ur() in /home/hospiweb/public_html/admin/model/adminUser.php:144
+Stack trace:
+#0 {main}
+  thrown in /home/hospiweb/public_html/admin/model/adminUser.php on line 144
+[31-Dec-2020 09:51:38 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function admin_base_ur() in /home/hospiweb/public_html/admin/model/adminUser.php:144
+Stack trace:
+#0 {main}
+  thrown in /home/hospiweb/public_html/admin/model/adminUser.php on line 144
+[31-Dec-2020 09:51:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function admin_base_ur() in /home/hospiweb/public_html/admin/model/adminUser.php:144
+Stack trace:
+#0 {main}
+  thrown in /home/hospiweb/public_html/admin/model/adminUser.php on line 144
+[31-Dec-2020 09:51:43 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function admin_base_ur() in /home/hospiweb/public_html/admin/model/adminUser.php:144
+Stack trace:
+#0 {main}
+  thrown in /home/hospiweb/public_html/admin/model/adminUser.php on line 144
+[31-Dec-2020 09:52:08 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function admin_base_ur() in /home/hospiweb/public_html/admin/model/adminUser.php:144
+Stack trace:
+#0 {main}
+  thrown in /home/hospiweb/public_html/admin/model/adminUser.php on line 144
+[31-Dec-2020 09:52:09 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function admin_base_ur() in /home/hospiweb/public_html/admin/model/adminUser.php:144
+Stack trace:
+#0 {main}
+  thrown in /home/hospiweb/public_html/admin/model/adminUser.php on line 144
+[31-Dec-2020 09:52:13 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function admin_base_ur() in /home/hospiweb/public_html/admin/model/adminUser.php:144
+Stack trace:
+#0 {main}
+  thrown in /home/hospiweb/public_html/admin/model/adminUser.php on line 144
+[19-Jan-2021 07:35:16 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 123
+[19-Jan-2021 07:36:17 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 123
+[19-Jan-2021 07:36:50 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 124
+[19-Jan-2021 07:37:34 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 124
+[19-Jan-2021 07:38:53 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 125
+[19-Jan-2021 07:39:37 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 115
+[19-Jan-2021 07:45:39 UTC] PHP Warning:  strripos() expects parameter 1 to be string, array given in /home/hospiweb/public_html/admin/config/db.php on line 565
+[19-Jan-2021 07:45:39 UTC] PHP Warning:  substr() expects parameter 1 to be string, array given in /home/hospiweb/public_html/admin/config/db.php on line 565
+[19-Jan-2021 07:45:39 UTC] PHP Warning:  strripos() expects parameter 1 to be string, array given in /home/hospiweb/public_html/admin/config/db.php on line 566
+[19-Jan-2021 07:45:39 UTC] PHP Warning:  substr() expects parameter 1 to be string, array given in /home/hospiweb/public_html/admin/config/db.php on line 566
+[19-Jan-2021 07:45:39 UTC] PHP Warning:  move_uploaded_file() expects parameter 1 to be string, array given in /home/hospiweb/public_html/admin/config/db.php on line 573
+[20-Jan-2021 05:32:14 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function upload_image(), 2 passed in /home/hospiweb/public_html/admin/model/departmentModel.php on line 16 and at least 3 expected in /home/hospiweb/public_html/admin/config/db.php:560
+Stack trace:
+#0 /home/hospiweb/public_html/admin/model/departmentModel.php(16): upload_image(Array, '../../upload/')
+#1 {main}
+  thrown in /home/hospiweb/public_html/admin/config/db.php on line 560
+[20-Jan-2021 05:35:02 UTC] PHP Warning:  strripos() expects parameter 1 to be string, array given in /home/hospiweb/public_html/admin/config/db.php on line 565
+[20-Jan-2021 05:35:02 UTC] PHP Warning:  substr() expects parameter 1 to be string, array given in /home/hospiweb/public_html/admin/config/db.php on line 565
+[20-Jan-2021 05:35:02 UTC] PHP Warning:  strripos() expects parameter 1 to be string, array given in /home/hospiweb/public_html/admin/config/db.php on line 566
+[20-Jan-2021 05:35:02 UTC] PHP Warning:  substr() expects parameter 1 to be string, array given in /home/hospiweb/public_html/admin/config/db.php on line 566
+[20-Jan-2021 05:35:02 UTC] PHP Warning:  move_uploaded_file() expects parameter 1 to be string, array given in /home/hospiweb/public_html/admin/config/db.php on line 573
+[20-Jan-2021 05:38:50 UTC] PHP Warning:  strripos() expects parameter 1 to be string, array given in /home/hospiweb/public_html/admin/config/db.php on line 565
+[20-Jan-2021 05:38:50 UTC] PHP Warning:  substr() expects parameter 1 to be string, array given in /home/hospiweb/public_html/admin/config/db.php on line 565
+[20-Jan-2021 05:38:50 UTC] PHP Warning:  strripos() expects parameter 1 to be string, array given in /home/hospiweb/public_html/admin/config/db.php on line 566
+[20-Jan-2021 05:38:50 UTC] PHP Warning:  substr() expects parameter 1 to be string, array given in /home/hospiweb/public_html/admin/config/db.php on line 566
+[20-Jan-2021 05:38:50 UTC] PHP Warning:  move_uploaded_file() expects parameter 1 to be string, array given in /home/hospiweb/public_html/admin/config/db.php on line 573
+[20-Jan-2021 05:50:36 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 05:50:36 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpZcoBRH' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 05:50:36 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 05:50:36 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpAbw4jw' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 05:50:36 UTC] PHP Warning:  move_uploaded_file(upload/79-1574529458-20191123_215008.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 05:50:36 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpnE7xMk' to 'upload/79-1574529458-20191123_215008.jpg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 05:50:59 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 05:50:59 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpa3UKbK' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 05:50:59 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 05:50:59 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpTIDjez' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 05:50:59 UTC] PHP Warning:  move_uploaded_file(upload/79-1574529458-20191123_215008.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 05:50:59 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpCsTSgo' to 'upload/79-1574529458-20191123_215008.jpg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 05:51:18 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 05:51:18 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpajqRA2' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 05:51:18 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 05:51:18 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpR7AACG' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 05:51:18 UTC] PHP Warning:  move_uploaded_file(upload/79-1574529458-20191123_215008.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 05:51:18 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpCidkEk' to 'upload/79-1574529458-20191123_215008.jpg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 05:51:18 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/hospiweb/public_html/admin/model/departmentModel.php on line 49
+[20-Jan-2021 05:53:39 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 05:53:39 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpOywJi6' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 05:53:39 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 05:53:39 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpmozsXX' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 05:53:39 UTC] PHP Warning:  move_uploaded_file(upload/79-1574529458-20191123_215008.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 05:53:39 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpic6bCP' to 'upload/79-1574529458-20191123_215008.jpg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 05:58:31 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 05:58:31 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpntQheG' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 05:58:31 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 05:58:31 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/php8Ol4Cm' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 05:58:31 UTC] PHP Warning:  move_uploaded_file(upload/79-1574529458-20191123_215008.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 05:58:31 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpNhkR12' to 'upload/79-1574529458-20191123_215008.jpg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:01:27 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:01:27 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/php97XBwj' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:01:27 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:01:27 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpStyp5G' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:01:27 UTC] PHP Warning:  move_uploaded_file(upload/79-1574529458-20191123_215008.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:01:27 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpLOEdE4' to 'upload/79-1574529458-20191123_215008.jpg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:03:44 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:03:44 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpdBcAge' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:03:44 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:03:44 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpTr9G0E' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:03:44 UTC] PHP Warning:  move_uploaded_file(upload/79-1574529458-20191123_215008.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:03:44 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpRNEOK5' to 'upload/79-1574529458-20191123_215008.jpg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:03:54 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:03:54 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phplKvwni' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:03:54 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:03:54 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpnnL2Ja' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:03:54 UTC] PHP Warning:  move_uploaded_file(upload/79-1574529458-20191123_215008.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:03:54 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpdkoz62' to 'upload/79-1574529458-20191123_215008.jpg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:07:56 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:07:56 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpjpdChU' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:07:56 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:07:56 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpgIJHMn' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:07:56 UTC] PHP Warning:  move_uploaded_file(upload/79-1574529458-20191123_215008.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:07:56 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpN3LNhR' to 'upload/79-1574529458-20191123_215008.jpg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:08:49 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:08:49 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpIDbj6L' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:08:49 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:08:49 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpWkGIRA' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:08:49 UTC] PHP Warning:  move_uploaded_file(upload/79-1574529458-20191123_215008.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:08:49 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpAXD8Cp' to 'upload/79-1574529458-20191123_215008.jpg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:10:17 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:10:17 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phphW4lKN' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:10:17 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:10:17 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpPgdSUs' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:10:17 UTC] PHP Warning:  move_uploaded_file(upload/79-1574529458-20191123_215008.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:10:17 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpzxVo57' to 'upload/79-1574529458-20191123_215008.jpg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:13:53 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:13:53 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpx0Lcq9' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:13:53 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:13:53 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpPnuQlk' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:13:53 UTC] PHP Warning:  move_uploaded_file(upload/79-1574529458-20191123_215008.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:13:53 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/php9xOuhv' to 'upload/79-1574529458-20191123_215008.jpg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:16:13 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:16:13 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpLe10Nh' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:16:13 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:16:13 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/php8WlqRB' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:17:49 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:17:49 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpUVY6R9' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:17:49 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:17:49 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpPEfffF' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:18:13 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:18:13 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phph5u4Vq' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:18:13 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:18:13 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpb8f0YZ' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:19:04 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:19:04 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpn9T58N' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:19:04 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:19:04 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpVta5ID' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:20:20 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:20:20 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpCnwksG' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:20:20 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:20:20 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpWtaa7P' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:21:00 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:21:00 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpu3xfWy' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:21:00 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:21:00 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpmqXLTs' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:21:22 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:21:22 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpjR8JsQ' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:21:22 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:21:22 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpfQ7CpJ' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:22:41 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:22:41 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpSmiMXi' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:22:41 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:22:41 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phptNdS1C' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:23:08 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting '-' or identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/hospiweb/public_html/admin/model/departmentModel.php on line 151
+[20-Jan-2021 06:24:06 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:24:06 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpw88KDx' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:24:06 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:24:06 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpEM9cNC' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:24:50 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:24:50 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpsbSECe' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:24:50 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:24:50 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpuMecDf' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:26:46 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:26:46 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpCBGLsr' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:26:46 UTC] PHP Warning:  move_uploaded_file(upload/79-1574529458-20191123_215008.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:26:46 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpRPXU0x' to 'upload/79-1574529458-20191123_215008.jpg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:27:03 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:27:03 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpSw5Hut' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:27:03 UTC] PHP Warning:  move_uploaded_file(upload/79-1574529458-20191123_215008.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:27:03 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phppJTiRj' to 'upload/79-1574529458-20191123_215008.jpg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:29:31 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:29:31 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phprluadd' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:29:31 UTC] PHP Warning:  move_uploaded_file(upload/79-1574529458-20191123_215008.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:29:31 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpUuvSqz' to 'upload/79-1574529458-20191123_215008.jpg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:31:08 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:31:08 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpdkkA4T' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:31:08 UTC] PHP Warning:  move_uploaded_file(upload/79-1574529458-20191123_215008.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:31:08 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phprZmh0v' to 'upload/79-1574529458-20191123_215008.jpg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:31:19 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:31:19 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpVIyuCv' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:31:19 UTC] PHP Warning:  move_uploaded_file(upload/79-1574529458-20191123_215008.jpg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:31:19 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpKBkx6B' to 'upload/79-1574529458-20191123_215008.jpg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:33:03 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:33:03 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/php9oGeln' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:33:03 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:33:03 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpZurjR0' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:33:54 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:33:54 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpv2RuhT' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:33:54 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:33:54 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/php1eGfuN' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:34:20 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:34:20 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpZEaRlC' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:34:20 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:34:20 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpAQdL8F' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:36:08 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:36:08 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpvcIoVR' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:36:08 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:36:08 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpKksujD' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:38:53 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:38:53 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpS2ogcg' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:38:53 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:38:53 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpszNIbi' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:39:28 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:39:28 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpH1eOGU' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:39:28 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:39:28 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpPYVOmu' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:40:02 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:40:02 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpIfLfjI' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:40:02 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:40:02 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpJFo3TK' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:43:35 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:43:35 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpCaPCtF' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:43:35 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:43:35 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpXbGg15' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:53:00 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:53:00 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/php619Dsn' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:53:00 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:53:00 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpXLFcqA' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:54:20 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:54:20 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpMH0L62' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:54:20 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:54:20 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpcHkjcM' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:56:15 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:56:15 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/php9trZdK' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:56:15 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:56:15 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpxhcN3v' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:56:29 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/hospiweb/public_html/admin/config/db.php on line 610
+[20-Jan-2021 06:56:56 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:56:56 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpAaSVH5' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:56:56 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:56:56 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpXXX2TG' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:57:55 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:57:55 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpLSipIu' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:57:55 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 06:57:55 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpNXmqsF' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 07:00:14 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 07:00:14 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpOk4s8Q' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 07:00:14 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 07:00:14 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpnaIYm8' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 10:11:04 UTC] PHP Warning:  move_uploaded_file(upload/40-40 messages.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 10:11:04 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpXonmSD' to 'upload/40-40 messages.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 21
+[20-Jan-2021 10:15:17 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 22
+[20-Jan-2021 10:15:17 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpApgZZU' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 22
+[20-Jan-2021 10:15:17 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/hospiweb/public_html/admin/model/departmentModel.php:15) in /home/hospiweb/public_html/admin/config/db.php on line 170
+[20-Jan-2021 10:15:44 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 22
+[20-Jan-2021 10:15:44 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpx8nnzF' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 22
+[20-Jan-2021 10:15:44 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/hospiweb/public_html/admin/model/departmentModel.php:15) in /home/hospiweb/public_html/admin/config/db.php on line 170
+[20-Jan-2021 10:16:33 UTC] PHP Warning:  move_uploaded_file(upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 22
+[20-Jan-2021 10:16:33 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpNwKBR8' to 'upload/e2d78d2c-14a0-4822-85a7-23830c5a097b.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 22
+[20-Jan-2021 10:16:33 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/hospiweb/public_html/admin/model/departmentModel.php:15) in /home/hospiweb/public_html/admin/config/db.php on line 170
+[20-Jan-2021 10:20:33 UTC] PHP Warning:  date() expects at least 1 parameter, 0 given in /home/hospiweb/public_html/admin/model/departmentModel.php on line 20
+[20-Jan-2021 10:23:13 UTC] PHP Warning:  move_uploaded_file(upload/1611138193.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 24
+[20-Jan-2021 10:23:13 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phplmyNyi' to 'upload/1611138193.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 24
+[20-Jan-2021 10:28:30 UTC] PHP Warning:  move_uploaded_file(upload/1611138510.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 25
+[20-Jan-2021 10:28:30 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpeihY6S' to 'upload/1611138510.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 25
+[20-Jan-2021 10:28:30 UTC] PHP Warning:  move_uploaded_file(upload/1611138510.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 25
+[20-Jan-2021 10:28:30 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpUZNSLT' to 'upload/1611138510.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 25
+[20-Jan-2021 10:28:30 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/hospiweb/public_html/admin/model/departmentModel.php:24) in /home/hospiweb/public_html/admin/config/db.php on line 170
+[20-Jan-2021 10:37:46 UTC] PHP Warning:  move_uploaded_file(upload/1611139066.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 25
+[20-Jan-2021 10:37:46 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpTRREFK' to 'upload/1611139066.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 25
+[20-Jan-2021 10:37:46 UTC] PHP Warning:  move_uploaded_file(upload/1611139066.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 25
+[20-Jan-2021 10:37:46 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpZyZLHc' to 'upload/1611139066.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 25
+[20-Jan-2021 10:37:46 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/hospiweb/public_html/admin/model/departmentModel.php:24) in /home/hospiweb/public_html/admin/config/db.php on line 170
+[20-Jan-2021 10:37:56 UTC] PHP Warning:  move_uploaded_file(upload/1611139076.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 25
+[20-Jan-2021 10:37:56 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpShgvTe' to 'upload/1611139076.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 25
+[20-Jan-2021 10:37:56 UTC] PHP Warning:  move_uploaded_file(upload/1611139076.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 25
+[20-Jan-2021 10:37:56 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpVgydc6' to 'upload/1611139076.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 25
+[20-Jan-2021 10:37:56 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/hospiweb/public_html/admin/model/departmentModel.php:24) in /home/hospiweb/public_html/admin/config/db.php on line 170
+[20-Jan-2021 10:45:15 UTC] PHP Warning:  move_uploaded_file(/upload/1611139515.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 25
+[20-Jan-2021 10:45:15 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phprs3n52' to '/upload/1611139515.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 25
+[20-Jan-2021 10:45:15 UTC] PHP Warning:  move_uploaded_file(/upload/1611139515.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 25
+[20-Jan-2021 10:45:15 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpkYkMkb' to '/upload/1611139515.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 25
+[20-Jan-2021 10:49:13 UTC] PHP Warning:  move_uploaded_file(../upload/1611139753.jpeg): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 25
+[20-Jan-2021 10:49:13 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpszuTk1' to '../upload/1611139753.jpeg' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 25
+[20-Jan-2021 10:49:13 UTC] PHP Warning:  move_uploaded_file(../upload/1611139753.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 25
+[20-Jan-2021 10:49:13 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpJljBpC' to '../upload/1611139753.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 25
+[20-Jan-2021 11:27:42 UTC] PHP Warning:  move_uploaded_file(upload/healthscreen700.png): failed to open stream: No such file or directory in /home/hospiweb/public_html/admin/model/departmentModel.php on line 197
+[20-Jan-2021 11:27:42 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpK3bgvr' to 'upload/healthscreen700.png' in /home/hospiweb/public_html/admin/model/departmentModel.php on line 197
+[20-Jan-2021 11:44:49 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/hospiweb/public_html/admin/model/departmentModel.php on line 190
+[20-Jan-2021 11:44:49 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/hospiweb/public_html/admin/model/departmentModel.php on line 213
+[20-Jan-2021 17:09:43 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/hospiweb/public_html/admin/model/departmentModel.php on line 190
+[20-Jan-2021 17:09:43 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/hospiweb/public_html/admin/model/departmentModel.php on line 213
+[20-Jan-2021 17:11:43 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/hospiweb/public_html/admin/model/departmentModel.php on line 190
+[20-Jan-2021 17:11:43 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/hospiweb/public_html/admin/model/departmentModel.php on line 213
+[20-Jan-2021 17:25:19 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/hospiweb/public_html/admin/model/departmentModel.php on line 190
+[20-Jan-2021 17:25:19 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/hospiweb/public_html/admin/model/departmentModel.php on line 213
+[20-Jan-2021 18:24:56 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/hospiweb/public_html/admin/model/departmentModel.php on line 190
+[20-Jan-2021 18:24:56 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/hospiweb/public_html/admin/model/departmentModel.php on line 213
+[20-Jan-2021 18:26:17 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/hospiweb/public_html/admin/model/departmentModel.php on line 190
+[20-Jan-2021 18:26:17 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/hospiweb/public_html/admin/model/departmentModel.php on line 213
+[20-Jan-2021 20:02:50 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/hospiweb/public_html/admin/model/departmentModel.php on line 190
+[20-Jan-2021 20:02:50 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/hospiweb/public_html/admin/model/departmentModel.php on line 213
+[20-Jan-2021 20:33:33 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/hospiweb/public_html/admin/model/departmentModel.php on line 190
+[20-Jan-2021 20:33:33 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/hospiweb/public_html/admin/model/departmentModel.php on line 213
+[20-Jan-2021 21:35:39 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/hospiweb/public_html/admin/model/departmentModel.php on line 190
+[20-Jan-2021 21:35:39 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/hospiweb/public_html/admin/model/departmentModel.php on line 213
+[21-Jan-2021 15:42:37 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/hospiweb/public_html/admin/model/departmentModel.php on line 190
+[21-Jan-2021 15:42:37 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/hospiweb/public_html/admin/model/departmentModel.php on line 213
+[03-Feb-2021 22:27:49 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function issset() in /home/hospiweb/public_html/admin/model/jobModel.php:112
+Stack trace:
+#0 {main}
+  thrown in /home/hospiweb/public_html/admin/model/jobModel.php on line 112
+[03-Feb-2021 22:28:30 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function issset() in /home/hospiweb/public_html/admin/model/jobModel.php:112
+Stack trace:
+#0 {main}
+  thrown in /home/hospiweb/public_html/admin/model/jobModel.php on line 112
+[03-Feb-2021 22:31:35 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function issset() in /home/hospiweb/public_html/admin/model/jobModel.php:112
+Stack trace:
+#0 {main}
+  thrown in /home/hospiweb/public_html/admin/model/jobModel.php on line 112
+[03-Feb-2021 22:33:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function issset() in /home/hospiweb/public_html/admin/model/jobModel.php:112
+Stack trace:
+#0 {main}
+  thrown in /home/hospiweb/public_html/admin/model/jobModel.php on line 112
+[03-Feb-2021 22:39:49 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function issset() in /home/hospiweb/public_html/admin/model/jobModel.php:113
+Stack trace:
+#0 {main}
+  thrown in /home/hospiweb/public_html/admin/model/jobModel.php on line 113
+[08-Feb-2021 19:03:20 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/hospiweb/public_html/admin/model/cmeModel.php on line 40
+[10-Feb-2021 13:52:32 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/hospiweb/public_html/admin/config/db.php on line 53
+[10-Feb-2021 13:55:23 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/hospiweb/public_html/admin/config/db.php on line 53
+[10-Feb-2021 13:55:34 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/hospiweb/public_html/admin/config/db.php on line 53
+[10-Feb-2021 13:56:30 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/hospiweb/public_html/admin/config/db.php on line 53
+[10-Feb-2021 13:58:20 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/hospiweb/public_html/admin/config/db.php on line 53
+[10-Feb-2021 19:11:46 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/hospiweb/public_html/admin/model/resourceModel.php:314) in /home/hospiweb/public_html/admin/config/db.php on line 170
+[10-Feb-2021 19:11:51 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/hospiweb/public_html/admin/model/resourceModel.php:314) in /home/hospiweb/public_html/admin/config/db.php on line 170
+[10-Feb-2021 19:12:22 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/hospiweb/public_html/admin/model/resourceModel.php:165) in /home/hospiweb/public_html/admin/config/db.php on line 170
+[10-Feb-2021 19:13:22 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/hospiweb/public_html/admin/model/resourceModel.php:171) in /home/hospiweb/public_html/admin/config/db.php on line 170
+[10-Feb-2021 21:48:37 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/hospiweb/public_html/admin/config/db.php on line 53
+[13-Feb-2021 19:59:45 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/hospiweb/public_html/admin/model/doctorModel.php:195) in /home/hospiweb/public_html/admin/config/db.php on line 170
+[08-Mar-2021 14:13:25 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function print_t() in /home/arbmdco/public_html/admin/model/specialty_treatment_Model.php:39
+Stack trace:
+#0 {main}
+  thrown in /home/arbmdco/public_html/admin/model/specialty_treatment_Model.php on line 39
+[08-Mar-2021 14:15:35 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function print_t() in /home/arbmdco/public_html/admin/model/specialty_treatment_Model.php:39
+Stack trace:
+#0 {main}
+  thrown in /home/arbmdco/public_html/admin/model/specialty_treatment_Model.php on line 39
+[08-Mar-2021 14:15:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function print_t() in /home/arbmdco/public_html/admin/model/specialty_treatment_Model.php:39
+Stack trace:
+#0 {main}
+  thrown in /home/arbmdco/public_html/admin/model/specialty_treatment_Model.php on line 39
+[31-Mar-2021 23:37:29 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/arbmdco/public_html/admin/config/db.php on line 639
+[31-Mar-2021 23:38:22 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/arbmdco/public_html/admin/config/db.php on line 639
+[31-Mar-2021 23:39:26 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/arbmdco/public_html/admin/config/db.php on line 639
+[01-Apr-2021 19:45:05 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/arbmdco/public_html/admin/config/db.php on line 639
+[16-Apr-2021 16:36:57 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/arbmdco/public_html/admin/config/db.php on line 639
+[16-Apr-2021 16:37:39 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/arbmdco/public_html/admin/config/db.php on line 639
+[18-May-2021 19:54:15 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function admin_base_ur() in /home/arbmdco/public_html/admin/model/adminUser.php:146
+Stack trace:
+#0 {main}
+  thrown in /home/arbmdco/public_html/admin/model/adminUser.php on line 146
+[22-May-2021 22:07:29 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/arbmdco/public_html/admin/config/db.php on line 639
+[30-May-2021 23:09:39 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/arbmdco/public_html/admin/config/db.php on line 639
+[30-May-2021 23:09:59 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/arbmdco/public_html/admin/config/db.php on line 639
+[03-Jun-2021 22:34:28 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/arbmdco/public_html/admin/config/db.php on line 639
+[03-Jun-2021 22:35:03 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/arbmdco/public_html/admin/config/db.php on line 639

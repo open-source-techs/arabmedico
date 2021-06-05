@@ -1,0 +1,62 @@
+RewriteEngine On
+
+#Options +FollowSymLinks
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteRule ^(.*)$ index.php?temp=$1%{QUERY_STRING}
+
+
+
+###### All Menu Re routing ######
+#RewriteRule ^home/([^/]+)/?$  index.php [L,QSA,NC]
+#RewriteRule ^about-us/([^/]+)/?$  about-us.php [L,QSA,NC]
+#RewriteRule ^all-departments/([^/]+)/?$  all-departments.php [L,QSA,NC]
+#RewriteRule ^all-doctors/([^/]+)/?$  all-doctors.php [L,QSA,NC]
+#RewriteRule ^all-clinic/([^/]+)/?$  all-clinic.php [L,QSA,NC]
+#RewriteRule ^gallery/([^/]+)/?$  gallery.php [L,QSA,NC]
+#RewriteRule ^detail/([^/]+)/?$  detail.php [L,QSA,NC]
+#RewriteRule ^appointment/([^/]+)/?$  appointment.php [L,QSA,NC]
+#RewriteRule ^career/([^/]+)/?$  career.php [L,QSA,NC]
+#RewriteRule ^cme-training/([^/]+)/?$  cme-training.php [L,QSA,NC]
+#RewriteRule ^home  index.php [L,QSA,NC]
+#RewriteRule ^about-us  about-us.php [L,QSA,NC]
+#RewriteRule ^all-departments  all-departments.php [L,QSA,NC]
+#RewriteRule ^all-doctors  all-doctors.php [L,QSA,NC]
+#RewriteRule ^all-clinic  all-clinic.php [L,QSA,NC]
+#RewriteRule ^gallery  gallery.php [L,QSA,NC]
+#RewriteRule ^detail  detail.php [L,QSA,NC]
+#RewriteRule ^appointment  appointment.php [L,QSA,NC]
+#RewriteRule ^jobs  jobs.php [L,QSA,NC]
+#RewriteRule ^cme-training  cme-training.php [L,QSA,NC]
+#RewriteRule ^blog-listing  blog-listing.php [L,QSA,NC]
+###### Blog listing re routing with slugs ######
+##RewriteRule ^blog-listing/([^/]+)/?$  blog-listing.php [L,QSA,NC]
+#RewriteRule ^blog-listing/([^/]+)/?$  blog-listing.php?page=$1 [L,QSA,NC]
+#RewriteRule ^blog-listing/([^/]+)/([^/]+)/?$  blog-listing.php?page=$1&slug=$2 [L,QSA,NC]
+###### Blog post re routing with slugs ######
+#RewriteRule ^single-post/([^/]+)/?$ single-post.php?slug=$1 [L,QSA,NC]
+###### Department Detail Page ######
+#RewriteRule ^department/([^/]+)/?$ department.php?slug=$1 [L,QSA,NC]
+###### Resource Detail Page ######
+#RewriteRule ^resource/([^/]+)/?$ resource.php?slug=$1 [L,QSA,NC]
+###### Doctor Detail Page ######
+#RewriteRule ^dr/([^/]+)/?$ dr.php?slug=$1 [L,QSA,NC]
+###### Clinic Detail Page ######
+#RewriteRule ^clinic/([^/]+)/?$ clinic.php?slug=$1 [L,QSA,NC]
+###### Job Detail Page ######
+#RewriteRule ^job-detail/([^/]+)/?$ job-detail.php?slug=$1 [L,QSA,NC]
+###### cme Detail Page ######
+#RewriteRule ^cme-detail/([^/]+)/?$ cme-detail.php?slug=$1 [L,QSA,NC]
+###### Job Apply Page ######
+#RewriteRule ^job-apply/([^/]+)/?$ job-apply.php?slug=$1 [L,QSA,NC]
+###### cme Apply Page ######
+#RewriteRule ^cme-apply/([^/]+)/?$ cme-apply.php?slug=$1 [L,QSA,NC]
+###### Page Detail Page ######
+#RewriteRule ^page/([^/]+)/?$ page.php?slug=$1 [L,QSA,NC]
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php74” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php74 .php .php7 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit
