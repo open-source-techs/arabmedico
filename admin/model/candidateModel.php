@@ -509,7 +509,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 			$data['core_speciality'] != null && $data['core_speciality'] != ""
 		)
 		{
-			if(insert2($data,'tbl_can_coreskill'))
+			if(insert2($data,'tbl_candidate_coreskill'))
 			{
 				set_msg('Success','Core Skill is added successfully','success');
 				jump(admin_base_url()."core-skill");
@@ -539,7 +539,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 		)
 		{
 			where('core_id', $skillId);
-			if(update2($data,'tbl_can_coreskill'))
+			if(update2($data,'tbl_candidate_coreskill'))
 			{
 				set_msg('Success','Core Skill is updated successfully','success');
 				jump(admin_base_url()."core-skill");
@@ -684,7 +684,7 @@ else if($_SERVER['REQUEST_METHOD'] == "GET")
 		{
 			$skill_id = $_GET['skill_id'];
 			where('core_id',$skill_id);
-			if(delete('tbl_can_coreskill'))
+			if(delete('tbl_candidate_coreskill'))
 			{
 				set_msg('Success','Skill is deleted successfully','success');
 				jump(admin_base_url()."core-skill");

@@ -13,7 +13,7 @@ if(isset($_GET['skill_id']))
         </script>
         <?php
     }
-    $sql = query("SELECT * FROM tbl_can_coreskill where core_id = '$skill_id'");
+    $sql = query("SELECT * FROM tbl_candidate_coreskill where core_id = '$skill_id'");
     $coreSkill = fetch($sql);
     $btName = "btn_edit_skill";
 }
@@ -104,7 +104,7 @@ if(isset($_GET['skill_id']))
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $sql = query("SELECT * FROM tbl_can_coreskill");
+                                    $sql = query("SELECT * FROM tbl_candidate_coreskill");
                                     while ($row = fetch($sql))
                                     {
                                         ?>
