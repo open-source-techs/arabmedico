@@ -49,11 +49,11 @@ if(isset($_GET['treatment_id']))
                             <input type="hidden" name="treatment_id" value="<?= $treatment['treatment_id'];?>">
                             <div class="col-sm-6 form-group">
                                 <label>Treatment Name</label>
-                                <input type="text" name="treatment_name" value="<?= $treatment['treatment_name'];?>" class="form-control" placeholder="Enter treatment Name" required>
+                                <input type="text" name="treatment_name" value="<?= isset($_GET['treatment_id']) ? $treatment['treatment_name'] : '' ?>" class="form-control" placeholder="Enter treatment Name" required>
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label>Treatment Name Arabic</label>
-                                <input type="text" name="treatment_name_ar" value="<?= $treatment['treatment_name'];?>" class="form-control" placeholder="Enter Treatment Name Arabic" required>
+                                <input type="text" name="treatment_name_ar" value="<?= isset($_GET['treatment_id']) ? $treatment['treatment_ar_name'] : '' ?> " class="form-control" placeholder="Enter Treatment Name Arabic" required>
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label>Select Specialty</label>
@@ -63,7 +63,7 @@ if(isset($_GET['treatment_id']))
                                     while ($row = fetch($sql))
                                     {
                                         ?>
-                                         <option <?=($treatment['select_specialty'] == $row['specialty_id'])? 'selected' : ''?> value="<?= $row['specialty_id'];?>"><?= $row['specialty_name'];?></option>
+                                         <option <?=( (isset($_GET['treatment_id'])) && ($treatment['select_specialty'] == $row['specialty_id']) ) ? 'selected' : ''?> value="<?= $row['specialty_id'];?>"><?= $row['specialty_name'];?></option>
                                         <?php
                                     }
                                     ?>
