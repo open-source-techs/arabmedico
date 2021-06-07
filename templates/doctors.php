@@ -194,7 +194,7 @@ include 'header.php';
 		              //  $sqlEcho = "SELECT * FROM tbl_doctor WHERE doc_active = 1";
 		                $sql = query("SELECT * FROM tbl_doctor WHERE doc_active = 1");
 		            }
-		            echo $sqlEcho;
+		            // echo $sqlEcho;
         		    while($doc = fetch($sql))
         		    {
         		        ?>
