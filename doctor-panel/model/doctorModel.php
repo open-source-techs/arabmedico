@@ -703,8 +703,8 @@ else if($_SERVER['REQUEST_METHOD'] == "GET")
 	    if(isset($_GET['award_id']) && $_GET['award_id'] != "" && $_GET['award_id'] != null && $_GET['award_id'] > 0 )
 	    {
 	        $award_id = $_GET['award_id'];
-			where('doc_award_id',$award_id);
-			if(delete('tbl_doc_awards'))
+			where('can_award_id',$award_id);
+			if(delete('tbl_can_awards'))
 			{
 			    set_msg('Success','Award Image is deleted successfully','success');
 			    jump(admin_base_url()."branding");
