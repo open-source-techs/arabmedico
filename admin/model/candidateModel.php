@@ -17,7 +17,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 	    $data['candidate_email']            = post('txt_email');
 	    $data['candidate_phone']            = post('txt_phone');
 	    $data['candidate_phone_ar']         = changeNumberToArabic($data['candidate_phone']);
-	    $data['candidate_department']       = post('txt_depart');
+	    $data['candidate_package']       	= post('txt_package');
 	    $data['candidate_country']          = post('txt_country');
 	    $data['candidate_city']             = post('txt_city');
 	    $data['candiadate_resume']          = $_POST['txt_desc'];
@@ -71,7 +71,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
             			$data['candidate_company'] 		!= "" && $data['candidate_company'] 		!= null &&
             			$data['candidate_company_ar'] 	!= "" && $data['candidate_company_ar'] 		!= null &&
             			$data['candidate_email'] 		!= "" && $data['candidate_email'] 			!= null &&
-            			$data['candidate_department'] 	!= "" && $data['candidate_department'] 		!= null &&
+            			$data['candidate_package'] 		!= "" && $data['candidate_package'] 		!= null &&
             			$data['candidate_country']      != "" && $data['candidate_country'] 	    != null &&
             			$data['candidate_city'] 		!= "" && $data['candidate_city'] 			!= null &&
             			$data['candidate_image'] 		!= "" && $data['candidate_image'] 		    != null &&
@@ -129,7 +129,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 	    $data['candidate_email']            = post('txt_email');
 	    $data['candidate_phone']            = post('txt_phone');
 	    $data['candidate_phone_ar']         = changeNumberToArabic($data['candidate_phone']);
-	    $data['candidate_department']       = post('txt_depart');
+	    $data['candidate_package']       	= post('txt_package');
 	    $data['candidate_country']          = post('txt_country');
 	    $data['candidate_city']             = post('txt_city');
 	    $data['candiadate_resume']          = $_POST['txt_desc'];
@@ -176,7 +176,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 			$data['candidate_company'] 		!= "" && $data['candidate_company'] 		!= null &&
 			$data['candidate_company_ar'] 	!= "" && $data['candidate_company_ar'] 		!= null &&
 			$data['candidate_email'] 		!= "" && $data['candidate_email'] 			!= null &&
-			$data['candidate_department'] 	!= "" && $data['candidate_department'] 		!= null &&
+			$data['candidate_package'] 		!= "" && $data['candidate_package'] 		!= null &&
 			$data['candidate_country']      != "" && $data['candidate_country'] 	    != null &&
 			$data['candidate_city'] 		!= "" && $data['candidate_city'] 			!= null
 			

@@ -24,7 +24,6 @@ if(isset($_GET['query']) && $_GET['query'] != "" && $_GET['query'] != null)
     OR c.candidate_email LIKE '%".$query."%'
     OR c.candiate_nationality LIKE '%".$query."%'
     OR c.candidate_gender LIKE '%".$query."%'
-    OR d.can_speciality_name LIKE '%".$query."%'
     OR city.city_name LIKE '%".$query."%'
     )";
 }
@@ -104,18 +103,18 @@ $offset = ($page - 1 ) * $limit;
                                 <thead>
                                     <tr>
                                         <th>Image</th>
-                                        <th>chalo </th>
+                                        <th>Name </th>
                                         <th>Job Title</th>
-                                        <th>Speciality</th>
                                         <th>Location</th>
                                         <th>Nationality</th>
                                         <th>Gender</th>
+                                        <th>Package</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $sql = query("SELECT * FROM tbl_candidate c JOIN tbl_candiate_speciality d ON (d.can_speciality_id = c.candidate_department) JOIN tbl_cities city ON (city.city_id = c.candidate_city) WHERE c.candidate_active = 1 $where LIMIT $offset, $limit");
+                                    $sql = query("SELECT * FROM tbl_candidate c JOIN tbl_cities city ON (city.city_id = c.candidate_city) WHERE c.candidate_active = 1 $where LIMIT $offset, $limit");
                                     while ($row = fetch($sql))
                                     {
                                         ?>
@@ -123,10 +122,10 @@ $offset = ($page - 1 ) * $limit;
                                             <td><img src="<?= file_url().$row['candidate_image'];?>" class="img-fluid" style="width:auto;height:50px"></td>
                                             <td><?= $row['candidate_name'];?></td>
                                             <td><?= $row['candidate_job'];?></td>
-                                            <td><?= $row['can_speciality_name'];?></td>
                                             <td><?= $row['city_name'];?></td>
                                             <td><?= $row['candiate_nationality'];?></td>
                                             <td><?= $row['candidate_gender'];?></td>
+                                            <td><?= ($row['candidate_package'] == 0) ? 'Basic' : 'Premium';?></td>
                                             <td>
                                                 <a href="<?= admin_base_url();?>edit-candidate?can_id=<?= $row['candidate_id']; ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i></a>
                                                 <a href="<?= admin_base_url();?>model/candidateModel?act=del&can_id=<?= $row['candidate_id']; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></a>
@@ -142,7 +141,7 @@ $offset = ($page - 1 ) * $limit;
                         <div class="page-nation text-right">
                             <ul class="pagination pagination-large">
                                 <?php
-							    $total_pages_sql = query("SELECT * FROM tbl_candidate j WHERE j.candidate_active = 1 WHERE 1=1 $where");
+							    $total_pages_sql = query("SELECT * FROM tbl_candidate j WHERE j.candidate_active = 1 $where");
                                 $total_rows = nrows($total_pages_sql);
                                 $total_pages = ceil($total_rows / $limit);
         						for ($i=0; $i < $total_pages; $i++)

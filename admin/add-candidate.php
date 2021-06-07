@@ -136,18 +136,11 @@
                                 <input type="file" name="txt_banner" class="form-control" required>
                             </div>
                             <div class="col-sm-6 form-group">
-                                <label>Select Speciality</label>
-                                <select name="txt_depart" class="form-control select2" required>
-                                    <option>Select Speciality</option>
-                                    <?php
-                                    $sql = query("SELECT * FROM tbl_candiate_speciality WHERE can_speciality_active = 1");
-                                    while ($row = fetch($sql))
-                                    {
-                                        ?>
-                                        <option value="<?= $row['can_speciality_id'];?>"><?= $row['can_speciality_name'];?></option>
-                                        <?php
-                                    }
-                                    ?>
+                                <label>Select Package</label>
+                                <select name="txt_package" class="form-control select2" required>
+                                    <option>Select one</option>
+                                    <option value="1">Premium</option>
+                                    <option value="0">Basic</option>
                                 </select>
                             </div>
                             <div class="col-sm-6 form-group">
