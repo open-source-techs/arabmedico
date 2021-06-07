@@ -498,6 +498,64 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 	    }
 	    echo json_encode($res);
 	}
+	else if(isset($_POST['btn_save_skill']))
+	{
+		$data['core_name']		 = post('coreSkill_name');
+		$data['core_name_ar']	 = $_POST['coreSkill_name_ar'];
+		$data['core_speciality'] = post('select_specialty');
+		if(
+			$data['core_name'] != null && $data['core_name'] != "" &&
+			$data['core_name_ar'] != null && $data['core_name_ar'] != "" && 
+			$data['core_speciality'] != null && $data['core_speciality'] != ""
+		)
+		{
+			if(insert2($data,'tbl_can_coreskill'))
+			{
+				set_msg('Success','Core Skill is added successfully','success');
+				jump(admin_base_url()."core-skill");
+			}
+			else
+			{
+				set_msg('Insertion error','Unable to process your request. Please try again later.','error');
+				echo "<script>window.history.go(-1);</script>";
+			}
+		}
+		else
+		{
+		    set_msg('Missing Data','Please enter all fields data.','error');
+		    echo "<script>window.history.go(-1);</script>";
+		}
+	}
+	else if(isset($_POST['btn_edit_skill']))
+	{
+		$skillId 				 = post('core_id');
+		$data['core_name']		 = post('coreSkill_name');
+		$data['core_name_ar']	 = $_POST['coreSkill_name_ar'];
+		$data['core_speciality'] = post('select_specialty');
+		if(
+			$data['core_name'] 			!= null && $data['core_name'] 		!= "" &&
+			$data['core_name_ar'] 		!= null && $data['core_name_ar'] 	!= "" && 
+			$data['core_speciality'] 	!= null && $data['core_speciality'] != ""
+		)
+		{
+			where('core_id', $skillId);
+			if(update2($data,'tbl_can_coreskill'))
+			{
+				set_msg('Success','Core Skill is updated successfully','success');
+				jump(admin_base_url()."core-skill");
+			}
+			else
+			{
+				set_msg('Insertion error','Unable to process your request. Please try again later.','error');
+				echo "<script>window.history.go(-1);</script>";
+			}
+		}
+		else
+		{
+		    set_msg('Missing Data','Please enter all fields data.','error');
+		    echo "<script>window.history.go(-1);</script>";
+		}
+	}
 	else
 	{
 		jump(admin_base_url());
@@ -618,6 +676,29 @@ else if($_SERVER['REQUEST_METHOD'] == "GET")
 		{
 			set_msg('Fields validation','Unexpected error occurs','error');
 			jump(admin_base_url()."candidate-area");
+		}
+	}
+	else if(isset($_GET['act_coreSkill']) && $_GET['act_coreSkill'] == "del")
+	{
+		if(isset($_GET['skill_id']) && $_GET['skill_id'] != "" && $_GET['skill_id'] != null && $_GET['skill_id'] > 0 )
+		{
+			$skill_id = $_GET['skill_id'];
+			where('core_id',$skill_id);
+			if(delete('tbl_can_coreskill'))
+			{
+				set_msg('Success','Skill is deleted successfully','success');
+				jump(admin_base_url()."core-skill");
+			}
+			else
+			{
+				set_msg('Query Error','Unable to process your request. Please try again later','error');
+				jump(admin_base_url()."ccore-skill");
+			}
+		}
+		else
+		{
+			set_msg('Fields validation','Unexpected error occurs','error');
+			jump(admin_base_url()."core-skill");
 		}
 	}
 	else
