@@ -220,28 +220,28 @@ if(isset($_GET['serv_id']) && $_GET['serv_id'] != null && $_GET['serv_id'] != ""
                     <div class="panel-body">
                         <div class="col-md-12">
                             <form  action="<?= admin_base_url()?>model/candidateModel" method="POST" enctype="multipart/form-data" class="col-sm-12">
-                                <input type="hidden" name="txt_doc_id" value="<?= $candidate_id; ?>">
+                                <input type="hidden" name="txt_can_id" value="<?= $candidate_id; ?>">
                                 <div class="col-sm-6 form-group">
                                     <label>Specialty</label>
                                     <select name="txt_speciality" id="txt_speciality" class="form-control" required>
                                         <option value="" disabled selected>----Select Speciality----</option>
                                         <?php
-                                        $sql = query('SELECT * FROM tbl_specialty WHERE specialty_status = 1');
+                                        $sql = query('SELECT * FROM tbl_candiate_speciality WHERE can_speciality_active = 1');
                                         while($spc = fetch($sql))
                                         {
                                             ?>
-                                            <option value="<?= $spc['specialty_id']; ?>"><?= $spc['specialty_name'];?> - <?= $spc['specialty_ar_name'];?></option>
+                                            <option value="<?= $spc['can_speciality_id']; ?>"><?= $spc['can_speciality_name'];?> - <?= $spc['can_speciality_name_ar'];?></option>
                                             <?php
                                         }
                                         ?>
                                     </select>
                                 </div>
                                 <div class="col-sm-6 form-group">
-                                    <label>Treatment/Condition</label>
-                                    <select name="txt_treatment" id="txt_treatment" class="form-control" required></select>
+                                    <label>Core Skill</label>
+                                    <select name="txt_coreskill" id="txt_coreskill" class="form-control" required></select>
                                 </div>
                                 <div class="col-sm-12 reset-button">
-                                    <input type="submit" name="btn_treatment" class="btn btn-success" value="Save">
+                                    <input type="submit" name="btn_skill" class="btn btn-success" value="Save">
                                 </div>
                             </form>
                         </div>
@@ -251,22 +251,22 @@ if(isset($_GET['serv_id']) && $_GET['serv_id'] != null && $_GET['serv_id'] != ""
                                     <thead>
                                         <tr>
                                             <th>Speciality</th>
-                                            <th>Medical Conditions/Treatments</th>
+                                            <th>Core Skill</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     
                                     <tbody>
                                         <?php
-                                        $sql = query("SELECT * FROM tbl_doc_treatments dt JOIN tbl_specialty sp ON (dt.treatment_speciality = sp.specialty_id) JOIN tbl_treatment tr ON (tr.treatment_id = dt.treatment_condition) WHERE treatment_doc = ".$doc_id);
+                                        $sql = query("SELECT * FROM tbl_can_coreskill ck JOIN tbl_candiate_speciality cp ON (ck.can_skill_speciality = cp.can_speciality_id) JOIN tbl_candidate_coreskill cck ON (cck.core_id = ck.can_skill) WHERE can_skill_can = ".$candidate_id);
                                         while ($row = fetch($sql))
                                         {
                                             ?>
                                             <tr>
-                                                <td><?= $row['specialty_name'];?></td>
-                                                <td><?= $row['treatment_name'];?></td>
+                                                <td><?= $row['can_speciality_name'];?></td>
+                                                <td><?= $row['core_name'];?></td>
                                                 <td>
-                                                    <a href="<?= admin_base_url();?>model/candidateModel?act=del-treatemnt&treatemnt=<?= $row['doc_treatment_id']; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
+                                                    <a href="<?= admin_base_url();?>model/candidateModel?act=del-core&core_id=<?= $row['can_skill_id']; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
                                                 </td>
                                             </tr>
                                             <?php
@@ -865,20 +865,20 @@ get_msg('msg');
 	            {
 	                
 	                var result = $.parseJSON(res);
-	                $("#txt_treatment").empty();
+	                $("#txt_coreskill").empty();
 	                if(result.msg == "success")
 	                {
 	                    var data = result.data;
-	                    $("#txt_treatment").append("<option selected disabled>Select Condition/Treatment</option>");
+	                    $("#txt_coreskill").append("<option selected disabled>Select Condition/Treatment</option>");
 	                    $.each(data, function(index, value)
 	                    {
-	                        var li = '<option value="'+value.treatment_id+'">'+value.treatment_name+' - '+value.treatment_ar_name+'</option>';
-	                        $("#txt_treatment").append(li);
+	                        var li = '<option value="'+value.core_id+'">'+value.core_name+' - '+value.core_name_ar+'</option>';
+	                        $("#txt_coreskill").append(li);
 	                    });
 	                }
 	                else
 	                {
-	                    alert("No area found againt selected country");
+	                    alert("No skill found against selected speciality");
 	                }
 	            }
 	        });

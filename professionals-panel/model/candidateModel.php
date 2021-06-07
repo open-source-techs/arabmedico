@@ -541,6 +541,48 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 			echo "<script>window.history.go(-1);</script>";
 		}
 	}
+	else if(isset($_POST['action']) && $_POST['action'] == "getCondition")
+	{
+	    $specialityID = post('speciality');
+	    $sql = query("SELECT * FROM tbl_candidate_coreskill WHERE core_speciality = '$specialityID' AND core_active = 1");
+	    if(nrows($sql) > 0)
+	    {
+	        $res_arr = array();
+	        while($val = fetch($sql))
+	        {
+	            $res_arr[] = $val;
+	        }
+	        $res = array(
+	            "msg" => "success",
+	            "data" => $res_arr
+            );
+	    }
+	    else
+	    {
+	        $res = array(
+	            "msg" => "error",
+	            "data" => null
+            );
+	    }
+	    echo json_encode($res);
+	}
+	else if(isset($_POST['btn_skill']))
+	{
+	    $data['can_skill_speciality']   = post('txt_speciality');
+	    $data['can_skill_can'] 	        = post('txt_can_id');
+	    $data['can_skill']    			= post('txt_coreskill');
+	    
+	    if(insert($data,'tbl_can_coreskill'))
+		{
+			set_msg('Success','Date is added successfully','success');
+			jump(admin_base_url()."account");
+		}
+		else
+		{
+			set_msg('Insertion error','Unable to process your request. Please try again later.','error');
+			echo "<script>window.history.go(-1);</script>";
+		}
+	}
 	else
 	{
 		jump(admin_base_url());
@@ -738,6 +780,29 @@ else if($_SERVER['REQUEST_METHOD'] == "GET")
 	        $edu_id = $_GET['edu_id'];
 			where('edu_id',$edu_id);
 			if(delete('tbl_can_education'))
+			{
+			    set_msg('Success','Data is deleted successfully','success');
+			    jump(admin_base_url()."account");
+			}
+			else
+			{
+			    set_msg('Query Error','Unable to process your request. Please try again later','error');
+			    jump(admin_base_url()."account");
+			}
+	    }
+	    else
+	    {
+	        set_msg('Data Error','No Record Found','error');
+	        jump(admin_base_url()."account");
+	    }
+	}
+	else if(isset($_GET['act']) && $_GET['act'] == "del-core")
+	{
+	    if(isset($_GET['core_id']) && $_GET['core_id'] != "" && $_GET['core_id'] != null && $_GET['core_id'] > 0 )
+	    {
+	        $core_id = $_GET['core_id'];
+			where('can_skill_id',$core_id);
+			if(delete('tbl_can_coreskill'))
 			{
 			    set_msg('Success','Data is deleted successfully','success');
 			    jump(admin_base_url()."account");
