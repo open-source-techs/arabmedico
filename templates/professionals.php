@@ -154,7 +154,7 @@ include 'header.php';
 		            {
 		                $sql = query("SELECT * FROM tbl_candidate WHERE candidate_active = 1");
 		            }
-		            echo $sqlEcho;
+		            // echo $sqlEcho;
         		    while($doc = fetch($sql))
         		    {
         		        ?>

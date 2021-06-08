@@ -3,7 +3,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
 {
     $slug = $_GET['slug'];
     include 'header.php';
-    $sql = query("SELECT * FROM tbl_candidate c JOIN tbl_candiate_speciality cs ON (c.candidate_department = cs.can_speciality_id) WHERE candidate_active = 1 AND candidate_slug = '$slug'");
+    $sql = query("SELECT * FROM tbl_candidate WHERE candidate_active = 1 AND candidate_slug = '$slug'");
     if(nrows($sql) > 0)
     {
         $doc = fetch($sql);
@@ -57,7 +57,14 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
         							    </tr>
         							    <tr>
         							        <td><?= ($lang == "eng") ? $lang_con[206]['lang_eng'] : $lang_con[206]['lang_arabic']; ?>: </td>
-        							        <td><p><?= ($lang == "eng") ? $doc['can_speciality_name'] : $doc['can_speciality_name_ar'];?></p></td>
+        							        <td><p>
+                                                <?php
+                                                $specSql = query("SELECT * FROM ");
+                                                ?>
+                                                <?= ($lang == "eng") ? $doc['can_speciality_name'] : $doc['can_speciality_name_ar'];?>
+
+                                                </p>
+                                            </td>
         							    </tr>
         							    <tr>
         							        <td><?= ($lang == "eng") ? $lang_con[208]['lang_eng'] : $lang_con[208]['lang_arabic']; ?>: </td>
