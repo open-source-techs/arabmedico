@@ -33,6 +33,38 @@
                     <span>Messages</span>
                 </a>
             </li>
+            <li class="<?php active_page('branding'); ?>">
+                <a href="<?= admin_base_url();?>branding">
+                    <i class="fa fa-eye"></i>
+                    <span>Branding (Premium)</span>
+                </a>
+            </li>
+            <li class="">
+                <a href="<?= admin_base_url();?>account">
+                    <i class="fa fa-lock"></i>
+                    <span>My Account (Premium)</span>
+                </a>
+            </li>
+            <li class="">
+                <a href="<?= admin_base_url();?>photo-gallery">
+                    <i class="fa fa-camera"></i>
+                    <span>Photo Gallery (Premium)</span>
+                </a>
+            </li>
+            <li class="">
+                <a href="<?= admin_base_url();?>video-gallery">
+                    <i class="fa fa-video-camera"></i>
+                    <span>Video Gallery (Premium)</span>
+                </a>
+            </li>
+
+            <li class="">
+                <a href="<?= admin_base_url();?>all-testimonial">
+                    <i class="fa fa-credit-card-alt"></i>
+                    <span>Reviews (Premium)</span>
+                </a>
+            </li>
+
             <li class="">
                 <a href="<?= admin_base_url();?>model/adminUser?act=logout">
                     <i class="fa fa-sign-out"></i>

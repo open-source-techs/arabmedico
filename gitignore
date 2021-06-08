@@ -1,0 +1,13 @@
+# files and folders in this list will be ignored
+#
+upload
+error_log
+.htaccess
+admin/config/db.php
+clinic-panel/config/db.php
+doctor-panel/config/db.php
+employer-panel/config/db.php
+organizer-panel/config/db.php
+professionals-panel/config/db.php
+php.ini
+user.ini
