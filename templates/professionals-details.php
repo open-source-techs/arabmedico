@@ -201,7 +201,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                         while($spec = fetch($query))
                                         {
                                             ?>
-                                            <li><img class="img-fluid" style="height:30px;" src="<?= file_url().$spec['speciality_icon']; ?>"><span><?= ($lang == "eng") ? $spec['specialty_name'] : $spec['specialty_ar_name']; ?></span></li>
+                                            <li><?= ($lang == "eng") ? $spec['can_speciality_name'] : $spec['can_speciality_name_ar']; ?></li>
                                             <?php
                                         }
                                         ?>
