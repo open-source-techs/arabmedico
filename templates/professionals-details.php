@@ -151,7 +151,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                 </div>
 
                                 <div class="tg-widget tg-widget-accordions" style="margin-bottom:12px">
-                                    <h3 style="background-color:#124c82">Specialities</h3>
+                                    <h3 style="background-color:#124c82"><?= ($lang == "eng") ? $lang_con[218]['lang_eng'] : $lang_con[218]['lang_arabic']; ?></h3>
                                     <ul>
                                         <li><?= $candidate['candidate_email'];?></li>
                                         <li><?= ($lang == "eng") ? $candidate['candidate_phone'] : $candidate['candidate_phone_ar'];?></li>
@@ -163,7 +163,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
 
 
                                 <div class="tg-widget tg-widget-accordions" style="margin-bottom:12px">
-                                    <h3 style="background-color:#124c82">Practice Locations</h3>
+                                    <h3 style="background-color:#124c82"><?= ($lang == "eng") ? $lang_con[190]['lang_eng'] : $lang_con[190]['lang_arabic']; ?></h3>
                                     <ul class="tg-doccontactinfo" style="padding-bottom:5px; ">
                                         <?php
                                         $query = query("SELECT * FROM tbl_can_practice_loc pc JOIN tbl_candidate_country c ON (c.country_id = pc.loc_country) JOIN tbl_candidate_cities ci ON (ci.city_id = pc.loc_city) WHERE loc_can_id = $candidateID");
@@ -194,7 +194,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                     </ul>
                                 </div>
                                 <div class="tg-widget tg-widget-accordions" style="margin-bottom:12px">
-                                    <h3 style="background-color:#124c82">Specialities</h3>
+                                    <h3 style="background-color:#124c82"><?= ($lang == "eng") ? $lang_con[32]['lang_eng'] : $lang_con[32]['lang_arabic']; ?></h3>
                                     <ul>
                                         <?php
                                         $query = query("SELECT * FROM tbl_can_speciality ds JOIN tbl_candiate_speciality s ON (ds.can_speciality = s.can_speciality_id) WHERE can_spec_can = $candidateID");
@@ -208,7 +208,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                     </ul>
                                 </div>
                                 <div class="tg-widget tg-widget-accordions" style="margin-bottom:12px">
-                                    <h3 style="background-color:#124c82">Service Charges</h3>
+                                    <h3 style="background-color:#124c82"><?= ($lang == "eng") ? $lang_con[222]['lang_eng'] : $lang_con[222]['lang_arabic']; ?></h3>
                                     <ul>
                                         <?php
                                         $query = query("SELECT * FROM tbl_can_services WHERE c_can_id = $candidateID");
@@ -222,7 +222,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                     </ul>
                                 </div>
                                 <div class="tg-widget tg-tab-widget hidemobile" style="margin-bottom:20px">
-                                    <h3 style="background-color:#124c82">awards</h3>
+                                    <h3 style="background-color:#124c82"><?= ($lang == "eng") ? $lang_con[193]['lang_eng'] : $lang_con[193]['lang_arabic']; ?></h3>
                                     <div class="tg-tabwidet-content" style="padding-bottom:10px; padding-top:0px; padding-right:10px; padding-left:10px">
                                         <div class="tab-content">
                                             <div role="tg-tabpanel" class="tg-tab-pane tab-pane active" style="text-align:center">
@@ -363,7 +363,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                     <div id="aboutme">
                                         <div class="tg-doc-feature tg-haslayout">
                                             <div class="tg-heading-border tg-small" style="padding-bottom:0px !important">
-                                                <h4>Introduction</h4>
+                                                <h4><?= ($lang == "eng") ? $lang_con[184]['lang_eng'] : $lang_con[184]['lang_arabic']; ?></h4>
                                             </div>
                                             <div class="tg-description" style="margin-bottom:25px">
                                                 <?= ($lang == "eng") ? $candidate['candiadate_resume'] : $candidate['candiadate_resume_ar'];?>
@@ -372,7 +372,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                     </div>
                                     <div class="tg-doc-feature tg-haslayout">
                                         <div class="tg-heading-border tg-small" style="padding-bottom:0px !important; ">
-                                            <h4>Appointments</h4>
+                                            <h4><?= ($lang == "eng") ? $lang_con[116]['lang_eng'] : $lang_con[116]['lang_arabic']; ?></h4>
                                         </div>
                                         <div class="tg-description" style="margin-bottom:25px; ">
                                             <ul>
@@ -390,7 +390,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                     </div>
                                     <div class="tg-doc-feature tg-haslayout">
                                         <div class="tg-heading-border tg-small" style="padding-bottom:0px !important; ">
-                                            <h4>Core Skill</h4>
+                                            <h4><?= ($lang == "eng") ? $lang_con[220]['lang_eng'] : $lang_con[220]['lang_arabic']; ?></h4>
                                         </div>
                                         <div class="tg-description" style="margin-bottom:25px; ">
                                             <ul>
@@ -408,7 +408,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                     </div>
                                     <div class="tg-doc-feature tg-haslayout">
                                         <div class="tg-heading-border tg-small" style="padding-bottom:0px !important; ">
-                                            <h4>Memebership</h4>
+                                            <h4><?= ($lang == "eng") ? $lang_con[187]['lang_eng'] : $lang_con[187]['lang_arabic']; ?></h4>
                                         </div>
                                         <?php
                                         $sql_app = query("SELECT * FROM tbl_can_prof_mem WHERE prof_can = $candidateID");
@@ -423,7 +423,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
 
                                     <div class="tg-doc-feature tg-haslayout">
                                         <div class="tg-heading-border tg-small" style="padding-bottom:0px !important; ">
-                                            <h4>Institutional Affiliations</h4>
+                                            <h4><?= ($lang == "eng") ? $lang_con[223]['lang_eng'] : $lang_con[223]['lang_arabic']; ?></h4>
                                         </div>
                                         <div class="tg-description" style="margin-bottom:25px; ">
                                             <ul>
@@ -442,12 +442,10 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                     <div id="photogallery">
                                         <div class="tg-doc-photos" style="padding-top:0px !important; padding-bottom:0px !important; margin-bottom:0px !important">
                                             <div class="tg-heading-border tg-small" style="padding-bottom:0px !important; ">
-                                                <h4>Photos</h4>
+                                                <h4><?= ($lang == "eng") ? $lang_con[181]['lang_eng'] : $lang_con[181]['lang_arabic']; ?></h4>
                                             </div>
                                             <div class="row">
                                                 <div id="tg-photosgallery" class="tg-photosgallery tg-haslayout" style="margin-bottom:0px !important; padding-bottom:0px !important">
-
-
                                                     <?php
                                                     $sql = query("SELECT * FROM tbl_can_gallery WHERE can_gall_canID = $candidateID");
                                                     while($dpt = fetch($sql))
@@ -470,7 +468,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                     <div id="videogallery">
                                         <div class="tg-doc-photos" style="margin-top:0px !important; border-top:0px; padding-top:0px !important; margin-bottom:0px !important">
                                             <div class="tg-heading-border tg-small" style="padding-bottom:0px !important; ">
-                                                <h4>Videos</h4>
+                                                <h4><?= ($lang == "eng") ? $lang_con[182]['lang_eng'] : $lang_con[182]['lang_arabic']; ?></h4>
                                             </div>
                                             <div class="row">
                                                 <div id="tg-videosgallery" class="tg-photosgallery tg-haslayout" style="margin-bottom:10px !important; width:100% !important; padding-bottom:0px !important">
