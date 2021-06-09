@@ -17,7 +17,7 @@ if(!$pass)
     if(isset($_POST['btn_pss']))
     {
         $password = post('txt_pass');
-        if($password == "arabmedico")
+        if($password == "Amdco@2020uk")
         {
             $pass = true;
             $_SESSION['password'] = true;
