@@ -40,7 +40,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                             {
                                 ?>
                                 <ul class="wsmenu-list" >
-                                    <li class="navbar-item"><a href="<?= base_url();?>dr<?= $pram;?>/<?= $slug;?>"><?= ($lang == "eng") ? $lang_con[1]['lang_eng'] : $lang_con[1]['lang_arabic']; ?></a></li>
+                                    <li class="navbar-item"><a href="<?= base_url();?><?= $slug;?>"><?= ($lang == "eng") ? $lang_con[1]['lang_eng'] : $lang_con[1]['lang_arabic']; ?></a></li>
                                     <li class="navbar-item"><a href="#aboutme"><?= ($lang == "eng") ? $lang_con[180]['lang_eng'] : $lang_con[180]['lang_arabic']; ?></a></li>
                                     <li class="navbar-item"><a href="#photo"><?= ($lang == "eng") ? $lang_con[181]['lang_eng'] : $lang_con[181]['lang_arabic']; ?></a></li>
                                     <li class="navbar-item"><a href="#videogallery"><?= ($lang == "eng") ? $lang_con[182]['lang_eng'] : $lang_con[182]['lang_arabic']; ?></a></li>
@@ -54,7 +54,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                     <li class="navbar-item"><a href="#videogallery"><?= ($lang == "eng") ? $lang_con[182]['lang_eng'] : $lang_con[182]['lang_arabic']; ?></a></li>
                                     <li class="navbar-item"><a href="#photo"><?= ($lang == "eng") ? $lang_con[181]['lang_eng'] : $lang_con[181]['lang_arabic']; ?></a></li>
                                     <li class="navbar-item"><a href="#aboutme"><?= ($lang == "eng") ? $lang_con[180]['lang_eng'] : $lang_con[180]['lang_arabic']; ?></a></li>
-                                    <li class="navbar-item"><a href="<?= base_url();?>dr<?= $pram;?>/<?= $slug;?>"><?= ($lang == "eng") ? $lang_con[1]['lang_eng'] : $lang_con[1]['lang_arabic']; ?></a></li>
+                                    <li class="navbar-item"><a href="<?= base_url();?><?= $slug;?>"><?= ($lang == "eng") ? $lang_con[1]['lang_eng'] : $lang_con[1]['lang_arabic']; ?></a></li>
                                 </ul>
                                 <?php
                             }
