@@ -44,11 +44,11 @@ if(isset($_GET['serv_id']) && $_GET['serv_id'] != null && $_GET['serv_id'] != ""
                             <form  action="<?= admin_base_url()?>model/candidateModel" method="POST" enctype="multipart/form-data" class="col-sm-12">
                                 <input type="hidden" name="txt_doc_id" value="<?= $candidate_id; ?>">
                                 <div class="col-sm-6 form-group">
-                                    <label>Clinic Name</label>
+                                    <label>Work Place Name</label>
                                     <input type="text" name="txt_name" class="form-control" required>
                                 </div>
                                 <div class="col-sm-6 form-group">
-                                    <label>Clinic Name in Arabic</label>
+                                    <label>Work Place Name in Arabic</label>
                                     <input type="text" name="txt_name_arabic" class="form-control" required>
                                 </div>
                                 <div class="col-sm-6 form-group">
