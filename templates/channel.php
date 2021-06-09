@@ -603,42 +603,6 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
             }
         </style>
         <?php
-        $sql = query("SELECT * FROM tbl_doctor WHERE doc_status_head = 0 AND doctor_department = ".$dpt['dpt_id']); 
-        if(nrows($sql) > 0)
-        {
-            ?>
-            <section id="doctors-3" class="bg-lightgrey wide-60 doctors-section division">
-            	<div class="container" style="padding-right:0px !important; padding-left:0px !important">
-            	 <!--   <div class="col-md-12">-->
-              <!--          <h3 class="h3-md steelblue-color" style="text-align: center;">Our Team</h3>-->
-    		        <!--</div>-->
-            		<div class="row">
-            		    <?php
-            		    while($doc = fetch($sql))
-            		    {
-            		        ?>
-                			<div class="col-md-6 col-lg-4">
-                				<div class="doctor-2">
-                					<div class="hover-overlay img-holder"> 
-                						<img class="img-fluid" src="<?= file_url().$doc['doc_image'];?>" alt="doctor-foto">	
-                					</div>
-                					<div class="doctor-meta">
-                						<h5 class="h5-xs blue-color"><?= ($lang == "eng") ? $doc['doc_name'] : $doc['doc_name_arabic']; ?></h5>
-                						<span><?= ($lang == "eng") ? $doc['doc_job_title'] : $doc['doc_job_title_arabic']; ?></span>
-                						<a class="btn btn-sm btn-blue blue-hover mt-15" href="<?= base_url()."dr".$pram."/".$doc['doc_slug'];?>" title=""><?= ($lang == "eng") ? $lang_con[90]['lang_eng'] : $lang_con[90]['lang_arabic']; ?></a>
-                					</div>
-                				</div>
-                			</div>
-            		        <?php
-            		    }
-            		    ?>
-            		</div>
-            	</div>
-            </section>
-            <?php
-        }
-        ?>
-        <?php
         include 'footer.php';
         ?>
         <script>

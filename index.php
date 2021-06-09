@@ -4,7 +4,34 @@ $siteData = get_site_data();
 get_languages();
 $lang_con = $_SESSION['language'];
 
-
+if(isset($_SESSION['password']) && $_SESSION['password']) 
+{
+    $pass = true;
+}
+else
+{
+    $pass = false;
+}
+if(!$pass)
+{
+    if(isset($_POST['btn_pss']))
+    {
+        $password = post('txt_pass');
+        if($password == "arabmedico")
+        {
+            $pass = true;
+            $_SESSION['password'] = true;
+        }
+        ?>
+        <script>
+        if ( window.history.replaceState )
+        {
+            window.history.replaceState( null, null, window.location.href );
+        }
+        </script>
+        <?php
+    }
+}
 if(isset($_GET['lang']))
 {
     $_SESSION['lang'] = $_GET['lang'];
@@ -60,87 +87,122 @@ if(isset($_GET['temp']))
             $_SESSION['lang'] = 'arabic';
         }
     }
-    
 }
 else{
     $templatename = 'home';
 }
-
-$file_name = $templatename;
-
-if(isset($_SESSION['lang']) && $_SESSION['lang'] == 'arabic')
+if($pass)
 {
-    $lang = "ar";
-}
-else
-{
-    $lang = "eng";
-}
-if(file_exists('templates/'.$templatename.".php"))
-{
-    require 'templates/'.$templatename.".php";
-}
-else
-{
-    $sql = query("SELECT * FROM tbl_url WHERE  url_suffex = '$templatename' ");
-    if(nrows($sql) > 0)
+    $file_name = $templatename;
+    if(isset($_SESSION['lang']) && $_SESSION['lang'] == 'arabic')
     {
-        $pageData = fetch($sql);
-        if($pageData['url_type'] == "Page")
+        $lang = "ar";
+    }
+    else
+    {
+        $lang = "eng";
+    }
+    if(file_exists('templates/'.$templatename.".php"))
+    {
+        require 'templates/'.$templatename.".php";
+    }
+    else
+    {
+        $sql = query("SELECT * FROM tbl_url WHERE  url_suffex = '$templatename' ");
+        if(nrows($sql) > 0)
         {
-            $_GET['slug'] = $pageData['url_suffex'];
-            require 'templates/page.php';
-        }
-        else if($pageData['url_type'] == "Department")
-        {
-            $_GET['slug'] = $pageData['url_suffex'];
-            require 'templates/department.php';
-        }
-        else if($pageData['url_type'] == "Clinic")
-        {
-            $_GET['slug'] = $pageData['url_suffex'];
-            require 'templates/clinic.php';
-        }
-        else if($pageData['url_type'] == "Doctor")
-        {
-            $_GET['slug'] = $pageData['url_suffex'];
-            require 'templates/dr.php';
-        }
-        else if($pageData['url_type'] == "Resource")
-        {
-            $_GET['slug'] = $pageData['url_suffex'];
-            require 'templates/resource.php';
-        }
-        else if($pageData['url_type'] == "Job")
-        {
-            $_GET['slug'] = $pageData['url_suffex'];
-            require 'templates/job-detail.php';
-        }
-        else if($pageData['url_type'] == "Post")
-        {
-            $_GET['slug'] = $pageData['url_suffex'];
-            require 'templates/single-post.php';
-        }
-        else if($pageData['url_type'] == "CME")
-        {
-            $_GET['slug'] = $pageData['url_suffex'];
-            require 'templates/cme-detail.php';
-        }
-        else if($pageData['url_type'] == "Channel")
-        {
-            $_GET['slug'] = $pageData['url_suffex'];
-            require 'templates/channel.php';
-        }
-        else if($pageData['url_type'] == "classified")
-        {
-            $_GET['slug'] = $pageData['url_suffex'];
-            require 'templates/classified-details.php';
-        }
-        else if($pageData['url_type'] == "candidate")
-        {
-            $_GET['slug'] = $pageData['url_suffex'];
-            require 'templates/professionals-details.php';
+            $pageData = fetch($sql);
+            if($pageData['url_type'] == "Page")
+            {
+                $_GET['slug'] = $pageData['url_suffex'];
+                require 'templates/page.php';
+            }
+            else if($pageData['url_type'] == "Department")
+            {
+                $_GET['slug'] = $pageData['url_suffex'];
+                require 'templates/department.php';
+            }
+            else if($pageData['url_type'] == "Clinic")
+            {
+                $_GET['slug'] = $pageData['url_suffex'];
+                require 'templates/clinic.php';
+            }
+            else if($pageData['url_type'] == "Doctor")
+            {
+                $_GET['slug'] = $pageData['url_suffex'];
+                require 'templates/dr.php';
+            }
+            else if($pageData['url_type'] == "Resource")
+            {
+                $_GET['slug'] = $pageData['url_suffex'];
+                require 'templates/resource.php';
+            }
+            else if($pageData['url_type'] == "Job")
+            {
+                $_GET['slug'] = $pageData['url_suffex'];
+                require 'templates/job-detail.php';
+            }
+            else if($pageData['url_type'] == "Post")
+            {
+                $_GET['slug'] = $pageData['url_suffex'];
+                require 'templates/single-post.php';
+            }
+            else if($pageData['url_type'] == "CME")
+            {
+                $_GET['slug'] = $pageData['url_suffex'];
+                require 'templates/cme-detail.php';
+            }
+            else if($pageData['url_type'] == "Channel")
+            {
+                $_GET['slug'] = $pageData['url_suffex'];
+                require 'templates/channel.php';
+            }
+            else if($pageData['url_type'] == "classified")
+            {
+                $_GET['slug'] = $pageData['url_suffex'];
+                require 'templates/classified-details.php';
+            }
+            else if($pageData['url_type'] == "candidate")
+            {
+                $_GET['slug'] = $pageData['url_suffex'];
+                require 'templates/professionals-details.php';
+            }
         }
     }
+}
+else
+{
+    ?>
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="utf-8">
+            <title>Enter Paswword to visit site</title>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" integrity="undefined" crossorigin="anonymous">
+        </head>
+        <body>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <div class="mt-5">
+                            <form method="post" action="#" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Enter password to contiune</label>
+                                    <input type="password" class="form-control" name="txt_pass" id="exampleInputPassword1" placeholder="Password">
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <button type="submit" name="btn_pss" class="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </body>
+    </html>
+    <?php
 }
 ?>
