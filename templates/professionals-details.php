@@ -43,9 +43,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                     <li class="navbar-item"><a href="<?= base_url();?>dr<?= $pram;?>/<?= $slug;?>"><?= ($lang == "eng") ? $lang_con[1]['lang_eng'] : $lang_con[1]['lang_arabic']; ?></a></li>
                                     <li class="navbar-item"><a href="#aboutme"><?= ($lang == "eng") ? $lang_con[180]['lang_eng'] : $lang_con[180]['lang_arabic']; ?></a></li>
                                     <li class="navbar-item"><a href="#photo"><?= ($lang == "eng") ? $lang_con[181]['lang_eng'] : $lang_con[181]['lang_arabic']; ?></a></li>
-                                    <li class="navbar-item"><a href="#video"><?= ($lang == "eng") ? $lang_con[182]['lang_eng'] : $lang_con[182]['lang_arabic']; ?></a></li>
-                                    <li class="navbar-item"><a href="#news"><?= ($lang == "eng") ? $lang_con[6]['lang_eng'] : $lang_con[6]['lang_arabic']; ?></a></li>
-                                    <li class="navbar-item"><a href="#contact"><?= ($lang == "eng") ? $lang_con[183]['lang_eng'] : $lang_con[183]['lang_arabic']; ?></a></li>
+                                    <li class="navbar-item"><a href="#videogallery"><?= ($lang == "eng") ? $lang_con[182]['lang_eng'] : $lang_con[182]['lang_arabic']; ?></a></li>
                                 </ul>
                                 <?php
                             }
@@ -53,9 +51,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                             {
                                 ?>
                                 <ul class="wsmenu-list" >
-                                    <li class="navbar-item"><a href="#contact"><?= ($lang == "eng") ? $lang_con[183]['lang_eng'] : $lang_con[183]['lang_arabic']; ?></a></li>
-                                    <li class="navbar-item"><a href="#news"><?= ($lang == "eng") ? $lang_con[6]['lang_eng'] : $lang_con[6]['lang_arabic']; ?></a></li>
-                                    <li class="navbar-item"><a href="#video"><?= ($lang == "eng") ? $lang_con[182]['lang_eng'] : $lang_con[182]['lang_arabic']; ?></a></li>
+                                    <li class="navbar-item"><a href="#videogallery"><?= ($lang == "eng") ? $lang_con[182]['lang_eng'] : $lang_con[182]['lang_arabic']; ?></a></li>
                                     <li class="navbar-item"><a href="#photo"><?= ($lang == "eng") ? $lang_con[181]['lang_eng'] : $lang_con[181]['lang_arabic']; ?></a></li>
                                     <li class="navbar-item"><a href="#aboutme"><?= ($lang == "eng") ? $lang_con[180]['lang_eng'] : $lang_con[180]['lang_arabic']; ?></a></li>
                                     <li class="navbar-item"><a href="<?= base_url();?>dr<?= $pram;?>/<?= $slug;?>"><?= ($lang == "eng") ? $lang_con[1]['lang_eng'] : $lang_con[1]['lang_arabic']; ?></a></li>
@@ -439,7 +435,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                             </ul>
                                         </div>
                                     </div>
-                                    <div id="photogallery">
+                                    <div id="photo">
                                         <div class="tg-doc-photos" style="padding-top:0px !important; padding-bottom:0px !important; margin-bottom:0px !important">
                                             <div class="tg-heading-border tg-small" style="padding-bottom:0px !important; ">
                                                 <h4><?= ($lang == "eng") ? $lang_con[181]['lang_eng'] : $lang_con[181]['lang_arabic']; ?></h4>
