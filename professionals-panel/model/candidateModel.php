@@ -419,8 +419,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 	    if(
 	        $data['c_name']     != null && $data['c_name']     != "" &&
 	        $data['c_name_ar']  != null && $data['c_name_ar']  != "" &&
-	        $data['c_desc']     != null && $data['c_desc']     != "" &&
-	        $data['c_desc_ar']  != null && $data['c_desc_ar']  != "" &&
 	        $data['c_image']    != null && $data['c_image']    != ""
 	        )
 	    {
@@ -457,9 +455,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 	    
 	    if(
 	        $data['c_name']     != null && $data['c_name']     != "" &&
-	        $data['c_name_ar']  != null && $data['c_name_ar']  != "" &&
-	        $data['c_desc']     != null && $data['c_desc']     != "" &&
-	        $data['c_desc_ar']  != null && $data['c_desc_ar']  != ""
+	        $data['c_name_ar']  != null && $data['c_name_ar']  != ""
 	        )
 	    {
 	        where('c_id',$servID);
