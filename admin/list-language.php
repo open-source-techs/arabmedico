@@ -8,7 +8,7 @@ if(isset($_GET['limit']) && $_GET['limit'] != "" && $_GET['limit'] != null)
 }
 else
 {
-    $limit = 10;
+    $limit = 50;
 }
 if(isset($_GET['query']) && $_GET['query'] != "" && $_GET['query'] != null)
 {
