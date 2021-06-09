@@ -8,7 +8,7 @@ if(isset($_GET['limit']) && $_GET['limit'] != "" && $_GET['limit'] != null)
 }
 else
 {
-    $limit = 10;
+    $limit = 50;
 }
 if(isset($_GET['query']) && $_GET['query'] != "" && $_GET['query'] != null)
 {
@@ -128,7 +128,7 @@ $offset = ($page - 1 ) * $limit;
                                 <?php
                                 // echo "SELECT * FROM tbl_language WHERE 1=1 $where";
 							    $total_pages_sql = query("SELECT COUNT(*) as count FROM tbl_language WHERE 1=1 $where");
-                                $total_rows = fetch($total_pages_sql)[count];
+                                $total_rows = fetch($total_pages_sql)['count'];
                                 $total_pages = ceil($total_rows / $limit);
         						for ($i=0; $i < $total_pages; $i++)
         						{
