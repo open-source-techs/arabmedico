@@ -21,8 +21,16 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                         width:100% !important;
                     }
                     .intro-div * {
-                            width: 100% !important;
-                        }
+                        width: 100% !important;
+                    }
+                    .dart-no-padding-tb{
+                        padding-top: 0px !important;
+                    }
+                    .tg-docprofilechart{
+                        border-bottom:  none !important;
+                        padding:  0px !important;
+                        margin:  0px !important;
+                    }
                 </style>
                 <div class="wsmainfull menu clearfix">
                     <div class="wsmainwp clearfix" <?= ($lang == "eng") ? '' : 'style="direction:rtl !important"' ;?>>
@@ -345,16 +353,6 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                         </div>
                                     </div>
                                     <script type="text/javascript">jssor_1_slider_init();</script>
-                                    <div id="aboutme">
-                                        <div class="tg-doc-feature tg-haslayout">
-                                            <div class="tg-heading-border tg-small" style="padding-bottom:0px !important">
-                                                <h4 <?= ($lang == 'eng') ? '' : 'style="direction:rtl;text-align:right !important"'; ?>><?= ($lang == "eng") ? $lang_con[184]['lang_eng'] : $lang_con[184]['lang_arabic']; ?></h4>
-                                            </div>
-                                            <div class="tg-description" style="margin-bottom:25px">
-                                                <?= ($lang == "eng") ? $candidate['candiadate_resume'] : $candidate['candiadate_resume_ar'];?>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="tg-doc-feature tg-haslayout">
                                         <div class="tg-heading-border tg-small" style="padding-bottom:0px !important; ">
                                             <h4 <?= ($lang == 'eng') ? '' : 'style="direction:rtl;text-align:right !important"'; ?>><?= ($lang == "eng") ? $lang_con[116]['lang_eng'] : $lang_con[116]['lang_arabic']; ?></h4>
@@ -463,8 +461,21 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                                     <?php
                                                 }
                                                 ?>
-                                                ?>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix">&nbsp;</div>
+                                <div class="tg-doc-feature" >
+                                    <div class="tg-heading-border tg-small" style="background-color:#124c82; padding-left:10px; padding-right:10px; margin-bottom:40px !important; ">
+                                        <h4 style="color:#fff !important; vertical-align:middle"><?= ($lang == "eng") ? $lang_con[189]['lang_eng'] : $lang_con[189]['lang_arabic']; ?> <?= ($lang == "eng") ? $candidate['candidate_name'] : $candidate['candidate_name_ar'];?>
+                                            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#moreprofile" style="float:right; margin-right:10px; margin-top:1px; margin-bottom:0px; font-size:28px; font-weight:bold; padding-top:0px; padding-bottom:0px; padding-right:10px; padding-left:10px; color:#FFF">+</button>
+                                        </h4>
+                                    </div>
+                                    <div id="moreprofile" class="collapse">
+                                        <div class="pdfdesktop">
+                                            <?= ($lang == "eng") ? $candidate['candiadate_resume'] : $candidate['candiadate_resume_ar'];?>
                                         </div>
                                     </div>
                                 </div>
