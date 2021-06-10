@@ -12,10 +12,6 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
         {
             include 'professionals-header.php';
             ?>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-            <link rel="stylesheet" href="<?= base_url();?>css/main.css">
-            <link rel="stylesheet" href="<?= base_url();?>css/color.css">
-            <link rel="stylesheet" href="<?= base_url();?>css/otherstyle.css">
                 <style>
                     iframe{
                         width:100% !important;
@@ -78,8 +74,8 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
             <div class="clearfix"></div>
             <main id="main" class="tg-haslayout" <?= ($lang == 'eng') ? '' : 'style="direction:rtl;text-align:right !important"'; ?>>
                 <div class="container">
-                    <div class="row" style="margin-bottom:25px; margin-left:0px !important; margin-right:0px !important; padding:0px !important"></div>
-                    <div style="margin-top:-110px; margin-left:35px; margin-bottom:5px" class="row displayphoto">
+                    <!-- <div class="row" style="margin-bottom:25px; margin-left:0px !important; margin-right:0px !important; padding:0px !important"></div> -->
+                    <div style="margin-top:-150px; margin-left:35px; margin-bottom:5px" class="row displayphoto">
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="margin-bottom:-10px !important; ">
                             <aside id="tg-sidebar">
                                 <div class="tg-widget tg-widget-doctor">
