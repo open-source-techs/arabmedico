@@ -68,7 +68,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                 </div>
             </section>
             <div class="clearfix"></div>
-            <main id="main" class="tg-haslayout" <?= ($lang == 'eng') ? '' : 'style="direction:rtl"'; ?>>
+            <main id="main" class="tg-haslayout" <?= ($lang == 'eng') ? '' : 'style="direction:rtl;text-align:right !important"'; ?>>
                 <div class="container">
                     <div class="row" style="margin-bottom:25px; margin-left:0px !important; margin-right:0px !important; padding:0px !important"></div>
                     <div style="margin-top:-110px; margin-left:35px; margin-bottom:5px" class="row displayphoto">
@@ -348,7 +348,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                     <div id="aboutme">
                                         <div class="tg-doc-feature tg-haslayout">
                                             <div class="tg-heading-border tg-small" style="padding-bottom:0px !important">
-                                                <h4><?= ($lang == "eng") ? $lang_con[184]['lang_eng'] : $lang_con[184]['lang_arabic']; ?></h4>
+                                                <h4 <?= ($lang == 'eng') ? '' : 'style="direction:rtl;text-align:right !important"'; ?>><?= ($lang == "eng") ? $lang_con[184]['lang_eng'] : $lang_con[184]['lang_arabic']; ?></h4>
                                             </div>
                                             <div class="tg-description" style="margin-bottom:25px">
                                                 <?= ($lang == "eng") ? $candidate['candiadate_resume'] : $candidate['candiadate_resume_ar'];?>
@@ -357,7 +357,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                     </div>
                                     <div class="tg-doc-feature tg-haslayout">
                                         <div class="tg-heading-border tg-small" style="padding-bottom:0px !important; ">
-                                            <h4><?= ($lang == "eng") ? $lang_con[116]['lang_eng'] : $lang_con[116]['lang_arabic']; ?></h4>
+                                            <h4 <?= ($lang == 'eng') ? '' : 'style="direction:rtl;text-align:right !important"'; ?>><?= ($lang == "eng") ? $lang_con[116]['lang_eng'] : $lang_con[116]['lang_arabic']; ?></h4>
                                         </div>
                                         <div class="tg-description" style="margin-bottom:25px; ">
                                             <ul>
@@ -375,7 +375,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                     </div>
                                     <div class="tg-doc-feature tg-haslayout">
                                         <div class="tg-heading-border tg-small" style="padding-bottom:0px !important; ">
-                                            <h4><?= ($lang == "eng") ? $lang_con[220]['lang_eng'] : $lang_con[220]['lang_arabic']; ?></h4>
+                                            <h4 <?= ($lang == 'eng') ? '' : 'style="direction:rtl;text-align:right !important"'; ?>><?= ($lang == "eng") ? $lang_con[220]['lang_eng'] : $lang_con[220]['lang_arabic']; ?></h4>
                                         </div>
                                         <div class="tg-description" style="margin-bottom:25px; ">
                                             <ul>
@@ -393,7 +393,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                     </div>
                                     <div class="tg-doc-feature tg-haslayout">
                                         <div class="tg-heading-border tg-small" style="padding-bottom:0px !important; ">
-                                            <h4><?= ($lang == "eng") ? $lang_con[187]['lang_eng'] : $lang_con[187]['lang_arabic']; ?></h4>
+                                            <h4 <?= ($lang == 'eng') ? '' : 'style="direction:rtl;text-align:right !important"'; ?>><?= ($lang == "eng") ? $lang_con[187]['lang_eng'] : $lang_con[187]['lang_arabic']; ?></h4>
                                         </div>
                                         <?php
                                         $sql_app = query("SELECT * FROM tbl_can_prof_mem WHERE prof_can = $candidateID");
@@ -408,7 +408,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
 
                                     <div class="tg-doc-feature tg-haslayout">
                                         <div class="tg-heading-border tg-small" style="padding-bottom:0px !important; ">
-                                            <h4><?= ($lang == "eng") ? $lang_con[223]['lang_eng'] : $lang_con[223]['lang_arabic']; ?></h4>
+                                            <h4 <?= ($lang == 'eng') ? '' : 'style="direction:rtl;text-align:right !important"'; ?>><?= ($lang == "eng") ? $lang_con[223]['lang_eng'] : $lang_con[223]['lang_arabic']; ?></h4>
                                         </div>
                                         <div class="tg-description" style="margin-bottom:25px; ">
                                             <ul>
@@ -426,8 +426,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                     </div>
                                     <div id="photo">
                                         <div class="tg-doc-photos" style="margin-top:0px !important; border-top:0px; padding-top:0px !important; margin-bottom:0px !important">
-                                            <h4 style="color:#124c82;font-weight:100 !important"><?= ($lang == "eng") ? $lang_con[181]['lang_eng'] : $lang_con[181]['lang_arabic']; ?></h4>
-                                            <hr>
+                                            <h4 <?= ($lang == 'eng') ? '' : 'style="direction:rtl;text-align:right !important"'; ?>><?= ($lang == "eng") ? $lang_con[181]['lang_eng'] : $lang_con[181]['lang_arabic']; ?></h4>
                                             <div class="owl-carousel owl-theme images-holder gallery clearfix">
                                                 <?php
                                                 $sql = query("SELECT * FROM tbl_can_gallery WHERE can_gall_canID = $candidateID");
@@ -449,26 +448,22 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                     </div>
                                     <div id="videogallery">
                                         <div class="tg-doc-photos" style="margin-top:0px !important; border-top:0px; padding-top:0px !important; margin-bottom:0px !important">
-                                            <div class="tg-heading-border tg-small" style="padding-bottom:0px !important; ">
-                                                <h4><?= ($lang == "eng") ? $lang_con[182]['lang_eng'] : $lang_con[182]['lang_arabic']; ?></h4>
-                                            </div>
-                                            <div class="row">
-                                                <div id="tg-videosgallery" class="tg-photosgallery tg-haslayout" style="margin-bottom:10px !important; width:100% !important; padding-bottom:0px !important">
-
-                                                    <?php
-                                                    $sql = query("SELECT * FROM tbl_can_video WHERE can_video_doc = $candidateID");
-                                                    while($dpt = fetch($sql))
-                                                    {
-                                                        ?>
-                                                        <a data-fancybox="gallery" href="https://www.youtube-nocookie.com/embed/<?= $dpt['can_video_code'];?>?autoplay=1g">
-                                                            <div class="img-holder">
-                                                                <img style="width:auto;height:auto" src="https://img.youtube.com/vi/<?= $dpt['can_video_code'];?>/0.jpg">
-                                                            </div>
-                                                        </a>
-                                                        <?php
-                                                    }
+                                            <h4 <?= ($lang == 'eng') ? '' : 'style="direction:rtl;text-align:right !important"'; ?>><?= ($lang == "eng") ? $lang_con[182]['lang_eng'] : $lang_con[182]['lang_arabic']; ?></h4>
+                                            <div class="owl-carousel owl-theme video-holder">
+                                                <?php
+                                                $sql = query("SELECT * FROM tbl_can_video WHERE can_video_doc = $candidateID");
+                                                while($dpt = fetch($sql))
+                                                {
                                                     ?>
-                                                </div>
+                                                    <a data-fancybox="gallery" href="https://www.youtube-nocookie.com/embed/<?= $dpt['can_video_code'];?>?autoplay=1g">
+                                                        <div class="img-holder">
+                                                            <img style="width:auto;height:auto" src="https://img.youtube.com/vi/<?= $dpt['can_video_code'];?>/0.jpg">
+                                                        </div>
+                                                    </a>
+                                                    <?php
+                                                }
+                                                ?>
+                                                ?>
                                             </div>
                                         </div>
                                     </div>
@@ -498,32 +493,60 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                         }
                     );
                     var owl = $('.images-holder');
-                        owl.owlCarousel({
-                            items: 4,
-                            <?= ($lang == "eng") ? '' : 'rtl:true,'; ?>
-                            autoplay:true,
-                            navBy: 1,
-                            dots: false,
-                            autoplayTimeout: 4500,
-                            autoplayHoverPause: false,
-                            smartSpeed: 1500,
-                            responsive:{
-                                0:{
-                                    items:1
-                                },
-                                767:{
-                                    items:1
-                                },
-                                768:{
-                                    items:2
-                                },
-                                991:{
-                                    items:3
-                                },
-                                1000:{
-                                    items:3
-                                }
+                    owl.owlCarousel({
+                        items: 4,
+                        <?= ($lang == "eng") ? '' : 'rtl:true,'; ?>
+                        autoplay:true,
+                        navBy: 1,
+                        dots: false,
+                        autoplayTimeout: 4500,
+                        autoplayHoverPause: false,
+                        smartSpeed: 1500,
+                        responsive:{
+                            0:{
+                                items:1
+                            },
+                            767:{
+                                items:1
+                            },
+                            768:{
+                                items:2
+                            },
+                            991:{
+                                items:3
+                            },
+                            1000:{
+                                items:3
                             }
+                        }
+                    });
+                    var owl = $('.video-holder');
+                    owl.owlCarousel({
+                        items: 2,
+                        <?= ($lang == "eng") ? '' : 'rtl:true,'; ?>
+                        autoplay:true,
+                        navBy: 1,
+                        dots: false,
+                        autoplayTimeout: 4500,
+                        autoplayHoverPause: false,
+                        smartSpeed: 1500,
+                        responsive:{
+                            0:{
+                                items:1
+                            },
+                            767:{
+                                items:1
+                            },
+                            768:{
+                                items:2
+                            },
+                            991:{
+                                items:3
+                            },
+                            1000:{
+                                items:3
+                            }
+                        }
                     });
                 });
             </script>
