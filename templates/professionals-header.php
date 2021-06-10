@@ -33,6 +33,10 @@ if($file_name == 'index' || $file_name == "")
 		<link href="<?= base_url();?>css/responsive.css" rel="stylesheet">
 		<link href="<?= base_url();?>css/shadow.css" rel="stylesheet">
 		<link href="<?= base_url();?>css/doc.css" rel="stylesheet">
+		<link rel="stylesheet" href="<?= base_url();?>css/main.css">
+        <link rel="stylesheet" href="<?= base_url();?>css/color.css">
+        <link rel="stylesheet" href="<?= base_url();?>css/otherstyle.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 		<link href="<?= base_url();?>css/prettyPhoto.css" rel="stylesheet">
 		<style>
         .img-holder {
