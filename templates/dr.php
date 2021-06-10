@@ -487,32 +487,32 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
         				}
         		});
         		var owl = $('.video-holder');
-        			owl.owlCarousel({
-        				items: 2,
-        				<?= ($lang == "eng") ? '' : 'rtl:true,'; ?>
-        				autoplay:true,
-        				navBy: 1,
-        				dots: false,
-        				autoplayTimeout: 4500,
-        				autoplayHoverPause: false,
-        				smartSpeed: 1500,
-        				responsive:{
-        					0:{
-        						items:1
-        					},
-        					767:{
-        						items:1
-        					},
-        					768:{
-        						items:2
-        					},
-        					991:{
-        						items:3
-        					},
-        					1000:{
-        						items:3
-        					}
-        				}
+    			owl.owlCarousel({
+    				items: 2,
+    				<?= ($lang == "eng") ? '' : 'rtl:true,'; ?>
+    				autoplay:true,
+    				navBy: 1,
+    				dots: false,
+    				autoplayTimeout: 4500,
+    				autoplayHoverPause: false,
+    				smartSpeed: 1500,
+    				responsive:{
+    					0:{
+    						items:1
+    					},
+    					767:{
+    						items:1
+    					},
+    					768:{
+    						items:2
+    					},
+    					991:{
+    						items:3
+    					},
+    					1000:{
+    						items:3
+    					}
+    				}
         		});
             </script>
             <?php
