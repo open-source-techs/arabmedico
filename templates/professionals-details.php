@@ -12,17 +12,10 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
         {
             include 'professionals-header.php';
             ?>
-            <link rel="stylesheet" href="https://saudimedico.com/css/owl.carousel.css">
-            <link rel="stylesheet" href="https://saudimedico.com/css/prettyPhoto.css">
-            <link rel="stylesheet" href="https://saudimedico.com/css/owl.theme.css">
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-            <link rel="stylesheet" href="https://saudimedico.com/css/main.css">
-            <link rel="stylesheet" href="https://saudimedico.com/css/transitions.css">
-            <link rel="stylesheet" href="https://saudimedico.com/css/color.css">
-            <script src="https://saudimedico.com/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-            <link rel="stylesheet" href="https://saudimedico.com/css/normalize.css">
-            <link rel="stylesheet" href="https://saudimedico.com/css/icomoon.css">
-            <link href="https://saudimedico.com/landing/css/otherstyle.css" rel="stylesheet">
+            <link rel="stylesheet" href="<?= base_url();?>css/main.css">
+            <link rel="stylesheet" href="<?= base_url();?>css/color.css">
+            <link rel="stylesheet" href="<?= base_url();?>css/otherstyle.css">
                 <style>
                     iframe{
                         width:100% !important;
@@ -33,7 +26,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                 </style>
                 <div class="wsmainfull menu clearfix">
                     <div class="wsmainwp clearfix" <?= ($lang == "eng") ? '' : 'style="direction:rtl !important"' ;?>>
-                        <div class="desktoplogo" <?= ($lang == "eng") ? '' : 'style="float:right"' ;?>><a href="<?= base_url();?>"><img src="<?= file_url().$candidate['candidate_logo'];?>"  style="width:180px;height:40px" alt="header-logo"></a></div>
+                        <div class="desktoplogo" <?= ($lang == "eng") ? '' : 'style="float:right"' ;?>><a href="<?= base_url();?>"><img src="<?= file_url().$candidate['candidate_logo'];?>" style="width:180px;height:40px" alt="header-logo"></a></div>
                         <nav class="wsmenu clearfix abc"  >
                             <?php
                             if($lang == "eng")
@@ -75,12 +68,10 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                 </div>
             </section>
             <div class="clearfix"></div>
-            <main id="main" class="tg-haslayout">
+            <main id="main" class="tg-haslayout" <?= ($lang == 'eng') ? '' : 'style="direction:rtl"'; ?>>
                 <div class="container">
-                    <div class="row" style="margin-bottom:25px; margin-left:0px !important; margin-right:0px !important; padding:0px !important">
-                    </div>
+                    <div class="row" style="margin-bottom:25px; margin-left:0px !important; margin-right:0px !important; padding:0px !important"></div>
                     <div style="margin-top:-110px; margin-left:35px; margin-bottom:5px" class="row displayphoto">
-                        <!-- Left Part Profile Image Start -->
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="margin-bottom:-10px !important; ">
                             <aside id="tg-sidebar">
                                 <div class="tg-widget tg-widget-doctor">
@@ -111,7 +102,6 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                             </div>
                         </div>
                     </div>
-                    <!-- Top Banner End -->
                     <div class="row">
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" >
                             <aside id="tg-sidebar">
@@ -242,7 +232,6 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 pull-right" style="margin-top:0px">
                             <div class="tg-dashboard tg-haslayout">
                                 <div class="tg-docprofilechart tg-haslayout">
-
                                     <script src="https://saudimedico.com/js/jssor.slider.min.js" type="text/javascript"></script>
                                     <script type="text/javascript">
                                         jssor_1_slider_init = function() {
@@ -436,28 +425,25 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                         </div>
                                     </div>
                                     <div id="photo">
-                                        <div class="tg-doc-photos" style="padding-top:0px !important; padding-bottom:0px !important; margin-bottom:0px !important">
-                                            <div class="tg-heading-border tg-small" style="padding-bottom:0px !important; ">
-                                                <h4><?= ($lang == "eng") ? $lang_con[181]['lang_eng'] : $lang_con[181]['lang_arabic']; ?></h4>
-                                            </div>
-                                            <div class="row">
-                                                <div id="tg-photosgallery" class="tg-photosgallery tg-haslayout" style="margin-bottom:0px !important; padding-bottom:0px !important">
-                                                    <?php
-                                                    $sql = query("SELECT * FROM tbl_can_gallery WHERE can_gall_canID = $candidateID");
-                                                    while($dpt = fetch($sql))
-                                                    {
-                                                        ?>
-                                                        <div <?= ($lang == "eng") ? '' : 'style="direction:rtl !important;text-align:right"' ;?>>
-                                                            <div class="img-holder">
-                                                                <a href="<?= file_url().$dpt['can_gall_img'];?>" rel="prettyPhoto[gallery-1]">
-                                                                    <img src="<?= file_url().$dpt['can_gall_img'];?>"/>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                        <?php
-                                                    }
+                                        <div class="tg-doc-photos" style="margin-top:0px !important; border-top:0px; padding-top:0px !important; margin-bottom:0px !important">
+                                            <h4 style="color:#124c82;font-weight:100 !important"><?= ($lang == "eng") ? $lang_con[181]['lang_eng'] : $lang_con[181]['lang_arabic']; ?></h4>
+                                            <hr>
+                                            <div class="owl-carousel owl-theme images-holder gallery clearfix">
+                                                <?php
+                                                $sql = query("SELECT * FROM tbl_can_gallery WHERE can_gall_canID = $candidateID");
+                                                while($dpt = fetch($sql))
+                                                {
                                                     ?>
-                                                </div>
+                                                    <div <?= ($lang == "eng") ? '' : 'style="direction:rtl !important;text-align:right"' ;?>>
+                                                        <div class="img-holder">
+                                                            <a href="<?= file_url().$dpt['can_gall_img'];?>" rel="prettyPhoto[photo-gall]">
+                                                                <img src="<?= file_url().$dpt['can_gall_img'];?>"/>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <?php
+                                                }
+                                                ?>
                                             </div>
                                         </div>
                                     </div>
@@ -491,7 +477,56 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                         </div>
                     </div>
                 </div>
-            </div>
+            </main>
+            <?php
+            include 'footer.php';
+            ?>
+            <script src="https://fast.wistia.com/embed/medias/2x3lxzrixz.jsonp" async=""></script>
+            <script src="https://fast.wistia.com/assets/external/E-v1.js" async=""></script>
+            <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+            <script>
+                $(document).ready(function(){
+                    $("a[rel^='prettyPhoto']").prettyPhoto(
+                        {
+                            animation_speed: 'normal',
+                            theme: 'dark_square',
+                            slideshow: 3000,
+                            autoplay_slideshow: false,
+                            social_tools: false,
+                            hideflash: true
+                            
+                        }
+                    );
+                    var owl = $('.images-holder');
+                        owl.owlCarousel({
+                            items: 4,
+                            <?= ($lang == "eng") ? '' : 'rtl:true,'; ?>
+                            autoplay:true,
+                            navBy: 1,
+                            dots: false,
+                            autoplayTimeout: 4500,
+                            autoplayHoverPause: false,
+                            smartSpeed: 1500,
+                            responsive:{
+                                0:{
+                                    items:1
+                                },
+                                767:{
+                                    items:1
+                                },
+                                768:{
+                                    items:2
+                                },
+                                991:{
+                                    items:3
+                                },
+                                1000:{
+                                    items:3
+                                }
+                            }
+                    });
+                });
+            </script>
             <?php
         }
         else
@@ -599,20 +634,9 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                     </div>
                 </div>
             </section>
-        <?php
+            <?php
+            include 'footer.php';
         }
-        include 'footer.php';
-        ?>
-        <script src="https://saudimedico.com/js/jquery.nicescroll.js"></script>
-        <script src="https://saudimedico.com/js/parallax.js"></script>
-        <script src="https://saudimedico.com/js/owl.carousel.js"></script>
-        <script src="https://saudimedico.com/js/prettyPhoto.js"></script>
-        <script src="https://saudimedico.com/js/appear.js"></script>
-        <script src="https://saudimedico.com/js/countTo.js"></script>
-        <script src="https://saudimedico.com/js/main.js"></script>
-        <script src="https://saudimedico.com/js/map/markerclusterer.min.js"></script>
-        <script src="https://saudimedico.com/js/countdown.js"></script>
-        <?php
     }
     else
     {
