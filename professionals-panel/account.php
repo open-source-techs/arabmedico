@@ -346,6 +346,67 @@ if(isset($_GET['serv_id']) && $_GET['serv_id'] != null && $_GET['serv_id'] != ""
             <div class="col-sm-12">
                 <div class="panel panel-bd lobidrag">
                     <div class="panel-heading">
+                        <h3>Languages</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-md-12">
+                            <form  action="<?= admin_base_url()?>model/candidateModel" method="POST" enctype="multipart/form-data" class="col-sm-12">
+                                <input type="hidden" name="txt_doc_id" value="<?= $candidate_id; ?>">
+                                <div class="col-sm-6 form-group">
+                                <label>Institute Name</label>
+                                    <input type="text" name="txt_lang_name" class="form-control" required>
+                                </div>
+                                <div class="col-sm-6 form-group">
+                                    <label>Institute Name in Arabic</label>
+                                    <input type="text" name="txt_lang_name_arabic" class="form-control" required>
+                                </div>
+                                <div class="col-sm-12 reset-button">
+                                    <input type="submit" name="btn_can_lang" class="btn btn-success" value="Save">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Langauge</th>
+                                            <th>Langauge Arabic</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody>
+                                        <?php
+                                        $sql = query("SELECT * FROM tbl_can_language WHERE lang_can = ".$candidate_id);
+                                        while ($row = fetch($sql))
+                                        {
+                                            ?>
+                                            <tr>
+                                                <td><?= $row['lang_name'];?></td>
+                                                <td><?= $row['lang_name_ar'];?></td>
+                                                <td>
+                                                    <a href="<?= admin_base_url();?>model/candidateModel?act=del-lang&langID=<?= $row['lang_id']; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
+                
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-bd lobidrag">
+                    <div class="panel-heading">
                         <h3>Current Posting</h3>
                     </div>
                     <div class="panel-body">
