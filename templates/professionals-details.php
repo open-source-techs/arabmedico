@@ -513,6 +513,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                     </div>
                 </div>
             </main>
+        </div>
             <?php
             include 'footer.php';
             ?>
