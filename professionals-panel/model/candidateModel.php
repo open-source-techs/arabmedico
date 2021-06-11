@@ -357,6 +357,23 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 			echo "<script>window.history.go(-1);</script>";
 		}
 	}
+	else if(isset($_POST['btn_can_lang']))
+	{
+	    $data['lang_can'] 	   = post('txt_doc_id');
+	    $data['lang_name']     = post('txt_lang_name');
+	    $data['lang_name_ar']  = $_POST['txt_lang_name_arabic'];
+	    
+	    if(insert($data,'tbl_can_language'))
+		{
+			set_msg('Success','Language is added successfully','success');
+			jump(admin_base_url()."account");
+		}
+		else
+		{
+			set_msg('Insertion error','Unable to process your request. Please try again later.','error');
+			echo "<script>window.history.go(-1);</script>";
+		}
+	}
 	else if(isset($_POST['btn_doc_appoint']))
 	{
 	    $data['app_appoint_title'] 	    = post('txt_appoint');
@@ -753,6 +770,29 @@ else if($_SERVER['REQUEST_METHOD'] == "GET")
 	        $member_id = $_GET['member_id'];
 			where('prof_id',$member_id);
 			if(delete('tbl_can_prof_mem'))
+			{
+			    set_msg('Success','Data is deleted successfully','success');
+			    jump(admin_base_url()."account");
+			}
+			else
+			{
+			    set_msg('Query Error','Unable to process your request. Please try again later','error');
+			    jump(admin_base_url()."account");
+			}
+	    }
+	    else
+	    {
+	        set_msg('Data Error','No Record Found','error');
+	        jump(admin_base_url()."account");
+	    }
+	}
+	else if(isset($_GET['act']) && $_GET['act'] == "del-lang")
+	{
+	    if(isset($_GET['langID']) && $_GET['langID'] != "" && $_GET['langID'] != null && $_GET['langID'] > 0 )
+	    {
+	        $langID = $_GET['langID'];
+			where('lang_id',$langID);
+			if(delete('tbl_can_language'))
 			{
 			    set_msg('Success','Data is deleted successfully','success');
 			    jump(admin_base_url()."account");
