@@ -6,8 +6,34 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
     $sql = query("SELECT * FROM tbl_candidate WHERE candidate_active = 1 AND candidate_slug = '$slug'");
     if(nrows($sql) > 0)
     {
+        function getIPAddress() {
+            if(!empty($_SERVER['HTTP_CLIENT_IP'])) {  
+                $ip = $_SERVER['HTTP_CLIENT_IP'];  
+            }  
+            elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
+                $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];  
+            }
+            else{  
+                $ip = $_SERVER['REMOTE_ADDR'];  
+            }  
+            return $ip;  
+        }
+
         $candidate = fetch($sql);
         $candidateID = $candidate['candidate_id'];
+        $userIP = getIPAddress();
+        $viewsql = query("SELECT * FROM tbl_can_views where view_ip = $userIP AND view_can = $candidateID");
+        $IPCount = nrows($sql);
+        if($IPCount <= 0)
+        {
+            $dataIP['view_ip']  = $userIP;
+            $dataIP['view_can'] = $candidateID;
+            if(insert($dataIP, 'tbl_can_views'))
+            {
+                $IPCount++;
+            }
+        }
+
         if($candidate['candidate_package'] == 1)
         {
             include 'professionals-header.php';
@@ -81,7 +107,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                 <div class="tg-widget tg-widget-doctor">
                                     <figure class="tg-docprofile-img" style="margin-bottom:5px !important;">
                                         <a href="#">
-                                            <img src="<?= file_url().$candidate['candidate_image'];?>" alt="<?= ($lang == "eng") ? $candidate['candidate_name'] : $candidate['candidate_name_ar'];?>" style="width:75%; margin:auto; border-radius:10%;border:5px solid #1adaea">
+                                            <img src="<?= file_url().$candidate['candidate_image'];?>" alt="<?= ($lang == "eng") ? $candidate['candidate_name'] : $candidate['candidate_name_ar'];?>" style="width:75%; margin:auto; border-radius:10%;">
                                         </a>
                                     </figure>
                                     <div class="detailstitlemob" style="margin-top:-90px">
@@ -125,21 +151,20 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                     <a href="https://www.instagram.com/" target="_blank">
                                         <img src="https://saudimedico.com/images/icons/instagram.png" />
                                     </a>
-                                </div>
-                                <div style="font-size:18px; text-align:center; padding:5px;">
-                                    <i class="fa fa-star-o" style="color:#dddddd; margin-right:3px;"></i>
-                                    <i class="fa fa-star-o" style="color:#dddddd; margin-right:3px;"></i>
-                                    <i class="fa fa-star-o" style="color:#dddddd; margin-right:3px;"></i>
-                                    <i class="fa fa-star-o" style="color:#dddddd; margin-right:3px;"></i>
-                                    <i class="fa fa-star-o" style="color:#dddddd; margin-right:3px;"></i>
-                                    <span style="font-size:18px; color:#148c82"> / 1285 View(s)</span>
                                 </div> -->
+
+                                <div style="font-size:18px; text-align:center; padding:5px;">
+                                    <span style="font-size:18px; color:#148c82"> <?= $IPCount; ?> / View(s)</span>
+                                </div>
                                 <div style="padding:5px; margin-top:-10px; margin-bottom:10px;">
                                     <div class="doctor-photo-btn text-center">
                                         <a href="<?= base_url()."contact-professional/".$slug;?>" class="btn btn-md btn-blue blue-hover"><?= ($lang == "eng") ? $lang_con[183]['lang_eng'] : $lang_con[183]['lang_arabic']; ?> <?= ($lang == "eng") ? $lang_con[207]['lang_eng'] : $lang_con[207]['lang_arabic']; ?></a>
                                     </div>
                                 </div>
-
+                                <?php
+                                if(get_sess('employee_logged_in') == 1)
+                                {
+                                ?>
                                 <div class="tg-widget tg-widget-accordions" style="margin-bottom:12px">
                                     <h3 style="background-color:#124c82"><?= ($lang == "eng") ? $lang_con[218]['lang_eng'] : $lang_con[218]['lang_arabic']; ?></h3>
                                     <ul>
@@ -150,7 +175,9 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                         <li><?= ($lang == "eng") ? $candidate['candidate_visa'] : $candidate['candidate_visa_ar'];?></li>
                                     </ul>
                                 </div>
-
+                                <?php
+                                }
+                                ?>
 
                                 <div class="tg-widget tg-widget-accordions" style="margin-bottom:12px">
                                     <h3 style="background-color:#124c82"><?= ($lang == "eng") ? $lang_con[190]['lang_eng'] : $lang_con[190]['lang_arabic']; ?></h3>
@@ -385,19 +412,24 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                             </ul>
                                         </div>
                                     </div>
+
                                     <div class="tg-doc-feature tg-haslayout">
                                         <div class="tg-heading-border tg-small" style="padding-bottom:0px !important; ">
                                             <h4 <?= ($lang == 'eng') ? '' : 'style="direction:rtl;text-align:right !important"'; ?>><?= ($lang == "eng") ? $lang_con[187]['lang_eng'] : $lang_con[187]['lang_arabic']; ?></h4>
                                         </div>
-                                        <?php
-                                        $sql_app = query("SELECT * FROM tbl_can_prof_mem WHERE prof_can = $candidateID");
-                                        while($app = fetch($sql_app))
-                                        {
-                                            ?>
-                                            <li><?= ($lang == "eng") ? $app['prof_name'] : $app['prof_name_ar']; ?></li>
-                                            <?php
-                                        }
-                                        ?>
+                                        <div class="tg-description" style="margin-bottom:25px; ">
+                                            <ul>
+                                                <?php
+                                                $sql_app = query("SELECT * FROM tbl_can_prof_mem WHERE prof_can = $candidateID");
+                                                while($app = fetch($sql_app))
+                                                {
+                                                    ?>
+                                                    <li><?= ($lang == "eng") ? $app['prof_name'] : $app['prof_name_ar']; ?></li>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </ul>
+                                        </div>
                                     </div>
 
                                     <div class="tg-doc-feature tg-haslayout">
@@ -416,6 +448,20 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                                 }
                                                 ?>
                                             </ul>
+                                        </div>
+                                    </div>
+                                    <div class="tg-doc-feature" >
+                                        <div class="tg-heading-border tg-small" style="background-color:#124c82; padding-left:10px; padding-right:10px;padding-bottom: 5px; ">
+
+                                            <h4 style="color:#fff !important; vertical-align:middle;margin-top:10px"><?= ($lang == "eng") ? $lang_con[189]['lang_eng'] : $lang_con[189]['lang_arabic']; ?> <?= ($lang == "eng") ? $candidate['candidate_name'] : $candidate['candidate_name_ar'];?>
+
+                                                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#moreprofile" style="float:right; margin-right:10px; margin-top:1px; margin-bottom:0px; font-size:28px; font-weight:bold; padding-top:0px; padding-bottom:0px; padding-right:10px; padding-left:10px; color:#FFF">+</button>
+                                            </h4>
+                                        </div>
+                                        <div id="moreprofile" class="collapse">
+                                            <div class="pdfdesktop">
+                                                <?= ($lang == "eng") ? $candidate['candiadate_resume'] : $candidate['candiadate_resume_ar'];?>
+                                            </div>
                                         </div>
                                     </div>
                                     <div id="photo">
@@ -462,20 +508,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                     </div>
                                 </div>
                             </div>
-                            <div class="clearfix">&nbsp;</div>
-                                <div class="tg-doc-feature" >
-                                    <div class="tg-heading-border tg-small" style="background-color:#124c82; padding-left:10px; padding-right:10px; margin-bottom:40px !important; ">
-                                        <h4 style="color:#fff !important; vertical-align:middle"><?= ($lang == "eng") ? $lang_con[189]['lang_eng'] : $lang_con[189]['lang_arabic']; ?> <?= ($lang == "eng") ? $candidate['candidate_name'] : $candidate['candidate_name_ar'];?>
-                                            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#moreprofile" style="float:right; margin-right:10px; margin-top:1px; margin-bottom:0px; font-size:28px; font-weight:bold; padding-top:0px; padding-bottom:0px; padding-right:10px; padding-left:10px; color:#FFF">+</button>
-                                        </h4>
-                                    </div>
-                                    <div id="moreprofile" class="collapse">
-                                        <div class="pdfdesktop">
-                                            <?= ($lang == "eng") ? $candidate['candiadate_resume'] : $candidate['candiadate_resume_ar'];?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -520,10 +553,10 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                 items:2
                             },
                             991:{
-                                items:3
+                                items:2
                             },
                             1000:{
-                                items:3
+                                items:2
                             }
                         }
                     });
@@ -548,10 +581,10 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                 items:2
                             },
                             991:{
-                                items:3
+                                items:2
                             },
                             1000:{
-                                items:3
+                                items:2
                             }
                         }
                     });
