@@ -210,6 +210,22 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                         ?>
                                     </ul>
                                 </div>
+
+                                <div class="tg-widget tg-widget-accordions" style="margin-bottom:12px">
+                                    <h3 style="background-color:#124c82"><?= ($lang == "eng") ? $lang_con[64]['lang_eng'] : $lang_con[64]['lang_arabic']; ?></h3>
+                                    <ul>
+                                        <?php
+                                        $query = query("SELECT * FROM tbl_can_language WHERE lang_can = $candidateID");
+                                        while($language = fetch($query))
+                                        {
+                                            ?>
+                                            <li><?= ($lang == "eng") ? $language['lang_name'] : $language['lang_name_ar']; ?></li>
+                                            <?php
+                                        }
+                                        ?>
+                                    </ul>
+                                </div>
+
                                 <div class="tg-widget tg-widget-accordions" style="margin-bottom:12px">
                                     <h3 style="background-color:#124c82"><?= ($lang == "eng") ? $lang_con[32]['lang_eng'] : $lang_con[32]['lang_arabic']; ?></h3>
                                     <ul>
