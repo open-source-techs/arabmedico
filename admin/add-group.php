@@ -20,7 +20,7 @@
                 <div class="panel panel-bd lobidrag">
                     <div class="panel-heading">
                         <div class="btn-group"> 
-                            <a class="btn btn-primary" href="<?= admin_base_url();?>all-groups"> <i class="fa fa-list"></i> Group List </a>  
+                            <a class="btn btn-primary" href="<?= admin_base_url();?>group-list"> <i class="fa fa-list"></i> Group List </a>  
                         </div>
                     </div>
                     <div class="panel-body">
@@ -42,7 +42,7 @@
                                 </select>
                             </div>
                             <div class="col-sm-12 reset-button">
-                                <a href="<?= admin_base_url();?>all-groups" class="btn btn-warning">Cancel & Go Back</a>
+                                <a href="<?= admin_base_url();?>group-list" class="btn btn-warning">Cancel & Go Back</a>
                                 <input type="submit" name="btn_save_grp" class="btn btn-success" value="Save">
                             </div>
                         </form>

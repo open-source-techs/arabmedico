@@ -80,6 +80,32 @@ else if($_SERVER['REQUEST_METHOD'] == "GET")
 			jump(admin_base_url()."group-list");
 		}
 	}
+	else if(isset($_GET['act']) && $_GET['act'] == "acceptuser")
+	{
+		if(isset($_GET['group_id']) && $_GET['group_id'] != "" && $_GET['group_id'] != null && $_GET['group_id'] > 0 )
+		{
+			$group_id = $_GET['group_id'];
+
+			$data['grp_user_approved'] = 1;
+
+			where('grp_id',$group_id);
+			if(update($data, 'tbl_group_users'))
+			{
+				set_msg('Success','User Approved successfully','success');
+				jump(admin_base_url()."group-user-request");
+			}
+			else
+			{
+				set_msg('Query Error','Unable to process your request. Please try again later','error');
+				jump(admin_base_url()."group-user-request");
+			}
+		}
+		else
+		{
+			set_msg('Fields validation','Unexpected error occurs','error');
+			jump(admin_base_url()."group-user-request");
+		}
+	}
 }
 else
 {
