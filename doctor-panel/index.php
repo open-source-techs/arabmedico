@@ -325,9 +325,8 @@ $doc_id = get_sess("userdata")['doc_id'];
                                 </ul>
                             </div>
                         </div>
-                        <br>
-                        <div class="wrap">
-                            <h3 class="jctkr-label">Arabic News</h3>
+                        <div class="wrap" style="margin-top: 5px;">
+                            <h3 class="jctkr-label">خبر</h3>
                             <div class="js-conveyor-example">
                                 <ul>
                                 <?php
@@ -522,7 +521,7 @@ $doc_id = get_sess("userdata")['doc_id'];
                             <h3 style="background-color:#3498db">Other Groups</h3>
                             <ul class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                 <?php
-                                
+
                                 $groupSql = query("SELECT t1.*, t2.* FROM tbl_communication_group t1 LEFT JOIN tbl_group_users t2 ON (t2.grp_group_id = t1.group_id) WHERE t2.grp_user_id IS NULL OR (t2.grp_user_id != $doc_id AND t2.grp_user_approved != 1)");
                                 while($group = fetch($groupSql))
                                 {
