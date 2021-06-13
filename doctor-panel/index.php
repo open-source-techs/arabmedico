@@ -211,6 +211,9 @@ $doc_id = get_sess("userdata")['doc_id'];
     .post-img img {
         max-width: 520px;
     }
+    .post-img video {
+        width: 100%;
+    }
     .post-footer {
         width: 100%;
         height: 20px;
@@ -435,7 +438,7 @@ $doc_id = get_sess("userdata")['doc_id'];
                                                         $ext = pathinfo($postDetail['post_video'], PATHINFO_EXTENSION);
                                                         ?>
                                                         <video controls id="myvid">
-                                                            <source src="<?= file_url().$postDetail['post_image'];?>" type="video/<?= $ext; ?>">
+                                                            <source src="<?= file_url().$postDetail['post_video'];?>" type="video/<?= $ext; ?>">
                                                         </video>
                                                         <?php
                                                     }
