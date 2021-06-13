@@ -63,12 +63,6 @@
                     <span>Schedule</span>
                 </a>
             </li>
-            <li class="<?php active_page('posts'); ?>">
-                <a href="<?= admin_base_url();?>Posts">
-                    <i class="fa fa-clock-o"></i>
-                    <span>Posts</span>
-                </a>
-            </li>
             <?php
             $sql_new = query("SELECT * FROM tbl_membership WHERE membership_id = ". get_sess('userdata')['doc_membership']);
             $fetch = fetch($sql_new);
