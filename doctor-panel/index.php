@@ -325,7 +325,7 @@ $doc_id = get_sess("userdata")['doc_id'];
                                 </ul>
                             </div>
                         </div>
-                        <div class="wrap" style="margin-top: 5px;">
+                        <div class="wrap" style="margin-top: 5px;direction: rtl;">
                             <h3 class="jctkr-label">خبر</h3>
                             <div class="js-conveyor-example">
                                 <ul>
