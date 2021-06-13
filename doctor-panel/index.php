@@ -522,7 +522,8 @@ $doc_id = get_sess("userdata")['doc_id'];
                             <h3 style="background-color:#3498db">Other Groups</h3>
                             <ul class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                 <?php
-                                $groupSql = query("SELECT * FROM tbl_communication_group WHERE group_id != (SELECT grp_group_id FROM tbl_group_users WHERE grp_user_type = 'doctor' AND grp_user_id = $doc_id AND grp_user_approved = 1)");
+                                
+                                $groupSql = query("SELECT t1.*, t2.* FROM tbl_communication_group t1 LEFT JOIN tbl_group_users t2 ON (t2.grp_group_id = t1.group_id) WHERE t2.grp_user_id IS NULL OR (t2.grp_user_id != $doc_id AND t2.grp_user_approved != 1)");
                                 while($group = fetch($groupSql))
                                 {
                                     ?>
