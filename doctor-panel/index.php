@@ -266,9 +266,16 @@ $doc_id = get_sess("userdata")['doc_id'];
                                                         <span class="select">
                                                             <select class="group" id="group_id" name="group_id" style="color:#000; min-width:250px; height:25px; padding:0px !important" required="">
                                                                 <option value="">Please select group to post</option>
-                                                                <option value="1">Medical Community</option>
-                                                                <option value="2">Orthodontics</option>
-                                                                <option value="4">Rheumatology</option>
+                                                                <?php
+                                                                $mygroupSql = query("SELECT * FROM tbl_group_users gu JOIN tbl_communication_group g ON (du.grp_group_id = g.group_id) WHERE grp_user_type = 'doctor' AND grp_user_type = $doc_id AND grp_user_approved = 1");
+                                                                while($mygroup = fetch($mygroupSql))
+                                                                {
+                                                                    ?>
+                                                                    <option value="<?= $mygroup['group_id'] ?>"> <?= $mygroup['group_name'];?></option>
+                                                                    <?php
+                                                                    
+                                                                }
+                                                                ?>
                                                             </select>
                                                         </span>
                                                     </div>
@@ -286,7 +293,7 @@ $doc_id = get_sess("userdata")['doc_id'];
                     </div>
                     <div class="col-md-3">
                         <div class="tg-widget tg-widget-accordions">
-                            <h3 style="background-color:#3498db">Your Groups</h3>
+                            <h3 style="background-color:#3498db">My Groups</h3>
                             <ul class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                 <?php
                                 $mygroupSql = query("SELECT * FROM tbl_group_users gu JOIN tbl_communication_group g ON (du.grp_group_id = g.group_id) WHERE grp_user_type = 'doctor' AND grp_user_type = $doc_id AND grp_user_approved = 1");
