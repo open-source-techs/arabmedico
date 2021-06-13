@@ -1,5 +1,165 @@
 <?php require_once('layout/header.php');?>
 <?php require_once('layout/sidebar.php');?>
+<?php
+$docImg = get_sess("userdata")['doc_image'];
+$doc_id = get_sess("userdata")['doc_id'];
+?>
+<link rel="stylesheet" href="<?= admin_base_url();?>assets/marquee.css">
+<style type="text/css">
+    .content{
+        background-color: #fff !important;
+    }
+    .wrap{
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      font-size: 0;
+      background: #fff;
+      border-radius: 3px;
+      box-shadow: inset 0 0 7px rgba(52, 152, 219,0.5);
+    }
+    .jctkr-label{
+      height: 35px;
+      padding: 0px 17px 15px 17px;
+      line-height: 35px;
+      background: rgba(52, 152, 219);
+      font-weight:bold;
+      font-size: 19px;
+      color: #fff !important;
+      cursor: default;
+      margin: 0px !important;
+    }
+    .jctkr-label:hover{
+      background: rgba(52, 152, 219, 0.7);
+      color: #fff;
+    }
+    [class*="js-conveyor-"] ul{
+      display: inline-block;
+      opacity: 0.5;
+    }
+    [class*="js-conveyor-"] ul li{
+      padding: 0 20px;
+      border-right:1px solid rgba(52, 152, 219,0.5);
+      line-height: 35px;
+      font-size: 16px;
+    }
+    .card-body
+    {
+        width: 100%;
+        height: auto;
+        min-height: 100px;
+        border-bottom: 1px solid #E5E5E5;
+        overflow: auto;
+    }
+    .body-left {
+        width: 62px;
+        height: auto;
+        float: left;
+        margin-left: 15px;
+    }
+    .img-box {
+        width: 50px;
+        height: 50px;
+        margin: 10px 0px;
+        border: 1px solid #F5F1F1;
+    }
+    .img-box img {
+        width: 100%;
+        height: 100%;
+    }
+    .text-type {
+        width: 84%;
+        height: auto;
+        resize: none;
+        margin: 10px 0px;
+        font-size: 14px;
+        color: #959698;
+        border: none;
+        overflow: hidden;
+    }
+    #body-bottom {
+        border-top: 1px solid #8fc400;
+        margin: 10px;
+        display: none;
+    }
+    .c-footer {
+        overflow: auto;
+        margin-bottom: 5px;
+    }
+    .right-box {
+        float: right;
+        margin-top: 5px;
+    }
+    .right-box ul {
+        list-style: none;
+    }
+    .right-box ul li {
+        display: inline;
+    }
+    .btn2 {
+        background: rgb(71, 100, 159) none repeat scroll 0% 0%;
+        color: white;
+        font-weight: bolder;
+        font-size: 12px;
+        margin: 0px 7px;
+        width: 65px;
+        height: 25px;
+        border: 1px solid rgb(204, 204, 204);
+        border-radius: 4px;
+    }
+    .tg-widget {
+        width: 100%;
+        float: left;
+        margin: 0 0 30px;
+    }
+    .tg-widget > h3 {
+        background-color: #3498db;
+        width: 100%;
+        float: left;
+        margin: 0;
+        color: #fff;
+        padding: 20px;
+        font-size: 16px;
+        line-height: 16px;
+        background: #505050;
+        text-transform: uppercase;
+    }
+    .tg-widget.tg-widget-accordions ul {
+        background: #bbeefb;
+    }
+    .tg-widget > ul {
+        margin: 0;
+        width: 100%;
+        float: left;
+        list-style: none;
+        padding: 5px 20px;
+        border: 1px solid #025389;
+        line-height: 20px;
+    }
+    .tg-widget > ul > li {
+        float: left;
+        width: 100%;
+        padding: 14px 0;
+        line-height: normal;
+        list-style-type: none;
+    }
+    .tg-widget.tg-widget-accordions ul li:first-child {
+        border: 0;
+    }
+    .tg-widget.tg-widget-accordions ul li {
+        background: none;
+    }
+    .tg-widget.tg-widget-accordions ul li{
+        border: 0;
+        margin: 0 !important;
+        box-shadow: none;
+        border-top: 1px solid #025389;
+        border-radius: 0 !important;
+    }
+    .post-content{
+        margin-top: 20px;
+    }
+</style>
 <div class="content-wrapper">
     <section class="content-header">
         <form action="#" method="get" class="sidebar-form search-box pull-right hidden-md hidden-lg hidden-sm">
@@ -15,399 +175,177 @@
         </div>
         <div class="header-title">
             <h1> Dashboard</h1>
-            <small> Dashboard features</small>
+            <small>Communication</small>
             <ol class="breadcrumb hidden-xs">
-                <li><a href="index.html"><i class="pe-7s-home"></i> Home</a></li>
+                <li><a href="<?= admin_base_url();?>l"><i class="pe-7s-home"></i> Home</a></li>
                 <li class="active">Dashboard</li>
             </ol>
         </div>
     </section>
     <section class="content">
-        <div class="row">
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                <div class="panel panel-bd cardbox">
-                    <div class="panel-body">
-                        <div class="statistic-box">
-                            <h2><span class="count-number">15</span>
-                            </h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="comm-header">
+                        <div class="wrap">
+                            <h3 class="jctkr-label">News</h3>
+                            <div class="js-conveyor-example">
+                                <ul>
+                                <?php
+                                $newsSql = query("SELECT * FROM tbl_internal_news WHERE news_for = 'doctor' OR news_for = 'all'");
+                                while($news = fetch($newsSql))
+                                {
+                                    ?>
+                                    <li class="news-detail"><a href="#"><span><?= $news['news_title']; ?></span></a></li>
+                                    <?php
+                                }
+                                ?>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="items pull-left">
-                            <i class="fa fa-users fa-2x"></i>
-                            <h4>Active Doctors </h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                <div class="panel panel-bd cardbox">
-                    <div class="panel-body">
-                        <div class="statistic-box">
-                            <h2><span class="count-number">19</span>
-                            </h2>
-                        </div>
-                        <div class="items pull-left">
-                            <i class="fa fa-users fa-2x"></i>
-                            <h4>Active Patients</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                <div class="panel panel-bd cardbox">
-                    <div class="panel-body">
-                        <div class="statistic-box">
-                            <h2><span class="count-number">05</span>
-                            </h2>
-                        </div>
-                        <div class="items pull-left">
-                            <i class="fa fa-user-circle fa-2x"></i>
-                            <h4>Representative</h4>
+                        <br>
+                        <div class="wrap">
+                            <h3 class="jctkr-label">Arabic News</h3>
+                            <div class="js-conveyor-example">
+                                <ul>
+                                <?php
+                                $newsSql = query("SELECT * FROM tbl_internal_news WHERE news_for = 'doctor' OR news_for = 'all'");
+                                while($news = fetch($newsSql))
+                                {
+                                    ?>
+                                    <li class="news-detail"><a href="#"><span><?= $news['news_title_ar']; ?></span></a></li>
+                                    <?php
+                                }
+                                ?>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                <div class="panel panel-bd cardbox">
-                    <div class="panel-body">
-                        <div class="statistic-box">
-                            <h2><span class="count-number">9</span>
-                            </h2>
+            <div class="post-content">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="posts">
+                            <div class="create-posts">
+                                <form action="" method="post" enctype="multipart/form-data" style="border: 1px solid #E5E5E5; margin-bottom:10px !important">
+                                    <div class="row" style="text-align:center;">
+                                        <div style="width: 32% !important; margin-left:14px; border-bottom:1px solid #E5E5E5; border-left:1px solid #E5E5E5; height:60px; padding-top:10px; float:left; text-align:center;">
+                                            <a href="#" title="Write something">
+                                                <div class="fa-3x fa fa-edit"></div>
+                                            </a>
+                                        </div>
+                                        <div style="width: 31% !important; height:60px; float:left; text-align:center; border-left:1px solid #E5E5E5; padding-top:10px; border-bottom:1px solid #E5E5E5;">
+                                            <input type="file" onchange="readURL(this);" style="display:none;" name="post_image" id="uploadFile">
+                                            <a id="uploadTrigger" name="post_image" title="Upload a Photo"><div class="fa-3x fa fa-image"></div></a>
+                                        </div>
+                                        <div style="width: 32% !important; height:60px; float:left; text-align:center; border-left:1px solid #E5E5E5; padding-top:10px; border-bottom:1px solid #E5E5E5;">
+                                            <input type="file" onchange="readURL(this);" style="display:none;" name="post_video" id="uploadVideoFile">
+                                            <a id="uploadTriggerVideo" name="post_video" title="Upload a Video"><div class="fa-3x fa fa-video-camera"></div></a>
+                                        </div>
+                                    </div>
+                                    <div class="c-body">
+                                        <div class="body-left">
+                                            <div class="img-box">
+                                                <img src="<?= file_url().$docImg;?>">
+
+                                            </div>
+                                        </div>
+                                        <div class="body-right">
+                                            <textarea class="text-type" name="status" placeholder="What's on your mind?"></textarea>
+                                        </div>
+                                        <div id="body-bottom">
+                                            <img src="#" id="preview">
+                                        </div>
+                                    </div>
+                                    <div class="c-footer">
+                                        <div class="right-box">
+                                            <ul>
+                                                <li>
+                                                    <div class="form-group" style="float:left; padding:0px !important">
+                                                        <span class="select">
+                                                            <select class="group" id="group_id" name="group_id" style="color:#000; min-width:250px; height:25px; padding:0px !important" required="">
+                                                                <option value="">Please select group to post</option>
+                                                                <option value="1">Medical Community</option>
+                                                                <option value="2">Orthodontics</option>
+                                                                <option value="4">Rheumatology</option>
+                                                            </select>
+                                                        </span>
+                                                    </div>
+                                                </li>
+                                                <li><input type="submit" name="submit" value="Post" class="btn2"></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <script type="text/javascript">
+                                        
+                                    </script>
+                                </form>
+                            </div>
                         </div>
-                        <div class="items pull-left">
-                            <i class="fa fa-users fa-2x"></i>
-                            <h4>Active Nurses</h4>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="tg-widget tg-widget-accordions">
+                            <h3 style="background-color:#3498db">Your Groups</h3>
+                            <ul class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                <?php
+                                $mygroupSql = query("SELECT * FROM tbl_group_users gu JOIN tbl_communication_group g ON (du.grp_group_id = g.group_id) WHERE grp_user_type = 'doctor' AND grp_user_type = $doc_id AND grp_user_approved = 1");
+                                while($mygroup = fetch($mygroupSql))
+                                {
+                                    ?>
+                                    <li> <?= $mygroup['group_name'];?></li>
+                                    <?php
+                                    
+                                }
+                                ?>
+                            </ul>
+                        </div>
+                        <div class="tg-widget tg-widget-accordions">
+                            <h3 style="background-color:#3498db">Dental Groups (3)</h3>
+                            <ul class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                <?php
+                                $mygroupSql = query("SELECT * FROM tbl_communication_group");
+                                while($mygroup = fetch($mygroupSql))
+                                {
+                                    ?>
+                                    <li> <?= $mygroup['group_name'];?></li>
+                                    <?php
+                                    
+                                }
+                                ?>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                <div class="panel panel-bd cardbox">
-                    <div class="panel-body">
-                        <div class="statistic-box">
-                            <h2><span class="count-number">6</span>
-                            </h2>
-                        </div>
-                        <div class="items pull-left">
-                            <i class="fa fa-user-circle fa-2x"></i>
-                            <h4> Pharmachist</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                <div class="panel panel-bd cardbox">
-                    <div class="panel-body">
-                        <div class="statistic-box">
-                            <h2><span class="count-number">3</span>
-                            </h2>
-                        </div>
-                        <div class="items pull-left">
-                        <i class="fa fa-users fa-2x"></i>
-                        <h4>Labratorist</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                <div class="panel panel-bd cardbox">
-                    <div class="panel-body">
-                        <div class="statistic-box">
-                            <h2><span class="count-number">4</span>
-                            </h2>
-                        </div>
-                        <div class="items pull-left">
-                        <i class="fa fa-users fa-2x"></i>
-                        <h4>Accountant</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                <div class="panel panel-bd cardbox">
-                    <div class="panel-body">
-                        <div class="statistic-box">
-                            <h2><span class="count-number">7</span>
-                            </h2>
-                        </div>
-                        <div class="items pull-left">
-                        <i class="fa fa-users fa-2x"></i>
-                        <h4>Receptionist</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 ">  
-                <div class="panel panel-bd lobidrag">
-                    <div class="panel-heading">
-                        <div class="panel-title">
-                            <h4>Line chart</h4>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <canvas id="lineChart" height="150"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                <div class="panel panel-bd lobidisable">
-                    <div class="panel-heading">
-                        <div class="panel-title">
-                            <h4>Calender</h4>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <!-- monthly calender -->
-                        <div class="monthly_calender">
-                            <div class="monthly" id="m_calendar"></div>
-                        </div>
-                    </div>
-                     <div id="map1" class="hidden-xs hidden-sm hidden-md hidden-lg"></div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6">
-                <div class="panel panel-bd lobidisable">
-                    <div class="panel-heading">
-                        <div class="panel-title">
-                            <h4>Bar chart</h4>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <canvas id="barChart" height="200"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6">
-                <div class="panel panel-bd lobidisable">
-                    <div class="panel-heading">
-                        <div class="panel-title">
-                            <h4>Rader chart</h4>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <canvas id="radarChart" height="200"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6">
-                <div class="panel panel-bd lobidrag">
-                    <div class="panel-heading">
-                        <div class="panel-title">
-                            <h4>Google Map</h4>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <div class="embed-container">
-                            <iframe src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387144.0075834208!2d-73.97800349999999!3d40.7056308!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY!5e0!3m2!1sen!2sus!4v1394298866288' width='600' height='450' style='border:0'></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6">
-                <div class="panel panel-bd lobidrag">
-                    <div class="panel-heading">
-                        <div class="panel-title">
-                            <h4>DataTables </h4>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <div class="table-responsive">
-                            <table id="dataTableExample2" class="table table-bordered table-striped table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Position</th>
-                                        <th>Office</th>
-                                        <th>Age</th>
-                                        <th>Start date</th>
-                                        <th>Salary</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Tiger Nixon</td>
-                                        <td>System Architect</td>
-                                        <td>Edinburgh</td>
-                                        <td>61</td>
-                                        <td>2011/04/25</td>
-                                        <td>$320,800</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Garrett Winters</td>
-                                        <td>Accountant</td>
-                                        <td>Tokyo</td>
-                                        <td>63</td>
-                                        <td>2011/07/25</td>
-                                        <td>$170,750</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ashton Cox</td>
-                                        <td>Junior Technical Author</td>
-                                        <td>San Francisco</td>
-                                        <td>66</td>
-                                        <td>2009/01/12</td>
-                                        <td>$86,000</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-             </div>
         </div>
     </section>
 </div>
 <?php require_once('layout/footer.php');?>
+<script src="<?= admin_base_url();?>assets/marquee.js"></script>
+<script>
+  $(function() {
+    $('.js-conveyor-example').jConveyorTicker();
+    $("#uploadTrigger").click(function(){
+       $("#uploadFile").click();
+    });
+    $("#uploadTriggerVideo").click(function(){
+       $("#uploadVideoFile").click();
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#body-bottom').show();
+                $('#preview').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+  });
+</script>
 <?php
 get_msg('msg');
 ?>
-<script>
-        $('.count-number').counterUp({
-            delay: 10,
-            time: 5000
-        });
-        var basic_choropleth = new Datamap({
-            element: document.getElementById("map1"),
-            projection: 'mercator',
-            fills: {
-                defaultFill: "#009688",
-                authorHasTraveledTo: "#fa0fa0"
-            },
-            data: {
-                USA: {fillKey: "authorHasTraveledTo"},
-                JPN: {fillKey: "authorHasTraveledTo"},
-                ITA: {fillKey: "authorHasTraveledTo"},
-                CRI: {fillKey: "authorHasTraveledTo"},
-                KOR: {fillKey: "authorHasTraveledTo"},
-                DEU: {fillKey: "authorHasTraveledTo"}
-            }
-        });
-        var colors = d3.scale.category10();
-        window.setInterval(function () {
-            basic_choropleth.updateChoropleth({
-                USA: colors(Math.random() * 10),
-                RUS: colors(Math.random() * 100),
-                AUS: {fillKey: 'authorHasTraveledTo'},
-                BRA: colors(Math.random() * 50),
-                CAN: colors(Math.random() * 50),
-                ZAF: colors(Math.random() * 50),
-                IND: colors(Math.random() * 50)
-            });
-        }, 2000);
-        var ctx = document.getElementById("barChart");
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-                datasets: [
-                    {
-                        label: "My First dataset",
-                        data: [65, 59, 80, 81, 56, 55, 40, 25, 35, 51, 94, 16],
-                        borderColor: "#009688",
-                        borderWidth: "0",
-                        backgroundColor: "#009688"
-                    },
-                    {
-                        label: "My Second dataset",
-                        data: [28, 48, 40, 19, 86, 27, 90, 91, 41, 25, 34, 47],
-                        borderColor: "#009688",
-                        borderWidth: "0",
-                        backgroundColor: "#009688"
-                    }
-                ]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }]
-                }
-            }
-        });
-        var ctx = document.getElementById("radarChart");
-        var myChart = new Chart(ctx, {
-            type: 'radar',
-            data: {
-                labels: [["Eating", "Dinner"], ["Drinking", "Water"], "Sleeping", ["Designing", "Graphics"], "Coding", "Cycling", "Running"],
-                datasets: [
-                    {
-                        label: "My First dataset",
-                        data: [65, 59, 66, 45, 56, 55, 40],
-                        borderColor: "#00968866",
-                        borderWidth: "1",
-                        backgroundColor: "rgba(0, 150, 136, 0.35)"
-                    },
-                    {
-                        label: "My Second dataset",
-                        data: [28, 12, 40, 19, 63, 27, 87],
-                        borderColor: "rgba(55, 160, 0, 0.7",
-                        borderWidth: "1",
-                        backgroundColor: "rgba(0, 150, 136, 0.35)"
-                    }
-                ]
-            },
-            options: {
-                legend: {
-                    position: 'top'
-                },
-                scale: {
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-        $('.message_inner').slimScroll({
-            size: '3px',
-            height: '320px'
-        });
-        $(".emojionearea").emojioneArea({
-            pickerPosition: "top",
-            tonesStyle: "radio"
-        });
-        $('#m_calendar').monthly({
-            mode: 'event',
-            //jsonUrl: 'events.json',
-            //dataType: 'json'
-            xmlUrl: 'events.xml'
-        });
-        var ctx = document.getElementById("lineChart");
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-                datasets: [
-                    {
-                        label: "My First dataset",
-                        borderColor: "rgba(0,0,0,.09)",
-                        borderWidth: "1",
-                        backgroundColor: "rgba(0,0,0,.07)",
-                        data: [22, 44, 67, 43, 76, 45, 12, 45, 65, 55, 42, 61, 73]
-                    },
-                    {
-                        label: "My Second dataset",
-                        borderColor: "#009688",
-                        borderWidth: "1",
-                        backgroundColor: "#009688",
-                        pointHighlightStroke: "#009688",
-                        data: [16, 32, 18, 26, 42, 33, 44, 24, 19, 16, 67, 71, 65]
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                tooltips: {
-                    mode: 'index',
-                    intersect: false
-                },
-                hover: {
-                    mode: 'nearest',
-                    intersect: true
-                }
-
-            }
-        });
-    </script>
