@@ -301,7 +301,7 @@ $doc_id = get_sess("userdata")['doc_id'];
                             </ul>
                         </div>
                         <div class="tg-widget tg-widget-accordions">
-                            <h3 style="background-color:#3498db">Dental Groups (3)</h3>
+                            <h3 style="background-color:#3498db">Other Groups</h3>
                             <ul class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                 <?php
                                 $mygroupSql = query("SELECT * FROM tbl_communication_group");
