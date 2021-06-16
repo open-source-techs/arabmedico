@@ -325,7 +325,7 @@ $doc_id = get_sess("userdata")['doc_id'];
                                 </ul>
                             </div>
                         </div>
-                        <div class="wrap" style="margin-top: 5px;direction: rtl;">
+                        <div class="wrap" style="margin-top: 5px;">
                             <h3 class="jctkr-label">خبر</h3>
                             <div class="js-conveyor-example">
                                 <ul>
@@ -447,9 +447,47 @@ $doc_id = get_sess("userdata")['doc_id'];
                                                     <div class="post-footer-inner">
                                                         <ul>
                                                             <li>
-                                                                <a href="#"><div id="like_before_<?= $postDetail['post_id']; ?>" style="font-weight:bold; float:left; margin-top:1px">1</div> Liked</a>
+                                                                <?php
+                                                                $likSql = query("SELECT * FROM tbl_post_like WHERE like_post = ".$postDetail['post_id']);
+                                                                $likeCount = nrows($likSql);
+                                                                $like = true;
+                                                                while($likeData = fetch($likSql))
+                                                                {
+                                                                    if($likeData['like_user'] == $doc_id && $likeData['like_userType'] == 'doctor' )
+                                                                    {
+                                                                        $like = false;
+                                                                    }
+                                                                }
+                                                                ?>
+                                                                <div id="like_count_<?= $postDetail['post_id']; ?>" style="font-weight:bold; float:left; margin-top:1px"><?= $likeCount; ?></div>
+                                                                <?php
+                                                                if($like)
+                                                                {
+                                                                    ?>
+                                                                    <a href="javascript:like_post(<?= $postDetail['post_id']; ?>);" id="post_like_<?= $postDetail['post_id']; ?>">
+                                                                         Like
+                                                                    </a>
+                                                                    <a href="javascript:unlike_post(<?= $postDetail['post_id']; ?>);" id="post_unllike_<?= $postDetail['post_id']; ?>" style="display: none;">
+                                                                         Unlike
+                                                                    </a>
+                                                                    <?php
+                                                                }
+                                                                else
+                                                                {
+                                                                    ?>
+                                                                    <a style="display: none;" href="javascript:like_post(<?= $postDetail['post_id']; ?>);" id="post_like_<?= $postDetail['post_id']; ?>">
+                                                                         Like
+                                                                    </a>
+                                                                    <a href="javascript:unlike_post(<?= $postDetail['post_id']; ?>);" id="post_unllike_<?= $postDetail['post_id']; ?>">
+                                                                         Unlike
+                                                                    </a>
+                                                                    <?php
+                                                                }
+                                                                ?>
                                                             </li>
-                                                            <li><a href="javascript:showcomments(<?= $postDetail['post_id']; ?>);">Comment</a></li>
+                                                            <li>
+                                                                <a href="javascript:showcomments(<?= $postDetail['post_id']; ?>);">Comment</a>
+                                                            </li>
                                                             <!-- <li><a href="#">Share</a></li> -->
                                                             <!-- <li>
                                                                 <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https://saudimedico.com/post/<?= $postDetail['post_id']; ?>-hi" target="_blank">
@@ -475,7 +513,31 @@ $doc_id = get_sess("userdata")['doc_id'];
                                                     </div>
                                                 </div>
                                                 <div id="showcomments<?= $postDetail['post_id']; ?>" style="display:none; margin-top:10px; padding:0px !important">
-                                                    <form action="" method="post">
+                                                    <?php
+                                                    $commSql = query("SELECT * FROM tbl_post_comment WHERE comment_post = ".$postDetail['post_id'] );
+                                                    while($commData = fetch($commSql))
+                                                    {
+                                                        if($commData['comment_userType'] == 'doctor')
+                                                        {
+                                                            $userID     = $commData['comment_user'];
+                                                            $userSql    = query("SELECT doc_name, doc_image FROM tbl_doctor WHERE doc_id = $userID");
+                                                            $userData   = fetch($userSql);
+                                                            $userName   = $userData['doc_name'];
+                                                            $userimage  = $userData['doc_image'];
+                                                        }
+                                                        ?>
+                                                        <div class="c-body-comments">
+                                                            <div class="body-left-comments" style="margin:0px !important; width:43px">
+                                                                <div class="img-box-comments">
+                                                                    <img src="<?= file_url().$userimage;?>">
+                                                                </div>
+                                                            </div>
+                                                            <div class="body-right" style="margin-top:0px; height:40px; padding-top:0px; padding-bottom:0px !important; width:100%;"><?= $commData['comment_text']; ?></div>
+                                                        </div>
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                    <form action="<?= admin_base_url();?>model/postModel" method="post">
                                                         <div class="c-body-comments">
                                                             <div class="body-left-comments" style="margin:0px !important; width:43px">
                                                                 <div class="img-box-comments">
@@ -483,7 +545,15 @@ $doc_id = get_sess("userdata")['doc_id'];
                                                                 </div>
                                                             </div>
                                                             <div class="body-right" style="margin-top:0px; height:40px; padding-top:0px; padding-bottom:0px !important; width:100%;">
-                                                                <input type="hidden" name="post-id" value="<?= $postDetail['post_id']; ?>">
+                                                                <input type="hidden" name="post_id" value="<?= $postDetail['post_id']; ?>">
+                                                                <?php
+                                                                if(isset($_GET['grpID']) && $_GET['grpID'] != null && $_GET['grpID'] != "" && $_GET['grpID'] > 0)
+                                                                {
+                                                                    ?>
+                                                                    <input type="hidden" name="groupID" value="<?= $_GET['grpID']; ?>">
+                                                                    <?php
+                                                                }
+                                                                ?>
                                                                 <textarea class="text-type-comments" name="comment" placeholder="What's on your mind?" style="overflow:auto; height:38px; margin-top:0px !important; padding:2px !important"></textarea>
                                                                 <input type="submit" name="postcomment" value="Post" class="btn22" style="float:right">
                                                             </div>
@@ -562,6 +632,52 @@ $doc_id = get_sess("userdata")['doc_id'];
     {
         document.getElementById("showcomments"+val).style.display = "block";
     }
+    function like_post(val)
+    {
+        var action = 'post_like'
+        $.ajax({
+            type: "POST",
+            url: "model/postModel",
+            data: {
+                btn_like: action,
+                post_id:val,
+                user_id:<?= $doc_id; ?>
+            },
+            success: function (response)
+            {
+                var res = $.parseJSON(response);
+                if(res.code == "success")
+                {
+                    $("#like_count_"+val).html(res.data);
+                    $("#post_unllike_"+val).show();
+                    $("#post_like_"+val).hide();
+                }
+            }
+        });
+    }
+    function unlike_post(val)
+    {
+        var action = 'post_unlike'
+        $.ajax({
+            type: "POST",
+            url: "model/postModel",
+            data: {
+                btn_unlike: action,
+                post_id:val,
+                user_id:<?= $doc_id; ?>
+            },
+            success: function (response)
+            {
+                var res = $.parseJSON(response);
+                if(res.code == "success")
+                {
+                    $("#like_count_"+val).html(res.data);
+                    $("#post_unllike_"+val).hide();
+                    $("#post_like_"+val).show();
+                }
+            }
+        });
+    }
     $(function() {
         $('.js-conveyor-example').jConveyorTicker();
         $("#uploadTrigger").click(function(){
@@ -570,7 +686,6 @@ $doc_id = get_sess("userdata")['doc_id'];
         $("#uploadTriggerVideo").click(function(){
            $("#uploadVideoFile").click();
         });
-
   });
 </script>
 <?php
