@@ -44,36 +44,38 @@ $location_arab_sql = query("SELECT DISTINCT job_location_ar FROM tbl_job ORDER B
                     </div>
                     <div class="panel-body">
                         <form  action="<?= admin_base_url()?>model/jobModel" method="POST" enctype="multipart/form-data" class="col-sm-12">
-                            <div class="col-sm-12">
-                                <hr style="width: 100%;height: 1px;margin: 5px auto;">
-                                <h3>English Form</h3>
-                                <hr style="width: 100%;height: 1px;margin: 5px auto;">
-                            </div>
                             <div class="col-sm-6 form-group">
                                 <label>Job Title</label>
                                 <input type="text" name="txt_job_title" class="form-control" required>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Job Title Arabic</label>
+                                <input type="text" name="ar_job_title" class="form-control" placeholder="Enter Job title" required>
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label>Job Department</label>
                                 <input type="text" name="txt_job_depart" id="txt_job_depart" class="form-control" required>
                             </div>
                             <div class="col-sm-6 form-group">
+                                <label>Job Department Arabic</label>
+                                <input type="text" name="txt_job_depart_arabic" id="txt_job_depart_arabic" class="form-control" required>
+                            </div>
+                            <div class="col-sm-6 form-group">
                                 <label>Job Location</label>
                                 <input type="text" name="txt_job_loc" id="txt_job_loc" class="form-control" required>
                             </div>
-                            
+                            <div class="col-sm-6 form-group">
+                                <label>Job Location Arabic</label>
+                                <input type="text" id="ar_job_loc" name="ar_job_loc" class="form-control" required>
+                            </div>
                             <div class="col-sm-6 form-group">
                                 <label>Closing date</label>
                                 <input type="date" name="txt_closing_time" class="form-control" required>
                             </div>
-                            <!--<div class="col-sm-6 form-group">-->
-                            <!--    <label>Email Notification</label>-->
-                            <!--    <input type="text" name="txt_email" class="form-control" placeholder="Enter Email Notification" required>-->
-                            <!--</div>-->
-                            <!--<div class="col-sm-6 form-group">-->
-                            <!--    <label>Company job link</label>-->
-                            <!--    <input type="text" name="txt_com_link" class="form-control" placeholder="Enter Company Link" required>-->
-                            <!--</div>-->
+                            <div class="col-sm-6 form-group">
+                                <label>Job URL (https://arabmedico.com/....)</label>
+                                <input type="text" name="txt_slug" class="form-control" required>
+                            </div>
                             <div class="col-sm-6 form-group">
                                 <label>Job Icon</label>
                                 <input type="file" name="txt_job_icon" class="form-control" required>
@@ -97,30 +99,33 @@ $location_arab_sql = query("SELECT DISTINCT job_location_ar FROM tbl_job ORDER B
                                 <label>Job Description</label>
                                 <textarea name="txt_desc" rows="3" class="form-control" id="txt_desc"></textarea>
                             </div>
-                            <div class="col-sm-12">
-                                <hr style="width: 100%;height: 1px;margin: 5px auto;">
-                                <h3>Arabic Form</h3>
-                                <hr style="width: 100%;height: 1px;margin: 5px auto;">
-                            </div>
-                           <div class="col-sm-6 form-group">
-                                <label>Job Title Arabic</label>
-                                <input type="text" name="ar_job_title" class="form-control" placeholder="Enter Job title" required>
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label>Job Department Arabic</label>
-                                <input type="text" name="txt_job_depart_arabic" id="txt_job_depart_arabic" class="form-control" required>
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label>Job Location Arabic</label>
-                                <input type="text" id="ar_job_loc" name="ar_job_loc" class="form-control" required>
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label>Closing date Arabic</label>
-                                <input type="date" name="ar_closing_time" class="form-control" required>
-                            </div>
                             <div class="col-sm-12 form-group">
                                 <label>Job Description Arabic</label>
                                 <textarea name="ar_desc" rows="3" class="form-control" id="txt_short_desc"></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Title</label>
+                                <input type="text" name="txt_meta_title" class="form-control">
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Title for arabic</label>
+                                <input type="text" name="txt_meta_title_ar" class="form-control">
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Tags</label>
+                                <textarea name="txt_tag" rows="3" class="form-control"></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Tags for Arabic</label>
+                                <textarea name="txt_tag_ar" rows="3" class="form-control"></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Description</label>
+                                <textarea name="txt_meta_desc" rows="3" class="form-control"></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Description for Arabic</label>
+                                <textarea name="txt_meta_desc_ar" rows="3" class="form-control"></textarea>
                             </div>
                             <div class="col-sm-12 reset-button">
                                 <a href="<?= admin_base_url();?>job-list" class="btn btn-warning">Cancel & Go Back</a>

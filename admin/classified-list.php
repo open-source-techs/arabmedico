@@ -73,7 +73,7 @@ $offset = ($page - 1 ) * $limit;
 				<div class="panel panel-bd lobidrag">
                     <div class="panel-heading">
                         <div class="btn-group"> 
-                            <a class="btn btn-success" href="<?= admin_base_url();?>add-classified"> <i class="fa fa-plus"></i> Add Job
+                            <a class="btn btn-success" href="<?= admin_base_url();?>add-classified"> <i class="fa fa-plus"></i> Add Classified
                             </a>
                         </div>
                     </div>
@@ -149,7 +149,7 @@ $offset = ($page - 1 ) * $limit;
                         <div class="page-nation text-right">
                             <ul class="pagination pagination-large">
                                 <?php
-							    $total_pages_sql = query("SELECT * FROM tbl_classified_job j WHERE j.job_status = 1 WHERE 1=1 $where");
+							    $total_pages_sql = query("SELECT * FROM tbl_classified_job j WHERE j.job_status = 1 $where");
                                 $total_rows = nrows($total_pages_sql);
                                 $total_pages = ceil($total_rows / $limit);
         						for ($i=0; $i < $total_pages; $i++)

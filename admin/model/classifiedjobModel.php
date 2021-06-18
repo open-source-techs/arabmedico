@@ -17,6 +17,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 		$data['job_close_date_ar'] 	= changeNumberToArabic($data['job_close_date']);
 		$data['job_posted_by']      = post('txt_posted_by');
 		$data['job_posted_by_ar']   = $_POST['txt_postedby_ar'];
+		$data['job_meta_title'] 	= post('txt_meta_title');
+		$data['job_meta_title_ar'] 	= $_POST['txt_meta_title_ar'];
+		$data['job_meta_tag'] 		= post('txt_tag');
+		$data['job_meta_tag_ar'] 	= $_POST['txt_tag_ar'];
+		$data['job_meta_desc'] 		= post('txt_meta_desc');
+		$data['job_meta_desc_ar'] 	= $_POST['txt_meta_desc_ar'];
 		$slug 						= strtolower(post('txt_slug'));
 		if(checkUniqueCol('tbl_url','url_suffex',$slug))
 		{
@@ -86,7 +92,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 		$data['job_close_date_ar'] 	= changeNumberToArabic($data['job_close_date']);
 		$data['job_posted_by']      = post('txt_posted_by');
 		$data['job_posted_by_ar']   = $_POST['txt_postedby_ar'];
-		
+		$data['job_meta_title'] 	= post('txt_meta_title');
+		$data['job_meta_title_ar'] 	= $_POST['txt_meta_title_ar'];
+		$data['job_meta_tag'] 		= post('txt_tag');
+		$data['job_meta_tag_ar'] 	= $_POST['txt_tag_ar'];
+		$data['job_meta_desc'] 		= post('txt_meta_desc');
+		$data['job_meta_desc_ar'] 	= $_POST['txt_meta_desc_ar'];
 		
 		$previousSlug                   = post('previous_slug');
         $currentSlug                    = strtolower(post('txt_slug'));

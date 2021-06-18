@@ -48,6 +48,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 		$data['doc_details_arabic'] 		= htmlentities(htmlspecialchars($_POST['txt_desc_arabic']));
 		$data['doctor_department'] 		    = post('txt_depart');
 		$data['doc_membership']             = post('txt_membership');
+		$data['doc_meta_title'] 			= post('txt_meta_title');
+		$data['doc_meta_title_ar'] 			= $_POST['txt_meta_title_ar'];
+		$data['doc_meta_tag'] 				= post('txt_tag');
+		$data['doc_meta_tag_ar'] 			= $_POST['txt_tag_ar'];
+		$data['doc_meta_desc'] 				= post('txt_meta_desc');
+		$data['doc_meta_desc_ar'] 			= $_POST['txt_meta_desc_ar'];
 		$slug 								= create_slug(strtolower($_POST['txt_slug']));
 		if(checkUniqueCol('tbl_url','url_suffex',$slug))
 		{
@@ -177,6 +183,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 		$data['doc_details_arabic'] 		= htmlentities(htmlspecialchars($_POST['txt_desc_arabic']));
 		$data['doctor_department'] 		    = post('txt_depart');
 		$data['doc_membership']             = post('txt_membership');
+		$data['doc_meta_title'] 			= post('txt_meta_title');
+		$data['doc_meta_title_ar'] 			= $_POST['txt_meta_title_ar'];
+		$data['doc_meta_tag'] 				= post('txt_tag');
+		$data['doc_meta_tag_ar'] 			= $_POST['txt_tag_ar'];
+		$data['doc_meta_desc'] 				= post('txt_meta_desc');
+		$data['doc_meta_desc_ar'] 			= $_POST['txt_meta_desc_ar'];
 		$slug 								= create_slug(strtolower($_POST['txt_slug']));
 		$previousSlug                       = post('txt_prev_slug');
         $currentSlug                        = post('txt_slug');

@@ -97,13 +97,37 @@ $location_arab_sql = query("SELECT DISTINCT job_location_ar FROM tbl_classified_
                             </div>
                             <div class="col-sm-12 form-group">
                                 <label>Job Description</label>
-                                <textarea name="txt_desc" rows="3" class="form-control" id="txt_short_desc"><?= $job['job_desc'];?></textarea>
+                                <textarea name="txt_desc" rows="3" class="form-control" id="txt_desc"><?= $job['job_desc'];?></textarea>
                             </div><div class="col-sm-12 form-group">
                                 <label>Job Description Arabic</label>
                                 <textarea name="ar_desc" rows="3" class="form-control" id="txt_short_desc"><?= $job['job_desc_ar'];?></textarea>
                             </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Title</label>
+                                <input type="text" name="txt_meta_title" value="<?= $job['job_meta_title'];?>" class="form-control">
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Title for arabic</label>
+                                <input type="text" name="txt_meta_title_ar" value="<?= $job['job_meta_title_ar'];?>" class="form-control">
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Tags</label>
+                                <textarea name="txt_tag" rows="3" class="form-control"><?= $job['job_meta_tag'];?></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Tags for Arabic</label>
+                                <textarea name="txt_tag_ar" rows="3" class="form-control"><?= $job['job_meta_tag_ar'];?></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Description</label>
+                                <textarea name="txt_meta_desc" rows="3" class="form-control"><?= $job['job_meta_desc'];?></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Description for Arabic</label>
+                                <textarea name="txt_meta_desc_ar" rows="3" class="form-control"><?= $job['job_meta_desc_ar'];?></textarea>
+                            </div>
                             <div class="col-sm-12 reset-button">
-                                <a href="<?= admin_base_url();?>job-list" class="btn btn-warning">Cancel & Go Back</a>
+                                <a href="<?= admin_base_url();?>classified-list" class="btn btn-warning">Cancel & Go Back</a>
                                 <input type="submit" name="btn_edit_job" class="btn btn-success" value="Save">
                             </div>
                         </form>
@@ -143,7 +167,7 @@ get_msg('msg');
             <?php
             while($depart_arab = fetch($depart_arab_sql))
             {
-                echo '"'.$depart_arab['job_desc_ar'].'",';
+                echo '"'.$depart_arab['job_section_ar'].'",';
             }
             ?>
         ];
@@ -171,8 +195,33 @@ get_msg('msg');
         });
     });
     
+    var area1, area2;
+	function toggleArea1()
+    {
+        if(!area1)
+        {
+            area1 = new nicEditor({fullPanel : true}).panelInstance('txt_short_desc',{hasPanel : true});
+        }
+        else
+        {
+            area1.removeInstance('txt_short_desc');
+            area1 = null;
+        }
+    }
     
-	bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+    function toggleArea2()
+    {
+        if(!area2)
+        {
+            area2 = new nicEditor({fullPanel : true}).panelInstance('txt_desc',{hasPanel : true});
+        }
+        else
+        {
+            area2.removeInstance('txt_desc');
+            area2 = null;
+        }
+    }
+    bkLib.onDomLoaded(function() { toggleArea1(); toggleArea2(); });
 	$(document).ready(function(){
 	    $(".select2").select2();
 	});

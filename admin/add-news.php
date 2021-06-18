@@ -34,14 +34,13 @@
                     </div>
                     <div class="panel-body">
                         <form  action="<?= admin_base_url()?>model/newsModel" method="POST" enctype="multipart/form-data" class="col-sm-12">
-                            <div class="col-sm-12">
-                                <hr style="width: 100%;height: 1px;margin: 5px auto;">
-                                <h3>English Form</h3>
-                                <hr style="width: 100%;height: 1px;margin: 5px auto;">
+                            <div class="col-sm-6 form-group">
+                                <label>News Title</label>
+                                <input type="text" name="txt_news_name" class="form-control" placeholder="Enter News Title" required>
                             </div>
                             <div class="col-sm-6 form-group">
-                                <label>News Name</label>
-                                <input type="text" name="txt_news_name" class="form-control" placeholder="Enter News Title" required>
+                                <label>News Title in Arabic</label>
+                                <input type="text" name="txt_news_name_arabic" class="form-control" placeholder="Enter News Title" required>
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label>Image</label>
@@ -63,31 +62,49 @@
                                     ?>
                                 </select>
                             </div>
+                            <div class="col-sm-6 form-group">
+                                <label>News URL (https://arabmedico.com/....)</label>
+                                <input type="text" name="txt_slug" class="form-control" required>
+                            </div>
                             <div class="col-sm-12 form-group">
-                                <label>Short Description</label>
+                                <label>News Summary</label>
                                 <textarea name="txt_short_desc" rows="3" class="form-control" id="txt_shot_desc"></textarea>
+                            </div>
+                            <div class="col-sm-12 form-group">
+                                <label>News Summary in Arabic</label>
+                                <textarea name="txt_short_desc_arabic" rows="3" class="form-control" id="txt_short_desc_arabic"></textarea>
                             </div>
                             <div class="col-sm-12 form-group">
                                 <label>Detail News</label>
                                 <textarea name="txt_desc" rows="6" class="form-control" id="txt_desc"></textarea>
                             </div>
-                            <div class="col-sm-12">
-                                <hr style="width: 100%;height: 1px;margin: 5px auto;">
-                                <h3>Arabic Form</h3>
-                                <hr style="width: 100%;height: 1px;margin: 5px auto;">
-                            </div>
-                            
-                            <div class="col-sm-6 form-group">
-                                <label>News Name</label>
-                                <input type="text" name="txt_news_name_arabic" class="form-control" placeholder="Enter News Title" required>
-                            </div>
                             <div class="col-sm-12 form-group">
-                                <label>Short Description</label>
-                                <textarea name="txt_short_desc_arabic" rows="3" class="form-control" id="txt_short_desc_arabic"></textarea>
-                            </div>
-                            <div class="col-sm-12 form-group">
-                                <label>Detail Description</label>
+                                <label>Detail News in Arabic</label>
                                 <textarea name="txt_desc_arabic" rows="6" class="form-control" id="txt_desc_arabic"></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Title</label>
+                                <input type="text" name="txt_meta_title" class="form-control">
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Title for arabic</label>
+                                <input type="text" name="txt_meta_title_ar" class="form-control">
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Tags</label>
+                                <textarea name="txt_tag" rows="3" class="form-control"></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Tags for Arabic</label>
+                                <textarea name="txt_tag_ar" rows="3" class="form-control"></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Description</label>
+                                <textarea name="txt_meta_desc" rows="3" class="form-control"></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Description for Arabic</label>
+                                <textarea name="txt_meta_desc_ar" rows="3" class="form-control"></textarea>
                             </div>
                             <div class="col-sm-12 reset-button">
                                 <a href="<?= admin_base_url();?>all-news" class="btn btn-warning">Cancel & Go Back</a>

@@ -140,6 +140,30 @@ $clinic = fetch($sql);
                                 <input type="text" name="txt_clinic_url" class="form-control" value="<?= $clinic['clinic_slug'];?>" required>
                             </div>
                             <div class="col-sm-6 form-group">
+                                <label>Meta Title</label>
+                                <input type="text" name="txt_meta_title" value="<?= $clinic['clinic_twitter'];?>" class="form-control">
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Title for arabic</label>
+                                <input type="text" name="txt_meta_title_ar" value="<?= $clinic['clinic_twitter'];?>" class="form-control">
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Tags</label>
+                                <textarea name="txt_tag" rows="3" class="form-control"><?= $clinic['clinic_twitter'];?></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Tags for Arabic</label>
+                                <textarea name="txt_tag_ar" rows="3" class="form-control"><?= $clinic['clinic_twitter'];?></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Description</label>
+                                <textarea name="txt_meta_desc" rows="3" class="form-control"><?= $clinic['clinic_twitter'];?></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Description for Arabic</label>
+                                <textarea name="txt_meta_desc_ar" rows="3" class="form-control"><?= $clinic['clinic_twitter'];?></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
                                 <label>Select Status</label>
                                 <select name="txt_status" class="form-control select2" required>
                                     <option value="1" <?= ($clinic['clinic_active'] == 1 ) ? 'selected' : ''; ?>>Active</option>

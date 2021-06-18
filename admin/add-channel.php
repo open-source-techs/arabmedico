@@ -117,13 +117,11 @@
                                 <input type="file" name="txt_icon" id="txt_icon" class="form-control onChangeImg" required>
                                 <label class="txt_icon"></label>
                             </div>
-                            
                             <div class="col-sm-6 form-group">
                                 <label>Handlers Image (image only)</label>
                                 <input type="file" name="txt_handler" id="txt_handler" class="form-control onChangeImg" required>
                                 <label class="txt_handler"></label>
                             </div>
-                            
                             <div class="col-sm-12 form-group">
                                 <label>Short Description</label>
                                 <textarea name="txt_short_desc" rows="3" class="form-control" id="txt_desc"></textarea>
@@ -139,6 +137,30 @@
                             <div class="col-sm-12 form-group" style="display:none">
                                 <label>Detail Description in Arabic</label>
                                 <textarea name="txt_desc_arabic" rows="6" class="form-control" id="txt_desc_detail_arabic"></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Title</label>
+                                <input type="text" name="txt_meta_title" class="form-control">
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Title for arabic</label>
+                                <input type="text" name="txt_meta_title_ar" class="form-control">
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Tags</label>
+                                <textarea name="txt_tag" rows="3" class="form-control"></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Tags for Arabic</label>
+                                <textarea name="txt_tag_ar" rows="3" class="form-control"></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Description</label>
+                                <textarea name="txt_meta_desc" rows="3" class="form-control"></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Description for Arabic</label>
+                                <textarea name="txt_meta_desc_ar" rows="3" class="form-control"></textarea>
                             </div>
                             <div class="col-sm-12 reset-button">
                                 <a href="<?= admin_base_url();?>all-channel" class="btn btn-warning">Cancel & Go Back</a>

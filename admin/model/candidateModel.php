@@ -28,6 +28,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 	    $data['candidate_gender_ar']        = $_POST['txt_gender_ar'];
 	    $data['candidate_visa']             = post('txt_visa_status');
 	    $data['candidate_visa_ar']          = $_POST['txt_visa_status_ar'];
+	    $data['candidate_meta_title'] 		= post('txt_meta_title');
+		$data['candidate_meta_title_ar'] 	= $_POST['txt_meta_title_ar'];
+		$data['candidate_meta_tag'] 		= post('txt_tag');
+		$data['candidate_meta_tag_ar'] 		= $_POST['txt_tag_ar'];
+		$data['candidate_meta_desc'] 		= post('txt_meta_desc');
+		$data['candidate_meta_desc_ar'] 	= $_POST['txt_meta_desc_ar'];
 	    
 	    $slug = $_POST['txt_slug'];
 	    if(checkUniqueCol('tbl_url','url_suffex',$slug))
@@ -140,6 +146,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 	    $data['candidate_gender_ar']        = $_POST['txt_gender_ar'];
 	    $data['candidate_visa']             = post('txt_visa_status');
 	    $data['candidate_visa_ar']          = $_POST['txt_visa_status_ar'];
+	    $data['candidate_meta_title'] 		= post('txt_meta_title');
+		$data['candidate_meta_title_ar'] 	= $_POST['txt_meta_title_ar'];
+		$data['candidate_meta_tag'] 		= post('txt_tag');
+		$data['candidate_meta_tag_ar'] 		= $_POST['txt_tag_ar'];
+		$data['candidate_meta_desc'] 		= post('txt_meta_desc');
+		$data['candidate_meta_desc_ar'] 	= $_POST['txt_meta_desc_ar'];
         $previousSlug                       = post('txt_pre_slug');
         $currentSlug                        = post('txt_slug');
         $slugUpdate                         = false;	        
