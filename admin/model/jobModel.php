@@ -7,17 +7,21 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 	{
 		$data['job_title']          = post('txt_job_title');
 		$data['job_title_ar'] 		= $_POST['ar_job_title'];
-		$slug 						= create_slug(strtolower($data['job_title']));
-		$data['job_slug']           = check_column('tbl_job','job_slug',$slug);
 		$data['job_desc'] 			= $_POST['txt_desc'];
 		$data['job_desc_ar'] 		= $_POST['ar_desc'];
 		$data['job_location']       = post('txt_job_loc');
 		$data['job_location_ar']    = $_POST['ar_job_loc'];
 		$data['job_depart']         = post('txt_job_depart');
 		$data['job_depart_ar']      = $_POST['txt_job_depart_arabic'];
-		$data['job_close_date']     = $_POST['txt_closing_time'];
-		$data['job_close_date_ar'] 	= post('ar_closing_time');
+		$data['job_close_date']     = post('txt_closing_time');
+		$data['job_close_date_ar'] 	= changeNumberToArabic($data['job_close_date']);
 		$data['job_employeer']      = post('txt_employeer');
+		$data['job_meta_title'] 	= post('txt_meta_title');
+		$data['job_meta_title_ar'] 	= $_POST['txt_meta_title_ar'];
+		$data['job_meta_tag'] 		= post('txt_tag');
+		$data['job_meta_tag_ar'] 	= $_POST['txt_tag_ar'];
+		$data['job_meta_desc'] 		= post('txt_meta_desc');
+		$data['job_meta_desc_ar'] 	= $_POST['txt_meta_desc_ar'];
 		$image_name                	= upload_image($_FILES,'txt_job_icon', '../../upload/');
 		if($image_name)
 		{
@@ -27,59 +31,85 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 		{
 		    $data['job_icon']  = '';
 		}
-// 		echo "<pre>";
-// 		    print_r($data);
-// 		    die();
-		if(
-		    $data['job_title'] 			!= "" && $data['job_title'] 		!= null &&
-			$data['job_title_ar'] 		!= "" && $data['job_title_ar'] 		!= null &&
-			$data['job_desc'] 			!= "" && $data['job_desc'] 	    	!= null &&
-			$data['job_desc_ar'] 	    != "" && $data['job_desc_ar'] 		!= null &&
-			$data['job_location'] 		!= "" && $data['job_location'] 		!= null &&
- 			$data['job_location_ar'] 	!= "" && $data['job_location_ar'] 	!= null &&
-			$data['job_depart'] 		!= "" && $data['job_depart'] 		!= null &&
- 			$data['job_depart_ar'] 		!= "" && $data['job_depart_ar']     != null &&
- 			$data['job_icon'] 		    != "" && $data['job_icon']          != null &&
- 			$data['job_close_date'] 	!= "" && $data['job_close_date']    != null
-		)
+ 		$slug 						= strtolower(post('txt_slug'));
+ 		if(checkUniqueCol('tbl_url','url_suffex',$slug))
 		{
-		    
-			if(insert($data,'tbl_job'))
+			$data['job_slug'] = $slug;
+			if(
+			    $data['job_title'] 			!= "" && $data['job_title'] 		!= null &&
+				$data['job_title_ar'] 		!= "" && $data['job_title_ar'] 		!= null &&
+				$data['job_desc'] 			!= "" && $data['job_desc'] 	    	!= null &&
+				$data['job_desc_ar'] 	    != "" && $data['job_desc_ar'] 		!= null &&
+				$data['job_location'] 		!= "" && $data['job_location'] 		!= null &&
+	 			$data['job_location_ar'] 	!= "" && $data['job_location_ar'] 	!= null &&
+				$data['job_depart'] 		!= "" && $data['job_depart'] 		!= null &&
+	 			$data['job_depart_ar'] 		!= "" && $data['job_depart_ar']     != null &&
+	 			$data['job_icon'] 		    != "" && $data['job_icon']          != null &&
+	 			$data['job_close_date'] 	!= "" && $data['job_close_date']    != null
+			)
 			{
-				set_msg('Success','Job is added successfully','success');
-				jump(admin_base_url()."job-list");
+				if(insert2($data,'tbl_job'))
+				{
+					$URLdata['url_suffex']  = $slug;
+    			    $URLdata['url_type']    = 'Job';
+    			    insert($URLdata,'tbl_url');
+					set_msg('Success','Job is added successfully','success');
+					jump(admin_base_url()."job-list");
+				}
+				else
+				{
+					set_msg('Insertion error','Unable to process your request. Please try again later.','error');
+					echo "<script>window.history.go(-1);</script>";
+				}
 			}
 			else
 			{
-				set_msg('Insertion error','Unable to process your request. Please try again later.','error');
+				set_msg('Fields Error','Please fill all fields with data','error');
 				echo "<script>window.history.go(-1);</script>";
 			}
 		}
 		else
 		{
-			set_msg('Fields Error','Please fill all fields with data','error');
+			set_msg('Fields validation','URL already registered','error');
 			echo "<script>window.history.go(-1);</script>";
 		}
 	}
 	else if(isset($_POST['btn_edit_job']))
 	{
-	    $job_id 					  = post('txt_job_id');
-	    $data['job_title']            = post('txt_job_title');
-		$data['job_title_ar'] 		  = $_POST['ar_job_title'];
-		$data['job_desc'] 			  = $_POST['txt_desc'];
-		$data['job_desc_ar'] 		  = $_POST['ar_desc'];
-		$data['job_location']         = post('txt_job_loc');
-		$data['job_location_ar']      = $_POST['ar_job_loc'];
-		$data['job_depart']           = post('txt_job_depart');
-		$data['job_depart_ar']        = $_POST['txt_job_depart_arabic'];
-		$data['job_close_date']       = $_POST['txt_closing_time'];
-		$data['job_close_date_ar'] 	  = post('ar_closing_time');
-		$data['job_employeer']        = post('txt_employeer');
-		$image_name                	  = upload_image($_FILES,'txt_job_icon', '../../upload/');
+	    $job_id 					= post('txt_job_id');
+	    $data['job_title']          = post('txt_job_title');
+		$data['job_title_ar'] 		= $_POST['ar_job_title'];
+		$data['job_desc'] 			= $_POST['txt_desc'];
+		$data['job_desc_ar'] 		= $_POST['ar_desc'];
+		$data['job_location']       = post('txt_job_loc');
+		$data['job_location_ar']    = $_POST['ar_job_loc'];
+		$data['job_depart']         = post('txt_job_depart');
+		$data['job_depart_ar']      = $_POST['txt_job_depart_arabic'];
+		$data['job_close_date']     = post('txt_closing_time');
+		$data['job_close_date_ar'] 	= changeNumberToArabic($data['job_close_date']);
+		$data['job_employeer']      = post('txt_employeer');
+		$data['job_meta_title'] 	= post('txt_meta_title');
+		$data['job_meta_title_ar'] 	= $_POST['txt_meta_title_ar'];
+		$data['job_meta_tag'] 		= post('txt_tag');
+		$data['job_meta_tag_ar'] 	= $_POST['txt_tag_ar'];
+		$data['job_meta_desc'] 		= post('txt_meta_desc');
+		$data['job_meta_desc_ar'] 	= $_POST['txt_meta_desc_ar'];
+		$image_name                	= upload_image($_FILES,'txt_job_icon', '../../upload/');
 		if($image_name)
 		{
 		    $data['job_icon']         = $image_name;
 		}
+		$previousSlug                   		= post('previous_slug');
+        $currentSlug                    		= post('txt_dpt_url');
+        $slugUpdate                     		= false;
+        if($previousSlug != $currentSlug)
+        {
+            if(checkUniqueCol('tbl_url','url_suffex',$currentSlug, true, 'url_suffex', $previousSlug ))
+    		{
+            	$slugUpdate                 	= true;
+    		    $data['job_slug']    			= $currentSlug;
+    		}
+        }
 		if(
 		    
 			$data['job_title'] 			!= "" && $data['job_title'] 		!= null &&
@@ -95,8 +125,15 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 		)
 		{
 			where('job_id',$job_id);
-			if(update($data,'tbl_job'))
+			if(update2($data,'tbl_job'))
 			{
+				if($slugUpdate)
+			    {
+			        $URLdata['url_suffex']  = $currentSlug;
+    			    $URLdata['url_type']    = 'Job';
+    			    where('url_suffex',$previousSlug);
+    			    update($URLdata,'tbl_url');
+			    }
 				set_msg('Success','Job is updated successfully','success');
 				jump(admin_base_url()."job-list");
 			}

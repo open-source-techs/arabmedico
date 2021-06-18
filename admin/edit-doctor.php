@@ -298,6 +298,34 @@ $doc = fetch($sql);
                                 <label>Detailed Resume in Arabic</label>
                                 <textarea name="txt_desc_arabic" rows="6" class="form-control" id="txt_desc" ><?= htmlspecialchars_decode($doc['doc_details_arabic']); ?></textarea>
                             </div>
+
+
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Title</label>
+                                <input type="text" name="txt_meta_title" value="<?= $doc['doc_meta_title']; ?>" class="form-control">
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Title for arabic</label>
+                                <input type="text" name="txt_meta_title_ar" value="<?= $doc['doc_meta_title_ar']; ?>" class="form-control">
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Tags</label>
+                                <textarea name="txt_tag" rows="3" class="form-control"><?= $doc['doc_meta_tag']; ?></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Tags for Arabic</label>
+                                <textarea name="txt_tag_ar" rows="3" class="form-control"><?= $doc['doc_meta_tag_ar']; ?></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Description</label>
+                                <textarea name="txt_meta_desc" rows="3" class="form-control"><?= $doc['doc_meta_desc']; ?></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Description for Arabic</label>
+                                <textarea name="txt_meta_desc_ar" rows="3" class="form-control"><?= $doc['doc_meta_desc_ar']; ?></textarea>
+                            </div>
+
+
                             <div class="col-sm-12 reset-button">
                                 <a href="<?= admin_base_url();?>list-doctors" class="btn btn-warning">Cancel & Go Back</a>
                                 <input type="submit" name="btn_edit_doc" class="btn btn-success" value="Save">
@@ -316,7 +344,60 @@ $doc = fetch($sql);
 get_msg('msg');
 ?>
 <script type="text/javascript">
-	bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+	var area1, area2, area3, area4;
+    
+    function toggleArea1()
+    {
+        if(!area1)
+        {
+            area1 = new nicEditor({fullPanel : true}).panelInstance('txt_short_desc',{hasPanel : true});
+        }
+        else
+        {
+            area1.removeInstance('txt_short_desc');
+            area1 = null;
+        }
+    }
+    
+    function toggleArea2()
+    {
+        if(!area2)
+        {
+            area2 = new nicEditor({fullPanel : true}).panelInstance('txt_desc',{hasPanel : true});
+        }
+        else
+        {
+            area2.removeInstance('txt_desc');
+            area2 = null;
+        }
+    }
+    
+    function toggleArea3()
+    {
+        if(!area3)
+        {
+            area3 = new nicEditor({fullPanel : true}).panelInstance('txt_short_desc_arabic',{hasPanel : true});
+        }
+        else
+        {
+            area3.removeInstance('txt_short_desc_arabic');
+            area3 = null;
+        }
+    }
+    
+    function toggleArea4()
+    {
+        if(!area4)
+        {
+            area4 = new nicEditor({fullPanel : true}).panelInstance('txt_desc_arabic',{hasPanel : true});
+        }
+        else
+        {
+            area4.removeInstance('txt_desc_arabic');
+            area4 = null;
+        }
+    }
+    bkLib.onDomLoaded(function() { toggleArea1(); toggleArea2(); toggleArea3(); toggleArea4(); });
 	$(document).ready(function(){
 	    $(".select2").select2();
 	    $("#txt_country").change(function(){

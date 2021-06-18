@@ -19,6 +19,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 		$data['chn_location'] 		    = post('txt_area');
 		$data['chn_city'] 			    = post('txt_city');
 		$data['chn_country'] 		    = post('txt_country');
+		$data['chn_meta_title'] 		= post('txt_meta_title');
+		$data['chn_meta_title_ar'] 		= $_POST['txt_meta_title_ar'];
+		$data['chn_meta_tag'] 			= post('txt_tag');
+		$data['chn_meta_tag_ar'] 		= $_POST['txt_tag_ar'];
+		$data['chn_meta_desc'] 			= post('txt_meta_desc');
+		$data['chn_meta_desc_ar'] 		= $_POST['txt_meta_desc_ar'];
 		$image_name                     = upload_image($_FILES,'txt_icon', '../../upload/');
 		if($image_name)
 		{
@@ -96,6 +102,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 		$data['chn_location'] 		    = post('txt_area');
 		$data['chn_city'] 			    = post('txt_city');
 		$data['chn_country'] 		    = post('txt_country');
+		$data['chn_meta_title'] 		= post('txt_meta_title');
+		$data['chn_meta_title_ar'] 		= $_POST['txt_meta_title_ar'];
+		$data['chn_meta_tag'] 			= post('txt_tag');
+		$data['chn_meta_tag_ar'] 		= $_POST['txt_tag_ar'];
+		$data['chn_meta_desc'] 			= post('txt_meta_desc');
+		$data['chn_meta_desc_ar'] 		= $_POST['txt_meta_desc_ar'];
 		$image_name                     = upload_image($_FILES,'txt_icon', '../../upload/');
 		if($image_name)
 		{

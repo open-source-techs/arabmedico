@@ -82,6 +82,30 @@ $dpt = fetch($sql);
                                 <textarea name="txt_desc_arabic" rows="6" class="form-control"><?= $dpt['dpt_description_arabic'];?></textarea>
                             </div>
                             <div class="col-sm-6 form-group">
+                                <label>Meta Title</label>
+                                <input type="text" name="txt_meta_title" value="<?= $dpt['dpt_meta_title'];?>" class="form-control">
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Title for arabic</label>
+                                <input type="text" name="txt_meta_title_ar" value="<?= $dpt['dpt_meta_title_ar'];?>" class="form-control">
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Tags</label>
+                                <textarea name="txt_tag" rows="3" class="form-control"><?= $dpt['dpt_meta_tag'];?></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Tags for Arabic</label>
+                                <textarea name="txt_tag_ar" rows="3" class="form-control"><?= $dpt['dpt_meta_tag_ar'];?></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Description</label>
+                                <textarea name="txt_meta_desc" rows="3" class="form-control"><?= $dpt['dpt_meta_desc'];?></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Description for Arabic</label>
+                                <textarea name="txt_meta_desc_ar" rows="3" class="form-control"><?= $dpt['dpt_meta_desc_ar'];?></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
                                 <label>Status</label>
                                 <select class="form-control" name="txt_status" required>
                                     <option selected disabled>Department Staus</option>
@@ -106,5 +130,70 @@ $dpt = fetch($sql);
 get_msg('msg');
 ?>
 <script type="text/javascript">
-	bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+	var area1, area2, area3, area4;
+    
+    function toggleArea1()
+    {
+        if(!area1)
+        {
+            area1 = new nicEditor({fullPanel : true}).panelInstance('txt_desc_arabic',{hasPanel : true});
+        }
+        else
+        {
+            area1.removeInstance('txt_desc_arabic');
+            area1 = null;
+        }
+    }
+    
+    function toggleArea2()
+    {
+        if(!area2)
+        {
+            area2 = new nicEditor({fullPanel : true}).panelInstance('txt_desc_detail_arabic',{hasPanel : true});
+        }
+        else
+        {
+            area2.removeInstance('txt_desc_detail_arabic');
+            area2 = null;
+        }
+    }
+    
+    function toggleArea3()
+    {
+        if(!area3)
+        {
+            area3 = new nicEditor({fullPanel : true}).panelInstance('txt_desc',{hasPanel : true});
+        }
+        else
+        {
+            area3.removeInstance('txt_desc');
+            area3 = null;
+        }
+    }
+    
+    function toggleArea4()
+    {
+        if(!area4)
+        {
+            area4 = new nicEditor({fullPanel : true}).panelInstance('txt_desc_detail',{hasPanel : true});
+        }
+        else
+        {
+            area4.removeInstance('txt_desc_detail');
+            area4 = null;
+        }
+    }
+    function readURL(input)
+    {  
+        if (input.files && input.files[0])
+        {
+            var reader = new FileReader();
+            reader.onload = function(e)
+            {
+                $('#sldImage').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]); // convert to base64 string
+        }
+    }
+    bkLib.onDomLoaded(function() { toggleArea1(); toggleArea2(); toggleArea3(); toggleArea4(); });
 </script>

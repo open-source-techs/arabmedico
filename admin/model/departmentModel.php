@@ -20,6 +20,14 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 		$data['dpt_description'] 		= $_POST['txt_desc'];
 		$data['dpt_short_desc_arabic'] 	= $_POST['txt_short_desc_arabic'];
 		$data['dpt_description_arabic'] = $_POST['txt_desc_arabic'];
+		$data['dpt_meta_title'] 		= post('txt_meta_title');
+		$data['dpt_meta_title_ar'] 		= $_POST['txt_meta_title_ar'];
+		$data['dpt_meta_tag'] 			= post('txt_tag');
+		$data['dpt_meta_tag_ar'] 		= $_POST['txt_tag_ar'];
+		$data['dpt_meta_desc'] 			= post('txt_meta_desc');
+		$data['dpt_meta_desc_ar'] 		= $_POST['txt_meta_desc_ar'];
+
+
 		if(checkUniqueCol('tbl_url','url_suffex',$slug))
 		{
 		    $data['dpt_slug'] = $slug;
@@ -31,7 +39,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     			$data['dpt_short_desc_arabic'] 	!= "" && $data['dpt_short_desc_arabic'] 	!= null
     		)
     		{
-    			if(insert($data,'tbl_department'))
+    			if(insert2($data,'tbl_department'))
     			{
     			    $URLdata['url_suffex']  = $slug;
     			    $URLdata['url_type']    = 'Department';
@@ -71,26 +79,32 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 		$data['dpt_description'] 		= $_POST['txt_desc'];
 		$data['dpt_short_desc_arabic'] 	= $_POST['txt_short_desc_arabic'];
 		$data['dpt_description_arabic'] = $_POST['txt_desc_arabic'];
+		$data['dpt_meta_title'] 		= post('txt_meta_title');
+		$data['dpt_meta_title_ar'] 		= $_POST['txt_meta_title_ar'];
+		$data['dpt_meta_tag'] 			= post('txt_tag');
+		$data['dpt_meta_tag_ar'] 		= $_POST['txt_tag_ar'];
+		$data['dpt_meta_desc'] 			= post('txt_meta_desc');
+		$data['dpt_meta_desc_ar'] 		= $_POST['txt_meta_desc_ar'];
 		$previousSlug                   = post('previous_slug');
         $currentSlug                    = post('txt_dpt_url');
         $slugUpdate                     = false;
         if($previousSlug != $currentSlug)
         {
-            $slugUpdate                 = true;
             if(checkUniqueCol('tbl_url','url_suffex',$currentSlug, true, 'url_suffex', $previousSlug ))
     		{
-    		    $data['dpt_slug']    = $currentSlug;
+            	$slugUpdate                 = true;
+    		    $data['dpt_slug']    		= $currentSlug;
     		}
         }
 		if(
-			$data['dpt_name'] 				!= "" && $data['dpt_name'] 			!= null && 
-			$data['dpt_name_arabic'] 		!= "" && $data['dpt_name_arabic'] 	!= null && 
-			$data['dpt_short_desc'] 		!= "" && $data['dpt_short_desc'] 	!= null && 
+			$data['dpt_name'] 				!= "" && $data['dpt_name'] 					!= null && 
+			$data['dpt_name_arabic'] 		!= "" && $data['dpt_name_arabic'] 			!= null && 
+			$data['dpt_short_desc'] 		!= "" && $data['dpt_short_desc'] 			!= null && 
 			$data['dpt_short_desc_arabic'] 	!= "" && $data['dpt_short_desc_arabic'] 	!= null
 		)
 		{
 			where('dpt_id',$dpt_id);
-			if(update($data,'tbl_department'))
+			if(update2($data,'tbl_department'))
 			{
 			    if($slugUpdate)
 			    {

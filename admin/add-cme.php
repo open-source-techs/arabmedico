@@ -8,7 +8,7 @@
 $departsql = query("SELECT DISTINCT cme_depart FROM tbl_cme ORDER BY cme_depart ASC ");
 $locationsql = query("SELECT DISTINCT cme_loc FROM tbl_cme ORDER BY cme_loc ASC ");
 
-$depart_arab_sql = query("SELECT DISTINCT cme_ar_des FROM tbl_cme ORDER BY cme_ar_des ASC ");
+$depart_arab_sql = query("SELECT DISTINCT cme_ar_depart FROM tbl_cme ORDER BY cme_ar_depart ASC ");
 $location_arab_sql = query("SELECT DISTINCT cme_ar_loc FROM tbl_cme ORDER BY cme_ar_loc ASC ");
 ?>
 <div class="content-wrapper">
@@ -80,14 +80,14 @@ $location_arab_sql = query("SELECT DISTINCT cme_ar_loc FROM tbl_cme ORDER BY cme
                                 <label>Course Delivery</label>
                                 <select class="form-control" name="cours_deli">
                                     <option value="online" class="form-control">Online</option>
-                                    <option value="site" class="form-control">On Site</option>
+                                    <option value="on site" class="form-control">On Site</option>
                                 </select>
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label>Course Delivery Arabic</label>
                                 <select class="form-control " name="cours_deli_ar">
-                                    <option value="online" class="form-control">Online</option>
-                                    <option value="site" class="form-control">On Site</option>
+                                    <option value="عبر الانترنت" class="form-control">عبر الانترنت</option>
+                                    <option value="بالموقع" class="form-control">بالموقع</option>
                                 </select>
                             </div>
                             <div class="col-sm-6 form-group">
@@ -95,16 +95,8 @@ $location_arab_sql = query("SELECT DISTINCT cme_ar_loc FROM tbl_cme ORDER BY cme
                                 <input type="time" name="txt_time" class="form-control" required>
                             </div>
                             <div class="col-sm-6 form-group">
-                                <label>Arabic Time</label>
-                                <input type="time" name="ar_time" class="form-control" required>
-                            </div>
-                            <div class="col-sm-6 form-group">
                                 <label>Delivery Date</label>
                                 <input type="date" name="txt_date" class="form-control" required>
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label>Arabic Date</label>
-                                <input type="date" name="ar_date" class="form-control" required>
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label>Duration</label>
@@ -137,6 +129,10 @@ $location_arab_sql = query("SELECT DISTINCT cme_ar_loc FROM tbl_cme ORDER BY cme
                                     ?>
                                 </select>
                             </div>
+                            <div class="col-sm-6 form-group">
+                                <label>CME URL (https://arabmedico.com/....)</label>
+                                <input type="text" name="txt_slug" class="form-control" required>
+                            </div>
                             <div class="col-sm-12 form-group">
                                 <label>CME Description</label>
                                 <textarea name="txt_desc" rows="3" class="form-control" id="txt_desc"></textarea>
@@ -144,6 +140,30 @@ $location_arab_sql = query("SELECT DISTINCT cme_ar_loc FROM tbl_cme ORDER BY cme
                             <div class="col-sm-12 form-group">
                                 <label>CME Description Arabic</label>
                                 <textarea name="ar_desc" rows="3" class="form-control" id="txt_short_desc"></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Title</label>
+                                <input type="text" name="txt_meta_title" class="form-control">
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Title for arabic</label>
+                                <input type="text" name="txt_meta_title_ar" class="form-control">
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Tags</label>
+                                <textarea name="txt_tag" rows="3" class="form-control"></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Tags for Arabic</label>
+                                <textarea name="txt_tag_ar" rows="3" class="form-control"></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Description</label>
+                                <textarea name="txt_meta_desc" rows="3" class="form-control"></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Description for Arabic</label>
+                                <textarea name="txt_meta_desc_ar" rows="3" class="form-control"></textarea>
                             </div>
                             <div class="col-sm-12 reset-button">
                                 <a href="<?= admin_base_url();?>job-list" class="btn btn-warning">Cancel & Go Back</a>
@@ -186,7 +206,7 @@ get_msg('msg');
             <?php
             while($depart_arab = fetch($depart_arab_sql))
             {
-                echo '"'.$depart_arab['cme_ar_des'].'",';
+                echo '"'.$depart_arab['cme_ar_depart'].'",';
             }
             ?>
         ];

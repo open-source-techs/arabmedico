@@ -106,7 +106,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
     						</div>
     
     						<?php
-    						$sql = query("SELECT * FROM tbl_news WHERE news_active = 1 news_id != '".$data['news_id']."' AND news_category = ".$data['news_category']);
+    						$sql = query("SELECT * FROM tbl_news WHERE news_active = 1 AND news_id != '".$data['news_id']."' AND news_category = ".$data['news_category']);
     						if(nrows($sql) > 0)
     						{
     						    ?>
@@ -123,7 +123,8 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
     													<img class="img-fluid" src="<?= file_url().$rel['news_image'];?>" alt="blog-post-image" />	
     												</div>
     												<div class="blog-post-txt">
-    													<h5 class="h5-sm steelblue-color"><a href="<?= base_url();?>single-post<?= $pram;?>/<?= $rel['news_slug']; ?>"><?= ($lang == "eng") ? $rel['news_title'] : $rel['news_title_arabic']; ?></a></h5>
+    													<h5 class="h5-sm steelblue-color">
+                                                            <a href="<?= base_url();?><?= $rel['news_slug']; ?>"><?= ($lang == "eng") ? $rel['news_title'] : $rel['news_title_arabic']; ?></a></h5>
     													<p><?= ($lang == "eng") ? $rel['news_short_desc'] : $rel['news_short_desc_arabic']; ?></p>
     												</div>
     											</div>
@@ -135,17 +136,16 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
     							</div>
     						    <?php
     						}
-    						?>
-    						<?php
-    						$sql = query("SELECT * FROM tbl_news_comments WHERE comment_approved = 1 AND commented_news = ".$data['news_id']);
-    						$comment_count = nrows($sql);
+    						
+    						$sqlcomment = query("SELECT * FROM tbl_news_comments WHERE comment_approved = 1 AND commented_news = ".$data['news_id']);
+    						$comment_count = nrows($sqlcomment);
     						if($comment_count > 0)
     						{
     						    ?>
     						    <div class="single-post-comments">
         							<h5 class="h5-md steelblue-color"><?= $comment_count; ?><?= ($lang == "eng") ? $lang_con[94]['lang_eng'] : $lang_con[94]['lang_arabic']; ?></h5>
         							<?php
-        							while($comment = fetch($sql))
+        							while($comment = fetch($sqlcomment))
         							{
         							    ?>
         							    
