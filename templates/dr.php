@@ -6,8 +6,14 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
     $sql = query("SELECT * FROM tbl_doctor dr LEFT JOIN tbl_membership m ON (m.membership_id = dr.doc_membership) WHERE doc_active = 1 AND doc_slug = '$slug'");
     if(nrows($sql) > 0)
     {
-        $doc = fetch($sql);
-        $docID = $doc['doc_id'];
+        $doc                = fetch($sql);
+        $docID              = $doc['doc_id'];
+        $meta_title         = $doc['doc_meta_title'];
+        $meta_title_ar      = $doc['doc_meta_title_ar'];
+        $meta_keyword       = $doc['doc_meta_tag'];
+        $meta_keyword_ar    = $doc['doc_meta_tag_ar'];
+        $meta_desc          = $doc['doc_meta_desc'];
+        $meta_desc_ar       = $doc['doc_meta_desc_ar'];
         if($doc['allow_branding'] == 1 && $doc['super_consultant'] == 0)
         {
             include 'membership-header.php';

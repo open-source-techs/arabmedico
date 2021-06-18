@@ -1,12 +1,18 @@
 <?php
 if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
 {
-    include 'header.php';
     $slug = filter_this($_GET['slug']);
     $sql = query("SELECT * FROM tbl_news where news_slug = '$slug'");
     if(nrows($sql) > 0)
     {
-        $data = fetch($sql);
+        $data               = fetch($sql);
+        $meta_title         = $data['news_meta_title'];
+        $meta_title_ar      = $data['news_meta_title_ar'];
+        $meta_keyword       = $data['news_meta_tag'];
+        $meta_keyword_ar    = $data['news_meta_tag_ar'];
+        $meta_desc          = $data['news_meta_desc'];
+        $meta_desc_ar       = $data['news_meta_desc_ar'];
+        include 'header.php';
         ?>
         <style>
             .popular-posts img{

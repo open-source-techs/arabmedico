@@ -2,19 +2,19 @@
 if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
 {
     $slug = $_GET['slug'];
-    include 'header.php';
     $sql = query("SELECT * FROM tbl_job WHERE job_slug = '$slug'");
     if(nrows($sql) > 0)
     {
-        $doc = fetch($sql);
-        // echo "<pre>";
-        // print_r($doc);
-        // die();
+        $doc                = fetch($sql);
+        $meta_title         = $dpt['job_meta_title'];
+        $meta_title_ar      = $dpt['job_meta_title_ar'];
+        $meta_keyword       = $dpt['job_meta_tag'];
+        $meta_keyword_ar    = $dpt['job_meta_tag_ar'];
+        $meta_desc          = $dpt['job_meta_desc'];
+        $meta_desc_ar       = $dpt['job_meta_desc_ar'];
+        include 'header.php';
         ?>
         <style>
-            /*#doctor-breadcrumbs{*/
-            /*    background-image : url('<?= base_url().$doc['doc_banner']?>');*/
-            /*}*/
             .doctor-info{
                 margin-top:0px;
             }
