@@ -2,11 +2,17 @@
 if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
 {
     $slug = $_GET['slug'];
-    include 'header.php';
     $sql = query("SELECT * FROM tbl_channel WHERE chn_active = 1 AND chn_slug = '$slug'");
     if(nrows($sql) > 0)
     {
-        $chn = fetch($sql);
+        $chn                = fetch($sql);
+        $meta_title         = $chn['chn_meta_title'];
+        $meta_title_ar      = $chn['chn_meta_title_ar'];
+        $meta_keyword       = $chn['chn_meta_tag'];
+        $meta_keyword_ar    = $chn['chn_meta_tag_ar'];
+        $meta_desc          = $chn['chn_meta_desc'];
+        $meta_desc_ar       = $chn['chn_meta_desc_ar'];
+        include 'header.php';
         ?>
         <style>
             .wide-60 {

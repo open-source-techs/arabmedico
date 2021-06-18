@@ -2,11 +2,17 @@
 if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
 {
     $slug = $_GET['slug'];
-    include 'header.php';
     $sql = query("SELECT * FROM tbl_pages WHERE page_active = 1 AND page_slug = '$slug'");
     if(nrows($sql) > 0)
     {
         $page = fetch($sql);
+        $meta_title         = $page['page_title'];
+        $meta_title_ar      = $page['page_title_arabic'];
+        $meta_keyword       = $page['page_meta_tag'];
+        $meta_keyword_ar    = $page['page_meta_tag_arabic'];
+        $meta_desc          = $page['page_meta_desc'];
+        $meta_desc_ar       = $page['page_meta_desc_arabic'];
+        include 'header.php';
         ?>
         <div id="breadcrumb" class="division">
         	<div class="container" <?= ($lang == "eng") ? '' : 'style="direction:rtl !important;text-align:right"' ;?>>

@@ -2,16 +2,22 @@
 if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
 {
     $slug = $_GET['slug'];
-    include 'header.php';
     $sql = query("SELECT * FROM tbl_resources WHERE resource_active = 1 AND resource_slug = '$slug'");
     if(nrows($sql) > 0)
     {
-        $dpt = fetch($sql);
+        $dpt                = fetch($sql);
+        $meta_title         = $dpt['resource_meta_title'];
+        $meta_title_ar      = $dpt['resource_meta_title_ar'];
+        $meta_keyword       = $dpt['resource_meta_tag'];
+        $meta_keyword_ar    = $dpt['resource_meta_tag_ar'];
+        $meta_desc          = $dpt['resource_meta_desc'];
+        $meta_desc_ar       = $dpt['resource_meta_desc_ar'];
+        include 'header.php';
         ?>
         <style>
-        .doc-img{
-           padding-top: 21px !important;
-        }
+            .doc-img{
+               padding-top: 21px !important;
+            }
             .text-detail
             {
                 padding: 15px;
@@ -576,9 +582,9 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
             </div>
         </section>
         <style>
-        .content-display{
-            padding-top:7vh;
-        }
+            .content-display{
+                padding-top:7vh;
+            }
             .h4-text  {
                 font-size: 30px !important;font-weight: 100 !important;
             }
@@ -631,7 +637,6 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                     $( "#sideBar" ).addClass('show');
                 }
             });
-            
             var owlAdd = $('.advertisement-holder');
             owlAdd.owlCarousel({
             	items: 1,
@@ -661,7 +666,6 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
             		}
             	}
             });
-            
         </script>
         <?php
     }

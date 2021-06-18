@@ -4,6 +4,12 @@ $siteData = get_site_data();
 get_languages();
 $lang_con = $_SESSION['language'];
 
+$meta_title         = $siteData['site_name'];
+$meta_title_ar      = $siteData['site_name_arabic'];
+$meta_keyword       = $siteData['site_meta_tag'];
+$meta_keyword_ar    = $siteData['site_meta_tag_arabic'];
+$meta_desc          = $siteData['site_meta_description'];
+$meta_desc_ar       = $siteData['site_meta_description_arabic'];
 if(isset($_SESSION['password']) && $_SESSION['password']) 
 {
     $pass = true;

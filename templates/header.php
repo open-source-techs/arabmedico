@@ -4,9 +4,15 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<meta name="description" content="<?= ($lang == "eng") ? $siteData['site_meta_description'] : $siteData['site_meta_description_arabic']; ?>"/>
-		<meta name="keywords" content="<?= ($lang == "eng") ? $siteData['site_meta_tag'] : $siteData['site_meta_tag_arabic']; ?>">
-		<title><?= ($lang == "eng") ? $siteData['site_name'] : $siteData['site_name_arabic']; ?></title>
+		<title><?= ($lang == "eng") ? $meta_title : $meta_title_ar; ?></title>
+		<meta name="keywords" content="<?= ($lang == "eng") ? $meta_keyword : $meta_keyword_ar; ?> ">
+	    <meta name="description" content="<?= ($lang == "eng") ? $meta_desc : $meta_desc_ar; ?> ">
+	    <meta property="og:title" content="<?= ($lang == "eng") ? $meta_title : $meta_title_ar; ?> "/>
+	    <meta property="og:description" content="<?= ($lang == "eng") ? $meta_desc : $meta_desc_ar; ?> "/>
+	    <meta property="og:image" content="<?= file_url().$siteData['site_logo_header'];?>" />
+
+
+
 		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet"> 	
 		<link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet"> 
 		<link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" rel="stylesheet" crossorigin="anonymous">
