@@ -15,8 +15,8 @@ $cme = fetch($sql);
 
 $departsql = query("SELECT DISTINCT cme_depart FROM tbl_cme ORDER BY cme_depart ASC ");
 $locationsql = query("SELECT DISTINCT cme_loc FROM tbl_cme ORDER BY cme_loc ASC ");
-$depart_arab_sql = query("SELECT DISTINCT cme_ar_des FROM tbl_cme ORDER BY cme_ar_des ASC ");
-$location_arab_sql = query("SELECT DISTINCT cme_ar_loc FROM tbl_cme ORDER BY job_ar_loc ASC ");
+$depart_arab_sql = query("SELECT DISTINCT cme_ar_depart FROM tbl_cme ORDER BY cme_ar_depart ASC ");
+$location_arab_sql = query("SELECT DISTINCT cme_ar_loc FROM tbl_cme ORDER BY cme_ar_loc ASC ");
 
 ?>
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
@@ -57,36 +57,52 @@ $location_arab_sql = query("SELECT DISTINCT cme_ar_loc FROM tbl_cme ORDER BY job
                     </div>
                     <div class="panel-body">
                         <form  action="<?= admin_base_url()?>model/cmeModel" method="POST" enctype="multipart/form-data" class="col-sm-12">
-                            <div class="col-sm-12">
-                                <hr style="width: 100%;height: 1px;margin: 5px auto;">
-                                <h3>English Form</h3>
-                                <hr style="width: 100%;height: 1px;margin: 5px auto;">
-                            </div>
+                            <input type="hidden" name="txt_cme_id" value="<?= $cme['id'];?>">
                             <div class="col-sm-6 form-group">
                                 <label>CME Topic</label>
-                                <input type="hidden" name="txt_cme_id" value="<?= $cme['id'];?>">
                                 <input type="text" name="txt_cme_topic" value="<?= $cme['cme_topic'];?>" class="form-control" required>
                             </div>
                             <div class="col-sm-6 form-group">
+                                <label>CME Topic Arabic</label>
+                                <input type="text" name="ar_cme_topic" value="<?= $cme['cme_ar_topic'];?>" class="form-control" required>
+                            </div>
+                            <div class="col-sm-6 form-group">
                                 <label>CME Department</label>
-                                <input type="text" name="txt_cme_depart" id="txt_cme_depart" value="<?= $cme['cme_depart'];?>" class="form-control" required>
+                                <input type="text" name="txt_cme_depart" value="<?= $cme['cme_depart'];?>" id="txt_cme_depart" class="form-control" required>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>CME Department Arabic</label>
+                                <input type="text" name="txt_cme_depart_arabic" value="<?= $cme['cme_ar_depart'];?>" id="txt_cme_depart_arabic" class="form-control" required>
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label>CME Location</label>
-                                <input type="text" name="txt_cme_loc" id="txt_cme_loc" value="<?= $cme['cme_loc'];?>" class="form-control" required>
+                                <input type="text" name="txt_cme_loc" value="<?= $cme['cme_loc'];?>" id="txt_cme_loc" class="form-control" required>
                             </div>
-                            
+                            <div class="col-sm-6 form-group">
+                                <label>CME Location Arabic</label>
+                                <input type="text" id="ar_cme_loc" value="<?= $cme['cme_ar_loc'];?>" name="ar_cme_loc" class="form-control" required>
+                            </div>
                             <div class="col-sm-6 form-group">
                                 <label>CME Credits</label>
                                 <input type="text" name="txt_credits" value="<?= $cme['cme_credits'];?>" class="form-control" required>
                             </div>
-                            
+                            <div class="col-sm-6 form-group">
+                                <label>CME Credits in Arabic</label>
+                                <input type="text" name="ar_credits" value="<?= $cme['cme_ar_credits'];?>" class="form-control" required>
+                            </div>
                             <div class="col-sm-6 form-group">
                                 <label>Course Delivery</label>
-                            <select class="form-control" name="cours_deli" value="<?= $cme['cme_delivery'];?>">
-                              <option value="online" class="form-control">Online</option>
-                              <option value="site" class="form-control">On Site</option>
-                            </select>
+                                <select class="form-control" name="cours_deli">
+                                    <option <?= ($cme['cme_delivery'] == "online") ? 'selected' : ''; ?> value="online" class="form-control">Online</option>
+                                    <option <?= ($cme['cme_delivery'] == "on site") ? 'selected' : ''; ?> value="on site" class="form-control">On Site</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Course Delivery Arabic</label>
+                                <select class="form-control " name="cours_deli_ar">
+                                    <option <?= ($cme['cme_ar_delivery'] == "عبر الانترنت") ? 'selected' : ''; ?> value="عبر الانترنت" class="form-control">عبر الانترنت</option>
+                                    <option <?= ($cme['cme_ar_delivery'] == "بالموقع") ? 'selected' : ''; ?> value="بالموقع" class="form-control">بالموقع</option>
+                                </select>
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label>Time</label>
@@ -97,24 +113,20 @@ $location_arab_sql = query("SELECT DISTINCT cme_ar_loc FROM tbl_cme ORDER BY job
                                 <input type="date" name="txt_date" value="<?= $cme['cme_date'];?>" class="form-control" required>
                             </div>
                             <div class="col-sm-6 form-group">
+                                <label>Duration</label>
+                                <input type="text" name="txt_duration" value="<?= $cme['cme_duration'];?>" class="form-control" required>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Arabic Duration</label>
+                                <input type="text" name="ar_duration" value="<?= $cme['cme_ar_duration'];?>" class="form-control" required>
+                            </div>
+                            <div class="col-sm-6 form-group">
                                 <label>Closing Date</label>
                                 <input type="date" name="closing_date" value="<?= $cme['close_date'];?>" class="form-control" required>
                             </div>
                             <div class="col-sm-6 form-group">
-                                <label>Duration</label>
-                                <input type="text" name="txt_duration" value="<?= $cme['cme_duration'];?>" class="form-control" required>
-                            </div>
-                            <!--<div class="col-sm-6 form-group">-->
-                            <!--    <label>Email Notification</label>-->
-                            <!--    <input type="text" name="txt_email" class="form-control" placeholder="Enter Email Notification" required>-->
-                            <!--</div>-->
-                            <!--<div class="col-sm-6 form-group">-->
-                            <!--    <label>Company job link</label>-->
-                            <!--    <input type="text" name="txt_com_link" class="form-control" placeholder="Enter Company Link" required>-->
-                            <!--</div>-->
-                            <div class="col-sm-6 form-group">
                                 <label>CME Icon</label>
-                                <input type="file" name="txt_cme_icon" value="<?= $cme['cme_icon'];?>" class="form-control">
+                                <input type="file" name="txt_cme_icon" class="form-control">
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label>Select Organizer</label>
@@ -125,60 +137,48 @@ $location_arab_sql = query("SELECT DISTINCT cme_ar_loc FROM tbl_cme ORDER BY job
                                     while($emp = fetch($sql_emp))
                                     {
                                         ?>
-                                        <option <?= ($cme['cme_organizer'] == $emp['org_id']) ? 'selected' : ''; ?> value="<?= $emp['org_id'];?>"><?= $emp['org_name'];?> - <?= $emp['org_name_ar'];?></option>
+                                         <option <?= ($cme['cme_organizer'] == $emp['org_id']) ? 'selected' : ''; ?> value="<?= $emp['org_id'];?>"><?= $emp['org_name'];?> - <?= $emp['org_name_ar'];?></option>
                                         <?php
                                     }
                                     ?>
                                 </select>
                             </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Job URL (https://arabmedico.com/....)</label>
+                                <input type="hidden" value="<?= $cme['cme_slug'];?>" name="previous_slug">
+                                <input type="text" name="txt_dpt_url" class="form-control" value="<?= $cme['cme_slug'];?>">
+                            </div>
                             <div class="col-sm-12 form-group">
                                 <label>CME Description</label>
-                                <textarea name="txt_desc" rows="3" value="<?= $cme['cme_des'];?>" class="form-control" id="txt_desc"></textarea>
-                            </div>
-                            <div class="col-sm-12">
-                                <hr style="width: 100%;height: 1px;margin: 5px auto;">
-                                <h3>Arabic Form</h3>
-                                <hr style="width: 100%;height: 1px;margin: 5px auto;">
-                            </div>
-                           <div class="col-sm-6 form-group">
-                                <label>CME Topic Arabic</label>
-                                <input type="text" name="ar_cme_topic" class="form-control" value="<?= $cme['cme_ar_topic'];?>" placeholder="Enter Job title" required>
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label>CME Department Arabic</label>
-                                <input type="text" name="txt_cme_depart_arabic" value="<?= $cme['cme_ar_depart'];?>" id="txt_cme_depart_arabic" class="form-control" required>
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label>CME Location Arabic</label>
-                                <input type="text" id="ar_cme_loc" name="ar_cme_loc" value="<?= $cme['cme_ar_loc'];?>" class="form-control" required>
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label>CME Credits</label>
-                                <input type="text" name="ar_credits" value="<?= $cme['cme_ar_credits'];?>" class="form-control" required>
-                            </div>
-                            
-                            <div class="col-sm-6 form-group">
-                                <label>Course Delivery</label>
-                            <select class="form-control " name="cours_deli_ar" value="<?= $cme['cme_ar_delivery'];?>">
-                              <option value="online" class="form-control">Online</option>
-                              <option value="site" class="form-control">On Site</option>
-                            </select>
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label>Arabic Time</label>
-                                <input type="time" name="ar_time" value="<?= $cme['cme_ar_time'];?>" class="form-control" required>
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label>Arabic Date</label>
-                                <input type="date" name="ar_date" value="<?= $cme['cme_ar_date'];?>" class="form-control" required>
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label>Arabic Duration</label>
-                                <input type="text" name="ar_duration" value="<?= $cme['cme_ar_duration'];?>" class="form-control" required>
+                                <textarea name="txt_desc" rows="3" class="form-control" id="txt_desc"><?= $cme['cme_des'];?></textarea>
                             </div>
                             <div class="col-sm-12 form-group">
                                 <label>CME Description Arabic</label>
-                                <textarea name="ar_desc" rows="3" value="<?= $cme['cme_ar_des'];?>" class="form-control" id="txt_short_desc"></textarea>
+                                <textarea name="ar_desc" rows="3" class="form-control" id="txt_short_desc"><?= $cme['cme_ar_des'];?></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Title</label>
+                                <input type="text" name="txt_meta_title" value="<?= $cme['cme_meta_title'];?>" class="form-control">
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Title for arabic</label>
+                                <input type="text" name="txt_meta_title_ar" value="<?= $cme['cme_meta_title_ar'];?>" class="form-control">
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Tags</label>
+                                <textarea name="txt_tag" rows="3" class="form-control"><?= $cme['cme_meta_tag'];?></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Tags for Arabic</label>
+                                <textarea name="txt_tag_ar" rows="3" class="form-control"><?= $cme['cme_meta_tag_ar'];?></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Description</label>
+                                <textarea name="txt_meta_desc" rows="3" class="form-control"><?= $cme['cme_meta_desc'];?></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Description for Arabic</label>
+                                <textarea name="txt_meta_desc_ar" rows="3" class="form-control"><?= $cme['cme_meta_desc_ar'];?></textarea>
                             </div>
                             <div class="col-sm-12 reset-button">
                                 <a href="<?= admin_base_url();?>list-cme" class="btn btn-warning">Cancel & Go Back</a>
@@ -221,7 +221,7 @@ get_msg('msg');
             <?php
             while($depart_arab = fetch($depart_arab_sql))
             {
-                echo '"'.$depart_arab['job_ar_des'].'",';
+                echo '"'.$depart_arab['cme_ar_depart'].'",';
             }
             ?>
         ];
@@ -250,7 +250,34 @@ get_msg('msg');
     });
     
     
-	bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+	var area1, area2;
+    
+    function toggleArea1()
+    {
+        if(!area1)
+        {
+            area1 = new nicEditor({fullPanel : true}).panelInstance('txt_short_desc',{hasPanel : true});
+        }
+        else
+        {
+            area1.removeInstance('txt_short_desc');
+            area1 = null;
+        }
+    }
+    
+    function toggleArea2()
+    {
+        if(!area2)
+        {
+            area2 = new nicEditor({fullPanel : true}).panelInstance('txt_desc',{hasPanel : true});
+        }
+        else
+        {
+            area2.removeInstance('txt_desc');
+            area2 = null;
+        }
+    }
+    bkLib.onDomLoaded(function() { toggleArea1(); toggleArea2(); });
 	$(document).ready(function(){
 	    $(".select2").select2();
 	});

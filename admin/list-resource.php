@@ -32,7 +32,7 @@
 				<div class="panel panel-bd lobidrag">
                     <div class="panel-heading">
                         <div class="btn-group"> 
-                            <a class="btn btn-success" href="<?= admin_base_url();?>add-department"> <i class="fa fa-plus"></i> Add Resource
+                            <a class="btn btn-success" href="<?= admin_base_url();?>add-resource"> <i class="fa fa-plus"></i> Add Resource
                             </a>
                         </div>
                     </div>

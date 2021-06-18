@@ -4,23 +4,30 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 {
 	if(isset($_POST['btn_save_clinic']))
 	{
-		$slug 						= post('txt_clinic_url');
-		$data['clinic_name'] 		= post('txt_clinic_name');
-		$data['clinic_name_ar'] 	= $_POST['txt_clinic_name_ar'];
-		$data['clinic_phone'] 		= post('txt_clinic_phone');
-		$data['clinic_phone_ar'] 	= changeNumberToArabic(post('txt_clinic_phone'));
-		$data['clinic_address'] 	= post('txt_clinic_address');
-		$data['clinic_address_ar'] 	= $_POST['txt_clinic_address_ar'];
-		$data['clinic_country'] 	= post('txt_country');
-		$data['clinic_area'] 	    = post('txt_area');
-		$data['clinic_city'] 	    = post('txt_city');
-		$data['clinic_url'] 	    = post('txt_clinic_url');
-		$data['clinic_facebook'] 	= post('txt_fb_url');
-		$data['clinic_instagram'] 	= post('txt_insta_url');
-		$data['clinic_youtube'] 	= post('txt_yt_url');
-		$data['clinic_linkedin'] 	= post('txt_linked_url');
-		$data['clinic_twitter'] 	= post('txt_twitter_url');
-		$username 	                = post('txt_username');
+		$slug 							= post('txt_clinic_url');
+		$data['clinic_name'] 			= post('txt_clinic_name');
+		$data['clinic_name_ar'] 		= $_POST['txt_clinic_name_ar'];
+		$data['clinic_phone'] 			= post('txt_clinic_phone');
+		$data['clinic_phone_ar'] 		= changeNumberToArabic(post('txt_clinic_phone'));
+		$data['clinic_address'] 		= post('txt_clinic_address');
+		$data['clinic_address_ar'] 		= $_POST['txt_clinic_address_ar'];
+		$data['clinic_country'] 		= post('txt_country');
+		$data['clinic_area'] 	    	= post('txt_area');
+		$data['clinic_city'] 	    	= post('txt_city');
+		$data['clinic_url'] 	    	= post('txt_clinic_url');
+		$data['clinic_facebook'] 		= post('txt_fb_url');
+		$data['clinic_instagram'] 		= post('txt_insta_url');
+		$data['clinic_youtube'] 		= post('txt_yt_url');
+		$data['clinic_linkedin'] 		= post('txt_linked_url');
+		$data['clinic_twitter'] 		= post('txt_twitter_url');
+		$data['clinic_meta_title'] 		= post('txt_meta_title');
+		$data['clinic_meta_title_ar'] 	= $_POST['txt_meta_title_ar'];
+		$data['clinic_meta_tag'] 		= post('txt_tag');
+		$data['clinic_meta_tag_ar'] 	= $_POST['txt_tag_ar'];
+		$data['clinic_meta_desc'] 		= post('txt_meta_desc');
+		$data['clinic_meta_desc_ar'] 	= $_POST['txt_meta_desc_ar'];
+		$username 	                	= post('txt_username');
+
 		if(checkUniqueCol('tbl_url','url_suffex',$slug))
 		{
 		    $data['clinic_slug']    = $slug;
@@ -103,6 +110,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 		$data['clinic_youtube'] 	= post('txt_yt_url');
 		$data['clinic_linkedin'] 	= post('txt_linked_url');
 		$data['clinic_twitter'] 	= post('txt_twitter_url');
+		$data['clinic_meta_title'] 		= post('txt_meta_title');
+		$data['clinic_meta_title_ar'] 	= $_POST['txt_meta_title_ar'];
+		$data['clinic_meta_tag'] 		= post('txt_tag');
+		$data['clinic_meta_tag_ar'] 	= $_POST['txt_tag_ar'];
+		$data['clinic_meta_desc'] 		= post('txt_meta_desc');
+		$data['clinic_meta_desc_ar'] 	= $_POST['txt_meta_desc_ar'];
 		$data['clinic_active'] 	    = post('txt_status');
 		$image_name                 = upload_image($_FILES,'txt_icon', '../../upload/');
 		if($image_name)

@@ -47,8 +47,11 @@ if(isset($_GET['temp']))
         $templatename = str_replace("lang=arabic", "", $profisnow[0]);
         $_SESSION['lang'] = 'arabic';
     }else if($profisnow[0] == 'news'){
-        $templatename = str_replace($profisnow[1], "", $profisnow[0]);
-        $_GET['slug'] = $profisnow[1];
+        if(isset($profisnow[1]))
+        {
+            $templatename = str_replace($profisnow[1], "", $profisnow[0]);
+            $_GET['slug'] = $profisnow[1];
+        }
     }
     else if(strpos($profisnow[0], 'video=')){
         $templatename1  = explode('video=', $templatename);

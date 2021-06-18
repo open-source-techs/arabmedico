@@ -28,31 +28,42 @@
                 <div class="panel panel-bd lobidrag">
                     <div class="panel-heading">
                         <div class="btn-group"> 
-                            <a class="btn btn-primary" href="<?= admin_base_url();?>list-resource"> <i class="fa fa-list"></i> Department List </a>  
+                            <a class="btn btn-primary" href="<?= admin_base_url();?>list-resource"> <i class="fa fa-list"></i> Resource List </a>  
                         </div>
                     </div>
                     <div class="panel-body">
                         <form  action="<?= admin_base_url()?>model/resourceModel" method="POST" enctype="multipart/form-data" class="col-sm-12">
-                            <div class="col-sm-12">
-                                <hr style="width: 100%;height: 1px;margin: 5px auto;">
-                                <h3>English Form</h3>
-                                <hr style="width: 100%;height: 1px;margin: 5px auto;">
-                            </div>
                             <div class="col-sm-6 form-group">
                                 <label>New Condition</label>
-                                <input type="text" name="txt_dpt_name" class="form-control" placeholder="Enter Resource Name" required>
+                                <input type="text" name="txt_dpt_name" class="form-control" required>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>New Condition in Arabic</label>
+                                <input type="text" name="txt_dpt_name_arabic" class="form-control" required>
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label>Name</label>
-                                <input type="text" name="txt_author" class="form-control" placeholder="Enter Resource Name" required>
+                                <input type="text" name="txt_author" class="form-control" required>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Name in Arabic</label>
+                                <input type="text" name="txt_author_ar" class="form-control" required>
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label>Title</label>
-                                <input type="text" name="txt_title" class="form-control" placeholder="Enter Resource Name" required>
+                                <input type="text" name="txt_title" class="form-control" required>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Title in Arabic</label>
+                                <input type="text" name="txt_title_ar" class="form-control" required>
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label>Degree</label>
-                                <input type="text" name="txt_deg" class="form-control" placeholder="Enter Resource Name" required>
+                                <input type="text" name="txt_deg" class="form-control" required>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Degree in Arabic</label>
+                                <input type="text" name="txt_deg_ar" class="form-control" required>
                             </div>
                             <input type="hidden" value="1" id="countDepImg">
                             <div class="col-sm-6 form-group">
@@ -60,35 +71,45 @@
                                 <input type="file" name="txt_icon"  class="form-control onChangeImg" required>
                                 <label class="txt_icon"></label>
                             </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Resource URL (https://arabmedico.com/....)</label>
+                                <input type="text" name="txt_slug" class="form-control" required>
+                            </div>
                             <div class="col-sm-12 form-group">
                                 <label>Short Description</label>
                                 <textarea name="txt_short_desc" rows="3" class="form-control" id="txt_desc"></textarea>
                             </div>
-                            <div class="col-sm-12">
-                                <hr style="width: 100%;height: 1px;margin: 5px auto;">
-                                <h3>Arabic Form</h3>
-                                <hr style="width: 100%;height: 1px;margin: 5px auto;">
-                            </div>
-                            
-                            <div class="col-sm-6 form-group">
-                                <label>New Condition</label>
-                                <input type="text" name="txt_dpt_name_arabic" class="form-control" placeholder="Enter Resource Name" required>
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label>Name</label>
-                                <input type="text" name="txt_author_ar" class="form-control" placeholder="Enter Resource Name" required>
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label>Title</label>
-                                <input type="text" name="txt_title_ar" class="form-control" placeholder="Enter Resource Name" required>
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label>Degree</label>
-                                <input type="text" name="txt_deg_ar" class="form-control" placeholder="Enter Resource Name" required>
-                            </div>
                             <div class="col-sm-12 form-group">
-                                <label>Short Description</label>
+                                <label>Short Description in Arabic</label>
                                 <textarea name="txt_short_desc_arabic" rows="3" class="form-control" id="txt_desc_arabic"></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Title</label>
+                                <input type="text" name="txt_meta_title" class="form-control">
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Title for arabic</label>
+                                <input type="text" name="txt_meta_title_ar" class="form-control">
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Tags</label>
+                                <textarea name="txt_tag" rows="3" class="form-control"></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Tags for Arabic</label>
+                                <textarea name="txt_tag_ar" rows="3" class="form-control"></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Description</label>
+                                <textarea name="txt_meta_desc" rows="3" class="form-control"></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Description for Arabic</label>
+                                <textarea name="txt_meta_desc_ar" rows="3" class="form-control"></textarea>
+                            </div>
+                            <div class="col-sm-12 form-group" style="display:none">
+                                <label>Detail Description</label>
+                                <textarea name="txt_desc" rows="6" class="form-control editor1"></textarea>
                             </div>
                             <div class="col-sm-12 form-group" style="display:none">
                                 <label>Detail Description</label>

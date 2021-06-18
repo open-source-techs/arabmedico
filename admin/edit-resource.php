@@ -46,65 +46,84 @@ $dpt = fetch($sql);
                     </div>
                     <div class="panel-body">
                         <form  action="<?= admin_base_url()?>model/resourceModel" method="POST" enctype="multipart/form-data" class="col-sm-12">
-                            <div class="col-sm-12">
-                                <hr style="width: 100%;height: 1px;margin: 5px auto;">
-                                <h3>English Form</h3>
-                                <hr style="width: 100%;height: 1px;margin: 5px auto;">
-                            </div>
                             <div class="col-sm-6 form-group">
                                 <label>New Condition</label>
                                 <input type="hidden" name="txt_dpt_id" value="<?= $dpt['resource_id'];?>">
                                 <input type="text" name="txt_dpt_name" value="<?= $dpt['resource_name'];?>" class="form-control" placeholder="Enter Resource Name" required>
                             </div>
                             <div class="col-sm-6 form-group">
+                                <label>New Condition in Arabic</label>
+                                <input type="text" name="txt_dpt_name_arabic" value="<?= $dpt['resource_name_arabic'];?>" class="form-control" placeholder="Enter Resource Name" required>
+                            </div>
+                            <div class="col-sm-6 form-group">
                                 <label>Name</label>
                                 <input type="text" name="txt_author" class="form-control" value="<?= $dpt['resource_author'];?>" placeholder="Enter Author Name" required>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Name in Arabic</label>
+                                <input type="text" name="txt_author_ar" class="form-control" value="<?= $dpt['resource_author_ar'];?>" placeholder="Enter Author Arabic" required>
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label>Title</label>
                                 <input type="text" name="txt_title" class="form-control" value="<?= $dpt['resource_title'];?>" placeholder="Enter Author Title" required>
                             </div>
                             <div class="col-sm-6 form-group">
+                                <label>Title in Arabic</label>
+                                <input type="text" name="txt_title_ar" class="form-control" value="<?= $dpt['resource_title_ar'];?>" placeholder="Enter Title Arabic" required>
+                            </div>
+                            <div class="col-sm-6 form-group">
                                 <label>Degree</label>
                                 <input type="text" name="txt_deg" class="form-control" value="<?= $dpt['resource_deg'];?>" placeholder="Enter Degree" required>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Degree in Arabic</label>
+                                <input type="text" name="txt_deg_ar" class="form-control" value="<?= $dpt['resource_deg_ar'];?>" placeholder="Enter Degree Arabic" required>
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label>Icon</label>
                                 <input type="file" name="txt_icon" class="form-control onChangeImg">
                                 <label class="txt_icon"></label>
                             </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Resource URL (https://arabmedico.com/....)</label>
+                                <input type="hidden" value="<?= $dpt['resource_slug'];?>" name="previous_slug">
+                                <input type="text" name="txt_dpt_url" class="form-control" value="<?= $dpt['resource_slug'];?>">
+                            </div>
                             <div class="col-sm-12 form-group">
                                 <label>Short Description</label>
-                                <textarea name="txt_short_desc" rows="3" class="form-control editor"><?= $dpt['resource_short_desc'];?></textarea>
+                                <textarea name="txt_short_desc" rows="3" id="txt_desc_arabic" class="form-control editor"><?= $dpt['resource_short_desc'];?></textarea>
+                            </div>
+                            <div class="col-sm-12 form-group">
+                                <label>Short Description in Arabic</label>
+                                <textarea name="txt_short_desc_arabic" rows="3" id="txt_desc_detail_arabic" class="form-control"><?= $dpt['resource_short_desc_arabic'];?></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Title</label>
+                                <input type="text" name="txt_meta_title" value="<?= $dpt['resource_meta_title'];?>" class="form-control">
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Title for arabic</label>
+                                <input type="text" name="txt_meta_title_ar" value="<?= $dpt['resource_meta_title_ar'];?>" class="form-control">
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Tags</label>
+                                <textarea name="txt_tag" rows="3" class="form-control"><?= $dpt['resource_meta_tag'];?></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Tags for Arabic</label>
+                                <textarea name="txt_tag_ar" rows="3" class="form-control"><?= $dpt['resource_meta_tag_ar'];?></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Description</label>
+                                <textarea name="txt_meta_desc" rows="3" class="form-control"><?= $dpt['resource_meta_desc'];?></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Description for Arabic</label>
+                                <textarea name="txt_meta_desc_ar" rows="3" class="form-control"><?= $dpt['resource_meta_desc_ar'];?></textarea>
                             </div>
                             <div class="col-sm-12 form-group" style="display:none">
                                 <label>Detail Description</label>
                                 <textarea name="txt_desc" rows="6" class="form-control editor1"><?= $dpt['resource_description'];?></textarea>
-                            </div>
-                            <div class="col-sm-12">
-                                <hr style="width: 100%;height: 1px;margin: 5px auto;">
-                                <h3>Arabic Form</h3>
-                                <hr style="width: 100%;height: 1px;margin: 5px auto;">
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label>New Condition</label>
-                                <input type="text" name="txt_dpt_name_arabic" value="<?= $dpt['resource_name_arabic'];?>" class="form-control" placeholder="Enter Resource Name" required>
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label>Name</label>
-                                <input type="text" name="txt_author_ar" class="form-control" value="<?= $dpt['resource_author_ar'];?>" placeholder="Enter Author Arabic" required>
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label>Title</label>
-                                <input type="text" name="txt_title_ar" class="form-control" value="<?= $dpt['resource_title_ar'];?>" placeholder="Enter Title Arabic" required>
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label>Degree</label>
-                                <input type="text" name="txt_deg_ar" class="form-control" value="<?= $dpt['resource_deg_ar'];?>" placeholder="Enter Degree Arabic" required>
-                            </div>
-                            <div class="col-sm-12 form-group">
-                                <label>Short Description</label>
-                                <textarea name="txt_short_desc_arabic" rows="3" class="form-control"><?= $dpt['Resource_short_desc_arabic'];?></textarea>
                             </div>
                             <div class="col-sm-12 form-group" style="display:none">
                                 <label>Detail Description</label>
@@ -135,5 +154,58 @@ $dpt = fetch($sql);
 get_msg('msg');
 ?>
 <script type="text/javascript">
-	bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+	var area1, area2, area3, area4;
+    
+    function toggleArea1()
+    {
+        if(!area1)
+        {
+            area1 = new nicEditor({fullPanel : true}).panelInstance('txt_desc_arabic',{hasPanel : true});
+        }
+        else
+        {
+            area1.removeInstance('txt_desc_arabic');
+            area1 = null;
+        }
+    }
+    
+    function toggleArea2()
+    {
+        if(!area2)
+        {
+            area2 = new nicEditor({fullPanel : true}).panelInstance('txt_desc_detail_arabic',{hasPanel : true});
+        }
+        else
+        {
+            area2.removeInstance('txt_desc_detail_arabic');
+            area2 = null;
+        }
+    }
+    
+    function toggleArea3()
+    {
+        if(!area3)
+        {
+            area3 = new nicEditor({fullPanel : true}).panelInstance('txt_desc',{hasPanel : true});
+        }
+        else
+        {
+            area3.removeInstance('txt_desc');
+            area3 = null;
+        }
+    }
+    
+    function toggleArea4()
+    {
+        if(!area4)
+        {
+            area4 = new nicEditor({fullPanel : true}).panelInstance('txt_desc_detail',{hasPanel : true});
+        }
+        else
+        {
+            area4.removeInstance('txt_desc_detail');
+            area4 = null;
+        }
+    }
+    bkLib.onDomLoaded(function() { toggleArea1(); toggleArea2(); toggleArea3(); toggleArea4(); });
 </script>

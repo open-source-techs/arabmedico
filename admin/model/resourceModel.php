@@ -4,96 +4,134 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 {
 	if(isset($_POST['btn_save_dpt']))
 	{
-		$data['resource_name_arabic'] 		= $_POST['txt_dpt_name_arabic'];
+		$data['resource_name_arabic'] 	= $_POST['txt_dpt_name_arabic'];
 		$data['resource_author'] 		= $_POST['txt_author'];
 		$data['resource_title'] 		= $_POST['txt_title'];
-		$data['resource_deg'] 		= $_POST['txt_deg'];
-		$data['resource_author_ar'] 		= $_POST['txt_author_ar'];
+		$data['resource_deg'] 			= $_POST['txt_deg'];
+		$data['resource_author_ar'] 	= $_POST['txt_author_ar'];
 		$data['resource_title_ar'] 		= $_POST['txt_title_ar'];
 		$data['resource_deg_ar'] 		= $_POST['txt_deg_ar'];
-		$data['resource_name'] 				= post('txt_dpt_name');
-		$slug 							    = create_slug(strtolower($data['resource_name']));
-		$data['resource_slug'] 				= check_column('tbl_resources','resource_slug',$slug);
-		$image_name                 	    = upload_image($_FILES,'txt_icon', '../../upload/');
+		$data['resource_name'] 			= post('txt_dpt_name');
+		$data['resource_meta_title'] 	= post('txt_meta_title');
+		$data['resource_meta_title_ar'] = $_POST['txt_meta_title_ar'];
+		$data['resource_meta_tag'] 		= post('txt_tag');
+		$data['resource_meta_tag_ar'] 	= $_POST['txt_tag_ar'];
+		$data['resource_meta_desc'] 	= post('txt_meta_desc');
+		$data['resource_meta_desc_ar'] 	= $_POST['txt_meta_desc_ar'];
+		$image_name                 	= upload_image($_FILES,'txt_icon', '../../upload/');
 		if($image_name)
 		{
-		    $data['resource_icon_name'] 		= $image_name;
+		    $data['resource_icon_name'] 	= $image_name;
 		}
 		else
 		{
 		    $data['resource_icon_name']  	= '';
 		}
 		$data['resource_short_desc'] 		= $_POST['txt_short_desc'];
-		$data['resource_short_desc_arabic'] 	= $_POST['txt_short_desc_arabic'];
-// 		echo '<pre>';
-// 		print_r($data);
-// 		die();
-		if(
-			$data['resource_name'] 				    != "" && $data['resource_name'] 			!= null && 
-			$data['resource_name_arabic'] 		    != "" && $data['resource_name_arabic'] 	!= null && 
-			$data['resource_icon_name'] 		    != "" && $data['resource_icon_name'] 	!= null && 
-			$data['resource_short_desc'] 		    != "" && $data['resource_short_desc'] 	!= null &&
-			$data['resource_author'] 		    != "" && $data['resource_author'] 	!= null &&
-			$data['resource_title'] 		    != "" && $data['resource_title'] 	!= null &&
-			$data['resource_deg'] 		    != "" && $data['resource_deg'] 	!= null &&
-			$data['resource_author_ar'] 		    != "" && $data['resource_author_ar'] 	!= null &&
-			$data['resource_title_ar'] 		    != "" && $data['resource_title_ar'] 	!= null &&
-			$data['resource_deg_ar'] 		    != "" && $data['resource_deg_ar'] 	!= null &&
-			$data['resource_short_desc_arabic']     != "" && $data['resource_short_desc_arabic'] 	!= null
-		)
+		$data['resource_short_desc_arabic'] = $_POST['txt_short_desc_arabic'];
+		$slug 								= strtolower(post('txt_slug'));
+
+		if(checkUniqueCol('tbl_url','url_suffex',$slug))
 		{
-		   
-			if(insert($data,'tbl_resources'))
+			$data['resource_slug'] = $slug;
+			if(
+				$data['resource_name'] 				!= "" && $data['resource_name'] 			!= null && 
+				$data['resource_name_arabic'] 		!= "" && $data['resource_name_arabic'] 	!= null && 
+				$data['resource_icon_name'] 		!= "" && $data['resource_icon_name'] 	!= null && 
+				$data['resource_short_desc'] 		!= "" && $data['resource_short_desc'] 	!= null &&
+				$data['resource_author'] 		    != "" && $data['resource_author'] 	!= null &&
+				$data['resource_title'] 		    != "" && $data['resource_title'] 	!= null &&
+				$data['resource_deg'] 		    	!= "" && $data['resource_deg'] 	!= null &&
+				$data['resource_author_ar'] 		!= "" && $data['resource_author_ar'] 	!= null &&
+				$data['resource_title_ar'] 		    != "" && $data['resource_title_ar'] 	!= null &&
+				$data['resource_deg_ar'] 		    != "" && $data['resource_deg_ar'] 	!= null &&
+				$data['resource_short_desc_arabic'] != "" && $data['resource_short_desc_arabic'] 	!= null
+			)
 			{
-				set_msg('Success','Patient Resource is added successfully','success');
-				jump(admin_base_url()."list-resource");
+				if(insert2($data,'tbl_resources'))
+				{
+					$URLdata['url_suffex']  = $slug;
+    			    $URLdata['url_type']    = 'Resource';
+    			    insert($URLdata,'tbl_url');
+					set_msg('Success','Patient Resource is added successfully','success');
+					jump(admin_base_url()."list-resource");
+				}
+				else
+				{
+					set_msg('Insertion error','Unable to process your request. Please try again later.','error');
+					echo "<script>window.history.go(-1);</script>";
+				}
 			}
 			else
 			{
-				set_msg('Insertion error','Unable to process your request. Please try again later.','error');
+				set_msg('Fields validation','Please enter all fields details','error');
 				echo "<script>window.history.go(-1);</script>";
 			}
 		}
 		else
 		{
-			set_msg('Fields validation','Please enter all fields details','error');
+			set_msg('Fields validation','URL already registered','error');
 			echo "<script>window.history.go(-1);</script>";
 		}
 	}
 	else if(isset($_POST['btn_edit_dpt']))
 	{
-		$resource_id 						= post('txt_dpt_id'); 
-		$data['resource_name_arabic'] 		= $_POST['txt_dpt_name_arabic'];
+		$resource_id 					= post('txt_dpt_id'); 
+		$data['resource_name_arabic'] 	= $_POST['txt_dpt_name_arabic'];
 		$data['resource_author'] 		= $_POST['txt_author'];
 		$data['resource_title'] 		= $_POST['txt_title'];
-		$data['resource_deg'] 		= $_POST['txt_deg'];
-		$data['resource_author_ar'] 		= $_POST['txt_author_ar'];
+		$data['resource_deg'] 			= $_POST['txt_deg'];
+		$data['resource_author_ar'] 	= $_POST['txt_author_ar'];
 		$data['resource_title_ar'] 		= $_POST['txt_title_ar'];
 		$data['resource_deg_ar'] 		= $_POST['txt_deg_ar'];
-		$data['resource_name'] 				= post('txt_dpt_name');
+		$data['resource_name'] 			= post('txt_dpt_name');
+		$data['resource_meta_title'] 	= post('txt_meta_title');
+		$data['resource_meta_title_ar'] = $_POST['txt_meta_title_ar'];
+		$data['resource_meta_tag'] 		= post('txt_tag');
+		$data['resource_meta_tag_ar'] 	= $_POST['txt_tag_ar'];
+		$data['resource_meta_desc'] 	= post('txt_meta_desc');
+		$data['resource_meta_desc_ar'] 	= $_POST['txt_meta_desc_ar'];
 		$image_name                 	= upload_image($_FILES,'txt_icon', '../../upload/');
 		if($image_name)
 		{
 		    $data['resource_icon_name'] 		= $image_name;
 		}
-		$data['resource_short_desc'] 		= $_POST['txt_short_desc'];
+		$data['resource_short_desc'] 			= $_POST['txt_short_desc'];
 		$data['resource_short_desc_arabic'] 	= $_POST['txt_short_desc_arabic'];
+		$previousSlug                   		= post('previous_slug');
+        $currentSlug                    		= post('txt_dpt_url');
+        $slugUpdate                     		= false;
+        if($previousSlug != $currentSlug)
+        {
+            if(checkUniqueCol('tbl_url','url_suffex',$currentSlug, true, 'url_suffex', $previousSlug ))
+    		{
+            	$slugUpdate                 		= true;
+    		    $data['resource_slug']    			= $currentSlug;
+    		}
+        }
 		if(
-			$data['resource_name'] 				!= "" && $data['resource_name'] 			!= null && 
-			$data['resource_author'] 		    != "" && $data['resource_author'] 	!= null &&
-			$data['resource_title'] 		    != "" && $data['resource_title'] 	!= null &&
-			$data['resource_deg'] 		    != "" && $data['resource_deg'] 	!= null &&
-			$data['resource_author_ar'] 		    != "" && $data['resource_author_ar'] 	!= null &&
-			$data['resource_title_ar'] 		    != "" && $data['resource_title_ar'] 	!= null &&
-			$data['resource_deg_ar'] 		    != "" && $data['resource_deg_ar'] 	!= null &&
-			$data['resource_name_arabic'] 		!= "" && $data['resource_name_arabic'] 	!= null && 
-			$data['resource_short_desc'] 		!= "" && $data['resource_short_desc'] 	!= null && 
-			$data['resource_short_desc_arabic'] 	!= "" && $data['resource_short_desc_arabic'] 	!= null
+			$data['resource_name'] 				!= "" && $data['resource_name'] 				!= null && 
+			$data['resource_author'] 		    != "" && $data['resource_author'] 				!= null &&
+			$data['resource_title'] 		    != "" && $data['resource_title'] 				!= null &&
+			$data['resource_deg'] 		    	!= "" && $data['resource_deg'] 					!= null &&
+			$data['resource_author_ar'] 		!= "" && $data['resource_author_ar'] 			!= null &&
+			$data['resource_title_ar'] 		    != "" && $data['resource_title_ar'] 			!= null &&
+			$data['resource_deg_ar'] 		    != "" && $data['resource_deg_ar'] 				!= null &&
+			$data['resource_name_arabic'] 		!= "" && $data['resource_name_arabic'] 			!= null && 
+			$data['resource_short_desc'] 		!= "" && $data['resource_short_desc'] 			!= null && 
+			$data['resource_short_desc_arabic'] != "" && $data['resource_short_desc_arabic'] 	!= null
 		)
 		{
 			where('resource_id',$resource_id);
-			if(update($data,'tbl_resources'))
+			if(update2($data,'tbl_resources'))
 			{
+				if($slugUpdate)
+			    {
+			        $URLdata['url_suffex']  = $currentSlug;
+    			    $URLdata['url_type']    = 'Resource';
+    			    where('url_suffex',$previousSlug);
+    			    update($URLdata,'tbl_url');
+			    }
 				set_msg('Success','Patient Resource is updated successfully','success');
 				jump(admin_base_url()."list-resource");
 			}

@@ -57,28 +57,41 @@ $location_arab_sql = query("SELECT DISTINCT job_location_ar FROM tbl_job ORDER B
                     </div>
                     <div class="panel-body">
                         <form  action="<?= admin_base_url()?>model/jobModel" method="POST" enctype="multipart/form-data" class="col-sm-12">
-                            <div class="col-sm-12">
-                                <hr style="width: 100%;height: 1px;margin: 5px auto;">
-                                <h3>English Form</h3>
-                                <hr style="width: 100%;height: 1px;margin: 5px auto;">
-                            </div>
                             <div class="col-sm-6 form-group">
                                 <label>Job Title</label>
                                 <input type="hidden" name="txt_job_id" value="<?= $job['job_id'];?>">
                                 <input type="text" name="txt_job_title" class="form-control" value="<?= $job['job_title']; ?>" placeholder="Enter Job title" required>
                             </div>
                             <div class="col-sm-6 form-group">
+                                <label>Job Title Arabic</label>
+                                <input type="text" name="ar_job_title" class="form-control" value="<?= $job['job_title_ar'];?>" placeholder="Enter Job title Arabic" required>
+                            </div>
+                            <div class="col-sm-6 form-group">
                                 <label>Job Department</label>
                                 <input type="text" name="txt_job_depart" id="txt_job_depart" class="form-control" value="<?= $job['job_depart']; ?>" placeholder="Enter Job Department" required>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Job Department Arabic</label>
+                                <input type="text" name="txt_job_depart_arabic" id="txt_job_depart_arabic" class="form-control" value="<?= $job['job_depart_ar'];?>" placeholder="Enter Job Speciality Arabic" required>
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label>Job Location</label>
                                 <input type="text" name="txt_job_loc" id="txt_job_loc" class="form-control" value="<?= $job['job_location'];?>" placeholder="Enter JOb Location" required>
                             </div>
                             <div class="col-sm-6 form-group">
+                                <label>Job Location Arabic</label>
+                                <input type="text" name="ar_job_loc" id="ar_job_loc" class="form-control" value="<?= $job['job_location_ar'];?>" placeholder="Enter Job Loaction Arabic" required>
+                            </div>
+                            <div class="col-sm-6 form-group">
                                 <label>Closing date</label>
                                 <input type="date" name="txt_closing_time" class="form-control" value="<?= $job['job_close_date'];?>" placeholder="Enter Closing Date" required>
-                            </div><div class="col-sm-6 form-group">
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Job URL (https://arabmedico.com/....)</label>
+                                <input type="hidden" value="<?= $job['job_slug'];?>" name="previous_slug">
+                                <input type="text" name="txt_dpt_url" class="form-control" value="<?= $job['job_slug'];?>">
+                            </div>
+                            <div class="col-sm-6 form-group">
                                 <label>Job Icon</label>
                                 <input type="file" name="txt_job_icon" class="form-control">
                             </div>
@@ -101,30 +114,33 @@ $location_arab_sql = query("SELECT DISTINCT job_location_ar FROM tbl_job ORDER B
                                 <label>Job Description</label>
                                 <textarea name="txt_desc" rows="3" class="form-control" id="txt_short_desc"><?= $job['job_desc'];?></textarea>
                             </div>
-                            <div class="col-sm-12">
-                                <hr style="width: 100%;height: 1px;margin: 5px auto;">
-                                <h3>Arabic Form</h3>
-                                <hr style="width: 100%;height: 1px;margin: 5px auto;">
-                            </div>
-                           <div class="col-sm-6 form-group">
-                                <label>Job Title Arabic</label>
-                                <input type="text" name="ar_job_title" class="form-control" value="<?= $job['job_title_ar'];?>" placeholder="Enter Job title Arabic" required>
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label>Job Department Arabic</label>
-                                <input type="text" name="txt_job_depart_arabic" id="txt_job_depart_arabic" class="form-control" value="<?= $job['job_depart_ar'];?>" placeholder="Enter Job Speciality Arabic" required>
-                            </div>
                             <div class="col-sm-12 form-group">
                                 <label>Job Description Arabic</label>
-                                <textarea name="ar_desc" rows="3" class="form-control" id="txt_short_desc"><?= $job['job_desc_ar'];?></textarea>
+                                <textarea name="ar_desc" rows="3" class="form-control" id="txt_desc"><?= $job['job_desc_ar'];?></textarea>
                             </div>
                             <div class="col-sm-6 form-group">
-                                <label>Job Location Arabic</label>
-                                <input type="text" name="ar_job_loc" id="ar_job_loc" class="form-control" value="<?= $job['job_location_ar'];?>" placeholder="Enter Job Loaction Arabic" required>
+                                <label>Meta Title</label>
+                                <input type="text" name="txt_meta_title" value="<?= $job['job_meta_title'];?>" class="form-control">
                             </div>
                             <div class="col-sm-6 form-group">
-                                <label>Closing date Arabic</label>
-                                <input type="date" name="ar_closing_time" class="form-control" value="<?= $job['job_close_date_ar'];?>" placeholder="Enter Closing Date Arabic" required>
+                                <label>Meta Title for arabic</label>
+                                <input type="text" name="txt_meta_title_ar" value="<?= $job['job_meta_title_ar'];?>" class="form-control">
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Tags</label>
+                                <textarea name="txt_tag" rows="3" class="form-control"><?= $job['job_meta_tag'];?></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Tags for Arabic</label>
+                                <textarea name="txt_tag_ar" rows="3" class="form-control"><?= $job['job_meta_tag_ar'];?></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Description</label>
+                                <textarea name="txt_meta_desc" rows="3" class="form-control"><?= $job['job_meta_desc'];?></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Description for Arabic</label>
+                                <textarea name="txt_meta_desc_ar" rows="3" class="form-control"><?= $job['job_meta_desc_ar'];?></textarea>
                             </div>
                             <div class="col-sm-12 reset-button">
                                 <a href="<?= admin_base_url();?>job-list" class="btn btn-warning">Cancel & Go Back</a>
@@ -196,7 +212,34 @@ get_msg('msg');
     });
     
     
-	bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+	 var area1, area2;
+    
+    function toggleArea1()
+    {
+        if(!area1)
+        {
+            area1 = new nicEditor({fullPanel : true}).panelInstance('txt_short_desc',{hasPanel : true});
+        }
+        else
+        {
+            area1.removeInstance('txt_short_desc');
+            area1 = null;
+        }
+    }
+    
+    function toggleArea2()
+    {
+        if(!area2)
+        {
+            area2 = new nicEditor({fullPanel : true}).panelInstance('txt_desc',{hasPanel : true});
+        }
+        else
+        {
+            area2.removeInstance('txt_desc');
+            area2 = null;
+        }
+    }
+    bkLib.onDomLoaded(function() { toggleArea1(); toggleArea2(); });
 	$(document).ready(function(){
 	    $(".select2").select2();
 	});

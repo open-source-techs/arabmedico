@@ -107,6 +107,30 @@
                                 <input type="text" name="txt_clinic_url" class="form-control" required>
                             </div>
                             <div class="col-sm-6 form-group">
+                                <label>Meta Title</label>
+                                <input type="text" name="txt_meta_title" class="form-control">
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Title for arabic</label>
+                                <input type="text" name="txt_meta_title_ar" class="form-control">
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Tags</label>
+                                <textarea name="txt_tag" rows="3" class="form-control"></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Tags for Arabic</label>
+                                <textarea name="txt_tag_ar" rows="3" class="form-control"></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Description</label>
+                                <textarea name="txt_meta_desc" rows="3" class="form-control"></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Description for Arabic</label>
+                                <textarea name="txt_meta_desc_ar" rows="3" class="form-control"></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
                                 <label>Username</label>
                                 <input type="text" name="txt_username" class="form-control" placeholder="Enter Username">
                             </div>

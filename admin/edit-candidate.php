@@ -192,6 +192,30 @@ $candidate = fetch($sql);
                                 <label>Detailed Resume in Arabic</label>
                                 <textarea name="txt_desc_ar" rows="6" class="form-control" id="txt_desc_ar" ><?= $candidate['candiadate_resume_ar']; ?></textarea>
                             </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Title</label>
+                                <input type="text" name="txt_meta_title" value="<?= $candidate['candidate_meta_title']; ?>" class="form-control">
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Title for arabic</label>
+                                <input type="text" name="txt_meta_title_ar" value="<?= $candidate['candidate_meta_title_ar']; ?>" class="form-control">
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Tags</label>
+                                <textarea name="txt_tag" rows="3" class="form-control"><?= $candidate['candidate_meta_tag']; ?></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Tags for Arabic</label>
+                                <textarea name="txt_tag_ar" rows="3" class="form-control"><?= $candidate['candidate_meta_tag_ar']; ?></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Description</label>
+                                <textarea name="txt_meta_desc" rows="3" class="form-control"><?= $candidate['candidate_meta_desc']; ?></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Description for Arabic</label>
+                                <textarea name="txt_meta_desc_ar" rows="3" class="form-control"><?= $candidate['candidate_meta_desc_ar']; ?></textarea>
+                            </div>
                             <div class="col-sm-12 reset-button">
                                 <a href="<?= admin_base_url();?>candidate-list" class="btn btn-warning">Cancel & Go Back</a>
                                 <input type="submit" name="btn_edit_candidate" class="btn btn-success" value="Save">

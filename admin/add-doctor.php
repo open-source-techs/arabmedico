@@ -242,7 +242,30 @@
                                 <label>Detailed Resume in Arabic</label>
                                 <textarea name="txt_desc_arabic" rows="6" class="form-control" id="txt_desc_arabic" ></textarea>
                             </div>
-                            
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Title</label>
+                                <input type="text" name="txt_meta_title" class="form-control">
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Title for arabic</label>
+                                <input type="text" name="txt_meta_title_ar" class="form-control">
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Tags</label>
+                                <textarea name="txt_tag" rows="3" class="form-control"></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Tags for Arabic</label>
+                                <textarea name="txt_tag_ar" rows="3" class="form-control"></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Description</label>
+                                <textarea name="txt_meta_desc" rows="3" class="form-control"></textarea>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label>Meta Description for Arabic</label>
+                                <textarea name="txt_meta_desc_ar" rows="3" class="form-control"></textarea>
+                            </div>
                             <div class="col-sm-12 reset-button">
                                 <a href="<?= admin_base_url();?>list-doctors" class="btn btn-warning">Cancel & Go Back</a>
                                 <input type="submit" name="btn_save_doc" class="btn btn-success" value="Save">
