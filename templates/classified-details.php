@@ -2,11 +2,17 @@
 if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
 {
     $slug = $_GET['slug'];
-    include 'header.php';
     $sql = query("SELECT * FROM tbl_classified_job WHERE job_slug = '$slug'");
     if(nrows($sql) > 0)
     {
-        $doc = fetch($sql);
+        $doc                = fetch($sql);
+        $meta_title         = $doc['job_meta_title'];
+        $meta_title_ar      = $doc['job_meta_title_ar'];
+        $meta_keyword       = $doc['job_meta_tag'];
+        $meta_keyword_ar    = $doc['job_meta_tag_ar'];
+        $meta_desc          = $doc['job_meta_desc'];
+        $meta_desc_ar       = $doc['job_meta_desc_ar'];
+        include 'header.php';
         ?>
         <style>
             .doctor-info{

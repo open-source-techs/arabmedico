@@ -6,6 +6,13 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
     $sql = query("SELECT * FROM tbl_candidate WHERE candidate_active = 1 AND candidate_slug = '$slug'");
     if(nrows($sql) > 0)
     {
+        $candidate          = fetch($sql);
+        $meta_title         = $candidate['candidate_meta_title'];
+        $meta_title_ar      = $candidate['candidate_meta_title_ar'];
+        $meta_keyword       = $candidate['candidate_meta_tag'];
+        $meta_keyword_ar    = $candidate['candidate_meta_tag_ar'];
+        $meta_desc          = $candidate['candidate_meta_desc'];
+        $meta_desc_ar       = $candidate['candidate_meta_desc_ar'];
         function getIPAddress() {
             if(!empty($_SERVER['HTTP_CLIENT_IP'])) {  
                 $ip = $_SERVER['HTTP_CLIENT_IP'];  
@@ -18,8 +25,6 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
             }  
             return $ip;  
         }
-
-        $candidate = fetch($sql);
         $candidateID = $candidate['candidate_id'];
         $userIP = getIPAddress();
         $viewsql = query("SELECT * FROM tbl_can_views where view_ip = $userIP AND view_can = $candidateID");
