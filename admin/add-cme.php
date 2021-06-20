@@ -166,7 +166,7 @@ $location_arab_sql = query("SELECT DISTINCT cme_ar_loc FROM tbl_cme ORDER BY cme
                                 <textarea name="txt_meta_desc_ar" rows="3" class="form-control"></textarea>
                             </div>
                             <div class="col-sm-12 reset-button">
-                                <a href="<?= admin_base_url();?>job-list" class="btn btn-warning">Cancel & Go Back</a>
+                                <a href="<?= admin_base_url();?>list-cme" class="btn btn-warning">Cancel & Go Back</a>
                                 <input type="submit" name="btn_save_cme" class="btn btn-success" value="Save">
                             </div>
                         </form>
