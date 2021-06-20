@@ -114,9 +114,9 @@ $locationsql = query("SELECT DISTINCT course_loc, course_ar_loc FROM tbl_cme ORD
                     <input type="text" name="s" class="form-control" value="<?= (isset($_GET['s'])) ? $_GET['s'] : '';?>" placeholder="Enter keywords...">
                 </div>
                 <div class="col-sm-3">
-                    <label class="form-label"><?= ($lang == "eng") ? $lang_con[57]['lang_eng'] : $lang_con[57]['lang_arabic']; ?>:</label>
+                    <label class="form-label"><?= ($lang == "eng") ? $lang_con[206]['lang_eng'] : $lang_con[206]['lang_arabic']; ?>:</label>
                     <select name="d" class="form-control select">
-                        <option value="all"><?= ($lang == "eng") ? $lang_con[173]['lang_eng'] : $lang_con[173]['lang_arabic']; ?> <?= ($lang == "eng") ? $lang_con[57]['lang_eng'] : $lang_con[57]['lang_arabic']; ?></option>
+                        <option value="all"><?= ($lang == "eng") ? $lang_con[173]['lang_eng'] : $lang_con[173]['lang_arabic']; ?> <?= ($lang == "eng") ? $lang_con[206]['lang_eng'] : $lang_con[206]['lang_arabic']; ?></option>
                         <?php
                         while($depart = fetch($departsql))
                         {
