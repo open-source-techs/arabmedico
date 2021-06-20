@@ -3,7 +3,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
 {
     $slug = $_GET['slug'];
     include 'header.php';
-    $sql = query("SELECT * FROM tbl_cme WHERE id = '$slug'");
+    $sql = query("SELECT * FROM tbl_cme WHERE cme_slug = '$slug'");
     if(nrows($sql) > 0)
     {
         $cme = fetch($sql);

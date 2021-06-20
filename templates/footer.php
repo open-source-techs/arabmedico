@@ -52,6 +52,7 @@
     					<ul class="clearfix">
     					    <li><a href="<?= base_url();?>classified"> <?= ($lang == "eng") ? $lang_con[204]['lang_eng'] : $lang_con[204]['lang_arabic']; ?></a></li>
     					    <li><a href="<?= base_url();?>professionals"> <?= ($lang == "eng") ? $lang_con[207]['lang_eng'] : $lang_con[207]['lang_arabic']; ?></a></li>
+    					    <li><a href="<?= base_url();?>course"> <?= ($lang == "eng") ? $lang_con[176]['lang_eng'] : $lang_con[176]['lang_arabic']; ?></a></li>
     						<?php
 		           		    $pSql = query("SELECT * FROM tbl_pages WHERE page_active = 1 AND page_position = 3");
 		           		    while($pData = fetch($pSql))
