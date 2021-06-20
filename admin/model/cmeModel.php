@@ -212,10 +212,10 @@ else if($_SERVER['REQUEST_METHOD'] == "GET")
 		if(isset($_GET['cme_id']) && $_GET['cme_id'] != "" && $_GET['cme_id'] != null && $_GET['cme_id'] > 0 )
 		{
 			$cme_id = $_GET['cme_id'];
-			where('Id',$cme_id);
+			where('id',$cme_id);
 			if(delete('tbl_cme'))
 			{
-				set_msg('Success','Job is deleted successfully','success');
+				set_msg('Success','CME record is deleted successfully','success');
 				jump(admin_base_url()."list-cme");
 			}
 			else

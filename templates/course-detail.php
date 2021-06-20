@@ -3,16 +3,16 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
 {
     $slug = $_GET['slug'];
     
-    $sql = query("SELECT * FROM tbl_cme WHERE cme_slug = '$slug'");
+    $sql = query("SELECT * FROM tbl_course WHERE course_slug = '$slug'");
     if(nrows($sql) > 0)
     {
         $cme                = fetch($sql);
-        $meta_title         = $cme['cme_meta_title'];
-        $meta_title_ar      = $cme['cme_meta_title_ar'];
-        $meta_keyword       = $cme['cme_meta_tag'];
-        $meta_keyword_ar    = $cme['cme_meta_tag_ar'];
-        $meta_desc          = $cme['cme_meta_desc'];
-        $meta_desc_ar       = $cme['cme_meta_desc_ar'];
+        $meta_title         = $cme['course_meta_title'];
+        $meta_title_ar      = $cme['course_meta_title_ar'];
+        $meta_keyword       = $cme['course_meta_tag'];
+        $meta_keyword_ar    = $cme['course_meta_tag_ar'];
+        $meta_desc          = $cme['course_meta_desc'];
+        $meta_desc_ar       = $cme['course_meta_desc_ar'];
         include 'header.php';
         ?>
         <style>
@@ -34,7 +34,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
         					    	<li class="breadcrumb-item active" aria-current="page"><?= ($lang == "eng") ? $lang_con[167]['lang_eng'] : $lang_con[167]['lang_arabic']; ?></li>
         					  	</ol>
         					</nav>
-        					<h4 class="h4-sm steelblue-color"><?= ($lang == "eng") ? $cme['cme_topic'] : $cme['cme_ar_topic'];?></h4>
+        					<h4 class="h4-sm steelblue-color"><?= ($lang == "eng") ? $cme['course_topic'] : $cme['course_ar_topic'];?></h4>
         				</div>
         			</div>
         		</div>
@@ -46,28 +46,28 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
         			<div class="col-md-5">
         			    <br><br><br><br><br><br><br><br><br>
          				<div class="doctor-photo mb-40">
-         					<img class="img-fluid" src="<?= file_url().$cme['cme_icon'];?>" alt="doctor-profile">
+         					<img class="img-fluid" src="<?= file_url().$cme['course_icon'];?>" alt="doctor-profile">
          					<div class="doctor-info">
         						<table class="table table-striped">
         							<tbody>
         							    <tr>
         							        <td colspan="2" class="text-center">
-        							            <h5 class="h2-xs text-center"><?= ($lang == "eng") ? $cme['cme_topic'] : $cme['cme_ar_topic'];?></h5>
-        							            <p><?= ($lang == "eng") ? $cme['cme_depart'] : $cme['cme_ar_depart'];?></p>
-        							            <p><?= ($lang == "eng") ? $cme['cme_loc'] : $cme['cme_ar_loc'];?></p>
+        							            <h5 class="h2-xs text-center"><?= ($lang == "eng") ? $cme['course_topic'] : $cme['course_ar_topic'];?></h5>
+        							            <p><?= ($lang == "eng") ? $cme['course_depart'] : $cme['course_ar_depart'];?></p>
+        							            <p><?= ($lang == "eng") ? $cme['course_loc'] : $cme['course_ar_loc'];?></p>
         							        </td>
         							    </tr>
         							</tbody>
         						</table>
         					</div>
         					<div class="doctor-photo-btn text-center">
-        						<a href="<?= base_url()."cme-apply/".$slug;?>" class="btn btn-md btn-blue blue-hover"><?= ($lang == "eng") ? $lang_con[153]['lang_eng'] : $lang_con[153]['lang_arabic']; ?></a>
+        						<a href="<?= base_url()."course-apply/".$slug;?>" class="btn btn-md btn-blue blue-hover"><?= ($lang == "eng") ? $lang_con[153]['lang_eng'] : $lang_con[153]['lang_arabic']; ?></a>
         					</div>
          				</div>
          			</div>
         			<div class="col-md-7">
         				<div class="doctor-bio">
-         					<?= ($lang == "eng") ? $cme['cme_des'] : $cme['cme_ar_des']; ?>
+         					<?= ($lang == "eng") ? $cme['course_des'] : $cme['course_ar_des']; ?>
         				</div>
         			</div>
         		</div>

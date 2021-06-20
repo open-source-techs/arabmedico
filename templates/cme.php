@@ -111,7 +111,7 @@ $locationsql = query("SELECT DISTINCT cme_loc, cme_ar_loc FROM tbl_cme ORDER BY 
             <div class="row ">
                 <div class="col-sm-4">
     				<label class="form-label"><?= ($lang == "eng") ? $lang_con[171]['lang_eng'] : $lang_con[171]['lang_arabic']; ?>:</label>
-    				<input type="text" name="s" class="form-control" value="<?= $_GET['s'];?>" placeholder="Enter keywords...">
+    				<input type="text" name="s" class="form-control" value="<?= (isset($_GET['s'])) ? $_GET['s'] : '';?>" placeholder="Enter keywords...">
     			</div>
     			<div class="col-sm-3">
     				<label class="form-label"><?= ($lang == "eng") ? $lang_con[57]['lang_eng'] : $lang_con[57]['lang_arabic']; ?>:</label>
@@ -230,12 +230,12 @@ $locationsql = query("SELECT DISTINCT cme_loc, cme_ar_loc FROM tbl_cme ORDER BY 
 		    }
 		    ?>
         </div>
-        <div class="row d-flex justify-content-center mb-4">
+        <!-- <div class="row d-flex justify-content-center mb-4">
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
                     <?php
 				    $total_pages_sql = query("SELECT COUNT(*) as count FROM tbl_cme c LEFT JOIN tbl_organizer o on (c.cme_organizer = o.org_id)  WHERE 1=1 $where");
-                    $total_rows = fetch($total_pages_sql)[count];
+                    $total_rows = fetch($total_pages_sql)['count'];
                     $total_pages = ceil($total_rows / $limit);
 					for ($i=0; $i < $total_pages; $i++)
 					{
@@ -246,7 +246,7 @@ $locationsql = query("SELECT DISTINCT cme_loc, cme_ar_loc FROM tbl_cme ORDER BY 
 					?>
                 </ul>
             </nav>
-        </div>
+        </div> -->
 	</div>
 </section>
 <?php include 'footer.php'; ?>

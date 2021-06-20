@@ -68,6 +68,10 @@ if(isset($_GET['temp']))
         $templatename  = $profisnow[0];
         $_GET['slug']  = $profisnow[1];
     }
+    else if($profisnow[0] == 'cme-apply'){
+        $templatename  = $profisnow[0];
+        $_GET['slug']  = $profisnow[1];
+    }
     else if($profisnow[0] == 'contact-professional'){
         $templatename  = $profisnow[0];
         if(strpos($profisnow[1], 'lang=eng'))
@@ -175,6 +179,11 @@ if($pass)
             {
                 $_GET['slug'] = $pageData['url_suffex'];
                 require 'templates/professionals-details.php';
+            }
+            else if($pageData['url_type'] == "Course")
+            {
+                $_GET['slug'] = $pageData['url_suffex'];
+                require 'templates/course-detail.php';
             }
         }
     }
