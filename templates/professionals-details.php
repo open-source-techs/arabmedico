@@ -159,7 +159,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                 </div> -->
 
                                 <div style="font-size:18px; text-align:center; padding:5px;">
-                                    <span style="font-size:18px; color:#148c82"> <?= $IPCount; ?> / View(s)</span>
+                                    <span style="font-size:18px; color:#148c82"> <?= $IPCount; ?> / <?= ($lang == "eng") ? $lang_con[224]['lang_eng'] : $lang_con[224]['lang_arabic']; ?></span>
                                 </div>
                                 <div style="padding:5px; margin-top:-10px; margin-bottom:10px;">
                                     <div class="doctor-photo-btn text-center">
@@ -649,7 +649,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                 <img class="img-fluid" src="<?= file_url().$candidate['candidate_image'];?>" alt="doctor-profile">
                                 <div class="doctor-info mt-2 mb-2 p-1">
                                     <div style="font-size:18px; text-align:center; padding:5px;">
-                                        <span style="font-size:18px; color:#148c82"> 0 View(s)</span>
+                                        <span style="font-size:18px; color:#148c82"> 0 <?= ($lang == "eng") ? $lang_con[224]['lang_eng'] : $lang_con[224]['lang_arabic']; ?></span>
                                     </div>
                                     <div class="doctor-photo-btn text-center">
                                         <a href="<?= base_url()."contact-professional/".$slug;?>" class="btn btn-md btn-blue blue-hover"><?= ($lang == "eng") ? $lang_con[183]['lang_eng'] : $lang_con[183]['lang_arabic']; ?> <?= ($lang == "eng") ? $lang_con[207]['lang_eng'] : $lang_con[207]['lang_arabic']; ?></a>
