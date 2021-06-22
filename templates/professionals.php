@@ -142,7 +142,7 @@ include 'header.php';
 		                if(isset($_POST['speciality']) && $_POST['speciality'] != "")
 		                {
 		                    $speciality = $_POST['speciality'];
-		                    $sql = query("SELECT * FROM tbl_candidate c JOIN tbl_candiate_speciality cs ON (cs.can_speciality_id = c.candidate_department) WHERE c.candidate_department = $speciality $doc_where");
+		                    $sql = query("SELECT * FROM tbl_candidate c LEFT JOIN tbl_candiate_speciality cs ON (cs.can_speciality_id = c.candidate_department) WHERE c.candidate_department = $speciality $doc_where");
 		                    
 		                }
 		                else

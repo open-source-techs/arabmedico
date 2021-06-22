@@ -144,6 +144,21 @@
                                 </select>
                             </div>
                             <div class="col-sm-6 form-group">
+                                <label>Select Speciality</label>
+                                <select name="txt_speciality" class="form-control select2" required>
+                                    <option>Select one</option>
+                                   <?php
+                                    $sql = query('SELECT * FROM tbl_candiate_speciality WHERE can_speciality_active = 1');
+                                    while($spc = fetch($sql))
+                                    {
+                                        ?>
+                                        <option value="<?= $spc['can_speciality_id']; ?>"><?= $spc['can_speciality_name'] . " - " . $spc['can_speciality_name_ar']; ?></option>
+                                        <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="col-sm-6 form-group">
                                 <label>Web Slug (https://arabmedico.com/.....)</label>
                                 <input type="text" name="txt_slug" class="form-control" required>
                             </div>
