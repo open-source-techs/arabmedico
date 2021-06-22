@@ -73,14 +73,13 @@
                     <span>Reviews (Premium)</span>
                 </a>
             </li>
-
+            <?php } ?>
             <li class="">
                 <a href="<?= admin_base_url();?>model/adminUser?act=logout">
                     <i class="fa fa-sign-out"></i>
                     <span>Logout</span>
                 </a>
             </li>
-            <?php } ?>
 		</ul>
 	</div>
 </aside>
