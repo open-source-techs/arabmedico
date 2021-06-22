@@ -6,12 +6,12 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
     if(nrows($sql) > 0)
     {
         $doc                = fetch($sql);
-        $meta_title         = $dpt['job_meta_title'];
-        $meta_title_ar      = $dpt['job_meta_title_ar'];
-        $meta_keyword       = $dpt['job_meta_tag'];
-        $meta_keyword_ar    = $dpt['job_meta_tag_ar'];
-        $meta_desc          = $dpt['job_meta_desc'];
-        $meta_desc_ar       = $dpt['job_meta_desc_ar'];
+        $meta_title         = $doc['job_meta_title'];
+        $meta_title_ar      = $doc['job_meta_title_ar'];
+        $meta_keyword       = $doc['job_meta_tag'];
+        $meta_keyword_ar    = $doc['job_meta_tag_ar'];
+        $meta_desc          = $doc['job_meta_desc'];
+        $meta_desc_ar       = $doc['job_meta_desc_ar'];
         include 'header.php';
         ?>
         <style>

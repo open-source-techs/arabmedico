@@ -33,6 +33,15 @@
                     <span>Messages</span>
                 </a>
             </li>
+            <li class="">
+                <a href="<?= admin_base_url();?>job-notification">
+                    <i class="fa fa-briefcase"></i>
+                    <span>Job Notification</span>
+                </a>
+            </li>
+            <?php
+            $pacakge = get_sess("userdata")['candidate_package'];
+            if($pacakge == 1) { ?>
             <li class="<?php active_page('branding'); ?>">
                 <a href="<?= admin_base_url();?>branding">
                     <i class="fa fa-eye"></i>
@@ -71,6 +80,7 @@
                     <span>Logout</span>
                 </a>
             </li>
+            <?php } ?>
 		</ul>
 	</div>
 </aside>
