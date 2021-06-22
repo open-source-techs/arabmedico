@@ -14,6 +14,33 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
         $meta_keyword_ar    = $doc['doc_meta_tag_ar'];
         $meta_desc          = $doc['doc_meta_desc'];
         $meta_desc_ar       = $doc['doc_meta_desc_ar'];
+
+        function getIPAddress() {
+            if(!empty($_SERVER['HTTP_CLIENT_IP'])) {  
+                $ip = $_SERVER['HTTP_CLIENT_IP'];  
+            }  
+            elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
+                $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];  
+            }
+            else{  
+                $ip = $_SERVER['REMOTE_ADDR'];  
+            }  
+            return $ip;  
+        }
+        $userIP = getIPAddress();
+        $viewsql = query("SELECT * FROM tbl_doc_views where view_ip = $userIP AND view_doc = $docID");
+        $IPCount = nrows($sql);
+        if($IPCount <= 0)
+        {
+            $dataIP['view_ip']  = $userIP;
+            $dataIP['view_doc'] = $docID;
+            if(insert($dataIP, 'tbl_doc_views'))
+            {
+                $IPCount++;
+            }
+        }
+
+
         if($doc['allow_branding'] == 1 && $doc['super_consultant'] == 0)
         {
             include 'membership-header.php';
@@ -148,7 +175,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                     <i class="fa fa-star" style="color:#dddddd; margin-right:3px;"></i>
                                     <i class="fa fa-star" style="color:#dddddd; margin-right:3px;"></i>
                                     <i class="fa fa-star" style="color:#dddddd; margin-right:3px;"></i>
-                                    <span style="font-size:18px; color:#148c82"> / 0 View(s)</span>
+                                    <span style="font-size:18px; color:#148c82"> / <?= $IPCount;?> <?= ($lang == "eng") ? $lang_con[224]['lang_eng'] : $lang_con[224]['lang_arabic']; ?></span>
                                 </div>
                                 <div class="doctor-photo-btn text-center">
             						<a href="<?= base_url()."appointment";?>&dep=<?= $doc['doctor_department']; ?>&doc=<?= $doc['doc_id'];?>" class="btn btn-md btn-blue blue-hover"><?= ($lang == "eng") ? $lang_con[113]['lang_eng'] : $lang_con[113]['lang_arabic']; ?></a>
@@ -635,7 +662,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                     <i class="fa fa-star" style="color:#dddddd; margin-right:3px;"></i>
                                     <i class="fa fa-star" style="color:#dddddd; margin-right:3px;"></i>
                                     <i class="fa fa-star" style="color:#dddddd; margin-right:3px;"></i>
-                                    <span style="font-size:18px; color:#148c82"> / 0 View(s)</span>
+                                    <span style="font-size:18px; color:#148c82"> <?= $IPCount;?> / <?= ($lang == "eng") ? $lang_con[224]['lang_eng'] : $lang_con[224]['lang_arabic']; ?></span>
                                 </div>
                                 <div class="doctor-photo-btn text-center">
             						<a href="<?= base_url()."appointment";?>&dep=<?= $doc['doctor_department']; ?>&doc=<?= $doc['doc_id'];?>" class="btn btn-md btn-blue blue-hover"><?= ($lang == "eng") ? $lang_con[113]['lang_eng'] : $lang_con[113]['lang_arabic']; ?></a>
@@ -1249,7 +1276,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                     <i class="fa fa-star" style="color:#dddddd; margin-right:3px;"></i>
                                     <i class="fa fa-star" style="color:#dddddd; margin-right:3px;"></i>
                                     <i class="fa fa-star" style="color:#dddddd; margin-right:3px;"></i>
-                                    <span style="font-size:18px; color:#148c82"> / 0 View(s)</span>
+                                    <span style="font-size:18px; color:#148c82"> <?= $IPCount;?> / <?= ($lang == "eng") ? $lang_con[224]['lang_eng'] : $lang_con[224]['lang_arabic']; ?></span>
                                 </div>
                                 <div class="doctor-photo-btn text-center">
             						<a href="<?= base_url()."appointment";?>&dep=<?= $doc['doctor_department']; ?>&doc=<?= $doc['doc_id'];?>" class="btn btn-md btn-blue blue-hover"><?= ($lang == "eng") ? $lang_con[113]['lang_eng'] : $lang_con[113]['lang_arabic']; ?></a>
