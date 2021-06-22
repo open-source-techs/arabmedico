@@ -48,11 +48,28 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 	 			$data['job_close_date'] 	!= "" && $data['job_close_date']    != null
 			)
 			{
+				$jobId = get_next_table_id('tbl_job');
 				if(insert2($data,'tbl_job'))
 				{
 					$URLdata['url_suffex']  = $slug;
     			    $URLdata['url_type']    = 'Job';
     			    insert($URLdata,'tbl_url');
+
+    			    $jobTitle 		= $data['job_title'];
+    			    $jobLocation 	= $data['job_location'];
+    			    $jobdep_spec 	= $data['job_depart'];
+
+    			    $sqlprofessional = query("SELECT c.candidate_id FROM tbl_candidate c LEFT JOIN tbl_candiate_speciality cs ON (cs.can_speciality_id = c.candiate_speciality) JOIN tbl_candidate_country cc ON (cc.country_id = c.candidate_country) JOIN tbl_candidate_cities cct ON (cct.city_id = c.candidate_city) WHERE c.candidate_job LIKE '%".$jobTitle."%' OR cs.can_speciality_name LIKE '%".$jobdep_spec."%' OR cc.country_name LIKE '%".$jobLocation."%' OR cct.city_name LIKE '%".$jobLocation."%' ");
+    			    While($notifyData = fetch($sqlprofessional))
+    			    {
+    			    	$notify['notify_job_id'] 		= $jobId;
+    			    	$notify['notify_speciality'] 	= $jobdep_spec;
+    			    	$notify['notify_job_location'] 	= $jobLocation;
+    			    	$notify['notify_job_title'] 	= $jobTitle;
+    			    	$notify['notify_user'] 			= $notifyData['candidate_id'];
+    			    	$notify['notify_user_type'] 	= 'professional';
+    			    	insert2($notify,'tbl_job_notifications');
+    			    }
 					set_msg('Success','Job is added successfully','success');
 					jump(admin_base_url()."job-list");
 				}

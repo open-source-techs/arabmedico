@@ -18,6 +18,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 	    $data['candidate_phone']            = post('txt_phone');
 	    $data['candidate_phone_ar']         = changeNumberToArabic($data['candidate_phone']);
 	    $data['candidate_package']       	= post('txt_package');
+	    $data['candiate_speciality']       	= post('txt_speciality');
 	    $data['candidate_country']          = post('txt_country');
 	    $data['candidate_city']             = post('txt_city');
 	    $data['candiadate_resume']          = $_POST['txt_desc'];
@@ -136,6 +137,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 	    $data['candidate_phone']            = post('txt_phone');
 	    $data['candidate_phone_ar']         = changeNumberToArabic($data['candidate_phone']);
 	    $data['candidate_package']       	= post('txt_package');
+	    $data['candiate_speciality']       	= post('txt_speciality');
 	    $data['candidate_country']          = post('txt_country');
 	    $data['candidate_city']             = post('txt_city');
 	    $data['candiadate_resume']          = $_POST['txt_desc'];
