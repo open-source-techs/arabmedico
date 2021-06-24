@@ -2,7 +2,7 @@
 require_once('../config/db.php');
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
-	$candiate_id = get_sess("userdata")['candidate_id'];
+	$doc_id = get_sess("userdata")['doc_id'];
 	if(isset($_POST['btn_save_subscription']))
 	{
 		if(isset($_POST['txt_job_title']))
@@ -15,8 +15,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 					{
 						if($value1 != null && $value1 != "")
 						{
-							$data_job['sub_user'] 		= $candiate_id;
-							$data_job['sub_userType'] 	= 'professional';
+							$data_job['sub_user'] 		= $doc_id;
+							$data_job['sub_userType'] 	= 'doctor';
 							$data_job['sub_type'] 		= 'job_title';
 							$data_job['sub_value'] 		= $value1;
 							insert($data_job, 'tbl_job_notify_sub');
@@ -27,8 +27,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 				{
 					if($value != null && $value != "")
 					{
-						$data_job['sub_user'] 		= $candiate_id;
-						$data_job['sub_userType'] 	= 'professional';
+						$data_job['sub_user'] 		= $doc_id;
+						$data_job['sub_userType'] 	= 'doctor';
 						$data_job['sub_type'] 		= 'job_title';
 						$data_job['sub_value'] 		= $value;
 						where('sub_id', $key);
@@ -52,8 +52,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 					{
 						if($value1 != null && $value1 != "")
 						{
-							$data_spec['sub_user'] 		= $candiate_id;
-							$data_spec['sub_userType'] 	= 'professional';
+							$data_spec['sub_user'] 		= $doc_id;
+							$data_spec['sub_userType'] 	= 'doctor';
 							$data_spec['sub_type'] 		= 'speciality';
 							$data_spec['sub_value'] 	= $value1;
 							insert($data_spec, 'tbl_job_notify_sub');
@@ -64,8 +64,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 				{
 					if($value != null && $value != "")
 					{
-						$data_spec['sub_user'] 		= $candiate_id;
-						$data_spec['sub_userType'] 	= 'professional';
+						$data_spec['sub_user'] 		= $doc_id;
+						$data_spec['sub_userType'] 	= 'doctor';
 						$data_spec['sub_type'] 		= 'speciality';
 						$data_spec['sub_value'] 	= $value;
 						where('sub_id', $key);
@@ -89,8 +89,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 					{
 						if($value1 != null && $value1 != "")
 						{
-							$data_loc['sub_user'] 		= $candiate_id;
-							$data_loc['sub_userType'] 	= 'professional';
+							$data_loc['sub_user'] 		= $doc_id;
+							$data_loc['sub_userType'] 	= 'doctor';
 							$data_loc['sub_type'] 		= 'location';
 							$data_loc['sub_value'] 		= $value1;
 							insert($data_loc, 'tbl_job_notify_sub');
@@ -101,8 +101,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 				{
 					if($value != null && $value != "")
 					{
-						$data_loc['sub_user'] 		= $candiate_id;
-						$data_loc['sub_userType'] 	= 'professional';
+						$data_loc['sub_user'] 		= $doc_id;
+						$data_loc['sub_userType'] 	= 'doctor';
 						$data_loc['sub_type'] 		= 'location';
 						$data_loc['sub_value'] 		= $value;
 						where('sub_id', $key);
@@ -116,22 +116,22 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 				}
 			}
 		}
-		set_msg('Success','Date updated successfully','success');
+		set_msg('Success','Data updated successfully','success');
 		jump(admin_base_url()."job-notification");
 	}
 }
 else if($_SERVER['REQUEST_METHOD'] == "GET")
 {
-	$candiate_id = get_sess("userdata")['candidate_id'];
+	$doc_id = get_sess("userdata")['doc_id'];
 	if(isset($_GET['act']) && $_GET['act'] == 'notify')
     {
         if(isset($_GET['val']) && $_GET['val'] != '' && $_GET['val'] != null)
         {
-        	$data['candidate_notifcations'] = $_GET['val'];
-            where('candidate_id',$candiate_id);
-		    if(update2($data,'tbl_candidate'))
+        	$data['doctor_notification'] = $_GET['val'];
+            where('doc_id',$doc_id);
+		    if(update2($data,'tbl_doctor'))
             {
-            	$_SESSION['userdata']['candidate_notifcations'] = $data['candidate_notifcations'];
+            	$_SESSION['userdata']['doctor_notification'] = $data['doctor_notification'];
                 set_msg('Success','Notifications status updated successfully','success');
 				jump(admin_base_url()."job-notification");
             }

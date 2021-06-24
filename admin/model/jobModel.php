@@ -69,6 +69,18 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     			    	$notify['notify_user_type'] 	= 'professional';
     			    	insert2($notify,'tbl_job_notifications');
     			    }
+
+    			    $sqlprofessional = query("SELECT sub_user FROM tbl_job_notify_sub ns JOIN tbl_doctor d ON (ns.sub_user = d.doc_id) WHERE sub_userType = 'doctor' AND (sub_type = 'job_title' OR sub_type = 'speciality' OR sub_type = 'location') AND (sub_value LIKE '%".$jobTitle."%' OR sub_value LIKE '%".$jobLocation."%' OR sub_value LIKE '%".$jobLocation."%') AND d.doctor_notification = 1 GROUP BY sub_user");
+    			    While($notifyData = fetch($sqlprofessional))
+    			    {
+    			    	$notify['notify_job_id'] 		= $jobId;
+    			    	$notify['notify_speciality'] 	= $jobdep_spec;
+    			    	$notify['notify_job_location'] 	= $jobLocation;
+    			    	$notify['notify_job_title'] 	= $jobTitle;
+    			    	$notify['notify_user'] 			= $notifyData['sub_user'];
+    			    	$notify['notify_user_type'] 	= 'doctor';
+    			    	insert2($notify,'tbl_job_notifications');
+    			    }
 					set_msg('Success','Job is added successfully','success');
 					jump(admin_base_url()."job-list");
 				}

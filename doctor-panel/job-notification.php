@@ -5,7 +5,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <?php
-$candiate_id = get_sess("userdata")['candidate_id'];
+$doc_id = get_sess("userdata")['doc_id'];
 ?>
 <div class="content-wrapper">
     <section class="content-header">
@@ -17,9 +17,9 @@ $candiate_id = get_sess("userdata")['candidate_id'];
             <small>Job Notification list</small>
             <ol class="breadcrumb hidden-xs">
                 <li>
-                	<a href="<?= admin_base_url();?>">
-                		<i class="pe-7s-home"></i> Home
-                	</a>
+                    <a href="<?= admin_base_url();?>">
+                        <i class="pe-7s-home"></i> Home
+                    </a>
                 </li>
                 <li class="active">Job Notifications</li>
             </ol>
@@ -42,7 +42,7 @@ $candiate_id = get_sess("userdata")['candidate_id'];
                                 <div class="col-md-12">
                                     <?php
                                     $sub_type = 'job_title';
-                                    $sql = query("SELECT * FROM tbl_job_notify_sub WHERE sub_type = '$sub_type' AND sub_userType = 'professional' AND sub_user = '$candiate_id' "); 
+                                    $sql = query("SELECT * FROM tbl_job_notify_sub WHERE sub_type = '$sub_type' AND sub_userType = 'doctor' AND sub_user = '$doc_id' "); 
                                     $num_rows = nrows($sql);
                                     $job_field = '';
                                     if($num_rows > 0)
@@ -72,10 +72,10 @@ $candiate_id = get_sess("userdata")['candidate_id'];
                                         for($i = 0; $i < $limit; $i++)
                                         {
                                             $titlesql1 = query("SELECT DISTINCT job_title FROM tbl_job ORDER BY job_title ASC ");
-                                            $job_field .= '<option selected disabled>Select one</option>';
                                             $job_field .= '<div class="col-sm-6 form-group">
-                                                <label>Job Titleno '. (3 - ($limit - $i - 1 )) . ' </label>
+                                                <label>Job Title no '. (3 - ($limit - $i - 1 )) . ' </label>
                                                 <select name="txt_job_title[0]['.$i.']" class="form-control">';
+                                                $job_field .= '<option selected disabled>Select one</option>';
                                                 while($title = fetch($titlesql1))
                                                 {
                                                     $job_field .= '<option value="' . $title['job_title'] . '">' . $title['job_title'] . '</option>';
@@ -110,7 +110,7 @@ $candiate_id = get_sess("userdata")['candidate_id'];
                                 <div class="col-md-12">
                                 <?php
                                     $sub_type = 'speciality';
-                                    $sql = query("SELECT * FROM tbl_job_notify_sub WHERE sub_type = '$sub_type' AND sub_userType = 'professional' AND sub_user = '$candiate_id' "); 
+                                    $sql = query("SELECT * FROM tbl_job_notify_sub WHERE sub_type = '$sub_type' AND sub_userType = 'doctor' AND sub_user = '$doc_id' "); 
                                     $num_rows = nrows($sql);
                                     $job_field = '';
                                     if($num_rows > 0)
@@ -123,6 +123,7 @@ $candiate_id = get_sess("userdata")['candidate_id'];
                                                 <label>Speciality no '.$j.'</label>
                                                 <select name="txt_speciality['.$data['sub_id'].']" value="'.$data['sub_value'].'" class="form-control">';
                                                 $departsql = query("SELECT DISTINCT job_depart FROM tbl_job ORDER BY job_depart ASC ");
+                                                $job_field .= '<option selected disabled>Select one</option>';
                                                 while($spec = fetch($departsql))
                                                 {
                                                     $selected = '';
@@ -177,7 +178,7 @@ $candiate_id = get_sess("userdata")['candidate_id'];
                                 <div class="col-md-12">
                                     <?php
                                     $sub_type = 'location';
-                                    $sql = query("SELECT * FROM tbl_job_notify_sub WHERE sub_type = '$sub_type' AND sub_userType = 'professional' AND sub_user = '$candiate_id' "); 
+                                    $sql = query("SELECT * FROM tbl_job_notify_sub WHERE sub_type = '$sub_type' AND sub_userType = 'doctor' AND sub_user = '$doc_id' "); 
                                     $num_rows = nrows($sql);
                                     $job_field = '';
                                     if($num_rows > 0)
@@ -190,6 +191,7 @@ $candiate_id = get_sess("userdata")['candidate_id'];
                                             $job_field .= '<div class="col-sm-6 form-group">
                                                 <label>Location no '.$j.'</label>
                                                 <select name="txt_location['.$data['sub_id'].']" value="'.$data['sub_value'].'" class="form-control">';
+                                                $job_field .= '<option selected disabled>Select one</option>';
                                                 while($loc = fetch($locationsql))
                                                 {
                                                     $selected = '';
@@ -249,12 +251,12 @@ $candiate_id = get_sess("userdata")['candidate_id'];
         </div>
     </section>
     <section class="content">
-		<div class="row">
-			<div class="col-sm-12">
-				<div class="panel panel-bd lobidrag">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-bd lobidrag">
                     <div class="panel-heading">
                         <?php 
-                        $notificatioAlert = get_sess("userdata")['candidate_notifcations'];
+                        $notificatioAlert = get_sess("userdata")['doctor_notification'];
                         ?>
                         <a class="btn btn-<?= ($notificatioAlert == 0) ? 'success' : 'danger'; ?> btn-sm" href="<?= admin_base_url()?>model/jobModel?act=notify&val=<?= ($notificatioAlert == 0) ? 1 : 0; ?>">Turn notifications <?= ($notificatioAlert == 0) ? 'on' : 'off'; ?></a>
                     </div>
@@ -277,7 +279,7 @@ $candiate_id = get_sess("userdata")['candidate_id'];
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $sql = query("SELECT * FROM tbl_job_notifications jn JOIN tbl_job j ON (j.job_id = jn.notify_job_id) WHERE jn.notify_user = $candiate_id AND notify_user_type = 'professional'");
+                                    $sql = query("SELECT * FROM tbl_job_notifications jn JOIN tbl_job j ON (j.job_id = jn.notify_job_id) WHERE jn.notify_user = $doc_id AND notify_user_type = 'doctor'");
                                     while ($row = fetch($sql))
                                     {
                                         ?>

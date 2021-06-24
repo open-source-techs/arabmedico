@@ -63,6 +63,12 @@
                     <span>Schedule</span>
                 </a>
             </li>
+            <li class="">
+                <a href="<?= admin_base_url();?>job-notification">
+                    <i class="fa fa-briefcase"></i>
+                    <span>Job Notification</span>
+                </a>
+            </li>
             <?php
             $sql_new = query("SELECT * FROM tbl_membership WHERE membership_id = ". get_sess('userdata')['doc_membership']);
             $fetch = fetch($sql_new);
