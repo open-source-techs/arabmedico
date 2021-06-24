@@ -1,7 +1,14 @@
 <?php require_once('layout/header.php');?>
 <?php require_once('layout/sidebar.php');?>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <?php
 $doc_id = get_sess("userdata")['candidate_id'];
+$titlesql = query("SELECT DISTINCT job_title FROM tbl_job ORDER BY job_title ASC ");
+$departsql = query("SELECT DISTINCT job_depart FROM tbl_job ORDER BY job_depart ASC ");
+$locationsql = query("SELECT DISTINCT job_location FROM tbl_job ORDER BY job_location ASC ");
 ?>
 <div class="content-wrapper">
     <section class="content-header">
@@ -19,6 +26,40 @@ $doc_id = get_sess("userdata")['candidate_id'];
                 </li>
                 <li class="active">Job Notifications</li>
             </ol>
+        </div>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-bd lobidrag">
+                    <div class="panel-heading">
+                        <h3>Subscribe to Notification</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <form action="<?= admin_base_url(); ?>model/jobModel" method="post">
+                                <div class="col-sm-6 form-group">
+                                    <label>Please select subscription Categroy</label>
+                                    <select class="form-control" name="sub_type" id="sub_type" required>
+                                        <option selected disabled>Select One</option>
+                                        <option value="job_title">Job Title</option>
+                                        <option value="speciality">Speciality</option>
+                                        <option value="location">Location</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-body">
+
+                                    </div>
+                                </div>
+                                 <div class="col-sm-12 reset-button">
+                                    <input type="submit" name="btn_save_subscription" class="btn btn-success" value="Save">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     <section class="content">
@@ -77,3 +118,62 @@ $doc_id = get_sess("userdata")['candidate_id'];
 <?php
 get_msg('msg');
 ?>
+<Script>
+    $(document).ready(function(){
+        var title = [
+            <?php
+            while($title = fetch($titlesql))
+            {
+                echo '"'.$title['job_title'].'",';
+            }
+            ?>
+        ];
+        var depart = [
+            <?php
+            while($depart = fetch($departsql))
+            {
+                echo '"'.$depart['job_depart'].'",';
+            }
+            ?>
+        ];
+        var location = [
+            <?php
+            while($location = fetch($locationsql))
+            {
+                echo '"'.$location['job_location'].'",';
+            }
+            ?>
+        ];
+        $("#sub_type").change(function(){
+            var val = $(this).val();
+            var act = "getfields";
+            $.ajax({
+                data:{subType: val, action: act},
+                url: "<?= admin_base_url();?>model/jobModel",
+                type: "post",
+                success: function(response){
+                    $(".form-body").empty();
+                    $(".form-body").html(response);
+                    if(val == "job_title")
+                    {
+                        $( ".job_title" ).autocomplete({
+                            source: title
+                        });
+                    }
+                    else if(val == "speciality")
+                    {
+                        $( ".txt_speciality" ).autocomplete({
+                            source: depart
+                        });
+                    }
+                    else if(val == "location")
+                    {
+                        $( ".txt_location" ).autocomplete({
+                            source: location
+                        });
+                    }
+                }
+            });
+        });
+    });
+</Script>
