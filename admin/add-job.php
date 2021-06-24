@@ -8,7 +8,7 @@
 $departsql = query("SELECT DISTINCT job_depart FROM tbl_job ORDER BY job_depart ASC ");
 $locationsql = query("SELECT DISTINCT job_location FROM tbl_job ORDER BY job_location ASC ");
 
-$depart_arab_sql = query("SELECT DISTINCT job_desc_ar FROM tbl_job ORDER BY job_desc_ar ASC ");
+$depart_arab_sql = query("SELECT DISTINCT job_depart_ar FROM tbl_job ORDER BY job_depart_ar ASC ");
 $location_arab_sql = query("SELECT DISTINCT job_location_ar FROM tbl_job ORDER BY job_location_ar ASC ");
 ?>
 <div class="content-wrapper">
@@ -168,7 +168,7 @@ get_msg('msg');
             <?php
             while($depart_arab = fetch($depart_arab_sql))
             {
-                echo '"'.$depart_arab['job_desc_ar'].'",';
+                echo '"'.$depart_arab['job_depart_ar'].'",';
             }
             ?>
         ];

@@ -58,15 +58,14 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     			    $jobTitle 		= $data['job_title'];
     			    $jobLocation 	= $data['job_location'];
     			    $jobdep_spec 	= $data['job_depart'];
-
-    			    $sqlprofessional = query("SELECT c.candidate_id FROM tbl_candidate c LEFT JOIN tbl_candiate_speciality cs ON (cs.can_speciality_id = c.candiate_speciality) JOIN tbl_candidate_country cc ON (cc.country_id = c.candidate_country) JOIN tbl_candidate_cities cct ON (cct.city_id = c.candidate_city) WHERE c.candidate_job LIKE '%".$jobTitle."%' OR cs.can_speciality_name LIKE '%".$jobdep_spec."%' OR cc.country_name LIKE '%".$jobLocation."%' OR cct.city_name LIKE '%".$jobLocation."%' ");
+    			    $sqlprofessional = query("SELECT * FROM `tbl_job_notify_sub` WHERE sub_userType = 'professional' AND (sub_type = 'job_title' OR sub_type = 'speciality' OR sub_type = 'location') AND (sub_value LIKE '%".$jobTitle."%' OR sub_value LIKE '%".$jobLocation."%' OR sub_value LIKE '%".$jobLocation."%') GROUP BY sub_user");
     			    While($notifyData = fetch($sqlprofessional))
     			    {
     			    	$notify['notify_job_id'] 		= $jobId;
     			    	$notify['notify_speciality'] 	= $jobdep_spec;
     			    	$notify['notify_job_location'] 	= $jobLocation;
     			    	$notify['notify_job_title'] 	= $jobTitle;
-    			    	$notify['notify_user'] 			= $notifyData['candidate_id'];
+    			    	$notify['notify_user'] 			= $notifyData['sub_user'];
     			    	$notify['notify_user_type'] 	= 'professional';
     			    	insert2($notify,'tbl_job_notifications');
     			    }
