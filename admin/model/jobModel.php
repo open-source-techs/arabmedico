@@ -58,7 +58,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     			    $jobTitle 		= $data['job_title'];
     			    $jobLocation 	= $data['job_location'];
     			    $jobdep_spec 	= $data['job_depart'];
-    			    $sqlprofessional = query("SELECT * FROM `tbl_job_notify_sub` WHERE sub_userType = 'professional' AND (sub_type = 'job_title' OR sub_type = 'speciality' OR sub_type = 'location') AND (sub_value LIKE '%".$jobTitle."%' OR sub_value LIKE '%".$jobLocation."%' OR sub_value LIKE '%".$jobLocation."%') GROUP BY sub_user");
+    			    $sqlprofessional = query("SELECT sub_user FROM tbl_job_notify_sub ns JOIN tbl_candidate c ON (ns.sub_user = c.candidate_id) WHERE sub_userType = 'professional' AND (sub_type = 'job_title' OR sub_type = 'speciality' OR sub_type = 'location') AND (sub_value LIKE '%".$jobTitle."%' OR sub_value LIKE '%".$jobLocation."%' OR sub_value LIKE '%".$jobLocation."%') AND c.candidate_notifcations = 1 GROUP BY sub_user");
     			    While($notifyData = fetch($sqlprofessional))
     			    {
     			    	$notify['notify_job_id'] 		= $jobId;

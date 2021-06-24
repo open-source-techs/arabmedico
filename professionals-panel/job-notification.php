@@ -9,6 +9,7 @@ $doc_id = get_sess("userdata")['candidate_id'];
 $titlesql = query("SELECT DISTINCT job_title FROM tbl_job ORDER BY job_title ASC ");
 $departsql = query("SELECT DISTINCT job_depart FROM tbl_job ORDER BY job_depart ASC ");
 $locationsql = query("SELECT DISTINCT job_location FROM tbl_job ORDER BY job_location ASC ");
+$candiate_id = get_sess("userdata")['candidate_id'];
 ?>
 <div class="content-wrapper">
     <section class="content-header">
@@ -33,25 +34,122 @@ $locationsql = query("SELECT DISTINCT job_location FROM tbl_job ORDER BY job_loc
             <div class="col-sm-12">
                 <div class="panel panel-bd lobidrag">
                     <div class="panel-heading">
-                        <h3>Subscribe to Notification</h3>
+                        <h3>Set Job Notification</h3>
+                        <span>You can select 3 job titles, 3 specialities and 5 locations</span>
                     </div>
                     <div class="panel-body">
                         <div class="row">
                             <form action="<?= admin_base_url(); ?>model/jobModel" method="post">
-                                <div class="col-sm-6 form-group">
-                                    <label>Please select subscription Categroy</label>
-                                    <select class="form-control" name="sub_type" id="sub_type" required>
-                                        <option selected disabled>Select One</option>
-                                        <option value="job_title">Job Title</option>
-                                        <option value="speciality">Speciality</option>
-                                        <option value="location">Location</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-body">
-
-                                    </div>
-                                </div>
+                                <?php
+                                $sub_type = 'job_title';
+                                $sql = query("SELECT * FROM tbl_job_notify_sub WHERE sub_type = '$sub_type' AND sub_userType = 'professional' AND sub_user = '$candiate_id' "); 
+                                $num_rows = nrows($sql);
+                                $job_field = '';
+                                if($sub_type == "job_title")
+                                {
+                                    if($num_rows > 0)
+                                    {
+                                        $j=0;
+                                        while ($data = fetch($sql))
+                                        { 
+                                            $j++;
+                                            $job_field .= '<div class="col-sm-6 form-group">
+                                                <label>Job Title no '.$j.'</label>
+                                                <input type="text" name="txt_job_title['.$data['sub_id'].']" value="'.$data['sub_value'].'" class="form-control job_title">
+                                            </div>';
+                                        }
+                                        $limit = 3 - $num_rows;
+                                        for($i = 0; $i < $limit; $i++)
+                                        {
+                                            $job_field .= '<div class="col-sm-6 form-group">
+                                                <label>Job Titleno '. (3 - ($limit - $i - 1 )) . ' </label>
+                                                <input type="text" name="txt_job_title[0]['.$i.']" class="form-control job_title">
+                                            </div>';
+                                        }
+                                        echo $job_field;
+                                    }
+                                    else
+                                    {
+                                        for($i = 0; $i < 3; $i++)
+                                        {
+                                            $job_field .= '<div class="col-sm-6 form-group">
+                                                <label>Job Title  no ' . ($i + 1) . '</label>
+                                                <input type="text" name="txt_job_title[0]['.$i.']" class="form-control job_title">
+                                            </div>';
+                                        }
+                                    }
+                                }
+                                $sub_type = 'speciality';
+                                $sql = query("SELECT * FROM tbl_job_notify_sub WHERE sub_type = '$sub_type' AND sub_userType = 'professional' AND sub_user = '$candiate_id' "); 
+                                $num_rows = nrows($sql);
+                                $job_field = '';
+                                if($num_rows > 0)
+                                {
+                                    $j=0;
+                                    while ($data = fetch($sql))
+                                    { 
+                                        $j++;
+                                        $job_field .= '<div class="col-sm-6 form-group">
+                                            <label>Speciality no '.$j.'</label>
+                                            <input type="text" name="txt_speciality['.$data['sub_id'].']" value="'.$data['sub_value'].'" class="form-control txt_speciality">
+                                        </div>';
+                                    }
+                                    $limit = 3 - $num_rows;
+                                    for($i = 0; $i < $limit; $i++)
+                                    {
+                                        $job_field .= '<div class="col-sm-6 form-group">
+                                            <label>Speciality no '. (3 - ($limit - $i - 1 )) . ' </label>
+                                            <input type="text" name="txt_speciality[0]['.$i.']" class="form-control txt_speciality" >
+                                        </div>';
+                                    }
+                                }
+                                else
+                                {
+                                    for($i = 0; $i < 3; $i++)
+                                    {
+                                        $job_field .= '<div class="col-sm-6 form-group">
+                                            <label>Speciality no ' . ($i + 1) . '</label>
+                                            <input type="text" name="txt_speciality[0]['.$i.']" class="form-control txt_speciality" >
+                                        </div>';
+                                    }
+                                }
+                                echo $job_field;
+                                $sub_type = 'location';
+                                $sql = query("SELECT * FROM tbl_job_notify_sub WHERE sub_type = '$sub_type' AND sub_userType = 'professional' AND sub_user = '$candiate_id' "); 
+                                $num_rows = nrows($sql);
+                                $job_field = '';
+                                if($num_rows > 0)
+                                {
+                                    $j = 0;
+                                    while ($data = fetch($sql))
+                                    { 
+                                        $j++;
+                                        $job_field .= '<div class="col-sm-6 form-group">
+                                            <label>Location no '.$j.'</label>
+                                            <input type="text" name="txt_location['.$data['sub_id'].']" value="'.$data['sub_value'].'" class="form-control txt_location">
+                                        </div>';
+                                    }
+                                    $limit = 5 - $num_rows;
+                                    for($i = 0; $i < $limit; $i++)
+                                    {
+                                        $job_field .= '<div class="col-sm-6 form-group">
+                                            <label>Location no '. (5 - ($limit - $i - 1 )) . ' </label>
+                                            <input type="text" name="txt_location[0]['.$i.']" class="form-control txt_location">
+                                        </div>';
+                                    }
+                                }
+                                else
+                                {
+                                    for($i = 0; $i < 5; $i++)
+                                    {
+                                        $job_field .= '<div class="col-sm-6 form-group">
+                                            <label>Location no ' . ($i + 1) . '</label>
+                                            <input type="text" name="txt_location[0]['.$i.']" class="form-control txt_location">
+                                        </div>';
+                                    }
+                                }
+                                echo $job_field;
+                                ?>
                                  <div class="col-sm-12 reset-button">
                                     <input type="submit" name="btn_save_subscription" class="btn btn-success" value="Save">
                                 </div>
@@ -67,6 +165,10 @@ $locationsql = query("SELECT DISTINCT job_location FROM tbl_job ORDER BY job_loc
 			<div class="col-sm-12">
 				<div class="panel panel-bd lobidrag">
                     <div class="panel-heading">
+                        <?php 
+                        $notificatioAlert = get_sess("userdata")['candidate_notifcations'];
+                        ?>
+                        <a class="btn btn-<?= ($notificatioAlert == 0) ? 'success' : 'danger'; ?> btn-sm" href="<?= admin_base_url()?>model/jobModel?act=notify&val=<?= ($notificatioAlert == 0) ? 1 : 0; ?>">Turn notifications <?= ($notificatioAlert == 0) ? 'on' : 'off'; ?></a>
                     </div>
                     <div class="panel-body">
                         <div class="row">
@@ -144,36 +246,14 @@ get_msg('msg');
             }
             ?>
         ];
-        $("#sub_type").change(function(){
-            var val = $(this).val();
-            var act = "getfields";
-            $.ajax({
-                data:{subType: val, action: act},
-                url: "<?= admin_base_url();?>model/jobModel",
-                type: "post",
-                success: function(response){
-                    $(".form-body").empty();
-                    $(".form-body").html(response);
-                    if(val == "job_title")
-                    {
-                        $( ".job_title" ).autocomplete({
-                            source: title
-                        });
-                    }
-                    else if(val == "speciality")
-                    {
-                        $( ".txt_speciality" ).autocomplete({
-                            source: depart
-                        });
-                    }
-                    else if(val == "location")
-                    {
-                        $( ".txt_location" ).autocomplete({
-                            source: location
-                        });
-                    }
-                }
-            });
+        $( ".job_title" ).autocomplete({
+            source: title
+        });
+        $( ".txt_speciality" ).autocomplete({
+            source: depart
+        });
+        $( ".txt_location" ).autocomplete({
+            source: location
         });
     });
 </Script>
