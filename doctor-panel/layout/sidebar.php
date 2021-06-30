@@ -21,25 +21,31 @@
                     <span>Dashboard</span>
                 </a>
             </li>
-            <li class="">
+            <li class="<?php active_page('account'); ?>">
                 <a href="<?= admin_base_url();?>account">
                     <i class="fa fa-lock"></i>
                     <span>My Account</span>
                 </a>
             </li>
-            <li class="">
+            <li class="<?php active_page('myprofile'); ?>">
                 <a href="<?= admin_base_url();?>myprofile">
                     <i class="fa fa-user-md"></i>
                     <span>My Profile</span>
                 </a>
             </li>
-            <li class="">
+            <li class="<?php active_page('inbox'); ?>">
+                <a href="<?= admin_base_url();?>inbox">
+                    <i class="fa fa-envelope"></i>
+                    <span>Inbox</span>
+                </a>
+            </li>
+            <li class="<?php active_page('photo-gallery'); ?>">
                 <a href="<?= admin_base_url();?>photo-gallery">
                     <i class="fa fa-camera"></i>
                     <span>Photo Gallery</span>
                 </a>
             </li>
-            <li class="">
+            <li class="<?php active_page('video-gallery'); ?>">
                 <a href="<?= admin_base_url();?>video-gallery">
                     <i class="fa fa-video-camera"></i>
                     <span>Video Gallery</span>
@@ -63,7 +69,7 @@
                     <span>Schedule</span>
                 </a>
             </li>
-            <li class="">
+            <li class="<?php active_page('job-notification'); ?>">
                 <a href="<?= admin_base_url();?>job-notification">
                     <i class="fa fa-briefcase"></i>
                     <span>Job Notification</span>
