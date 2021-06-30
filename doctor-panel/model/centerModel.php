@@ -170,13 +170,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         }
         if(insert2($data,"tbl_chat"))
         {
-            set_sess("success", "Message sent");
+            set_msg("Success", "Message sent",'success');
             jump(admin_base_url()."inbox?IdChat=".$data['receiver']."&Utype=".$data['receiver_type']);
         }
         else
         {
-            set_sess("error", "Unable to send the message");
-            jump(admin_base_url()."inbox?IdChat=".$data['receiver']."&Utype=".$data['receiver_type']);
+            set_msg("Error", "Unable to send the message",'error');
+            jump(admin_base_url()."inbox");
         }
     }
     else if(isset($_POST['fetch_list']))
