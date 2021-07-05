@@ -402,9 +402,9 @@ video{
                             <ul class="user_list list-unstyled mb-0 mt-3 myclass">
                                 <script>var sender = Array();</script>
                                 <?php
-                                $doctorID = get_sess("userdata")['clinic_id'];
+                                $doctorID = get_sess("userdata")['org_id'];
                                 $senderlist =array();
-                                $sendersql = query("SELECT DISTINCT(c.sender), c.sender_type FROM tbl_chat c WHERE c.receiver = $doctorID AND receiver_type = 'clinic'");
+                                $sendersql = query("SELECT DISTINCT(c.sender), c.sender_type FROM tbl_chat c WHERE c.receiver = $doctorID AND receiver_type = 'organizer'");
                                 while ($senders = fetch($sendersql))
                                 {
                                     // echo "acb";
@@ -501,7 +501,7 @@ video{
                                                 $docSQl     = query("SELECT * FROM tbl_organizer WHERE org_id = $senderID");
                                                 $docData    = fetch($docSQl);
                                                 ?>
-                                                <img style="width: 50px;height: 50px;" src="<?= file_url().$docData['org_name']?>" alt="doctor-image" />
+                                                <img style="width: 50px;height: 50px;" src="<?= file_url().$docData['org_icon']?>" alt="doctor-image" />
                                                 <div class="about">
                                                     <div class="name"><?= $docData['org_name'];?></div>
                                                     <div class="status online">
@@ -547,11 +547,11 @@ video{
                                 if(isset($senderlist[0]))
                                 {
                                     $send_list = join(",",$senderlist);
-                                    $sendersql = query("SELECT DISTINCT(c.receiver), c.receiver_type FROM tbl_chat c WHERE c.sender_type = 'clinic' AND c.sender = $doctorID AND c.receiver NOT IN ($send_list) ");
+                                    $sendersql = query("SELECT DISTINCT(c.receiver), c.receiver_type FROM tbl_chat c WHERE c.sender_type = 'organizer' AND c.sender = $doctorID AND c.receiver NOT IN ($send_list) ");
                                 }
                                 else
                                 {
-                                    $sendersql = query("SELECT DISTINCT(c.receiver), c.receiver_type FROM tbl_chat c WHERE c.sender_type = 'clinic' AND c.sender = $doctorID");
+                                    $sendersql = query("SELECT DISTINCT(c.receiver), c.receiver_type FROM tbl_chat c WHERE c.sender_type = 'organizer' AND c.sender = $doctorID");
                                 }
                                 while ($sender = fetch($sendersql))
                                 {
@@ -838,7 +838,7 @@ video{
                                                     $docData    = fetch($docSQl);
                                                     ?>
                                                     <div class="status message-data">
-                                                    <span class="name"><?= $docData['doc_name'];?></span>
+                                                    <span class="name"><?= $docData['org_name'];?></span>
                                                         <?= date('d/m/Y h:i a', strtotime($msg['date']));?>
                                                     </div>
                                                     <?php
@@ -920,9 +920,9 @@ video{
                                             </li> 
                                             <?php
                                         }
-                                        query("UPDATE `tbl_chat` SET chat_read = 1 WHERE sender = $senderID AND receiver = $doctorID AND receiver_type = 'clinic' AND sender_type = '$sender_type'");
+                                        query("UPDATE `tbl_chat` SET chat_read = 1 WHERE sender = $senderID AND receiver = $doctorID AND receiver_type = 'organizer' AND sender_type = '$sender_type'");
                                     }
-                                    $msgsql = query("SELECT * FROM tbl_chat WHERE sender = $doctorID AND receiver = $senderID AND receiver_type = '$sender_type' AND sender_type = 'clinic' ORDER BY chat_id ASC");
+                                    $msgsql = query("SELECT * FROM tbl_chat WHERE sender = $doctorID AND receiver = $senderID AND receiver_type = '$sender_type' AND sender_type = 'organizer' ORDER BY chat_id ASC");
                                     while ($msg = fetch($msgsql))
                                     {
                                         $receiverId = $msg['receiver'];
@@ -996,7 +996,7 @@ video{
                                             </div>
                                         </li>
                                         <?php
-                                        query("UPDATE `tbl_chat` SET chat_read = 1 WHERE sender = $doctorID AND receiver = $senderID AND receiver_type = '$sender_type' AND sender_type = 'clinic'");
+                                        query("UPDATE `tbl_chat` SET chat_read = 1 WHERE sender = $doctorID AND receiver = $senderID AND receiver_type = '$sender_type' AND sender_type = 'organizer'");
                                     }
                                     ?>
                                 </ul>

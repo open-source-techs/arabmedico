@@ -480,7 +480,7 @@ video{
                                                 $docSQl     = query("SELECT * FROM tbl_employer WHERE emp_id = $senderID");
                                                 $docData    = fetch($docSQl);
                                                 ?>
-                                                <img style="width: 50px;height: 50px;" src="<?= file_url().$docData['emp_name']?>" alt="doctor-image" />
+                                                <img style="width: 50px;height: 50px;" src="<?= file_url().$docData['emp_logo']?>" alt="doctor-image" />
                                                 <div class="about">
                                                     <div class="name"><?= $docData['emp_name'];?></div>
                                                     <div class="status online">
@@ -501,7 +501,7 @@ video{
                                                 $docSQl     = query("SELECT * FROM tbl_organizer WHERE org_id = $senderID");
                                                 $docData    = fetch($docSQl);
                                                 ?>
-                                                <img style="width: 50px;height: 50px;" src="<?= file_url().$docData['org_name']?>" alt="doctor-image" />
+                                                <img style="width: 50px;height: 50px;" src="<?= file_url().$docData['org_icon']?>" alt="doctor-image" />
                                                 <div class="about">
                                                     <div class="name"><?= $docData['org_name'];?></div>
                                                     <div class="status online">
@@ -827,7 +827,7 @@ video{
                                                     $docData    = fetch($docSQl);
                                                     ?>
                                                     <div class="status message-data">
-                                                    <span class="name"><?= $docData['doc_name'];?></span>
+                                                    <span class="name"><?= $docData['emp_name'];?></span>
                                                         <?= date('d/m/Y h:i a', strtotime($msg['date']));?>
                                                     </div>
                                                     <?php
@@ -838,7 +838,7 @@ video{
                                                     $docData    = fetch($docSQl);
                                                     ?>
                                                     <div class="status message-data">
-                                                    <span class="name"><?= $docData['doc_name'];?></span>
+                                                    <span class="name"><?= $docData['org_name'];?></span>
                                                         <?= date('d/m/Y h:i a', strtotime($msg['date']));?>
                                                     </div>
                                                     <?php
