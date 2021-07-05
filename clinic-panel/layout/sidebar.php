@@ -39,7 +39,12 @@
                     <span>Doctor</span>
                 </a>
             </li>
-            
+            <li class="<?php active_page('inbox'); ?>">
+                <a href="<?= admin_base_url();?>inbox">
+                    <i class="fa fa-envelope"></i>
+                    <span>Inbox</span>
+                </a>
+            </li>
             <li class="<?php active_page('all-certificates'); ?>">
                 <a href="<?= admin_base_url();?>service-panel">
                     <i class="fa fa-sitemap"></i>
