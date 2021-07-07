@@ -2,7 +2,7 @@
 <?php 
 if(get_sess('user_logged_in') != 1)
 {
-    jump(admin_base_url()."login.php");
+    jump(admin_base_url()."login");
 }
 ?>
 <!DOCTYPE html>
