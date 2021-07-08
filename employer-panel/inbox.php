@@ -2,7 +2,7 @@
 <?php require_once('layout/sidebar.php');?>
 <?php
 $doctorID = get_sess("userdata")['emp_id'];
-$cntctSql = query("SELECT * FROM tbl_user_contact WHERE my_id = '$doctorID' AND my_type = 'doctor'");
+$cntctSql = query("SELECT * FROM tbl_user_contact WHERE my_id = '$doctorID' AND my_type = 'employer'");
 $mycontacts = array();
 while($contacts = fetch($cntctSql))
 {

@@ -338,7 +338,27 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 }
 else if($_SERVER['REQUEST_METHOD'] == "GET")
 {
-	jump(admin_base_url());
+	if(isset($_GET['act']) && $_GET['act'] == 'addContact')
+	{
+		$data['my_id'] 			= get_sess("userdata")['emp_id'];
+		$data['my_type'] 		= 'employer';
+		$data['contact_id'] 	= $_GET['contactID'];
+		$data['contact_type'] 	= $_GET['type'];
+		if(insert($data,'tbl_user_contact'))
+		{
+			set_msg("Success", "Contact added successfully",'success');
+			echo "<script>window.history.go(-1);</script>";
+		}
+		else
+		{
+			set_msg("Error", "Unable to add contact, please try again later",'error');
+			echo "<script>window.history.go(-1);</script>";
+		}
+	}
+	else
+	{
+		jump(admin_base_url());
+	}
 }
 else
 {
