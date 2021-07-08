@@ -459,7 +459,7 @@ video{
                                                 $docSQl     = query("SELECT * FROM tbl_clinic WHERE clinic_id = $senderID");
                                                 $docData    = fetch($docSQl);
                                                 ?>
-                                                <img style="width: 50px;height: 50px;" src="<?= file_url().$docData['clinic_name']?>" alt="doctor-image" />
+                                                <img style="width: 50px;height: 50px;" src="<?= file_url().$docData['clinic_icon']?>" alt="doctor-image" />
                                                 <div class="about">
                                                     <div class="name"><?= $docData['clinic_name'];?></div>
                                                     <div class="status online">
@@ -522,7 +522,7 @@ video{
                                                 $docSQl     = query("SELECT * FROM tbl_candidate WHERE candidate_id = $senderID");
                                                 $docData    = fetch($docSQl);
                                                 ?>
-                                                <img style="width: 50px;height: 50px;" src="<?= file_url().$docData['candidate_name']?>" alt="doctor-image" />
+                                                <img style="width: 50px;height: 50px;" src="<?= file_url().$docData['candidate_image']?>" alt="doctor-image" />
                                                 <div class="about">
                                                     <div class="name"><?= $docData['candidate_name'];?></div>
                                                     <div class="status online">

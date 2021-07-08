@@ -1,377 +1,389 @@
 <?php require_once('layout/header.php');?>
 <?php require_once('layout/sidebar.php');?>
+<?php
+$doctorID = get_sess("userdata")['doc_id'];
+$cntctSql = query("SELECT * FROM tbl_user_contact WHERE my_id = '$doctorID' AND my_type = 'doctor'");
+$mycontacts = array();
+while($contacts = fetch($cntctSql))
+{
+    $mycontacts[] = $contacts;
+}
+?>
 <script src="<?= admin_base_url();?>assets/plugins/jQuery/jquery-1.12.4.min.js" type="text/javascript"></script>
 <script src="<?= admin_base_url();?>assets/plugins/jquery-ui-1.12.1/jquery-ui.min.js" type="text/javascript"></script>
 <style>
-.card{
-    background: #fff;
-}
-.chat_list {
-    -moz-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    -webkit-transition: all 0.5s;
-    transition: all 0.5s;
-    width: 250px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    padding: 20px 20px 20px 0;
-    z-index: 1
-}
-
-@media only screen and (max-width: 767px) {
-    .chat_list {
-        -webkit-box-shadow: 0 0 10px rgba(41, 42, 51, 0.1);
-        -moz-box-shadow: 0 0 10px rgba(41, 42, 51, 0.1);
-        -ms-box-shadow: 0 0 10px rgba(41, 42, 51, 0.1);
-        box-shadow: 0 0 10px rgba(41, 42, 51, 0.1);
-        overflow-x: auto;
+    .card{
         background: #fff;
-        padding: 15px;
-        height: 100vh;
-        width: 280px;
-        position: fixed;
-        top: 0;
-        left: -400px
     }
-    .chat_list.open {
-        left: 0
-    }
-}
-
-.chat_list .nav-tabs {
-    padding: 0
-}
-
-.chat_list .user_list li {
-    display: flex;
-    padding: 10px 0
-}
-
-.chat_list .user_list li a {
-    -moz-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    -webkit-transition: all 0.5s;
-    transition: all 0.5s;
-    display: block;
-    width: 100%;
-    border-right: 2px solid transparent
-}
-
-.chat_list .user_list li a:hover {
-    border-color: #999
-}
-
-.chat_list .user_list .name {
-    font-size: 14px;
-    color: #222
-}
-
-.chat_list .user_list img {
-    -webkit-border-radius: 35px;
-    -moz-border-radius: 35px;
-    -ms-border-radius: 35px;
-    border-radius: 35px;
-    width: 35px;
-    float: left
-}
-
-.chat_list .user_list .about {
-    float: left;
-    padding-left: 8px
-}
-
-.chat_window {
-    margin-left: 250px
-}
-
-@media only screen and (max-width: 767px) {
-    .chat_window {
-        margin: 0
-    }
-}
-
-.chat_window .chat-header {
-    display: flex;
-    justify-content: space-between
-}
-
-.chat_window .chat-header img {
-    -webkit-border-radius: 40px;
-    -moz-border-radius: 40px;
-    -ms-border-radius: 40px;
-    border-radius: 40px;
-    float: left;
-    width: 40px;
-    height: 40px
-}
-
-.chat_window .chat-header .chat-about {
-    float: left;
-    padding-left: 10px
-}
-
-.chat_window .chat-header .chat-with {
-    font-weight: 700;
-    font-size: 16px
-}
-
-.chat_window .chat-header .chat-num-messages {
-    color: #444
-}
-
-.chat_window .chat-history {
-    padding: 20px;
-    border-bottom: 2px solid #fff
-}
-
-@media only screen and (max-width: 1024px) {
-    .chat_window .chat-history {
-        height: calc(100vh - 340px);
-        overflow-x: auto
-    }
-}
-
-@media only screen and (max-width: 992px) {
-    .chat_window .chat-history {
-        height: calc(100vh - 320px);
-        overflow-x: auto
-    }
-}
-
-@media only screen and (max-width: 767px) {
-    .chat_window .chat-history {
-        height: calc(100vh - 280px);
-        overflow-x: auto
-    }
-}
-
-.chat_window .chat-history li {
-    list-style: none
-}
-
-.chat_window .chat-history .message-data {
-    margin-bottom: 15px
-}
-
-.chat_window .chat-history .message {
-    -webkit-border-radius: 7px;
-    -moz-border-radius: 7px;
-    -ms-border-radius: 7px;
-    border-radius: 7px;
-    color: #444;
-    font-size: 15px;
-    padding: 18px 20px;
-    line-height: 26px;
-    margin-bottom: 30px;
-    width: 90%;
-    position: relative
-}
-
-.chat_window .chat-history .message:after {
-    bottom: 100%;
-    left: 7%;
-    border: solid transparent;
-    content: " ";
-    height: 0;
-    width: 0;
-    position: absolute;
-    pointer-events: none;
-    border-bottom-color: #f0f0f0;
-    border-width: 10px;
-    margin-left: -10px
-}
-
-.chat_window .chat-history .message .attachment {
-    display: flex
-}
-
-.chat_window .chat-history .my-message {
-    background: #f0f0f0
-}
-
-.chat_window .chat-history .my-message:after {
-    bottom: 100%;
-    left: 7%;
-    border: solid transparent;
-    content: " ";
-    height: 0;
-    width: 0;
-    position: absolute;
-    pointer-events: none;
-    border-bottom-color: #f0f0f0;
-    border-width: 10px;
-    margin-left: -10px
-}
-
-.chat_window .chat-history .other-message {
-    background: #eceff1
-}
-
-.chat_window .chat-history .other-message:after {
-    border-bottom-color: #eceff1;
-    left: 93%
-}
-
-.chat_window .list_btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 9999;
-    padding: 0;
-    width: 40px;
-    height: 40px;
-    text-align: center;
-    line-height: 40px;
-    display: none
-}
-
-@media only screen and (max-width: 767px) {
-    .chat_window .list_btn {
-        display: block
-    }
-}
-
-.status {
-    font-size: 12px;
-    color: #999
-}
-
-.status i {
-    font-size: 10px
-}
-
-.status.online i {
-    color: #04BE5B
-}
-
-.status.offline i {
-    color: #FF9948
-}
-
-.status.me i {
-    color: #292a33
-}
-
-.status .name {
-    color: #444;
-    font-size: 16px;
-    font-weight: 700
-}
-
-.status .time {
-    color: #999;
-    font-size: 12px;
-    padding: 0 5px
-}
-
-@media only screen and (min-width: 768px) and (max-width: 992px) {
     .chat_list {
-        height: 650px;
-        overflow-x: auto
+        -moz-transition: all 0.5s;
+        -o-transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+        transition: all 0.5s;
+        width: 250px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding: 20px 20px 20px 0;
+        z-index: 1
     }
-    .chat-history {
-        height: 600px;
-        overflow-x: auto
+
+    @media only screen and (max-width: 767px) {
+        .chat_list {
+            -webkit-box-shadow: 0 0 10px rgba(41, 42, 51, 0.1);
+            -moz-box-shadow: 0 0 10px rgba(41, 42, 51, 0.1);
+            -ms-box-shadow: 0 0 10px rgba(41, 42, 51, 0.1);
+            box-shadow: 0 0 10px rgba(41, 42, 51, 0.1);
+            overflow-x: auto;
+            background: #fff;
+            padding: 15px;
+            height: 100vh;
+            width: 280px;
+            position: fixed;
+            top: 0;
+            left: -400px
+        }
+        .chat_list.open {
+            left: 0
+        }
     }
-}
 
-.contact .c_list .c_name {
-    font-weight: 600
-}
+    .chat_list .nav-tabs {
+        padding: 0
+    }
 
-.contact .c_list address i {
-    font-size: 15px;
-    width: 15px
-}
-.chat_list{
-    padding: 0px 15px 15px 0 !important;
-}
-.myclass{
-    background: #fff;
-    margin-top: 0px !important;
-    border: 1px solid #eee;
-        height: 830px;
-    overflow-y:hidden;  
-}
-.chat_window{
-        height: 830px;
-}
-.chat-history{
-    overflow-y: scroll;
-    height: 540px;
-}
-.chat-history::-webkit-scrollbar-track {
-    background-color: transparent;
-}
+    .chat_list .user_list li {
+        display: flex;
+        padding: 10px 0
+    }
 
-.chat-history::-webkit-scrollbar-thumb {
-    background-color: #999;
-    border-radius: 10px;
-}
-.chat-history::-webkit-scrollbar {
-    width: 5px;
-    background-color: transparent;
-    position: absolute;
-}
-.myclass:hover
-{
-    overflow-y: scroll !important; 
-}
-.myclass li{
-    border-bottom: 1px solid #eee;  
-}
-.myclass li:last-child
-{
-    border-bottom:none !important;
-}
-.myclass li.active{
-    background: #e5f5ff;
+    .chat_list .user_list li a {
+        -moz-transition: all 0.5s;
+        -o-transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+        transition: all 0.5s;
+        display: block;
+        width: 100%;
+        border-right: 2px solid transparent
+    }
 
-}
-.chat_list .myclass li a{
-    padding: 0px 10px !important;
-    border-right: none !important;
-    border-left:3px solid transparent !important;
-}
-.chat_list .myclass li.active a
-{
-    border-color: #11c2de !important;
-} 
-.chat_list .myclass li:hover a
-{
-    border-color: #999 !important;
-} 
-.myclass::-webkit-scrollbar-track {
-    background-color: transparent;
-}
+    .chat_list .user_list li a:hover {
+        border-color: #999
+    }
 
-.myclass::-webkit-scrollbar-thumb {
-    background-color: #999;
-    border-radius: 10px;
-}
-.myclass::-webkit-scrollbar {
-    width: 5px;
-    background-color: transparent;
-    position: absolute;
-}
-.count_class{
-    margin-left: 5px;
-    padding: 1px 4px;
-    background: #fb9898;
-    color: white;
-    font-weight: bold;
-}
-.attachment img{
-    max-height:300px;
-    width:auto;
-}
-.chat-header .user{
-    padding-top: 15px;
-}
-video{
-    width: 100%;
-}
+    .chat_list .user_list .name {
+        font-size: 14px;
+        color: #222
+    }
+
+    .chat_list .user_list img {
+        -webkit-border-radius: 35px;
+        -moz-border-radius: 35px;
+        -ms-border-radius: 35px;
+        border-radius: 35px;
+        width: 35px;
+        float: left
+    }
+
+    .chat_list .user_list .about {
+        float: left;
+        padding-left: 8px
+    }
+
+    .chat_window {
+        margin-left: 250px
+    }
+
+    @media only screen and (max-width: 767px) {
+        .chat_window {
+            margin: 0
+        }
+    }
+
+    .chat_window .chat-header {
+        display: flex;
+        justify-content: space-between
+    }
+
+    .chat_window .chat-header img {
+        -webkit-border-radius: 40px;
+        -moz-border-radius: 40px;
+        -ms-border-radius: 40px;
+        border-radius: 40px;
+        float: left;
+        width: 40px;
+        height: 40px
+    }
+
+    .chat_window .chat-header .chat-about {
+        float: left;
+        padding-left: 10px
+    }
+
+    .chat_window .chat-header .chat-with {
+        font-weight: 700;
+        font-size: 16px
+    }
+
+    .chat_window .chat-header .chat-num-messages {
+        color: #444
+    }
+
+    .chat_window .chat-history {
+        padding: 20px;
+        border-bottom: 2px solid #fff
+    }
+
+    @media only screen and (max-width: 1024px) {
+        .chat_window .chat-history {
+            height: calc(100vh - 340px);
+            overflow-x: auto
+        }
+    }
+
+    @media only screen and (max-width: 992px) {
+        .chat_window .chat-history {
+            height: calc(100vh - 320px);
+            overflow-x: auto
+        }
+    }
+
+    @media only screen and (max-width: 767px) {
+        .chat_window .chat-history {
+            height: calc(100vh - 280px);
+            overflow-x: auto
+        }
+    }
+
+    .chat_window .chat-history li {
+        list-style: none
+    }
+
+    .chat_window .chat-history .message-data {
+        margin-bottom: 15px
+    }
+
+    .chat_window .chat-history .message {
+        -webkit-border-radius: 7px;
+        -moz-border-radius: 7px;
+        -ms-border-radius: 7px;
+        border-radius: 7px;
+        color: #444;
+        font-size: 15px;
+        padding: 18px 20px;
+        line-height: 26px;
+        margin-bottom: 30px;
+        width: 90%;
+        position: relative
+    }
+
+    .chat_window .chat-history .message:after {
+        bottom: 100%;
+        left: 7%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+        border-bottom-color: #f0f0f0;
+        border-width: 10px;
+        margin-left: -10px
+    }
+
+    .chat_window .chat-history .message .attachment {
+        display: flex
+    }
+
+    .chat_window .chat-history .my-message {
+        background: #f0f0f0
+    }
+
+    .chat_window .chat-history .my-message:after {
+        bottom: 100%;
+        left: 7%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+        border-bottom-color: #f0f0f0;
+        border-width: 10px;
+        margin-left: -10px
+    }
+
+    .chat_window .chat-history .other-message {
+        background: #eceff1
+    }
+
+    .chat_window .chat-history .other-message:after {
+        border-bottom-color: #eceff1;
+        left: 93%
+    }
+
+    .chat_window .list_btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 9999;
+        padding: 0;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        display: none
+    }
+
+    @media only screen and (max-width: 767px) {
+        .chat_window .list_btn {
+            display: block
+        }
+    }
+
+    .status {
+        font-size: 12px;
+        color: #999
+    }
+
+    .status i {
+        font-size: 10px
+    }
+
+    .status.online i {
+        color: #04BE5B
+    }
+
+    .status.offline i {
+        color: #FF9948
+    }
+
+    .status.me i {
+        color: #292a33
+    }
+
+    .status .name {
+        color: #444;
+        font-size: 16px;
+        font-weight: 700
+    }
+
+    .status .time {
+        color: #999;
+        font-size: 12px;
+        padding: 0 5px
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+        .chat_list {
+            height: 650px;
+            overflow-x: auto
+        }
+        .chat-history {
+            height: 600px;
+            overflow-x: auto
+        }
+    }
+
+    .contact .c_list .c_name {
+        font-weight: 600
+    }
+
+    .contact .c_list address i {
+        font-size: 15px;
+        width: 15px
+    }
+    .chat_list{
+        padding: 0px 15px 15px 0 !important;
+    }
+    .myclass{
+        background: #fff;
+        margin-top: 0px !important;
+        border: 1px solid #eee;
+            height: 830px;
+        overflow-y:hidden;  
+    }
+    .chat_window{
+            height: 830px;
+    }
+    .chat-history{
+        overflow-y: scroll;
+        height: 540px;
+    }
+    .chat-history::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+
+    .chat-history::-webkit-scrollbar-thumb {
+        background-color: #999;
+        border-radius: 10px;
+    }
+    .chat-history::-webkit-scrollbar {
+        width: 5px;
+        background-color: transparent;
+        position: absolute;
+    }
+    .myclass:hover
+    {
+        overflow-y: scroll !important; 
+    }
+    .myclass li{
+        border-bottom: 1px solid #eee;  
+    }
+    .myclass li:last-child
+    {
+        border-bottom:none !important;
+    }
+    .myclass li.active{
+        background: #e5f5ff;
+
+    }
+    .chat_list .myclass li a{
+        padding: 0px 10px !important;
+        border-right: none !important;
+        border-left:3px solid transparent !important;
+    }
+    .chat_list .myclass li.active a
+    {
+        border-color: #11c2de !important;
+    } 
+    .chat_list .myclass li:hover a
+    {
+        border-color: #999 !important;
+    } 
+    .myclass::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+
+    .myclass::-webkit-scrollbar-thumb {
+        background-color: #999;
+        border-radius: 10px;
+    }
+    .myclass::-webkit-scrollbar {
+        width: 5px;
+        background-color: transparent;
+        position: absolute;
+    }
+    .count_class{
+        margin-left: 5px;
+        padding: 1px 4px;
+        background: #fb9898;
+        color: white;
+        font-weight: bold;
+    }
+    .attachment img{
+        max-height:300px;
+        width:auto;
+    }
+    .chat-header .user{
+        padding-top: 15px;
+    }
+    video{
+        width: 100%;
+    }
+    .addToContact{
+        padding: 24px 20px 0px 0px;
+    }
 </style>
 <div class="content-wrapper">
     <section class="content-header">
@@ -402,7 +414,6 @@ video{
                             <ul class="user_list list-unstyled mb-0 mt-3 myclass">
                                 <script>var sender = Array();</script>
                                 <?php
-                                $doctorID = get_sess("userdata")['doc_id'];
                                 $senderlist =array();
                                 $sendersql = query("SELECT DISTINCT(c.sender), c.sender_type FROM tbl_chat c WHERE c.receiver = $doctorID AND receiver_type = 'doctor'");
                                 while ($senders = fetch($sendersql))
@@ -434,7 +445,6 @@ video{
                                             <?php
                                             if($senders['sender_type'] == "doctor")
                                             {
-
                                                 $docSQl     = query("SELECT * FROM tbl_doctor WHERE doc_id = $senderID");
                                                 $docData    = fetch($docSQl);
                                                 ?>
@@ -442,7 +452,7 @@ video{
                                                 <div class="about">
                                                     <div class="name"><?= $docData['doc_name'];?></div>
                                                     <div class="status online">
-                                                        <i class="zmdi zmdi-circle"></i> Online
+                                                        <i class="zmdi zmdi-user"></i> Doctor
                                                         <span style="display: none" class="div_count_<?= $senderID; ?> count_class"></span>
                                                     </div>
                                                     <script>
@@ -459,11 +469,11 @@ video{
                                                 $docSQl     = query("SELECT * FROM tbl_clinic WHERE clinic_id = $senderID");
                                                 $docData    = fetch($docSQl);
                                                 ?>
-                                                <img style="width: 50px;height: 50px;" src="<?= file_url().$docData['clinic_name']?>" alt="doctor-image" />
+                                                <img style="width: 50px;height: 50px;" src="<?= file_url().$docData['clinic_icon']?>" alt="doctor-image" />
                                                 <div class="about">
                                                     <div class="name"><?= $docData['clinic_name'];?></div>
                                                     <div class="status online">
-                                                        <i class="zmdi zmdi-circle"></i> Online
+                                                        <i class="zmdi zmdi-user"></i> Clinic
                                                         <span style="display: none" class="div_count_<?= $senderID; ?> count_class"></span>
                                                     </div>
                                                     <script>
@@ -484,7 +494,7 @@ video{
                                                 <div class="about">
                                                     <div class="name"><?= $docData['emp_name'];?></div>
                                                     <div class="status online">
-                                                        <i class="zmdi zmdi-circle"></i> Online
+                                                        <i class="zmdi zmdi-user"></i> Employer
                                                         <span style="display: none" class="div_count_<?= $senderID; ?> count_class"></span>
                                                     </div>
                                                     <script>
@@ -505,7 +515,7 @@ video{
                                                 <div class="about">
                                                     <div class="name"><?= $docData['org_name'];?></div>
                                                     <div class="status online">
-                                                        <i class="zmdi zmdi-circle"></i> Online
+                                                        <i class="zmdi zmdi-user"></i> Organizer
                                                         <span style="display: none" class="div_count_<?= $senderID; ?> count_class"></span>
                                                     </div>
                                                     <script>
@@ -522,11 +532,11 @@ video{
                                                 $docSQl     = query("SELECT * FROM tbl_candidate WHERE candidate_id = $senderID");
                                                 $docData    = fetch($docSQl);
                                                 ?>
-                                                <img style="width: 50px;height: 50px;" src="<?= file_url().$docData['candidate_name']?>" alt="doctor-image" />
+                                                <img style="width: 50px;height: 50px;" src="<?= file_url().$docData['candidate_image']?>" alt="doctor-image" />
                                                 <div class="about">
                                                     <div class="name"><?= $docData['candidate_name'];?></div>
                                                     <div class="status online">
-                                                        <i class="zmdi zmdi-circle"></i> Online
+                                                        <i class="zmdi zmdi-user"></i> Professional
                                                         <span style="display: none" class="div_count_<?= $senderID; ?> count_class"></span>
                                                     </div>
                                                     <script>
@@ -588,7 +598,7 @@ video{
                                                 <div class="about">
                                                     <div class="name"><?= $docData['doc_name'];?></div>
                                                     <div class="status online">
-                                                        <i class="zmdi zmdi-circle"></i> Online
+                                                        <i class="zmdi zmdi-user"></i> Doctor
                                                         <span style="display: none" class="div_count_<?= $senderID; ?> count_class"></span>
                                                     </div>
                                                     <script>
@@ -609,7 +619,7 @@ video{
                                                 <div class="about">
                                                     <div class="name"><?= $docData['clinic_name'];?></div>
                                                     <div class="status online">
-                                                        <i class="zmdi zmdi-circle"></i> Online
+                                                        <i class="zmdi zmdi-user"></i> Clinic
                                                         <span style="display: none" class="div_count_<?= $senderID; ?> count_class"></span>
                                                     </div>
                                                     <script>
@@ -630,7 +640,7 @@ video{
                                                 <div class="about">
                                                     <div class="name"><?= $docData['emp_name'];?></div>
                                                     <div class="status online">
-                                                        <i class="zmdi zmdi-circle"></i> Online
+                                                        <i class="zmdi zmdi-user"></i> Employer
                                                         <span style="display: none" class="div_count_<?= $senderID; ?> count_class"></span>
                                                     </div>
                                                     <script>
@@ -651,7 +661,7 @@ video{
                                                 <div class="about">
                                                     <div class="name"><?= $docData['org_name'];?></div>
                                                     <div class="status online">
-                                                        <i class="zmdi zmdi-circle"></i> Online
+                                                        <i class="zmdi zmdi-user"></i> Organizer
                                                         <span style="display: none" class="div_count_<?= $senderID; ?> count_class"></span>
                                                     </div>
                                                     <script>
@@ -672,7 +682,7 @@ video{
                                                 <div class="about">
                                                     <div class="name"><?= $docData['candidate_name'];?></div>
                                                     <div class="status online">
-                                                        <i class="zmdi zmdi-circle"></i> Online
+                                                        <i class="zmdi zmdi-user"></i> Professional
                                                         <span style="display: none" class="div_count_<?= $senderID; ?> count_class"></span>
                                                     </div>
                                                     <script>
@@ -718,6 +728,24 @@ video{
                                                 <div class="chat-num-messages">Doctor</div>
                                             </div>
                                         </div>
+                                        <div class="addToContact">
+                                            <?php
+                                            $showContact = true;
+                                            foreach($mycontacts as $contact)
+                                            {
+                                                if($contact['contact_id'] == $docData['doc_id'] && $contact['contact_type'] == 'doctor')
+                                                {
+                                                    $showContact = false;
+                                                }
+                                            }
+                                            if($showContact)
+                                            {
+                                                ?>
+                                                <a href="<?= admin_base_url();?>model/centerModel?act=addContact&contactID=<?= $docData['doc_id']; ?>&type=doctor" class="btn btn-md btn-warning">Add to contact</a>
+                                                <?php
+                                            }
+                                            ?>
+                                        </div>
                                     </div>
                                     <?php
                                 }
@@ -733,6 +761,24 @@ video{
                                                 <div class="chat-with"><?= $docData['clinic_name'];?></div>
                                                 <div class="chat-num-messages">Clinic</div>
                                             </div>
+                                        </div>
+                                        <div class="addToContact">
+                                            <?php
+                                            $showContact = true;
+                                            foreach($mycontacts as $contact)
+                                            {
+                                                if($contact['contact_id'] == $docData['clinic_id'] && $contact['contact_type'] == 'clinic')
+                                                {
+                                                    $showContact = false;
+                                                }
+                                            }
+                                            if($showContact)
+                                            {
+                                                ?>
+                                                <a href="<?= admin_base_url();?>model/centerModel?act=addContact&contactID=<?= $docData['clinic_id']; ?>&type=clinic" class="btn btn-md btn-warning">Add to contact</a>
+                                                <?php
+                                            }
+                                            ?>
                                         </div>
                                     </div>
                                     <?php
@@ -750,6 +796,24 @@ video{
                                                 <div class="chat-num-messages">Employer</div>
                                             </div>
                                         </div>
+                                        <div class="addToContact">
+                                            <?php
+                                            $showContact = true;
+                                            foreach($mycontacts as $contact)
+                                            {
+                                                if($contact['contact_id'] == $docData['emp_id'] && $contact['contact_type'] == 'employer')
+                                                {
+                                                    $showContact = false;
+                                                }
+                                            }
+                                            if($showContact)
+                                            {
+                                                ?>
+                                                <a href="<?= admin_base_url();?>model/centerModel?act=addContact&contactID=<?= $docData['emp_id']; ?>&type=employer" class="btn btn-md btn-warning">Add to contact</a>
+                                                <?php
+                                            }
+                                            ?>
+                                        </div>
                                     </div>
                                     <?php
                                 }
@@ -766,6 +830,24 @@ video{
                                                 <div class="chat-num-messages">Organizer</div>
                                             </div>
                                         </div>
+                                        <div class="addToContact">
+                                            <?php
+                                            $showContact = true;
+                                            foreach($mycontacts as $contact)
+                                            {
+                                                if($contact['contact_id'] == $docData['org_id'] && $contact['contact_type'] == 'organizer')
+                                                {
+                                                    $showContact = false;
+                                                }
+                                            }
+                                            if($showContact)
+                                            {
+                                                ?>
+                                                <a href="<?= admin_base_url();?>model/centerModel?act=addContact&contactID=<?= $docData['org_id']; ?>&type=organizer" class="btn btn-md btn-warning">Add to contact</a>
+                                                <?php
+                                            }
+                                            ?>
+                                        </div>
                                     </div>
                                     <?php
                                 }
@@ -781,6 +863,24 @@ video{
                                                 <div class="chat-with"><?= $docData['candidate_name'];?></div>
                                                 <div class="chat-num-messages">Professional</div>
                                             </div>
+                                        </div>
+                                        <div class="addToContact">
+                                            <?php
+                                            $showContact = true;
+                                            foreach($mycontacts as $contact)
+                                            {
+                                                if($contact['contact_id'] == $docData['candidate_id'] && $contact['contact_type'] == 'professional')
+                                                {
+                                                    $showContact = false;
+                                                }
+                                            }
+                                            if($showContact)
+                                            {
+                                                ?>
+                                                <a href="<?= admin_base_url();?>model/centerModel?act=addContact&contactID=<?= $docData['candidate_id']; ?>&type=professional" class="btn btn-md btn-warning">Add to contact</a>
+                                                <?php
+                                            }
+                                            ?>
                                         </div>
                                     </div>
                                     <?php
@@ -1030,43 +1130,43 @@ video{
         </div>
     </section>
     <div class="modal fade" id="send_message_box" tabindex="-1" role="dialog" aria-labelledby="send_message_modal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Select User to send message</h4>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Select User to send message</h4>
+                </div>
+                <form action="<?= admin_base_url();?>model/centerModel" method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="form-group col-sm-12">
+                            <select class="form-control show-tick ms select2" name="txt_receiverType" id="txt_receiverType">
+                                <option>Select Reciver Type</option>
+                                <option value="doctor">Doctor</option>
+                                <option value="clinic">Clinic</option>
+                                <option value="employer">Employer</option>
+                                <option value="organizer">Organizer</option>
+                                <option value="professional">Professional</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <select class="form-control show-tick ms select2" name="txt_receiver" id="txt_receiver">
+                                
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <input type="text" class="form-control" placeholder="Enter text here..." name="txt_message" id="txt_message" >
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <input type="file" class="form-control" name="chat_media" id="txt_file">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="submit" name="newmessage" class="btn btn-success">Send Message</button>
+                    </div>
+                </form>
             </div>
-            <form action="<?= admin_base_url();?>model/centerModel" method="post" enctype="multipart/form-data">
-                <div class="modal-body">
-                    <div class="form-group col-sm-12">
-                        <select class="form-control show-tick ms select2" name="txt_receiverType" id="txt_receiverType">
-                            <option>Select Reciver Type</option>
-                            <option value="doctor">Doctor</option>
-                            <option value="clinic">Clinic</option>
-                            <option value="employer">Employer</option>
-                            <option value="organizer">Organizer</option>
-                            <option value="professional">Professional</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-sm-12">
-                        <select class="form-control show-tick ms select2" name="txt_receiver" id="txt_receiver">
-                            
-                        </select>
-                    </div>
-                    <div class="form-group col-sm-12">
-                        <input type="text" class="form-control" placeholder="Enter text here..." name="txt_message" id="txt_message" >
-                    </div>
-                    <div class="form-group col-sm-12">
-                        <input type="file" class="form-control" name="chat_media" id="txt_file">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button type="submit" name="newmessage" class="btn btn-success">Send Message</button>
-                </div>
-            </form>
         </div>
-    </div>
     </div>
 </div>
 <?php 
