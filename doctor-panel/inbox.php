@@ -892,7 +892,7 @@ while($contacts = fetch($cntctSql))
                                     $msgsql = query("SELECT * FROM tbl_chat WHERE (sender = $senderID AND receiver = $doctorID AND receiver_type = 'doctor' AND sender_type = '$sender_type') OR (sender = $doctorID AND receiver = $senderID AND receiver_type = '$sender_type' AND sender_type = 'doctor') ORDER BY chat_id ASC");
                                     while ($msg = fetch($msgsql))
                                     {
-                                        if($msg['sender'] == "doctor")
+                                        if($msg['sender_type'] == "doctor")
                                         {
                                             $receiverId = $msg['receiver'];
                                             ?>
