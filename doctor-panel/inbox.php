@@ -404,7 +404,6 @@ while($contacts = fetch($cntctSql))
             <div class="row clearfix">
                 <div class="col-lg-5 col-md-6 col-sm-12">
                     <button class="btn btn-success btn-icon float-right" data-toggle="modal" data-target="#send_message_box">New Message</button>
-
                 </div>
             </div>
             <div class="row clearfix">
@@ -418,7 +417,6 @@ while($contacts = fetch($cntctSql))
                                 $sendersql = query("SELECT DISTINCT(c.sender), c.sender_type FROM tbl_chat c WHERE c.receiver = $doctorID AND receiver_type = 'doctor'");
                                 while ($senders = fetch($sendersql))
                                 {
-                                    // echo "acb";
                                     $senderID = $senders['sender'];
                                     echo "<script> if(sender.length == 0){sender [sender.length]= ".$senderID."} else {sender [sender.length + 1]= ".$senderID."} </script>";
                                     $senderlist[] = $senderID;
@@ -442,17 +440,53 @@ while($contacts = fetch($cntctSql))
                                     <li <?= ($active) ? 'class="active"' : ''; ?> id="div<?= $senderID;?>">
                                         <a href="<?= admin_base_url();?>inbox?IdChat=<?= $senderID;?>&Utype=<?= $senders['sender_type'];?>">
                                             <div class="d-flex">
-                                            <?php
-                                            if($senders['sender_type'] == "doctor")
-                                            {
-                                                $docSQl     = query("SELECT * FROM tbl_doctor WHERE doc_id = $senderID");
-                                                $docData    = fetch($docSQl);
+                                                <?php
+                                                if($senders['sender_type'] == "doctor")
+                                                {
+                                                    $docSQl     = query("SELECT * FROM tbl_doctor WHERE doc_id = $senderID");
+                                                    $docData    = fetch($docSQl);
+                                                    $userImage  = $docData['doc_image'];
+                                                    $userName   = $docData['doc_name'];
+                                                    $userType   = 'Doctor';
+                                                }
+                                                elseif($senders['sender_type'] == "clinic")
+                                                {
+                                                    $docSQl     = query("SELECT * FROM tbl_clinic WHERE clinic_id = $senderID");
+                                                    $docData    = fetch($docSQl);
+                                                    $userImage  = $docData['clinic_icon'];
+                                                    $userName   = $docData['clinic_name'];
+                                                    $userType   = 'Clinic';
+                                                }
+                                                elseif($senders['sender_type'] == "employer")
+                                                {
+                                                    $docSQl     = query("SELECT * FROM tbl_employer WHERE emp_id = $senderID");
+                                                    $docData    = fetch($docSQl);
+                                                    $userImage  = $docData['emp_logo'];
+                                                    $userName   = $docData['emp_name'];
+                                                    $userType   = 'Employer';
+                                                }
+                                                elseif($senders['sender_type'] == "organizer")
+                                                {
+                                                    $docSQl     = query("SELECT * FROM tbl_organizer WHERE org_id = $senderID");
+                                                    $docData    = fetch($docSQl);
+                                                    $userImage  = $docData['org_icon'];
+                                                    $userName   = $docData['org_name'];
+                                                    $userType   = 'Organizer';
+                                                }
+                                                elseif($senders['sender_type'] == "professional")
+                                                {
+                                                    $docSQl     = query("SELECT * FROM tbl_candidate WHERE candidate_id = $senderID");
+                                                    $docData    = fetch($docSQl);
+                                                    $userImage  = $docData['candidate_image'];
+                                                    $userName   = $docData['candidate_name'];
+                                                    $userType   = 'Professional';
+                                                }
                                                 ?>
-                                                <img style="width: 50px;height: 50px;" style="width: 50px; height: 50px;" src="<?= file_url().$docData['doc_image']?>" alt="doctor-image" />
+                                                <img style="width: 50px;height: 50px;" style="width: 50px; height: 50px;" src="<?= file_url().$userImage;?>" alt="<?= $userType; ?>-image" />
                                                 <div class="about">
-                                                    <div class="name"><?= $docData['doc_name'];?></div>
+                                                    <div class="name"><?= $userName;?></div>
                                                     <div class="status online">
-                                                        <i class="zmdi zmdi-user"></i> Doctor
+                                                        <i class="zmdi zmdi-circle"></i> <?= $userType;?>
                                                         <span style="display: none" class="div_count_<?= $senderID; ?> count_class"></span>
                                                     </div>
                                                     <script>
@@ -462,93 +496,6 @@ while($contacts = fetch($cntctSql))
                                                         });
                                                     </script>
                                                 </div>
-                                                <?php
-                                            }
-                                            if($senders['sender_type'] == "clinic")
-                                            {
-                                                $docSQl     = query("SELECT * FROM tbl_clinic WHERE clinic_id = $senderID");
-                                                $docData    = fetch($docSQl);
-                                                ?>
-                                                <img style="width: 50px;height: 50px;" src="<?= file_url().$docData['clinic_icon']?>" alt="doctor-image" />
-                                                <div class="about">
-                                                    <div class="name"><?= $docData['clinic_name'];?></div>
-                                                    <div class="status online">
-                                                        <i class="zmdi zmdi-user"></i> Clinic
-                                                        <span style="display: none" class="div_count_<?= $senderID; ?> count_class"></span>
-                                                    </div>
-                                                    <script>
-                                                        $(document).ready(function(){
-                                                            get_message_count('div_count_<?= $senderID; ?>','<?= $senderID; ?>');
-                                                            setInterval( function() { get_message_count('div_count_<?= $senderID; ?>','<?= $senderID; ?>'); } , 3000);
-                                                        });
-                                                    </script>
-                                                </div>
-                                                <?php
-                                            }
-                                            if($senders['sender_type'] == "employer")
-                                            {
-                                                $docSQl     = query("SELECT * FROM tbl_employer WHERE emp_id = $senderID");
-                                                $docData    = fetch($docSQl);
-                                                ?>
-                                                <img style="width: 50px;height: 50px;" src="<?= file_url().$docData['emp_logo']?>" alt="doctor-image" />
-                                                <div class="about">
-                                                    <div class="name"><?= $docData['emp_name'];?></div>
-                                                    <div class="status online">
-                                                        <i class="zmdi zmdi-user"></i> Employer
-                                                        <span style="display: none" class="div_count_<?= $senderID; ?> count_class"></span>
-                                                    </div>
-                                                    <script>
-                                                        $(document).ready(function(){
-                                                            get_message_count('div_count_<?= $senderID; ?>','<?= $senderID; ?>');
-                                                            setInterval( function() { get_message_count('div_count_<?= $senderID; ?>','<?= $senderID; ?>'); } , 3000);
-                                                        });
-                                                    </script>
-                                                </div>
-                                                <?php
-                                            }
-                                            if($senders['sender_type'] == "organizer")
-                                            {
-                                                $docSQl     = query("SELECT * FROM tbl_organizer WHERE org_id = $senderID");
-                                                $docData    = fetch($docSQl);
-                                                ?>
-                                                <img style="width: 50px;height: 50px;" src="<?= file_url().$docData['org_icon']?>" alt="doctor-image" />
-                                                <div class="about">
-                                                    <div class="name"><?= $docData['org_name'];?></div>
-                                                    <div class="status online">
-                                                        <i class="zmdi zmdi-user"></i> Organizer
-                                                        <span style="display: none" class="div_count_<?= $senderID; ?> count_class"></span>
-                                                    </div>
-                                                    <script>
-                                                        $(document).ready(function(){
-                                                            get_message_count('div_count_<?= $senderID; ?>','<?= $senderID; ?>');
-                                                            setInterval( function() { get_message_count('div_count_<?= $senderID; ?>','<?= $senderID; ?>'); } , 3000);
-                                                        });
-                                                    </script>
-                                                </div>
-                                                <?php
-                                            }
-                                            if($senders['sender_type'] == "professional")
-                                            {
-                                                $docSQl     = query("SELECT * FROM tbl_candidate WHERE candidate_id = $senderID");
-                                                $docData    = fetch($docSQl);
-                                                ?>
-                                                <img style="width: 50px;height: 50px;" src="<?= file_url().$docData['candidate_image']?>" alt="doctor-image" />
-                                                <div class="about">
-                                                    <div class="name"><?= $docData['candidate_name'];?></div>
-                                                    <div class="status online">
-                                                        <i class="zmdi zmdi-user"></i> Professional
-                                                        <span style="display: none" class="div_count_<?= $senderID; ?> count_class"></span>
-                                                    </div>
-                                                    <script>
-                                                        $(document).ready(function(){
-                                                            get_message_count('div_count_<?= $senderID; ?>','<?= $senderID; ?>');
-                                                            setInterval( function() { get_message_count('div_count_<?= $senderID; ?>','<?= $senderID; ?>'); } , 3000);
-                                                        });
-                                                    </script>
-                                                </div>
-                                                <?php
-                                            }
-                                            ?>
                                             </div>
                                         </a>
                                     </li>
@@ -588,17 +535,53 @@ while($contacts = fetch($cntctSql))
                                     <li <?php if($active){echo 'class="active"';}?> id="div<?= $senderID;?>">
                                         <a href="<?= admin_base_url();?>inbox?IdChat=<?= $senderID;?>&Utype=<?= $sender['receiver_type'];?>">
                                             <div class="d-flex">
-                                            <?php
-                                            if($sender['receiver_type'] == "doctor")
-                                            {
-                                                $docSQl     = query("SELECT * FROM tbl_doctor WHERE doc_id = $senderID");
-                                                $docData    = fetch($docSQl);
+                                                <?php
+                                                if($senders['receiver_type'] == "doctor")
+                                                {
+                                                    $docSQl     = query("SELECT * FROM tbl_doctor WHERE doc_id = $senderID");
+                                                    $docData    = fetch($docSQl);
+                                                    $userImage  = $docData['doc_image'];
+                                                    $userName   = $docData['doc_name'];
+                                                    $userType   = 'Doctor';
+                                                }
+                                                elseif($senders['receiver_type'] == "clinic")
+                                                {
+                                                    $docSQl     = query("SELECT * FROM tbl_clinic WHERE clinic_id = $senderID");
+                                                    $docData    = fetch($docSQl);
+                                                    $userImage  = $docData['clinic_icon'];
+                                                    $userName   = $docData['clinic_name'];
+                                                    $userType   = 'Clinic';
+                                                }
+                                                elseif($senders['receiver_type'] == "employer")
+                                                {
+                                                    $docSQl     = query("SELECT * FROM tbl_employer WHERE emp_id = $senderID");
+                                                    $docData    = fetch($docSQl);
+                                                    $userImage  = $docData['emp_logo'];
+                                                    $userName   = $docData['emp_name'];
+                                                    $userType   = 'Employer';
+                                                }
+                                                elseif($senders['receiver_type'] == "organizer")
+                                                {
+                                                    $docSQl     = query("SELECT * FROM tbl_organizer WHERE org_id = $senderID");
+                                                    $docData    = fetch($docSQl);
+                                                    $userImage  = $docData['org_icon'];
+                                                    $userName   = $docData['org_name'];
+                                                    $userType   = 'Organizer';
+                                                }
+                                                elseif($senders['receiver_type'] == "professional")
+                                                {
+                                                    $docSQl     = query("SELECT * FROM tbl_candidate WHERE candidate_id = $senderID");
+                                                    $docData    = fetch($docSQl);
+                                                    $userImage  = $docData['candidate_image'];
+                                                    $userName   = $docData['candidate_name'];
+                                                    $userType   = 'Professional';
+                                                }
                                                 ?>
-                                                <img style="width: 50px;height: 50px;" src="<?= file_url().$docData['doc_image']?>" alt="doctor-image" />
+                                                <img style="width: 50px;height: 50px;" style="width: 50px; height: 50px;" src="<?= file_url().$userImage;?>" alt="<?= $userType; ?>-image" />
                                                 <div class="about">
-                                                    <div class="name"><?= $docData['doc_name'];?></div>
+                                                    <div class="name"><?= $userName;?></div>
                                                     <div class="status online">
-                                                        <i class="zmdi zmdi-user"></i> Doctor
+                                                        <i class="zmdi zmdi-circle"></i> <?= $userType;?>
                                                         <span style="display: none" class="div_count_<?= $senderID; ?> count_class"></span>
                                                     </div>
                                                     <script>
@@ -608,93 +591,6 @@ while($contacts = fetch($cntctSql))
                                                         });
                                                     </script>
                                                 </div>
-                                                <?php
-                                            }
-                                            if($sender['receiver_type'] == "clinic")
-                                            {
-                                                $docSQl     = query("SELECT * FROM tbl_clinic WHERE clinic_id = $senderID");
-                                                $docData    = fetch($docSQl);
-                                                ?>
-                                                <img style="width: 50px;height: 50px;" src="<?= file_url().$docData['clinic_icon']?>" alt="doctor-image" />
-                                                <div class="about">
-                                                    <div class="name"><?= $docData['clinic_name'];?></div>
-                                                    <div class="status online">
-                                                        <i class="zmdi zmdi-user"></i> Clinic
-                                                        <span style="display: none" class="div_count_<?= $senderID; ?> count_class"></span>
-                                                    </div>
-                                                    <script>
-                                                        $(document).ready(function(){
-                                                            get_message_count('div_count_<?= $senderID; ?>','<?= $senderID; ?>');
-                                                            setInterval( function() { get_message_count('div_count_<?= $senderID; ?>','<?= $senderID; ?>'); } , 3000);
-                                                        });
-                                                    </script>
-                                                </div>
-                                                <?php
-                                            }
-                                            if($sender['receiver_type'] == "employer")
-                                            {
-                                                $docSQl     = query("SELECT * FROM tbl_employer WHERE emp_id = $senderID");
-                                                $docData    = fetch($docSQl);
-                                                ?>
-                                                <img style="width: 50px;height: 50px;" src="<?= file_url().$docData['emp_logo']?>" alt="doctor-image" />
-                                                <div class="about">
-                                                    <div class="name"><?= $docData['emp_name'];?></div>
-                                                    <div class="status online">
-                                                        <i class="zmdi zmdi-user"></i> Employer
-                                                        <span style="display: none" class="div_count_<?= $senderID; ?> count_class"></span>
-                                                    </div>
-                                                    <script>
-                                                        $(document).ready(function(){
-                                                            get_message_count('div_count_<?= $senderID; ?>','<?= $senderID; ?>');
-                                                            setInterval( function() { get_message_count('div_count_<?= $senderID; ?>','<?= $senderID; ?>'); } , 3000);
-                                                        });
-                                                    </script>
-                                                </div>
-                                                <?php
-                                            }
-                                            if($sender['receiver_type'] == "organizer")
-                                            {
-                                                $docSQl     = query("SELECT * FROM tbl_organizer WHERE org_id = $senderID");
-                                                $docData    = fetch($docSQl);
-                                                ?>
-                                                <img style="width: 50px;height: 50px;" src="<?= file_url().$docData['org_icon']?>" alt="doctor-image" />
-                                                <div class="about">
-                                                    <div class="name"><?= $docData['org_name'];?></div>
-                                                    <div class="status online">
-                                                        <i class="zmdi zmdi-user"></i> Organizer
-                                                        <span style="display: none" class="div_count_<?= $senderID; ?> count_class"></span>
-                                                    </div>
-                                                    <script>
-                                                        $(document).ready(function(){
-                                                            get_message_count('div_count_<?= $senderID; ?>','<?= $senderID; ?>');
-                                                            setInterval( function() { get_message_count('div_count_<?= $senderID; ?>','<?= $senderID; ?>'); } , 3000);
-                                                        });
-                                                    </script>
-                                                </div>
-                                                <?php
-                                            }
-                                            if($sender['receiver_type'] == "professional")
-                                            {
-                                                $docSQl     = query("SELECT * FROM tbl_candidate WHERE candidate_id = $senderID");
-                                                $docData    = fetch($docSQl);
-                                                ?>
-                                                <img style="width: 50px;height: 50px;" src="<?= file_url().$docData['candidate_image']?>" alt="doctor-image" />
-                                                <div class="about">
-                                                    <div class="name"><?= $docData['candidate_name'];?></div>
-                                                    <div class="status online">
-                                                        <i class="zmdi zmdi-user"></i> Professional
-                                                        <span style="display: none" class="div_count_<?= $senderID; ?> count_class"></span>
-                                                    </div>
-                                                    <script>
-                                                        $(document).ready(function(){
-                                                            get_message_count('div_count_<?= $senderID; ?>','<?= $senderID; ?>');
-                                                            setInterval( function() { get_message_count('div_count_<?= $senderID; ?>','<?= $senderID; ?>'); } , 3000);
-                                                        });
-                                                    </script>
-                                                </div>
-                                                <?php
-                                            }
-                                            ?>
                                             </div>
                                         </a>
                                     </li>
@@ -719,173 +615,75 @@ while($contacts = fetch($cntctSql))
                                 {
                                     $docSQl     = query("SELECT * FROM tbl_doctor WHERE doc_id = $senderID");
                                     $docData    = fetch($docSQl);
-                                    ?>
-                                    <div class="chat-header">
-                                        <div class="user">
-                                            <img src="<?= file_url().$docData['doc_image']?>" alt="doctor-image" />
-                                            <div class="chat-about">
-                                                <div class="chat-with"><?= $docData['doc_name'];?></div>
-                                                <div class="chat-num-messages">Doctor</div>
-                                            </div>
-                                        </div>
-                                        <div class="addToContact">
-                                            <?php
-                                            $showContact = true;
-                                            foreach($mycontacts as $contact)
-                                            {
-                                                if($contact['contact_id'] == $docData['doc_id'] && $contact['contact_type'] == 'doctor')
-                                                {
-                                                    $showContact = false;
-                                                }
-                                            }
-                                            if($showContact)
-                                            {
-                                                ?>
-                                                <a href="<?= admin_base_url();?>model/centerModel?act=addContact&contactID=<?= $docData['doc_id']; ?>&type=doctor" class="btn btn-md btn-warning">Add to contact</a>
-                                                <?php
-                                            }
-                                            ?>
-                                        </div>
-                                    </div>
-                                    <?php
+                                    $userType   = 'Doctor';
+                                    $userID     = $docData['doc_id'];
+                                    $userImage  = $docData['doc_image'];
+                                    $userName   = $docData['doc_name'];
                                 }
-                                if($sender_type == "clinic")
+                                else if($sender_type == "clinic")
                                 {
                                     $docSQl     = query("SELECT * FROM tbl_clinic WHERE clinic_id = $senderID");
                                     $docData    = fetch($docSQl);
-                                    ?>
-                                    <div class="chat-header">
-                                        <div class="user">
-                                            <img src="<?= file_url().$docData['clinic_icon']?>" alt="doctor-image" />
-                                            <div class="chat-about">
-                                                <div class="chat-with"><?= $docData['clinic_name'];?></div>
-                                                <div class="chat-num-messages">Clinic</div>
-                                            </div>
-                                        </div>
-                                        <div class="addToContact">
-                                            <?php
-                                            $showContact = true;
-                                            foreach($mycontacts as $contact)
-                                            {
-                                                if($contact['contact_id'] == $docData['clinic_id'] && $contact['contact_type'] == 'clinic')
-                                                {
-                                                    $showContact = false;
-                                                }
-                                            }
-                                            if($showContact)
-                                            {
-                                                ?>
-                                                <a href="<?= admin_base_url();?>model/centerModel?act=addContact&contactID=<?= $docData['clinic_id']; ?>&type=clinic" class="btn btn-md btn-warning">Add to contact</a>
-                                                <?php
-                                            }
-                                            ?>
-                                        </div>
-                                    </div>
-                                    <?php
+                                    $userType   = 'Clinic';
+                                    $userID     = $docData['clinic_id'];
+                                    $userImage  = $docData['clinic_icon'];
+                                    $userName   = $docData['clinic_name'];
                                 }
-                                if($sender_type == "employer")
+                                else if($sender_type == "employer")
                                 {
                                     $docSQl     = query("SELECT * FROM tbl_employer WHERE emp_id = $senderID");
                                     $docData    = fetch($docSQl);
-                                    ?>
-                                    <div class="chat-header">
-                                        <div class="user">
-                                            <img src="<?= file_url().$docData['emp_logo']?>" alt="doctor-image" />
-                                            <div class="chat-about">
-                                                <div class="chat-with"><?= $docData['emp_name'];?></div>
-                                                <div class="chat-num-messages">Employer</div>
-                                            </div>
-                                        </div>
-                                        <div class="addToContact">
-                                            <?php
-                                            $showContact = true;
-                                            foreach($mycontacts as $contact)
-                                            {
-                                                if($contact['contact_id'] == $docData['emp_id'] && $contact['contact_type'] == 'employer')
-                                                {
-                                                    $showContact = false;
-                                                }
-                                            }
-                                            if($showContact)
-                                            {
-                                                ?>
-                                                <a href="<?= admin_base_url();?>model/centerModel?act=addContact&contactID=<?= $docData['emp_id']; ?>&type=employer" class="btn btn-md btn-warning">Add to contact</a>
-                                                <?php
-                                            }
-                                            ?>
-                                        </div>
-                                    </div>
-                                    <?php
+                                    $userType   = 'Employer';
+                                    $userID     = $docData['emp_id'];
+                                    $userImage  = $docData['emp_logo'];
+                                    $userName   = $docData['emp_name'];
                                 }
-                                if($sender_type == "organizer")
+                                else if($sender_type == "organizer")
                                 {
                                     $docSQl     = query("SELECT * FROM tbl_organizer WHERE org_id = $senderID");
                                     $docData    = fetch($docSQl);
-                                    ?>
-                                    <div class="chat-header">
-                                        <div class="user">
-                                            <img src="<?= file_url().$docData['org_icon']?>" alt="doctor-image" />
-                                            <div class="chat-about">
-                                                <div class="chat-with"><?= $docData['org_name'];?></div>
-                                                <div class="chat-num-messages">Organizer</div>
-                                            </div>
-                                        </div>
-                                        <div class="addToContact">
-                                            <?php
-                                            $showContact = true;
-                                            foreach($mycontacts as $contact)
-                                            {
-                                                if($contact['contact_id'] == $docData['org_id'] && $contact['contact_type'] == 'organizer')
-                                                {
-                                                    $showContact = false;
-                                                }
-                                            }
-                                            if($showContact)
-                                            {
-                                                ?>
-                                                <a href="<?= admin_base_url();?>model/centerModel?act=addContact&contactID=<?= $docData['org_id']; ?>&type=organizer" class="btn btn-md btn-warning">Add to contact</a>
-                                                <?php
-                                            }
-                                            ?>
-                                        </div>
-                                    </div>
-                                    <?php
+                                    $userType   = 'Organizer';
+                                    $userID     = $docData['org_id'];
+                                    $userImage  = $docData['org_icon'];
+                                    $userName   = $docData['org_name'];
                                 }
-                                if($sender_type == "professional")
+                                else if($sender_type == "professional")
                                 {
                                     $docSQl     = query("SELECT * FROM tbl_candidate WHERE candidate_id = $senderID");
                                     $docData    = fetch($docSQl);
-                                    ?>
-                                    <div class="chat-header">
-                                        <div class="user">
-                                            <img src="<?= file_url().$docData['candidate_image']?>" alt="doctor-image" />
-                                            <div class="chat-about">
-                                                <div class="chat-with"><?= $docData['candidate_name'];?></div>
-                                                <div class="chat-num-messages">Professional</div>
-                                            </div>
-                                        </div>
-                                        <div class="addToContact">
-                                            <?php
-                                            $showContact = true;
-                                            foreach($mycontacts as $contact)
-                                            {
-                                                if($contact['contact_id'] == $docData['candidate_id'] && $contact['contact_type'] == 'professional')
-                                                {
-                                                    $showContact = false;
-                                                }
-                                            }
-                                            if($showContact)
-                                            {
-                                                ?>
-                                                <a href="<?= admin_base_url();?>model/centerModel?act=addContact&contactID=<?= $docData['candidate_id']; ?>&type=professional" class="btn btn-md btn-warning">Add to contact</a>
-                                                <?php
-                                            }
-                                            ?>
-                                        </div>
-                                    </div>
-                                    <?php
+                                    $userType   = 'Professional';
+                                    $userID     = $docData['candidate_id'];
+                                    $userImage  = $docData['candidate_image'];
+                                    $userName   = $docData['candidate_name'];
                                 }
                                 ?>
+                                <div class="chat-header">
+                                    <div class="user">
+                                        <img src="<?= file_url().$userImage; ?>" alt="doctor-image" />
+                                        <div class="chat-about">
+                                            <div class="chat-with"><?= $userName;?></div>
+                                            <div class="chat-num-messages"><?= $userType; ?></div>
+                                        </div>
+                                    </div>
+                                    <div class="addToContact">
+                                        <?php
+                                        $showContact = true;
+                                        foreach($mycontacts as $contact)
+                                        {
+                                            if($contact['contact_id'] == $userID && $contact['contact_type'] == $userType)
+                                            {
+                                                $showContact = false;
+                                            }
+                                        }
+                                        if($showContact)
+                                        {
+                                            ?>
+                                            <a href="<?= admin_base_url();?>model/centerModel?act=addContact&contactID=<?= $userID; ?>&type=<?= $userType;?>" class="btn btn-md btn-warning">Add to contact</a>
+                                            <?php
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
                                 <hr>
                                 <ul class="chat-history">
                                     <?php
@@ -978,60 +776,44 @@ while($contacts = fetch($cntctSql))
                                                     <?php
                                                     if($sender_type == "doctor")
                                                     {
-                                                        $docSQl     = query("SELECT * FROM tbl_doctor WHERE doc_id = $senderID");
-                                                        $docData    = fetch($docSQl);
-                                                        ?>
-                                                        <div class="status message-data">
-                                                        <span class="name"><?= $docData['doc_name'];?></span>
-                                                            <?= date('d/m/Y h:i a', strtotime($msg['date']));?>
-                                                        </div>
-                                                        <?php
+                                                        $docSQl   = query("SELECT * FROM tbl_doctor WHERE doc_id = $senderID");
+                                                        $docData  = fetch($docSQl);
+                                                        $userName = $docData['doc_name'];
+                                                        $userDate = $msg['date'];
                                                     }
-                                                    if($sender_type == "clinic")
+                                                    elseif($sender_type == "clinic")
                                                     {
-                                                        $docSQl     = query("SELECT * FROM tbl_clinic WHERE clinic_id = $senderID");
-                                                        $docData    = fetch($docSQl);
-                                                        ?>
-                                                        <div class="status message-data">
-                                                        <span class="name"><?= $docData['clinic_name'];?></span>
-                                                            <?= date('d/m/Y h:i a', strtotime($msg['date']));?>
-                                                        </div>
-                                                        <?php
+                                                        $docSQl   = query("SELECT * FROM tbl_clinic WHERE clinic_id = $senderID");
+                                                        $docData  = fetch($docSQl);
+                                                        $userName = $docData['clinic_name'];
+                                                        $userDate = $msg['date'];
                                                     }
-                                                    if($sender_type == "employer")
+                                                    elseif($sender_type == "employer")
                                                     {
-                                                        $docSQl     = query("SELECT * FROM tbl_employer WHERE emp_id = $senderID");
-                                                        $docData    = fetch($docSQl);
-                                                        ?>
-                                                        <div class="status message-data">
-                                                        <span class="name"><?= $docData['emp_name'];?></span>
-                                                            <?= date('d/m/Y h:i a', strtotime($msg['date']));?>
-                                                        </div>
-                                                        <?php
+                                                        $docSQl   = query("SELECT * FROM tbl_employer WHERE emp_id = $senderID");
+                                                        $docData  = fetch($docSQl);
+                                                        $userName = $docData['emp_name'];
+                                                        $userDate = $msg['date'];
                                                     }
-                                                    if($sender_type == "organizer")
+                                                    elseif($sender_type == "organizer")
                                                     {
-                                                        $docSQl     = query("SELECT * FROM tbl_organizer WHERE org_id = $senderID");
-                                                        $docData    = fetch($docSQl);
-                                                        ?>
-                                                        <div class="status message-data">
-                                                        <span class="name"><?= $docData['org_name'];?></span>
-                                                            <?= date('d/m/Y h:i a', strtotime($msg['date']));?>
-                                                        </div>
-                                                        <?php
+                                                        $docSQl   = query("SELECT * FROM tbl_organizer WHERE org_id = $senderID");
+                                                        $docData  = fetch($docSQl);
+                                                        $userName = $docData['org_name'];
+                                                        $userDate = $msg['date'];
                                                     }
-                                                    if($sender_type == "professional")
+                                                    elseif($sender_type == "professional")
                                                     {
-                                                        $docSQl     = query("SELECT * FROM tbl_candidate WHERE candidate_id = $senderID");
-                                                        $docData    = fetch($docSQl);
-                                                        ?>
-                                                        <div class="status message-data">
-                                                        <span class="name"><?= $docData['candidate_name'];?></span>
-                                                            <?= date('d/m/Y h:i a', strtotime($msg['date']));?>
-                                                        </div>
-                                                        <?php
+                                                        $userSQl  = query("SELECT * FROM tbl_candidate WHERE candidate_id = $senderID");
+                                                        $userData = fetch($userSQl);
+                                                        $userName = $userData['candidate_name'];
+                                                        $userDate = $msg['date'];
                                                     }
                                                     ?>
+                                                    <div class="status message-data">
+                                                        <span class="name"><?= $userName; ?></span>
+                                                        <?= date('d/m/Y h:i a', strtotime($userDate));?>
+                                                    </div>
                                                     <div class="message my-message">
                                                        <?php
                                                         if($msg['chat_media'] != null)
