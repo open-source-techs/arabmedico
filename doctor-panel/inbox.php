@@ -978,60 +978,44 @@ while($contacts = fetch($cntctSql))
                                                     <?php
                                                     if($sender_type == "doctor")
                                                     {
-                                                        $docSQl     = query("SELECT * FROM tbl_doctor WHERE doc_id = $senderID");
-                                                        $docData    = fetch($docSQl);
-                                                        ?>
-                                                        <div class="status message-data">
-                                                        <span class="name"><?= $docData['doc_name'];?></span>
-                                                            <?= date('d/m/Y h:i a', strtotime($msg['date']));?>
-                                                        </div>
-                                                        <?php
+                                                        $docSQl   = query("SELECT * FROM tbl_doctor WHERE doc_id = $senderID");
+                                                        $docData  = fetch($docSQl);
+                                                        $userName = $docData['doc_name'];
+                                                        $userDate = $msg['date'];
                                                     }
-                                                    if($sender_type == "clinic")
+                                                    elseif($sender_type == "clinic")
                                                     {
-                                                        $docSQl     = query("SELECT * FROM tbl_clinic WHERE clinic_id = $senderID");
-                                                        $docData    = fetch($docSQl);
-                                                        ?>
-                                                        <div class="status message-data">
-                                                        <span class="name"><?= $docData['clinic_name'];?></span>
-                                                            <?= date('d/m/Y h:i a', strtotime($msg['date']));?>
-                                                        </div>
-                                                        <?php
+                                                        $docSQl   = query("SELECT * FROM tbl_clinic WHERE clinic_id = $senderID");
+                                                        $docData  = fetch($docSQl);
+                                                        $userName = $docData['clinic_name'];
+                                                        $userDate = $msg['date'];
                                                     }
-                                                    if($sender_type == "employer")
+                                                    elseif($sender_type == "employer")
                                                     {
-                                                        $docSQl     = query("SELECT * FROM tbl_employer WHERE emp_id = $senderID");
-                                                        $docData    = fetch($docSQl);
-                                                        ?>
-                                                        <div class="status message-data">
-                                                        <span class="name"><?= $docData['emp_name'];?></span>
-                                                            <?= date('d/m/Y h:i a', strtotime($msg['date']));?>
-                                                        </div>
-                                                        <?php
+                                                        $docSQl   = query("SELECT * FROM tbl_employer WHERE emp_id = $senderID");
+                                                        $docData  = fetch($docSQl);
+                                                        $userName = $docData['emp_name'];
+                                                        $userDate = $msg['date'];
                                                     }
-                                                    if($sender_type == "organizer")
+                                                    elseif($sender_type == "organizer")
                                                     {
-                                                        $docSQl     = query("SELECT * FROM tbl_organizer WHERE org_id = $senderID");
-                                                        $docData    = fetch($docSQl);
-                                                        ?>
-                                                        <div class="status message-data">
-                                                        <span class="name"><?= $docData['org_name'];?></span>
-                                                            <?= date('d/m/Y h:i a', strtotime($msg['date']));?>
-                                                        </div>
-                                                        <?php
+                                                        $docSQl   = query("SELECT * FROM tbl_organizer WHERE org_id = $senderID");
+                                                        $docData  = fetch($docSQl);
+                                                        $userName = $docData['org_name'];
+                                                        $userDate = $msg['date'];
                                                     }
-                                                    if($sender_type == "professional")
+                                                    elseif($sender_type == "professional")
                                                     {
-                                                        $docSQl     = query("SELECT * FROM tbl_candidate WHERE candidate_id = $senderID");
-                                                        $docData    = fetch($docSQl);
-                                                        ?>
-                                                        <div class="status message-data">
-                                                        <span class="name"><?= $docData['candidate_name'];?></span>
-                                                            <?= date('d/m/Y h:i a', strtotime($msg['date']));?>
-                                                        </div>
-                                                        <?php
+                                                        $userSQl  = query("SELECT * FROM tbl_candidate WHERE candidate_id = $senderID");
+                                                        $userData = fetch($userSQl);
+                                                        $userName = $userData['candidate_name'];
+                                                        $userDate = $msg['date'];
                                                     }
                                                     ?>
+                                                    <div class="status message-data">
+                                                        <span class="name"><?= $userName; ?></span>
+                                                        <?= date('d/m/Y h:i a', strtotime($userDate));?>
+                                                    </div>
                                                     <div class="message my-message">
                                                        <?php
                                                         if($msg['chat_media'] != null)
