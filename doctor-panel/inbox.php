@@ -449,7 +449,7 @@ while($contacts = fetch($cntctSql))
                                                     $userName   = $docData['doc_name'];
                                                     $userType   = 'Doctor';
                                                 }
-                                                if($senders['sender_type'] == "clinic")
+                                                elseif($senders['sender_type'] == "clinic")
                                                 {
                                                     $docSQl     = query("SELECT * FROM tbl_clinic WHERE clinic_id = $senderID");
                                                     $docData    = fetch($docSQl);
@@ -457,7 +457,7 @@ while($contacts = fetch($cntctSql))
                                                     $userName   = $docData['clinic_name'];
                                                     $userType   = 'Clinic';
                                                 }
-                                                if($senders['sender_type'] == "employer")
+                                                elseif($senders['sender_type'] == "employer")
                                                 {
                                                     $docSQl     = query("SELECT * FROM tbl_employer WHERE emp_id = $senderID");
                                                     $docData    = fetch($docSQl);
@@ -465,7 +465,7 @@ while($contacts = fetch($cntctSql))
                                                     $userName   = $docData['emp_name'];
                                                     $userType   = 'Employer';
                                                 }
-                                                if($senders['sender_type'] == "organizer")
+                                                elseif($senders['sender_type'] == "organizer")
                                                 {
                                                     $docSQl     = query("SELECT * FROM tbl_organizer WHERE org_id = $senderID");
                                                     $docData    = fetch($docSQl);
@@ -473,7 +473,7 @@ while($contacts = fetch($cntctSql))
                                                     $userName   = $docData['org_name'];
                                                     $userType   = 'Organizer';
                                                 }
-                                                if($senders['sender_type'] == "professional")
+                                                elseif($senders['sender_type'] == "professional")
                                                 {
                                                     $docSQl     = query("SELECT * FROM tbl_candidate WHERE candidate_id = $senderID");
                                                     $docData    = fetch($docSQl);
@@ -536,7 +536,7 @@ while($contacts = fetch($cntctSql))
                                         <a href="<?= admin_base_url();?>inbox?IdChat=<?= $senderID;?>&Utype=<?= $sender['receiver_type'];?>">
                                             <div class="d-flex">
                                                 <?php
-                                                if($senders['receiver_type'] == "doctor")
+                                                if($sender['receiver_type'] == "doctor")
                                                 {
                                                     $docSQl     = query("SELECT * FROM tbl_doctor WHERE doc_id = $senderID");
                                                     $docData    = fetch($docSQl);
@@ -544,7 +544,7 @@ while($contacts = fetch($cntctSql))
                                                     $userName   = $docData['doc_name'];
                                                     $userType   = 'Doctor';
                                                 }
-                                                if($senders['receiver_type'] == "clinic")
+                                                elseif($sender['receiver_type'] == "clinic")
                                                 {
                                                     $docSQl     = query("SELECT * FROM tbl_clinic WHERE clinic_id = $senderID");
                                                     $docData    = fetch($docSQl);
@@ -552,7 +552,7 @@ while($contacts = fetch($cntctSql))
                                                     $userName   = $docData['clinic_name'];
                                                     $userType   = 'Clinic';
                                                 }
-                                                if($senders['receiver_type'] == "employer")
+                                                elseif($sender['receiver_type'] == "employer")
                                                 {
                                                     $docSQl     = query("SELECT * FROM tbl_employer WHERE emp_id = $senderID");
                                                     $docData    = fetch($docSQl);
@@ -560,7 +560,7 @@ while($contacts = fetch($cntctSql))
                                                     $userName   = $docData['emp_name'];
                                                     $userType   = 'Employer';
                                                 }
-                                                if($senders['receiver_type'] == "organizer")
+                                                elseif($sender['receiver_type'] == "organizer")
                                                 {
                                                     $docSQl     = query("SELECT * FROM tbl_organizer WHERE org_id = $senderID");
                                                     $docData    = fetch($docSQl);
@@ -568,7 +568,7 @@ while($contacts = fetch($cntctSql))
                                                     $userName   = $docData['org_name'];
                                                     $userType   = 'Organizer';
                                                 }
-                                                if($senders['receiver_type'] == "professional")
+                                                elseif($sender['receiver_type'] == "professional")
                                                 {
                                                     $docSQl     = query("SELECT * FROM tbl_candidate WHERE candidate_id = $senderID");
                                                     $docData    = fetch($docSQl);
