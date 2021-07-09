@@ -889,74 +889,20 @@ while($contacts = fetch($cntctSql))
                                 <hr>
                                 <ul class="chat-history">
                                     <?php
-                                    $msgsql = query("SELECT * FROM tbl_chat WHERE sender = $senderID AND receiver = $doctorID AND receiver_type = 'doctor' AND sender_type = '$sender_type' ORDER BY chat_id ASC");
+                                    $msgsql = query("SELECT * FROM tbl_chat WHERE (sender = $senderID AND receiver = $doctorID AND receiver_type = 'doctor' AND sender_type = '$sender_type') OR (sender = $doctorID AND receiver = $senderID AND receiver_type = '$sender_type' AND sender_type = 'doctor') ORDER BY chat_id ASC");
                                     while ($msg = fetch($msgsql))
                                     {
-                                        $receiverId = $msg['receiver'];
-                                        if($msg['sender'] == $senderID)
+                                        if($msg['sender'] == "doctor")
                                         {
-                                            $sender_type = $msg['sender_type'];
+                                            $receiverId = $msg['receiver'];
                                             ?>
-                                            <li>
-                                                <?php
-                                                if($sender_type == "doctor")
-                                                {
-                                                    $docSQl     = query("SELECT * FROM tbl_doctor WHERE doc_id = $senderID");
-                                                    $docData    = fetch($docSQl);
-                                                    ?>
-                                                    <div class="status message-data">
-                                                    <span class="name"><?= $docData['doc_name'];?></span>
-                                                        <?= date('d/m/Y h:i a', strtotime($msg['date']));?>
-                                                    </div>
+                                            <li class="clearfix">
+                                                <div class="status online message-data text-right">
+                                                    <span class="name">You</span>
+                                                    <span class="time"> <?= date('d/m/Y h:i a', strtotime($msg['date']));?></span>
+                                                </div>
+                                                <div class="message other-message float-right">
                                                     <?php
-                                                }
-                                                if($sender_type == "clinic")
-                                                {
-                                                    $docSQl     = query("SELECT * FROM tbl_clinic WHERE clinic_id = $senderID");
-                                                    $docData    = fetch($docSQl);
-                                                    ?>
-                                                    <div class="status message-data">
-                                                    <span class="name"><?= $docData['doc_name'];?></span>
-                                                        <?= date('d/m/Y h:i a', strtotime($msg['date']));?>
-                                                    </div>
-                                                    <?php
-                                                }
-                                                if($sender_type == "employer")
-                                                {
-                                                    $docSQl     = query("SELECT * FROM tbl_employer WHERE emp_id = $senderID");
-                                                    $docData    = fetch($docSQl);
-                                                    ?>
-                                                    <div class="status message-data">
-                                                    <span class="name"><?= $docData['emp_name'];?></span>
-                                                        <?= date('d/m/Y h:i a', strtotime($msg['date']));?>
-                                                    </div>
-                                                    <?php
-                                                }
-                                                if($sender_type == "organizer")
-                                                {
-                                                    $docSQl     = query("SELECT * FROM tbl_organizer WHERE org_id = $senderID");
-                                                    $docData    = fetch($docSQl);
-                                                    ?>
-                                                    <div class="status message-data">
-                                                    <span class="name"><?= $docData['org_name'];?></span>
-                                                        <?= date('d/m/Y h:i a', strtotime($msg['date']));?>
-                                                    </div>
-                                                    <?php
-                                                }
-                                                if($sender_type == "professional")
-                                                {
-                                                    $docSQl     = query("SELECT * FROM tbl_candidate WHERE candidate_id = $senderID");
-                                                    $docData    = fetch($docSQl);
-                                                    ?>
-                                                    <div class="status message-data">
-                                                    <span class="name"><?= $docData['doc_name'];?></span>
-                                                        <?= date('d/m/Y h:i a', strtotime($msg['date']));?>
-                                                    </div>
-                                                    <?php
-                                                }
-                                                ?>
-                                                <div class="message my-message">
-                                                   <?php
                                                     if($msg['chat_media'] != null)
                                                     {
                                                         $msg['file_extension'] = substr($msg['chat_media'], strripos($msg['chat_media'], '.'));
@@ -1008,95 +954,151 @@ while($contacts = fetch($cntctSql))
                                                             ?>
                                                             <div class="attachment">
                                                                 <a href="<?= file_url().$msg['chat_media'];?>" target="_blank">
-                                                                    <img src="<?= file_url().'/upload/file.png';?>" alt="" class="img-fluid img-thumbnail" style="max-height: 80px;width: auto;">
+                                                                    <img src="<?= file_url().'uploads/file.png';?>" alt="" class="img-fluid img-thumbnail" style="max-height: 80px;width: auto;">
                                                                 </a>
                                                             </div>
                                                             <?php
                                                         }
-                                                        }
+                                                    }
                                                     ?>
                                                     <p><?= $msg['chat_message'];?></p>
                                                 </div>
-                                            </li> 
+                                            </li>
                                             <?php
+                                            query("UPDATE `tbl_chat` SET chat_read = 1 WHERE sender = $doctorID AND receiver = $senderID AND receiver_type = '$sender_type' AND sender_type = 'doctor'");
                                         }
-                                        query("UPDATE `tbl_chat` SET chat_read = 1 WHERE sender = $senderID AND receiver = $doctorID AND receiver_type = 'doctor' AND sender_type = '$sender_type'");
-                                    }
-                                    $msgsql = query("SELECT * FROM tbl_chat WHERE sender = $doctorID AND receiver = $senderID AND receiver_type = '$sender_type' AND sender_type = 'doctor' ORDER BY chat_id ASC");
-                                    while ($msg = fetch($msgsql))
-                                    {
-                                        $receiverId = $msg['receiver'];
-                                        ?>
-                                        <li class="clearfix">
-                                            <div class="status online message-data text-right">
-                                                <span class="name">You</span>
-                                                <span class="time"> <?= date('d/m/Y h:i a', strtotime($msg['date']));?></span>
-                                            </div>
-                                            <div class="message other-message float-right">
-                                                <?php
-                                                if($msg['chat_media'] != null)
-                                                {
-                                                    $msg['file_extension'] = substr($msg['chat_media'], strripos($msg['chat_media'], '.'));
-                                                    if(strtolower($msg['file_extension']) == '.jpg' || strtolower($msg['file_extension']) == '.png' || strtolower($msg['file_extension']) == '.jpeg')
-                                                    {
-                                                        ?>
-                                                        <div class="attachment">
-                                                            <a href="<?= file_url().$msg['chat_media'];?>" target="_blank"><img src="<?= file_url().$msg['chat_media'];?>" alt="" class="img-fluid img-thumbnail"></a>
-                                                        </div>
-                                                        <?php
-                                                    }
-                                                    else if(strtolower($msg['file_extension']) == ".docx")
-                                                    {
-                                                        ?>
-                                                        <div class="attachment">
-                                                            <a href="<?= file_url().$msg['chat_media'];?>" target="_blank">
-                                                                <img src="<?= file_url().'/upload/docx.png';?>" alt="" class="img-fluid img-thumbnail" style="max-height: 80px;width: auto;">
-                                                            </a>
-                                                        </div>
-                                                        <?php
-                                                    }
-                                                    else if(strtolower($msg['file_extension']) == ".xlsx")
-                                                    {
-                                                        ?>
-                                                        <div class="attachment">
-                                                            <a href="<?= file_url().$msg['chat_media'];?>" target="_blank">
-                                                                <img src="<?= file_url().'/upload/excel.png';?>" alt="" class="img-fluid img-thumbnail" style="max-height: 80px;width: auto;">
-                                                            </a>
-                                                        </div>
-                                                        <?php
-                                                    }
-                                                    else if(strtolower($msg['file_extension']) == ".3gp" || strtolower($msg['file_extension']) == ".mp4" || strtolower($msg['file_extension']) == ".mkv"  || strtolower($msg['file_extension']) == ".avi")
-                                                    {
-                                                        $file_basename = substr($msg['chat_media'], 0, strripos($msg['chat_media'], '.'));
-                                                        $ext = explode('.', $msg['file_extension']);
-                                                        ?>
-                                                        <div class="attachment">
-                                                            <a href="<?= file_url().$msg['chat_media'];?>" target="_blank">
-                                                                <video class="img-fluid" controls >
-                                                                    <source src="<?= file_url().$msg['chat_media'];?>" type="video/<?= $ext[1];?>">
-                                                                    <source src="<?= file_url().$file_basename;?>.ogg" type="video/ogg">
-                                                                </video>
-                                                            </a>
-                                                        </div>
-                                                        <?php
-                                                    }
-                                                    else
-                                                    {
-                                                        ?>
-                                                        <div class="attachment">
-                                                            <a href="<?= file_url().$msg['chat_media'];?>" target="_blank">
-                                                                <img src="<?= file_url().'uploads/file.png';?>" alt="" class="img-fluid img-thumbnail" style="max-height: 80px;width: auto;">
-                                                            </a>
-                                                        </div>
-                                                        <?php
-                                                    }
-                                                }
+                                        else
+                                        {
+                                            $receiverId = $msg['receiver'];
+                                            if($msg['sender'] == $senderID)
+                                            {
+                                                $sender_type = $msg['sender_type'];
                                                 ?>
-                                                <p><?= $msg['chat_message'];?></p>
-                                            </div>
-                                        </li>
-                                        <?php
-                                        query("UPDATE `tbl_chat` SET chat_read = 1 WHERE sender = $doctorID AND receiver = $senderID AND receiver_type = '$sender_type' AND sender_type = 'doctor'");
+                                                <li>
+                                                    <?php
+                                                    if($sender_type == "doctor")
+                                                    {
+                                                        $docSQl     = query("SELECT * FROM tbl_doctor WHERE doc_id = $senderID");
+                                                        $docData    = fetch($docSQl);
+                                                        ?>
+                                                        <div class="status message-data">
+                                                        <span class="name"><?= $docData['doc_name'];?></span>
+                                                            <?= date('d/m/Y h:i a', strtotime($msg['date']));?>
+                                                        </div>
+                                                        <?php
+                                                    }
+                                                    if($sender_type == "clinic")
+                                                    {
+                                                        $docSQl     = query("SELECT * FROM tbl_clinic WHERE clinic_id = $senderID");
+                                                        $docData    = fetch($docSQl);
+                                                        ?>
+                                                        <div class="status message-data">
+                                                        <span class="name"><?= $docData['clinic_name'];?></span>
+                                                            <?= date('d/m/Y h:i a', strtotime($msg['date']));?>
+                                                        </div>
+                                                        <?php
+                                                    }
+                                                    if($sender_type == "employer")
+                                                    {
+                                                        $docSQl     = query("SELECT * FROM tbl_employer WHERE emp_id = $senderID");
+                                                        $docData    = fetch($docSQl);
+                                                        ?>
+                                                        <div class="status message-data">
+                                                        <span class="name"><?= $docData['emp_name'];?></span>
+                                                            <?= date('d/m/Y h:i a', strtotime($msg['date']));?>
+                                                        </div>
+                                                        <?php
+                                                    }
+                                                    if($sender_type == "organizer")
+                                                    {
+                                                        $docSQl     = query("SELECT * FROM tbl_organizer WHERE org_id = $senderID");
+                                                        $docData    = fetch($docSQl);
+                                                        ?>
+                                                        <div class="status message-data">
+                                                        <span class="name"><?= $docData['org_name'];?></span>
+                                                            <?= date('d/m/Y h:i a', strtotime($msg['date']));?>
+                                                        </div>
+                                                        <?php
+                                                    }
+                                                    if($sender_type == "professional")
+                                                    {
+                                                        $docSQl     = query("SELECT * FROM tbl_candidate WHERE candidate_id = $senderID");
+                                                        $docData    = fetch($docSQl);
+                                                        ?>
+                                                        <div class="status message-data">
+                                                        <span class="name"><?= $docData['candidate_name'];?></span>
+                                                            <?= date('d/m/Y h:i a', strtotime($msg['date']));?>
+                                                        </div>
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                    <div class="message my-message">
+                                                       <?php
+                                                        if($msg['chat_media'] != null)
+                                                        {
+                                                            $msg['file_extension'] = substr($msg['chat_media'], strripos($msg['chat_media'], '.'));
+                                                            if(strtolower($msg['file_extension']) == '.jpg' || strtolower($msg['file_extension']) == '.png' || strtolower($msg['file_extension']) == '.jpeg')
+                                                            {
+                                                                ?>
+                                                                <div class="attachment">
+                                                                    <a href="<?= file_url().$msg['chat_media'];?>" target="_blank"><img src="<?= file_url().$msg['chat_media'];?>" alt="" class="img-fluid img-thumbnail"></a>
+                                                                </div>
+                                                                <?php
+                                                            }
+                                                            else if(strtolower($msg['file_extension']) == ".docx")
+                                                            {
+                                                                ?>
+                                                                <div class="attachment">
+                                                                    <a href="<?= file_url().$msg['chat_media'];?>" target="_blank">
+                                                                        <img src="<?= file_url().'/upload/docx.png';?>" alt="" class="img-fluid img-thumbnail" style="max-height: 80px;width: auto;">
+                                                                    </a>
+                                                                </div>
+                                                                <?php
+                                                            }
+                                                            else if(strtolower($msg['file_extension']) == ".xlsx")
+                                                            {
+                                                                ?>
+                                                                <div class="attachment">
+                                                                    <a href="<?= file_url().$msg['chat_media'];?>" target="_blank">
+                                                                        <img src="<?= file_url().'/upload/excel.png';?>" alt="" class="img-fluid img-thumbnail" style="max-height: 80px;width: auto;">
+                                                                    </a>
+                                                                </div>
+                                                                <?php
+                                                            }
+                                                            else if(strtolower($msg['file_extension']) == ".3gp" || strtolower($msg['file_extension']) == ".mp4" || strtolower($msg['file_extension']) == ".mkv"  || strtolower($msg['file_extension']) == ".avi")
+                                                            {
+                                                                $file_basename = substr($msg['chat_media'], 0, strripos($msg['chat_media'], '.'));
+                                                                $ext = explode('.', $msg['file_extension']);
+                                                                ?>
+                                                                <div class="attachment">
+                                                                    <a href="<?= file_url().$msg['chat_media'];?>" target="_blank">
+                                                                        <video class="img-fluid" controls >
+                                                                            <source src="<?= file_url().$msg['chat_media'];?>" type="video/<?= $ext[1];?>">
+                                                                            <source src="<?= file_url().$file_basename;?>.ogg" type="video/ogg">
+                                                                        </video>
+                                                                    </a>
+                                                                </div>
+                                                                <?php
+                                                            }
+                                                            else
+                                                            {
+                                                                ?>
+                                                                <div class="attachment">
+                                                                    <a href="<?= file_url().$msg['chat_media'];?>" target="_blank">
+                                                                        <img src="<?= file_url().'/upload/file.png';?>" alt="" class="img-fluid img-thumbnail" style="max-height: 80px;width: auto;">
+                                                                    </a>
+                                                                </div>
+                                                                <?php
+                                                            }
+                                                            }
+                                                        ?>
+                                                        <p><?= $msg['chat_message'];?></p>
+                                                    </div>
+                                                </li> 
+                                                <?php
+                                            }
+                                            query("UPDATE `tbl_chat` SET chat_read = 1 WHERE sender = $senderID AND receiver = $doctorID AND receiver_type = 'doctor' AND sender_type = '$sender_type'");
+                                        }
                                     }
                                     ?>
                                 </ul>
