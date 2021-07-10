@@ -923,7 +923,7 @@ while($contacts = fetch($cntctSql))
                 <form action="<?= admin_base_url();?>model/centerModel" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="form-group col-sm-12">
-                            <select class="form-control show-tick ms select2" name="txt_receiverType" id="txt_receiverType">
+                            <select class="form-control show-tick ms select2" name="txt_receiverType" id="txt_receiverType1">
                                 <option>Select Reciver Type</option>
                                 <option value="doctor">Doctor</option>
                                 <option value="clinic">Clinic</option>
@@ -933,12 +933,12 @@ while($contacts = fetch($cntctSql))
                             </select>
                         </div>
                         <div class="form-group col-sm-12">
-                            <select class="form-control show-tick ms select2" name="txt_receiver" id="txt_receiver">
+                            <select class="form-control show-tick ms select2" name="txt_receiver" id="txt_receiver1">
                                 
                             </select>
                         </div>
                         <div class="form-group col-sm-12">
-                            <input type="text" class="form-control" placeholder="Enter text here..." name="txt_message" id="txt_message" >
+                            <input type="text" class="form-control" placeholder="Enter text here..." name="txt_message" id="txt_message1" >
                         </div>
                         <div class="form-group col-sm-12">
                             <input type="file" class="form-control" name="chat_media" id="txt_file">
@@ -1216,7 +1216,7 @@ get_msg('msg');
         });
     });
     $(document).ready(function(){{
-        $("#txt_receiverType").change(function(){
+        $("#txt_receiverType1").change(function(){
             var val = $(this).val();
             var act = "getUserList";
             $.ajax({
@@ -1227,13 +1227,13 @@ get_msg('msg');
                     var res = $.parseJSON(responce);
                     if(res.status == "success")
                     {
-                        $("#txt_receiver").empty();
-                        $("#txt_receiver").append('<option>Select User</option>');
+                        $("#txt_receiver1").empty();
+                        $("#txt_receiver1").append('<option>Select User</option>');
                         var data = res.data;
                         $.each(data, function(index, value)
                         {
                             li = '<option value="'+value.id+'" >'+value.name+'</option>';
-                            $("#txt_receiver").append(li);
+                            $("#txt_receiver1").append(li);
                         });
                     }
                     else
