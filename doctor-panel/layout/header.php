@@ -4,6 +4,7 @@ if(get_sess('doctor_logged_in') != 1)
 {
     jump(admin_base_url()."login.php");
 }
+$doctorID = get_sess('userdata')['doc_id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,70 +45,33 @@ if(get_sess('doctor_logged_in') != 1)
                     <span class="fa fa-tasks"></span>
                 </a>
                 <div class="navbar-custom-menu">
+                    <?php 
+                    $notifyCountQuery = query("SELECT COUNT(*) as count FROM tbl_notification WHERE notify_user = $doctorID AND notify_read = 0");
+                    $notifyCount      = fetch($notifyCountQuery)['count'];
+                    ?>
                     <ul class="nav navbar-nav">
                         <li class="dropdown messages-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="pe-7s-bell"></i>
-                                <span class="label label-success">4</span>
+                                <span class="label label-success"><?= $notifyCount; ?></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li class="header"><i class="fa fa-bell"></i>
-                                4 Messages</li>
                                 <li>
                                     <ul class="menu">
-                                        <li>
-                                            <a href="#" class="border-gray">
-                                                <div class="pull-left">
-                                                    <img src="assets/dist/img/avatar2.png" class="img-thumbnail" alt="User Image">
-                                                </div>
-                                                <h4>Alrazy</h4>
-                                                <p>Lorem Ipsum is simply dummy text of...</p>
-                                                <span class="label label-success pull-right">11.00am</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="border-gray">
-                                                <div class="pull-left">
-                                                <img src="assets/dist/img/avatar4.png" class="img-thumbnail" alt="User Image"></div>
-                                                <h4>Tanjil</h4>
-                                                <p>Lorem Ipsum is simply dummy text of...
-                                                </p>
-                                                <span class="label label-success pull-right"> 12.00am</span>
-                                            </a>       
-
-                                        </li>
-                                        <li>
-                                            <a href="#" class="border-gray">
-                                                <div class="pull-left">
-                                                <img src="assets/dist/img/avatar3.png" class="img-thumbnail" alt="User Image"></div>
-                                                <h4>Jahir</h4>
-                                                <p>Lorem Ipsum is simply dummy text of...
-                                                </p>
-                                                <span class="label label-success pull-right"> 10.00am</span>
-                                            </a>       
-
-                                        </li>
-                                        <li>
-                                           <a href="#" class="border-gray">
-                                                <div class="pull-left">
-                                                <img src="assets/dist/img/avatar4.png" class="img-thumbnail" alt="User Image"></div>
-                                                <h4>Shawon</h4>
-                                                <p>Lorem Ipsum is simply dummy text of...
-                                                </p>
-                                                <span class="label label-success pull-right"> 09.00am</span>
-                                            </a>       
-
-                                        </li>
-                                        <li>
-                                            <a href="#" class="border-gray">
-                                                <div class="pull-left">
-                                                <img src="assets/dist/img/avatar3.png" class="img-thumbnail" alt="User Image"></div>
-                                                <h4>Shipon</h4>
-                                                <p>Lorem Ipsum is simply dummy text of...
-                                                </p>
-                                                <span class="label label-success pull-right"> 03.00pm</span>
-                                            </a>       
-                                        </li>
+                                        <?php 
+                                        $notifyDataQuery = query("SELECT * FROM tbl_notification WHERE notify_user = $doctorID ORDER BY notify_id DESC");
+                                        while($notifyData = fetch($notifyDataQuery))
+                                        {
+                                            if($notifyData['notify_read'] == 1)
+                                            {
+                                                echo str_replace('border-gray','border-gray" style="background:#f4f4f4;',$notifyData['notify_text']);
+                                            }
+                                            else
+                                            {
+                                                echo $notifyData['notify_text'];
+                                            }
+                                        }
+                                        ?>
                                     </ul>
                                 </li>
                                 <li class="footer"><a href="#">See all messages <i class=" fa fa-arrow-right"></i></a>

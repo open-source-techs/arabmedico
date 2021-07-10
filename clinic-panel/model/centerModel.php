@@ -346,9 +346,55 @@ else if($_SERVER['REQUEST_METHOD'] == "GET")
 		$data['my_type'] 		= 'clinic';
 		$data['contact_id'] 	= $_GET['contactID'];
 		$data['contact_type'] 	= $_GET['type'];
+		$contactID 				= get_next_table_id('tbl_user_contact');
 		if(insert($data,'tbl_user_contact'))
 		{
-			set_msg("Success", "Contact added successfully",'success');
+			$userID = $data['contact_id'];
+			if(strtolower($data['contact_type']) == "doctor")
+            {
+                $userAcceptLink 	= base_url()."doctor-panel/model/adminUser?act=acceptRequest&contactID=".$contactID;
+                $userrejectLink 	= base_url()."doctor-panel/model/adminUser?act=rejectRequest&contactID=".$contactID;
+            }
+            elseif(strtolower($data['contact_type']) == "clinic")
+            {
+                $userAcceptLink 	= base_url()."clinic-panel/model/adminUser?act=acceptRequest&contactID=".$contactID;
+                $userrejectLink 	= base_url()."clinic-panel/model/adminUser?act=rejectRequest&contactID=".$contactID;
+            }
+            elseif(strtolower($data['contact_type']) == "employer")
+            {
+                $userAcceptLink 	= base_url()."employer-panel/model/adminUser?act=acceptRequest&contactID=".$contactID;
+                $userrejectLink 	= base_url()."employer-panel/model/adminUser?act=rejectRequest&contactID=".$contactID;
+            }
+            elseif(strtolower($data['contact_type']) == "organizer")
+            {
+                $userAcceptLink 	= base_url()."organizer-panel/model/adminUser?act=acceptRequest&contactID=".$contactID;
+                $userrejectLink 	= base_url()."organizer-panel/model/adminUser?act=rejectRequest&contactID=".$contactID;
+            }
+            elseif(strtolower($data['contact_type']) == "professional")
+            {
+                $userAcceptLink 	= base_url()."professionals-panel/model/adminUser?act=acceptRequest&contactID=".$contactID;
+                $userrejectLink 	= base_url()."professionals-panel/model/adminUser?act=rejectRequest&contactID=".$contactID;
+            }
+            $myName = get_sess("userdata")['clinic_name'];
+			$mySlug = get_sess("userdata")['clinic_slug'];
+			$myImg 	= get_sess("userdata")['clinic_icon'];
+			$message = '<li>
+                <div class="border-gray">
+                    <div class="pull-left">
+                        <img src="'.file_url().$myImg.'" class="img-thumbnail" alt="Clinic Image">
+                    </div>
+                    <h4><a href="'.base_url().$mySlug.'" target="_blank">'.$myName.'</a> (Clinic)</h4>
+                    <p>Requested you to connect with him <br>
+						<a href="'.$userAcceptLink.'">Accept</a> &nbsp;&nbsp; <a href="'.$userrejectLink.'" class="text-danger">Reject</a>
+					</p>
+                    <span class="label label-success pull-right">'.date('d/m/Y h:i a').'</span>
+                </div>
+            </li>';
+	        $notify['notify_user'] 		= $userID;
+	        $notify['notify_u_type'] 	= $data['contact_type'];
+	        $notify['notify_text'] 		= $message;
+	        insert2($notify, 'tbl_notification');
+			set_msg("Success", "Request sent successfully",'success');
 			echo "<script>window.history.go(-1);</script>";
 		}
 		else
