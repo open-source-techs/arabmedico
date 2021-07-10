@@ -118,7 +118,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 	}
 	else if(isset($_POST['txt_action']))
     {
-        $data['chat_message'] 	= post('txt_message');
+        $data['chat_message'] 	= $_POST['txt_message'];
         $data['sender']       	= get_sess("userdata")['candidate_id'];
         $data['sender_type']  	= "professional";
         $data['receiver']     	= post('txt_receiver');
@@ -152,7 +152,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     }
     else if(isset($_POST['newmessage']))
     {
-        $data['chat_message'] 	= post('txt_message');
+        $data['chat_message'] 	= $_POST['txt_message'];
         $data['sender']       	= get_sess("userdata")['candidate_id'];
         $data['sender_type']  	= "professional";
         $data['receiver']     	= post('txt_receiver');
