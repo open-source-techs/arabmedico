@@ -4,6 +4,7 @@ if(get_sess('employee_logged_in') != 1)
 {
     jump(admin_base_url()."login.php");
 }
+$emp_id = get_sess('userdata')['emp_id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +12,7 @@ if(get_sess('employee_logged_in') != 1)
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Employeer Panel</title>
+    <title>Arabmedico | Employeer Panel</title>
     <link rel="shortcut icon" href="assets/dist/img/ico/favicon.png" type="image/x-icon">
     <link href="<?= admin_base_url();?>assets/plugins/jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
     <link href="<?= admin_base_url();?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -44,7 +45,40 @@ if(get_sess('employee_logged_in') != 1)
                     <span class="fa fa-tasks"></span>
                 </a>
                 <div class="navbar-custom-menu">
-                    <ul class="nav navbar-nav"></ul>
+                    <?php 
+                    $notifyCountQuery = query("SELECT COUNT(*) as count FROM tbl_notification WHERE notify_user = $emp_id AND notify_read = 0");
+                    $notifyCount      = fetch($notifyCountQuery)['count'];
+                    ?>
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown messages-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="pe-7s-bell"></i>
+                                <span class="label label-success"><?= $notifyCount; ?></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <ul class="menu">
+                                        <?php 
+                                        $notifyDataQuery = query("SELECT * FROM tbl_notification WHERE notify_user = $emp_id ORDER BY notify_id DESC");
+                                        while($notifyData = fetch($notifyDataQuery))
+                                        {
+                                            if($notifyData['notify_read'] == 1)
+                                            {
+                                                echo str_replace('border-gray','border-gray" style="background:#f4f4f4;',$notifyData['notify_text']);
+                                            }
+                                            else
+                                            {
+                                                echo $notifyData['notify_text'];
+                                            }
+                                        }
+                                        ?>
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="#">See all messages <i class=" fa fa-arrow-right"></i></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </nav>
         </header>
