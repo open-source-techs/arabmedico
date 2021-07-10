@@ -404,7 +404,6 @@ while($contacts = fetch($cntctSql))
             <div class="row clearfix">
                 <div class="col-lg-5 col-md-6 col-sm-12">
                     <button class="btn btn-success btn-icon float-right" data-toggle="modal" data-target="#send_message_box">New Message</button>
-
                 </div>
             </div>
             <div class="row clearfix">
@@ -689,7 +688,7 @@ while($contacts = fetch($cntctSql))
                                 <hr>
                                 <ul class="chat-history">
                                     <?php
-                                    $msgsql = query("SELECT * FROM tbl_chat WHERE (sender = $senderID AND receiver = $clinicID AND receiver_type = 'clinic' AND sender_type = '$sender_type') AND (sender = $clinicID AND receiver = $senderID AND receiver_type = '$sender_type' AND sender_type = 'clinic') ORDER BY chat_id ASC");
+                                    $msgsql = query("SELECT * FROM tbl_chat WHERE (sender = $senderID AND receiver = $clinicID AND receiver_type = 'clinic' AND sender_type = '$sender_type') OR (sender = $clinicID AND receiver = $senderID AND receiver_type = '$sender_type' AND sender_type = 'clinic') ORDER BY chat_id ASC");
                                     while ($msg = fetch($msgsql))
                                     {
                                         if($msg['sender_type'] == "clinic")
@@ -925,7 +924,7 @@ while($contacts = fetch($cntctSql))
             <form action="<?= admin_base_url();?>model/centerModel" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group col-sm-12">
-                        <select class="form-control show-tick ms select2" name="txt_receiverType" id="txt_receiverType">
+                        <select class="form-control show-tick ms select2" name="txt_receiverType" id="txt_receiverType1">
                             <option>Select Reciver Type</option>
                             <option value="doctor">Doctor</option>
                             <option value="clinic">Clinic</option>
@@ -935,7 +934,7 @@ while($contacts = fetch($cntctSql))
                         </select>
                     </div>
                     <div class="form-group col-sm-12">
-                        <select class="form-control show-tick ms select2" name="txt_receiver" id="txt_receiver">
+                        <select class="form-control show-tick ms select2" name="txt_receiver" id="txt_receiver1">
                             
                         </select>
                     </div>
@@ -1104,6 +1103,7 @@ get_msg('msg');
 
     
     $(document).ready(function(){
+
         // $('.dropify').dropify();
         $("#txt_message").keyup(function(e){
             e.preventDefault();
@@ -1216,9 +1216,9 @@ get_msg('msg');
                 $(".page-loader-wrapper").hide();
             }
         });
-    });
-    $(document).ready(function(){{
-        $("#txt_receiverType").change(function(){
+    
+    
+        $("#txt_receiverType1").change(function(){
             var val = $(this).val();
             var act = "getUserList";
             $.ajax({
@@ -1229,13 +1229,13 @@ get_msg('msg');
                     var res = $.parseJSON(responce);
                     if(res.status == "success")
                     {
-                        $("#txt_receiver").empty();
-                        $("#txt_receiver").append('<option>Select User</option>');
+                        $("#txt_receiver1").empty();
+                        $("#txt_receiver1").append('<option>Select User</option>');
                         var data = res.data;
                         $.each(data, function(index, value)
                         {
                             li = '<option value="'+value.id+'" >'+value.name+'</option>';
-                            $("#txt_receiver").append(li);
+                            $("#txt_receiver1").append(li);
                         });
                     }
                     else
@@ -1245,5 +1245,5 @@ get_msg('msg');
                 }
             });
         });
-    }});
+    });
 </script>
