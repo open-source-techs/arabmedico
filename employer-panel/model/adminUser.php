@@ -96,12 +96,17 @@ else if($_SERVER['REQUEST_METHOD'] == "GET")
 			}
 			else
 			{
-				$newData['contact_id'] 		= $chk_my_id;
-				$newData['contact_type'] 	= $chk_my_type;
-				$newData['my_id'] 			= $chk_contact_id;
-				$newData['my_type'] 		= $chk_contact_type;
+				$newData['contact_id'] 		= $chk_contact_id;
+				$newData['contact_type'] 	= ucfirst($chk_contact_type);
+				$newData['my_id'] 			= $chk_my_id;
+				$newData['my_type'] 		= strtolower($chk_my_type);
+				$newData['active'] 			= 1;
 				if(insert2($newData,'tbl_user_contact'))
 				{
+					$updateData['active'] = 1;
+					where('u_contact_id',$tableID);
+					update2($updateData,'tbl_user_contact');
+
 
 					where('notify_id',$notificationId);
 					delete('tbl_notification');
