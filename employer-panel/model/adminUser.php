@@ -59,13 +59,92 @@ else if($_SERVER['REQUEST_METHOD'] == "GET")
 		session_destroy();
 		jump(admin_base_url()."login");
 	}
+	else if(isset($_GET['act']) && $_GET['act'] == "acceptRequest")
+	{
+		if(isset($_GET['contactID']) && $_GET['contactID'] != "" && $_GET['contactID'] != null && $_GET['contactID'] > 0)
+		{
+			$notificationId 	= $_GET['notifyID'];
+			$tableID 			= $_GET['contactID'];
+			$contactQuery 		= query("SELECT * FROM tbl_user_contact WHERE u_contact_id = $tableID");
+			$contactData		= fetch($contactQuery);
+			$chk_my_id 			= $contactData['contact_id'];
+			$chk_my_type 		= strtolower($contactData['contact_type']);
+			$chk_contact_id 	= $contactData['my_id'];
+			$chk_contact_type 	= ucfirst($contactData['my_type']);
+			$chkQuery 			= query("SELECT * FROM tbl_user_contact WHERE contact_id = '$chk_contact_id' AND contact_type = '$chk_contact_type' AND my_id = '$chk_my_id' AND my_type = '$chk_my_type'");
+			if(nrows($chkQuery) > 0)
+			{
+				$chkData = fetch($chkQuery);
+				$update['active'] = 1;
+				where('u_contact_id',$chkData['u_contact_id']);
+				if(update2($update,'tbl_user_contact'))
+				{
+					where('u_contact_id',$tableID);
+					update2($update,'tbl_user_contact');
+
+					where('notify_id',$notificationId);
+					delete('tbl_notification');
+
+					set_msg('Success','Your request is processed successfully','success');
+					echo "<script>window.history.go(-1);</script>";
+				}
+				else
+				{
+					set_msg('Error','Unable to process your request. Please try again later.','error');
+					echo "<script>window.history.go(-1);</script>";
+				}
+			}
+			else
+			{
+				$newData['contact_id'] 		= $chk_my_id;
+				$newData['contact_type'] 	= $chk_my_type;
+				$newData['my_id'] 			= $chk_contact_id;
+				$newData['my_type'] 		= $chk_contact_type;
+				if(insert2($newData,'tbl_user_contact'))
+				{
+
+					where('notify_id',$notificationId);
+					delete('tbl_notification');
+
+					set_msg('Success','Your request is processed successfully','success');
+					echo "<script>window.history.go(-1);</script>";
+				}
+				else
+				{
+					set_msg('Error','Unable to process your request. Please try again later.','error');
+					echo "<script>window.history.go(-1);</script>";
+				}
+			}
+		}
+		else
+		{
+			jump(admin_base_url());
+		}
+	}
+	else if(isset($_GET['act']) && $_GET['act'] == "rejectRequest")
+	{
+		if(isset($_GET['contactID']) && $_GET['contactID'] != "" && $_GET['contactID'] != null && $_GET['contactID'] > 0)
+		{
+			$notificationId 	= $_GET['notifyID'];
+			$tableID 			= $_GET['contactID'];
+
+			where('notify_id',$notificationId);
+			delete('tbl_notification');
+
+			where('u_contact_id',$tableID);
+			delete('tbl_user_contact');
+
+			set_msg('Success','Request is rejected successfully','success');
+			echo "<script>window.history.go(-1);</script>";
+		}
+	}
 	else
 	{
-		jump(admin_base_ur());
+		jump(admin_base_url());
 	}
 }
 else
 {
-	jump(admin_base_ur());
+	jump(admin_base_url());
 }
 ?>

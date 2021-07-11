@@ -61,19 +61,20 @@ $clinic_id = get_sess('userdata')['clinic_id'];
                                         $notifyDataQuery = query("SELECT * FROM tbl_notification WHERE notify_user = $clinic_id ORDER BY notify_id DESC");
                                         while($notifyData = fetch($notifyDataQuery))
                                         {
+                                            $notifyID = $notifyData['notify_id'];
+                                            $li =  str_replace('adminUser?','adminUser?notifyID='.$notifyID.'&',$notifyData['notify_text']);
                                             if($notifyData['notify_read'] == 1)
                                             {
-                                                echo str_replace('border-gray','border-gray" style="background:#f4f4f4;',$notifyData['notify_text']);
+
+                                                echo str_replace('border-gray','border-gray" style="background:#f4f4f4;',$li);
                                             }
                                             else
                                             {
-                                                echo $notifyData['notify_text'];
+                                                echo $li;
                                             }
                                         }
                                         ?>
                                     </ul>
-                                </li>
-                                <li class="footer"><a href="#">See all messages <i class=" fa fa-arrow-right"></i></a>
                                 </li>
                             </ul>
                         </li>
