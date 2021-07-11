@@ -3,6 +3,54 @@
 <?php
 $doc_id = get_sess("userdata")['doc_id'];
 ?>
+<style>
+    .list-wrapper{
+        padding: 0px 20px 0px 20px;
+    }
+    .user-list-wrapper{
+        display: flex;
+        justify-content: flex-start;
+        padding: 10px 10px;
+        background: #f3f3f3;
+    }
+    .user-image{
+        width: 7%;
+    }
+    .user-image img{
+        width: 50px;
+        border-radius: 50%;
+    }
+    .user-data{
+        width: 74%;
+    }
+    .user-data h3{
+        margin: 0px !important;
+    }
+    .user-data p{
+        margin: 0px !important;
+    }
+    .user-list-wrapper hr{
+        height: 1px;
+        margin: 5px 0px;
+    }
+    .user-action{
+        margin-top: 20px;
+    }
+    .user-action .round-button{
+        color: #00a3c8;
+        padding: 5px 20px;
+        background: none;
+        border-radius: 50px;
+        border: 2px solid #00a3c8;
+    }
+    .user-action .round-button-red{
+        color: #E5343D;
+        padding: 5px 20px;
+        background: none;
+        border-radius: 50px;
+        border: 2px solid #E5343D;
+    }
+</style>
 <div class="content-wrapper">
     <section class="content-header">
         <div class="header-icon">
@@ -29,92 +77,78 @@ $doc_id = get_sess("userdata")['doc_id'];
                         
                     </div>
                     <div class="panel-body">
-                        <div class="row">
-                            <div class="panel-header">
-                                
-                            </div>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th><i style="font-size:20px;" class="fa fa-picture-o"></i></th>
-                                        <th>Name</th>
-                                        <th>Type</th>
-                                        <th>Created At</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $cntctSql = query("SELECT * FROM tbl_user_contact WHERE my_id = '$doc_id' AND my_type = 'doctor'");
-                                    while ($row = fetch($cntctSql))
-                                    {
-                                        $contactID      = $row['contact_id'];
-                                        $contactType    = $row['contact_type'];
-                                        ?>
-                                        <tr>
-                                            <?php
-                                            if(strtolower($contactType) == 'doctor')
-                                            {
-                                                $userSQl  = query("SELECT * FROM tbl_doctor WHERE doc_id = $contactID");
-                                                $userData = fetch($userSQl);
-                                                $img      = $userData['doc_image'];
-                                                $name     = $userData['doc_name'];
-                                                $ID       = $userData['doc_id'];
-                                                $type     = 'Doctor';
-                                            }
-                                            else if(strtolower($contactType) == 'clinic')
-                                            {
-                                                $userSQl  = query("SELECT * FROM tbl_clinic WHERE clinic_id = $contactID");
-                                                $userData = fetch($userSQl);
-                                                $img      = $userData['clinic_icon'];
-                                                $name     = $userData['clinic_name'];
-                                                $ID       = $userData['clinic_id'];
-                                                $type     = 'Clinic';
-                                            }
-                                            else if(strtolower($contactType) == 'employer')
-                                            {
-                                                $userSQl  = query("SELECT * FROM tbl_employer WHERE emp_id = $contactID");
-                                                $userData = fetch($userSQl);
-                                                $img      = $userData['emp_logo'];
-                                                $name     = $userData['emp_name'];
-                                                $ID       = $userData['emp_id'];
-                                                $type     = 'Employer';
-                                            }
-                                            else if(strtolower($contactType) == 'organizer')
-                                            {
-                                                $userSQl  = query("SELECT * FROM tbl_organizer WHERE org_id = $contactID");
-                                                $userData = fetch($userSQl);
-                                                $img      = $userData['org_icon'];
-                                                $name     = $userData['org_name'];
-                                                $ID       = $userData['org_id'];
-                                                $type     = 'Organizer';
-                                            }
-                                            else if(strtolower($contactType) == 'professional')
-                                            {
-                                                $userSQl  = query("SELECT * FROM tbl_candidate WHERE candidate_id = $contactID");
-                                                $userData = fetch($userSQl);
-                                                $img      = $userData['candidate_image'];
-                                                $name     = $userData['candidate_name'];
-                                                $ID       = $userData['candidate_id'];
-                                                $type     = 'Professional';
-                                            }
-                                            ?>
-                                            <td><img src="<?= file_url().$img;?>" style="width:50px;height:50px"></td>
-                                                <td><?= $name; ?></td>
-                                                <td><?= $type; ?></td>
-                                            <td><?= date("d/m/Y",strtotime($row['created_at']));?></td>
-                                            <td>
-                                                <button class="btn btn-sm btn-danger btnSendMsg" data-id="<?= $ID; ?>" data-type="<?= strtolower($type);?>">Message</button>
-                                            </td>
-                                        </tr>
-                                        <?php
-                                    }
-
-                                    ?>
-                                </tbody>
-                            </table>
+                        <div class="list-wrapper">
+                            <?php
+                            $cntctSql = query("SELECT * FROM tbl_user_contact WHERE my_id = '$doc_id' AND my_type = 'doctor' AND active = 1");
+                            while ($row = fetch($cntctSql))
+                            {
+                                $tableID      = $row['u_contact_id'];
+                                $contactID    = $row['contact_id'];
+                                $contactType  = $row['contact_type'];
+                                if(strtolower($contactType) == 'doctor')
+                                {
+                                    $userSQl  = query("SELECT * FROM tbl_doctor WHERE doc_id = $contactID");
+                                    $userData = fetch($userSQl);
+                                    $img      = $userData['doc_image'];
+                                    $name     = $userData['doc_name'];
+                                    $ID       = $userData['doc_id'];
+                                    $type     = 'Doctor';
+                                }
+                                else if(strtolower($contactType) == 'clinic')
+                                {
+                                    $userSQl  = query("SELECT * FROM tbl_clinic WHERE clinic_id = $contactID");
+                                    $userData = fetch($userSQl);
+                                    $img      = $userData['clinic_icon'];
+                                    $name     = $userData['clinic_name'];
+                                    $ID       = $userData['clinic_id'];
+                                    $type     = 'Clinic';
+                                }
+                                else if(strtolower($contactType) == 'employer')
+                                {
+                                    $userSQl  = query("SELECT * FROM tbl_employer WHERE emp_id = $contactID");
+                                    $userData = fetch($userSQl);
+                                    $img      = $userData['emp_logo'];
+                                    $name     = $userData['emp_name'];
+                                    $ID       = $userData['emp_id'];
+                                    $type     = 'Employer';
+                                }
+                                else if(strtolower($contactType) == 'organizer')
+                                {
+                                    $userSQl  = query("SELECT * FROM tbl_organizer WHERE org_id = $contactID");
+                                    $userData = fetch($userSQl);
+                                    $img      = $userData['org_icon'];
+                                    $name     = $userData['org_name'];
+                                    $ID       = $userData['org_id'];
+                                    $type     = 'Organizer';
+                                }
+                                else if(strtolower($contactType) == 'professional')
+                                {
+                                    $userSQl  = query("SELECT * FROM tbl_candidate WHERE candidate_id = $contactID");
+                                    $userData = fetch($userSQl);
+                                    $img      = $userData['candidate_image'];
+                                    $name     = $userData['candidate_name'];
+                                    $ID       = $userData['candidate_id'];
+                                    $type     = 'Professional';
+                                }
+                                ?>
+                                <div class="user-list-wrapper">
+                                    <div class="user-image">
+                                        <img class="img-fluid img-responsive" src="<?= file_url().$img;?>">
+                                    </div>
+                                    <div class="user-data">
+                                        <h3><?= $name; ?></h3>
+                                        <p><?= $type; ?></p>
+                                        <p><?= "Connected " . time_ago($row['created_at']);?></p>
+                                    </div>
+                                    <div class="user-action">
+                                        <button class="round-button btnSendMsg" data-id="<?= $ID; ?>" data-type="<?= strtolower($type);?>">Message</button>
+                                        <a class="round-button-red btnBlockUser" href="<?= admin_base_url();?>model/centerModel?act=removeUser&contactID=<?= $tableID;?>">Remove</a>
+                                    </div>
+                                    <hr>
+                                </div>
+                                <?php
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>

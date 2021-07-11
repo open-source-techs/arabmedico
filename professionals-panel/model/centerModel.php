@@ -401,6 +401,28 @@ else if($_SERVER['REQUEST_METHOD'] == "GET")
 			echo "<script>window.history.go(-1);</script>";
 		}
 	}
+	else if(isset($_GET['act']) && $_GET['act'] == 'removeUser')
+	{
+		if(isset($_GET['contactID']) && $_GET['contactID'] != '' && $_GET['contactID'] != null && $_GET['contactID'] > 0)
+		{
+			$tableID = $_GET['contactID'];
+			where('u_contact_id', $tableID);
+			if(delete('tbl_user_contact'))
+			{
+	            set_msg("Success", "User is removed from your contact successfully",'success');
+	            jump(admin_base_url()."my-contacts");
+	        }
+	        else
+	        {
+	            set_msg("Error", "Unable to process your request, Please try again later",'error');
+	            jump(admin_base_url()."my-contacts");
+			}
+		}
+		else
+		{
+			jump(admin_base_url());
+		}
+	}
 	else
 	{
 		jump(admin_base_url());
