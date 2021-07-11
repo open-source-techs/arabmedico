@@ -1,7 +1,7 @@
 <?php require_once('layout/header.php');?>
 <?php require_once('layout/sidebar.php');?>
 <?php
-$doc_id = get_sess("userdata")['clinic_id'];
+$clinicID = get_sess("userdata")['clinic_id'];
 ?>
 <div class="content-wrapper">
     <section class="content-header">
@@ -47,7 +47,7 @@ $doc_id = get_sess("userdata")['clinic_id'];
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $cntctSql = query("SELECT * FROM tbl_user_contact WHERE my_id = '$doc_id' AND my_type = 'clinic'");
+                                    $cntctSql = query("SELECT * FROM tbl_user_contact WHERE my_id = '$clinicID' AND my_type = 'clinic'");
                                     while ($row = fetch($cntctSql))
                                     {
                                         $contactID      = $row['contact_id'];
@@ -55,7 +55,7 @@ $doc_id = get_sess("userdata")['clinic_id'];
                                         ?>
                                         <tr>
                                             <?php
-                                            if($contactType == 'doctor')
+                                            if(strtolower($contactType) == 'doctor')
                                             {
                                                 $userSQl  = query("SELECT * FROM tbl_doctor WHERE doc_id = $contactID");
                                                 $userData = fetch($userSQl);
@@ -64,7 +64,7 @@ $doc_id = get_sess("userdata")['clinic_id'];
                                                 $ID       = $userData['doc_id'];
                                                 $type     = 'Doctor';
                                             }
-                                            else if($contactType == 'clinic')
+                                            else if(strtolower($contactType) == 'clinic')
                                             {
                                                 $userSQl  = query("SELECT * FROM tbl_clinic WHERE clinic_id = $contactID");
                                                 $userData = fetch($userSQl);
@@ -73,7 +73,7 @@ $doc_id = get_sess("userdata")['clinic_id'];
                                                 $ID       = $userData['clinic_id'];
                                                 $type     = 'Clinic';
                                             }
-                                            else if($contactType == 'employer')
+                                            else if(strtolower($contactType) == 'employer')
                                             {
                                                 $userSQl  = query("SELECT * FROM tbl_employer WHERE emp_id = $contactID");
                                                 $userData = fetch($userSQl);
@@ -82,7 +82,7 @@ $doc_id = get_sess("userdata")['clinic_id'];
                                                 $ID       = $userData['emp_id'];
                                                 $type     = 'Employer';
                                             }
-                                            else if($contactType == 'organizer')
+                                            else if(strtolower($contactType) == 'organizer')
                                             {
                                                 $userSQl  = query("SELECT * FROM tbl_organizer WHERE org_id = $contactID");
                                                 $userData = fetch($userSQl);
@@ -91,7 +91,7 @@ $doc_id = get_sess("userdata")['clinic_id'];
                                                 $ID       = $userData['org_id'];
                                                 $type     = 'Organizer';
                                             }
-                                            else if($contactType == 'professional')
+                                            else if(strtolower($contactType) == 'professional')
                                             {
                                                 $userSQl  = query("SELECT * FROM tbl_candidate WHERE candidate_id = $contactID");
                                                 $userData = fetch($userSQl);
