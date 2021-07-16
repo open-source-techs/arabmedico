@@ -27,18 +27,6 @@
                     <span>My Profile</span>
                 </a>
             </li>
-            <li class="<?php active_page('contacts'); ?>">
-                <a href="<?= admin_base_url();?>my-contacts">
-                    <i class="fa fa-users"></i>
-                    <span>My Contacts</span>
-                </a>
-            </li>
-            <li class="<?php active_page('inbox'); ?>">
-                <a href="<?= admin_base_url();?>inbox">
-                    <i class="fa fa-envelope"></i>
-                    <span>Inbox</span>
-                </a>
-            </li>
             <li class="">
                 <a href="<?= admin_base_url();?>my-cme">
                     <i class="fa fa-briefcase"></i>
