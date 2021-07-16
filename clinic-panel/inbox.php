@@ -402,11 +402,6 @@ while($contacts = fetch($cntctSql))
     <section class="content">
         <div class="container-fluid">
             <div class="row clearfix">
-                <div class="col-lg-5 col-md-6 col-sm-12">
-                    <button class="btn btn-success btn-icon float-right" data-toggle="modal" data-target="#send_message_box">New Message</button>
-                </div>
-            </div>
-            <div class="row clearfix">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="chat_list">
@@ -419,7 +414,7 @@ while($contacts = fetch($cntctSql))
                                 while ($senders = fetch($sendersql))
                                 {
                                     $senderID = $senders['sender'];
-                                    echo "<script> if(sender.length == 0){sender [sender.length]= ".$senderID."} else {sender [sender.length + 1]= ".$senderID."} </script>";
+                                    echo "<script> if(sender.length == 0){sender [sender.length]= ".$senderID."} else {sender[sender.length + 1]= ".$senderID."} </script>";
                                     $senderlist[] = $senderID;
                                     $active = false;
                                     if(isset($_GET['IdChat']))
