@@ -297,6 +297,39 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                             ?>
                         </div>
                     </div>
+                    <?php
+                    if(($clinic['clinic_wel_head'] != null && $clinic['clinic_wel_head_ar'] != "") || ($clinic['clinic_wel_text'] != null && $clinic['clinic_wel_text_arabic'] != ""))
+                    {
+                        $img = ($clinic['clinic_welcome_image'] != null && $clinic['clinic_welcome_image'] != "") ? true : false;
+                        ?>
+                        <section id="about-6" class="pt-100 about-section division">
+                            <div class="container" <?= ($lang == "eng") ? '' : 'style="direction:rtl !important;text-align:right"' ;?>>
+                                <div class="row d-flex align-items-center reverse">
+                                    <div class="col-lg-<?= ($img) ? '6' : '12'; ?>" >
+                                        <div class="txt-block pc-30 wow fadeInUp" data-wow-delay="0.4s">
+                                            <!-- <span class="section-id blue-color"><?= ($lang == "eng") ? $lang_con[9]['lang_eng'] : $lang_con[9]['lang_arabic']; ?></span> -->
+                                            <h3 class="h3-md steelblue-color left-after"><?= ($lang == "eng") ? $clinic['clinic_wel_head'] : $clinic['clinic_wel_head_ar']; ?></h3>
+                                            <p><?= ($lang == "eng") ? $clinic['clinic_wel_text'] : $clinic['clinic_wel_text_arabic']; ?></p>
+                                        </div>
+                                    </div>
+                                    <?php 
+                                    if($img)
+                                    {
+                                        ?>
+                                        <div class="col-lg-6">
+                                            <div class="about-img text-center wow fadeInUp" data-wow-delay="0.6s">
+                                                <img class="img-fluid" src="<?= file_url().$clinic['clinic_welcome_image'];?>" alt="about-image">
+                                            </div>
+                                        </div>
+                                        <?php
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        </section>
+                        <?php
+                    }
+                    ?>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="appointmentDiv" id="doctors" style="margin:20px 0px 0px 0px;">
