@@ -27,6 +27,12 @@
                     <span>Profile</span>
                 </a>
             </li>
+            <li class="<?php active_page('page-welcome'); ?>">
+                <a href="<?= admin_base_url();?>page-welcome">
+                    <i class="fa fa-edit"></i>
+                    <span>Page Welcome</span>
+                </a>
+            </li>
             <li class="<?php active_page('slider'); ?>">
                 <a href="<?= admin_base_url();?>slider">
                     <i class="fa fa-lock"></i>
