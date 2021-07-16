@@ -224,6 +224,44 @@ while($contacts = fetch($cntctSql))
                                         <?php
                                     }
                                 }
+
+                                $userSQl  = query("SELECT * FROM 
+                                    tbl_clinic d 
+                                    LEFT JOIN tbl_cities c ON (c.city_id = d.clinic_city) 
+                                    LEFT JOIN tbl_clinic_service cs ON (cs.dpt_clinic_id = d.clinic_id ) 
+                                    WHERE d.clinic_name LIKE '%".$jobTitle."%' 
+                                    OR cs.dpt_service_title LIKE '%".$speciality."%' 
+                                    OR c.city_name LIKE '%".$location."%' ");
+                                while($data = fetch($userSQl))
+                                {
+                                    foreach($mycontacts as $contact)
+                                    {
+                                        if($contact['contact_id'] == $data['clinic_id'] && $contact['contact_type'] == 'Clinic')
+                                        {
+                                            $showContact = false;
+                                        }
+                                    }
+                                    if($showContact)
+                                    {
+                                        ?>
+                                        <div class="user-list-wrapper">
+                                            <div class="user-image">
+                                                <img class="img-fluid img-responsive" src="<?= file_url().$data['clinic_icon'];?>">
+                                            </div>
+                                            <div class="user-data">
+                                                <h3><?= $data['clinic_name']; ?></h3>
+                                                <p><?= $data['dpt_service_title']; ?></p>
+                                                <p><?= 'Clinic'; ?></p>
+                                            </div>
+                                            <div class="user-action">
+                                                <a href="<?= admin_base_url();?>model/centerModel?act=addContact&contactID=<?= $data['clinic_id']; ?>&type=Clinic" class="round-button">Connect</a>
+                                            </div>
+                                            <hr>
+                                        </div>
+                                        <?php
+                                    }
+                                }
+
                                 ?>
                             </div>
                             <?php 
