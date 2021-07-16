@@ -227,9 +227,9 @@ while($contacts = fetch($cntctSql))
                                     tbl_clinic d 
                                     LEFT JOIN tbl_cities c ON (c.city_id = d.clinic_city) 
                                     LEFT JOIN tbl_clinic_service cs ON (cs.dpt_clinic_id = d.clinic_id ) 
-                                    WHERE d.clinic_name LIKE '%".$jobTitle."%' 
+                                    WHERE (d.clinic_name LIKE '%".$jobTitle."%' 
                                     OR cs.dpt_service_title LIKE '%".$speciality."%' 
-                                    OR c.city_name LIKE '%".$location."%' GROUP BY clinic_id");
+                                    OR c.city_name LIKE '%".$location."%') AND clinic_id != ".$clinicID."  GROUP BY clinic_id");
                                 while($data = fetch($userSQl))
                                 {
                                     foreach($mycontacts as $contact)

@@ -157,7 +157,7 @@ while($contacts = fetch($cntctSql))
                                 $speciality = (isset($_GET['speciality'])) ? get('speciality') : '' ;
                                 $location   = (isset($_GET['location'])) ? get('location') : '' ;
 
-                                $userSQl  = query("SELECT * FROM tbl_doctor d join tbl_cities c ON (c.city_id = d.doc_city) WHERE d.doc_job_title LIKE '%".$jobTitle."%' OR d.doc_speciality LIKE '%".$speciality."%' OR c.city_name LIKE '%".$location."%' ");
+                                $userSQl  = query("SELECT * FROM tbl_doctor d join tbl_cities c ON (c.city_id = d.doc_city) WHERE (d.doc_job_title LIKE '%".$jobTitle."%' OR d.doc_speciality LIKE '%".$speciality."%' OR c.city_name LIKE '%".$location."%') AND doc_id != ". $doc_id);
                                 while($data = fetch($userSQl))
                                 {
                                     $showContact = true;

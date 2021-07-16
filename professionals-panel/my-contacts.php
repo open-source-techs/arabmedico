@@ -190,9 +190,9 @@ while($contacts = fetch($cntctSql))
                                     tbl_candidate d 
                                     LEFT JOIN tbl_candidate_cities c ON (c.city_id = d.candidate_city) 
                                     LEFT JOIN tbl_candiate_speciality cs ON (cs.can_speciality_id = d.candiate_speciality ) 
-                                    WHERE d.candidate_job LIKE '%".$jobTitle."%' 
+                                    WHERE (d.candidate_job LIKE '%".$jobTitle."%' 
                                     OR cs.can_speciality_name LIKE '%".$speciality."%' 
-                                    OR c.city_name LIKE '%".$location."%' ");
+                                    OR c.city_name LIKE '%".$location."%') AND candidate_id != ". $candidate_id);
                                 while($data = fetch($userSQl))
                                 {
                                     foreach($mycontacts as $contact)
