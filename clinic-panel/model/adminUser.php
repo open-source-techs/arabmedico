@@ -74,7 +74,31 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 		if(update2($data,'tbl_clinic'))
 		{
 			set_msg('Success','Clinic is updated successfully','success');
-			jump(admin_base_url()."all-clinic");
+			jump(admin_base_url()."profile");
+		}
+		else
+		{
+			set_msg('Insertion error','Unable to process your request. Please try again later.','error');
+			echo "<script>window.history.go(-1);</script>";
+		}
+	}
+	else if(isset($_POST['btn_welcome']))
+	{
+		$cer_id 						= post('txt_clinicID');
+		$data['clinic_wel_head'] 		= post('txt_welcome_head');
+		$data['clinic_wel_head_ar'] 	= $_POST['txt_welcome_head_arabic'];
+		$data['clinic_wel_text'] 	    = post('txt_welcome');
+		$data['clinic_wel_text_arabic'] = $_POST['txt_welcome_arabic'];
+		$image_name                 	= upload_image($_FILES,'txt_welcome_image', '../../upload/');
+		if($image_name)
+		{
+		    $data['clinic_welcome_image'] 	= $image_name;
+		}
+	    where('clinic_id',$cer_id);
+		if(update2($data,'tbl_clinic'))
+		{
+			set_msg('Success','Clinic is updated successfully','success');
+			jump(admin_base_url()."page-welcome");
 		}
 		else
 		{
