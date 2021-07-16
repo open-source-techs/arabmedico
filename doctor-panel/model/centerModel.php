@@ -362,16 +362,6 @@ else if($_SERVER['REQUEST_METHOD'] == "GET")
                 $userAcceptLink 	= base_url()."clinic-panel/model/adminUser?act=acceptRequest&contactID=".$contactID;
                 $userrejectLink 	= base_url()."clinic-panel/model/adminUser?act=rejectRequest&contactID=".$contactID;
             }
-            elseif(strtolower($data['contact_type']) == "employer")
-            {
-                $userAcceptLink 	= base_url()."employer-panel/model/adminUser?act=acceptRequest&contactID=".$contactID;
-                $userrejectLink 	= base_url()."employer-panel/model/adminUser?act=rejectRequest&contactID=".$contactID;
-            }
-            elseif(strtolower($data['contact_type']) == "organizer")
-            {
-                $userAcceptLink 	= base_url()."organizer-panel/model/adminUser?act=acceptRequest&contactID=".$contactID;
-                $userrejectLink 	= base_url()."organizer-panel/model/adminUser?act=rejectRequest&contactID=".$contactID;
-            }
             elseif(strtolower($data['contact_type']) == "professional")
             {
                 $userAcceptLink 	= base_url()."professionals-panel/model/adminUser?act=acceptRequest&contactID=".$contactID;
