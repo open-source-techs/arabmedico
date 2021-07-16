@@ -2,6 +2,12 @@
 <?php require_once('layout/sidebar.php');?>
 <?php
 $clinicID = get_sess("userdata")['clinic_id'];
+$cntctSql = query("SELECT * FROM tbl_user_contact WHERE my_id = '$clinicID' AND my_type = 'clinic'");
+$mycontacts = array();
+while($contacts = fetch($cntctSql))
+{
+    $mycontacts[] = $contacts;
+}
 ?>
 <style>
     .list-wrapper{
@@ -74,7 +80,202 @@ $clinicID = get_sess("userdata")['clinic_id'];
             <div class="col-sm-12">
                 <div class="panel panel-bd lobidrag">
                     <div class="panel-heading">
-                        
+                        <h3>Add Contacts</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="search-connection-wrapper">
+                            <form class="col-md-12" method="GET" action="">
+                                <div class="col-sm-3 form-group">
+                                    <label>Job Title</label>
+                                    <input type="text" name="jobTitle" class="form-control">
+                                </div>
+                                <div class="col-sm-3 form-group">
+                                    <label>Speciality</label>
+                                    <select class="form-control select2" name="speciality">
+                                        <option value="" selected disabled>Select Speciality</option>
+                                        <?php 
+                                        $specSQL = query("SELECT DISTINCT doc_speciality FROM tbl_doctor");
+                                        while ($spec = fetch($specSQL))
+                                        {
+                                            ?>
+                                            <option value="<?= $spec['doc_speciality'];?>"><?= $spec['doc_speciality'];?></option>
+                                            <?php
+                                        }
+                                        $specSQL = query("SELECT can_speciality_name FROM tbl_candiate_speciality");
+                                        while ($spec = fetch($specSQL))
+                                        {
+                                            ?>
+                                            <option value="<?= $spec['can_speciality_name'];?>"><?= $spec['can_speciality_name'];?></option>
+                                            <?php
+                                        }
+                                        $specSQL = query("SELECT dpt_service_title FROM tbl_clinic_service");
+                                        while ($spec = fetch($specSQL))
+                                        {
+                                            ?>
+                                            <option value="<?= $spec['dpt_service_title'];?>"><?= $spec['dpt_service_title'];?></option>
+                                            <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="col-sm-3 form-group">
+                                    <label>Location</label>
+                                    <select class="form-control select2" name="location">
+                                        <option value="" selected disabled>Select Location</option>
+                                        <?php 
+                                        $locSql = query("SELECT t1.city_name AS city FROM tbl_candidate_cities t1, tbl_cities t2 WHERE t1.city_name != t2.city_name Union all SELECT t2.city_name as city FROM tbl_candidate_cities t1, tbl_cities t2 WHERE t1.city_name != t2.city_name");
+                                        $locData = array();;
+                                        while($loc = fetch($locSql))
+                                        {
+                                            $locData[] = $loc['city'];
+                                        }
+                                        $newLocData = array_unique($locData);
+                                        foreach($newLocData as $dataLoc)
+                                        {
+                                            ?>
+                                            <option value="<?= $dataLoc;?>"> <?= $dataLoc;?> </option>
+                                            <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="col-sm-3 form-group">
+                                    <label>Action</label><br>
+                                    <button type="submit" class="btn btn-sm btn-danger">search</button>
+                                </div>
+                            </form>
+                        </div>
+                        <?php 
+                        if(isset($_GET['jobTitle']) || isset($_GET['speciality']) || isset($_GET['location']))
+                        {
+                            ?>
+                            <div class="list-wrapper">
+                                <?php
+                                $jobTitle   = (isset($_GET['jobTitle'])) ? get('jobTitle') : '' ;
+                                $speciality = (isset($_GET['speciality'])) ? get('speciality') : '' ;
+                                $location   = (isset($_GET['location'])) ? get('location') : '' ;
+
+                                $userSQl  = query("SELECT * FROM tbl_doctor d join tbl_cities c ON (c.city_id = d.doc_city) WHERE d.doc_job_title LIKE '%".$jobTitle."%' OR d.doc_speciality LIKE '%".$speciality."%' OR c.city_name LIKE '%".$location."%' ");
+                                while($data = fetch($userSQl))
+                                {
+                                    $showContact = true;
+                                    foreach($mycontacts as $contact)
+                                    {
+                                        if($contact['contact_id'] == $data['doc_id'] && $contact['contact_type'] == 'Doctor')
+                                        {
+                                            $showContact = false;
+                                        }
+                                    }
+                                    if($showContact)
+                                    {
+                                        ?>
+                                        <div class="user-list-wrapper">
+                                            <div class="user-image">
+                                                <img class="img-fluid img-responsive" src="<?= file_url().$data['doc_image'];?>">
+                                            </div>
+                                            <div class="user-data">
+                                                <h3><?= $data['doc_name']; ?></h3>
+                                                <p><?= $data['doc_job_title']; ?></p>
+                                                <p><?= 'Doctor'; ?></p>
+                                            </div>
+                                            <div class="user-action">
+                                                <a href="<?= admin_base_url();?>model/centerModel?act=addContact&contactID=<?= $data['doc_id']; ?>&type=Doctor" class="round-button">Connect</a>
+                                            </div>
+                                            <hr>
+                                        </div>
+                                        <?php
+                                    }
+                                }
+                                $userSQl  = query("SELECT * FROM 
+                                    tbl_candidate d 
+                                    LEFT JOIN tbl_candidate_cities c ON (c.city_id = d.candidate_city) 
+                                    LEFT JOIN tbl_candiate_speciality cs ON (cs.can_speciality_id = d.candiate_speciality ) 
+                                    WHERE d.candidate_job LIKE '%".$jobTitle."%' 
+                                    OR cs.can_speciality_name LIKE '%".$speciality."%' 
+                                    OR c.city_name LIKE '%".$location."%' ");
+                                while($data = fetch($userSQl))
+                                {
+                                    foreach($mycontacts as $contact)
+                                    {
+                                        if($contact['contact_id'] == $data['candidate_id'] && $contact['contact_type'] == 'Professional')
+                                        {
+                                            $showContact = false;
+                                        }
+                                    }
+                                    if($showContact)
+                                    {
+                                        ?>
+                                        <div class="user-list-wrapper">
+                                            <div class="user-image">
+                                                <img class="img-fluid img-responsive" src="<?= file_url().$data['candidate_image'];?>">
+                                            </div>
+                                            <div class="user-data">
+                                                <h3><?= $data['candidate_name']; ?></h3>
+                                                <p><?= $data['candidate_job']; ?></p>
+                                                <p><?= 'Professional'; ?></p>
+                                            </div>
+                                            <div class="user-action">
+                                                <a href="<?= admin_base_url();?>model/centerModel?act=addContact&contactID=<?= $data['candidate_id']; ?>&type=Professional" class="round-button">Connect</a>
+                                            </div>
+                                            <hr>
+                                        </div>
+                                        <?php
+                                    }
+                                }
+
+                                $userSQl  = query("SELECT * FROM 
+                                    tbl_clinic d 
+                                    LEFT JOIN tbl_cities c ON (c.city_id = d.clinic_city) 
+                                    LEFT JOIN tbl_clinic_service cs ON (cs.dpt_clinic_id = d.clinic_id ) 
+                                    WHERE d.clinic_name LIKE '%".$jobTitle."%' 
+                                    OR cs.dpt_service_title LIKE '%".$speciality."%' 
+                                    OR c.city_name LIKE '%".$location."%' GROUP BY clinic_id");
+                                while($data = fetch($userSQl))
+                                {
+                                    foreach($mycontacts as $contact)
+                                    {
+                                        if($contact['contact_id'] == $data['clinic_id'] && $contact['contact_type'] == 'Clinic')
+                                        {
+                                            $showContact = false;
+                                        }
+                                    }
+                                    if($showContact)
+                                    {
+                                        ?>
+                                        <div class="user-list-wrapper">
+                                            <div class="user-image">
+                                                <img class="img-fluid img-responsive" src="<?= file_url().$data['clinic_icon'];?>">
+                                            </div>
+                                            <div class="user-data">
+                                                <h3><?= $data['clinic_name']; ?></h3>
+                                                <p><?= $data['dpt_service_title']; ?></p>
+                                                <p><?= 'Clinic'; ?></p>
+                                            </div>
+                                            <div class="user-action">
+                                                <a href="<?= admin_base_url();?>model/centerModel?act=addContact&contactID=<?= $data['clinic_id']; ?>&type=Clinic" class="round-button">Connect</a>
+                                            </div>
+                                            <hr>
+                                        </div>
+                                        <?php
+                                    }
+                                }
+
+                                ?>
+                            </div>
+                            <?php 
+                        }
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-bd lobidrag">
+                    <div class="panel-heading">
+                        <h3>My Contacts</h3>
                     </div>
                     <div class="panel-body">
                         <div class="list-wrapper">
