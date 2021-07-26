@@ -89,7 +89,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 		else
 		{
 		    set_msg('Fields Error','URL is already registered','error');
-    			echo "<script>window.history.go(-1);</script>";
+    		echo "<script>window.history.go(-1);</script>";
 		}
 	}
 	else if(isset($_POST['btn_edit_clinic']))
@@ -148,11 +148,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 		    where('clinic_id',$cer_id);
 			if(update($data,'tbl_clinic'))
 			{
-			    
-			    $URLdata['url_suffex']  = $currentSlug;
-			    $URLdata['url_type']    = 'Clinic';
-			    where('url_suffex',$previousSlug);
-			    update($URLdata,'tbl_url');
+				if($slugUpdate)
+				{
+				    $URLdata['url_suffex']  = $currentSlug;
+				    $URLdata['url_type']    = 'Clinic';
+				    where('url_suffex',$previousSlug);
+				    update($URLdata,'tbl_url');
+				}
 				set_msg('Success','Clinic is updated successfully','success');
 				jump(admin_base_url()."all-clinic");
 			}
