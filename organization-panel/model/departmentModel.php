@@ -27,7 +27,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 		)
 		{
 		    
-			if(insert2($data,'tbl_clinic_service'))
+			if(insert($data,'tbl_clinic_service'))
 			{
 			 //   echo "<pre>";
 		  //  print_r($data);
@@ -69,7 +69,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 		)
 		{
 		    where('dpt_service_id',$service_id);
-			if(update2($data,'tbl_clinic_service'))
+			if(update($data,'tbl_clinic_service'))
 			{
 			    $dpt_id = $data['dpt_depart_id'];
 				set_msg('Success','Service is updated successfully','success');
