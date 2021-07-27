@@ -89,7 +89,7 @@ else if($_SERVER['REQUEST_METHOD'] == "GET")
 			where('award_id ',$awardID);
 			if(delete('tbl_org_awards'))
 			{
-				set_msg('Success','Certificate is deleted successfully','success');
+				set_msg('Success','Award is deleted successfully','success');
 				jump(admin_base_url()."all-award");
 			}
 			else
