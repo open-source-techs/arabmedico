@@ -62,7 +62,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                     <li class="navbar-item"><a href="<?= base_url();?><?= $slug;?>"><?= ($lang == "eng") ? $lang_con[1]['lang_eng'] : $lang_con[1]['lang_arabic']; ?></a></li>
                                     <li class="navbar-item"><a href="#doctors"><?= ($lang == "eng") ? $lang_con[226]['lang_eng'] : $lang_con[226]['lang_arabic']; ?></a></li>
                                     <li class="navbar-item"><a href="#services"><?= ($lang == "eng") ? $lang_con[222]['lang_eng'] : $lang_con[222]['lang_arabic']; ?></a></li>
-                                    <li class="navbar-item"><a href="#offers"><?= ($lang == "eng") ? $lang_con[196]['lang_eng'] : $lang_con[196]['lang_arabic']; ?></a></li>
+                                    <li class="navbar-item"><a href="#offers"><?= ($lang == "eng") ? $lang_con[12]['lang_eng'] : $lang_con[12]['lang_arabic']; ?></a></li>
                                     <li class="navbar-item"><a href="#photos"><?= ($lang == "eng") ? $lang_con[181]['lang_eng'] : $lang_con[181]['lang_arabic']; ?></a></li>
                                     <li class="navbar-item"><a href="#videos"><?= ($lang == "eng") ? $lang_con[182]['lang_eng'] : $lang_con[182]['lang_arabic']; ?></a></li>
                                 </ul>
@@ -74,9 +74,9 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                 <ul class="wsmenu-list" >
                                     <li class="navbar-item"><a href="#videos"><?= ($lang == "eng") ? $lang_con[182]['lang_eng'] : $lang_con[182]['lang_arabic']; ?></a></li>
                                     <li class="navbar-item"><a href="#photos"><?= ($lang == "eng") ? $lang_con[181]['lang_eng'] : $lang_con[181]['lang_arabic']; ?></a></li>
-                                    <li class="navbar-item"><a href="#offers"><?= ($lang == "eng") ? $lang_con[196]['lang_eng'] : $lang_con[196]['lang_arabic']; ?></a></li>
+                                    <li class="navbar-item"><a href="#offers"><?= ($lang == "eng") ? $lang_con[12]['lang_eng'] : $lang_con[12]['lang_arabic']; ?></a></li>
                                     <li class="navbar-item"><a href="#services"><?= ($lang == "eng") ? $lang_con[222]['lang_eng'] : $lang_con[222]['lang_arabic']; ?></a></li>
-                                    <li class="navbar-item"><a href="#doctors"><?= ($lang == "eng") ? $lang_con[4]['lang_eng'] : $lang_con[4]['lang_arabic']; ?></a></li>
+                                    <li class="navbar-item"><a href="#doctors"><?= ($lang == "eng") ? $lang_con[222]['lang_eng'] : $lang_con[222]['lang_arabic']; ?></a></li>
                                     <li class="navbar-item"><a href="<?= base_url();?>/<?= $slug;?>"><?= ($lang == "eng") ? $lang_con[1]['lang_eng'] : $lang_con[1]['lang_arabic']; ?></a></li>
                                 </ul>
                                 <?php
@@ -334,7 +334,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                     <div class="row">
                         <div class="col-md-12">
                             <div class="appointmentDiv" id="services" style="margin:20px 0px 0px 0px;">
-                                <h4 style="color:#124c82;font-weight:100 !important"><?= ($lang == "eng") ? $lang_con[150]['lang_eng'] : $lang_con[150]['lang_arabic']; ?></h4>
+                                <h4 style="color:#124c82;font-weight:100 !important"><?= ($lang == "eng") ? $lang_con[222]['lang_eng'] : $lang_con[222]['lang_arabic']; ?></h4>
                                 <hr>
                                 <div id="tabs-nav" class="list-group text-center">
                                     <ul class="nav nav-pills" id="pills-tab" role="tablist" style="list-style:none !important">
@@ -530,7 +530,6 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                     <div class="row">   
                         <div class="col-lg-10 offset-lg-1 section-title">
                             <h3 class="h3-md steelblue-color"><?= ($lang == "eng") ? $lang_con[193]['lang_eng'] : $lang_con[193]['lang_arabic']; ?></h3>
-                            <p><?= ($lang == "eng") ? $lang_con[136]['lang_eng'] : $lang_con[136]['lang_arabic']; ?></p>
                         </div> 
                     </div>
                     <div class="row">
