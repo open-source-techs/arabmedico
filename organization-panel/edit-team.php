@@ -7,7 +7,7 @@ if($doc_id == 0 || $doc_id == '' || $doc_id < 0)
 {
     ?>
     <script>
-      window.location.href="<?php echo admin_base_url(); ?>all-doctor";
+      window.location.href="<?php echo admin_base_url(); ?>all-team";
     </script>
     <?php
 }
@@ -20,15 +20,15 @@ $data = fetch($sql);
             <i class="pe-7s-box1"></i>
         </div>
         <div class="header-title">
-            <h1>Doctor Panel</h1>
-            <small>Edit Doctor</small>
+            <h1>Team Panel</h1>
+            <small>Edit Member</small>
             <ol class="breadcrumb hidden-xs">
                 <li>
                 	<a href="<?= admin_base_url();?>">
                 		<i class="pe-7s-home"></i> Home
                 	</a>
                 </li>
-                <li class="active">Edit Doctor</li>
+                <li class="active">Edit Memebr</li>
             </ol>
         </div>
     </section>
@@ -38,7 +38,7 @@ $data = fetch($sql);
                 <div class="panel panel-bd lobidrag">
                     <div class="panel-heading">
                         <div class="btn-group"> 
-                            <a class="btn btn-primary" href="<?= admin_base_url();?>all-doctor"> <i class="fa fa-list"></i> Doctor List </a>  
+                            <a class="btn btn-primary" href="<?= admin_base_url();?>all-team"> <i class="fa fa-list"></i> Team List </a>  
                         </div>
                     </div>
                     <div class="panel-body">
@@ -46,40 +46,40 @@ $data = fetch($sql);
                             <input type="hidden" value="<?= $org_id; ?>" name="org_id">
                             <input type="hidden" value="<?= $doc_id; ?>" name="doctor_id">
                             <div class="col-sm-6 form-group">
-                                <label>Doctor Name</label>
+                                <label>Name</label>
                                 <input type="text" name="txt_doc_name" class="form-control" value="<?= $data['doc_name'];?>" required>
                             </div>
                             <div class="col-sm-6 form-group">
-                                <label>Doctor Name Arabic</label>
+                                <label>Name Arabic</label>
                                 <input type="text" name="txt_doc_name_ar" class="form-control" value="<?= $data['doc_name_ar'];?>" required>
                             </div>
                             <div class="col-sm-6 form-group">
-                                <label>Doctor Degree</label>
+                                <label>Degree</label>
                                 <input type="text" name="txt_doc_degree" class="form-control" value="<?= $data['doc_degree'];?>" required>
                             </div>
                             <div class="col-sm-6 form-group">
-                                <label>Doctor Degree Arabic</label>
+                                <label>Degree Arabic</label>
                                 <input type="text" name="txt_doc_degree_ar" class="form-control" value="<?= $data['doc_degree_ar'];?>" required>
                             </div>
                             <div class="col-sm-6 form-group">
-                                <label>Doctor Designation</label>
+                                <label>Designation</label>
                                 <input type="text" name="txt_doc_designation" class="form-control" value="<?= $data['doc_designation'];?>" required>
                             </div>
                             <div class="col-sm-6 form-group">
-                                <label>Doctor Designation Arabic</label>
+                                <label>Designation Arabic</label>
                                 <input type="text" name="txt_doc_designation_ar" class="form-control" value="<?= $data['doc_designation_ar'];?>" required>
                             </div>
                             <div class="col-sm-6 form-group">
-                                <label>Doctor Registration No</label>
+                                <label>Registration No</label>
                                 <input type="text" name="txt_doc_regno" class="form-control" value="<?= $data['doc_regNo'];?>" required>
                             </div>
                             <div class="col-sm-6 form-group">
-                                <label>Doctor Image</label>
+                                <label>Image</label>
                                 <input type="file" name="doc_image" class="form-control"  onchange="checkFileSize('doc_image');" id="doc_image">
                                 <label class="doc_image"></label>
                             </div>
                             <div class="col-sm-12 reset-button">
-                                <a href="<?= admin_base_url();?>all-doctor" class="btn btn-warning">Cancel & Go Back</a>
+                                <a href="<?= admin_base_url();?>all-team" class="btn btn-warning">Cancel & Go Back</a>
                                 <input type="submit" name="btn_edit_doc" class="btn btn-success" value="Save">
                             </div>
                         </form>

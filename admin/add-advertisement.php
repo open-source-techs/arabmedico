@@ -33,6 +33,7 @@
                                     <option value="CME Pages">CME Pages</option>
                                     <option value="Job Pages">Job Pages</option>
                                     <option value="New Pages">New Pages</option>
+                                    <option value="organizations">Organizations</option>
                                     <option value="Landing Pages">Landing Pages</option>
                                     <option value="Department Pages">Department Pages</option>
                                     <option value="Patient Resource Pages">Patient Resource Pages</option>

@@ -39,10 +39,17 @@
                     <span>Slider</span>
                 </a>
             </li>
-            <li class="<?php active_page('all-doctor'); ?>">
-                <a href="<?= admin_base_url();?>all-doctor">
+            <li class="<?php active_page('all-certificates'); ?>">
+                <a href="<?= admin_base_url();?>service-panel">
+                    <i class="fa fa-sitemap"></i>
+                    <span> Services</span>
+                </a>
+            </li>
+
+            <li class="<?php active_page('all-team'); ?>">
+                <a href="<?= admin_base_url();?>all-team">
                     <i class="fa fa-user-md"></i>
-                    <span>Doctor</span>
+                    <span>Our team</span>
                 </a>
             </li>
             <!-- <li class="<?php active_page('contacts'); ?>">

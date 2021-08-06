@@ -453,7 +453,7 @@ else
     						<img class="img-fluid" src="<?= file_url().$blog['news_image'];?>" alt="blog-post-image" />	
     					</div>
     					<div class="blog-post-txt">
-    						<h5 class="h5-sm steelblue-color"><a href="<?= base_url();?>single-post<?= $pram;?>/<?= $blog['news_slug']; ?>"><?= ($lang == "eng") ? $blog['news_title'] : $blog['news_title_arabic']; ?></a></h5>
+    						<h5 class="h5-sm steelblue-color"><a href="<?= base_url();?><?= $blog['news_slug']; ?>"><?= ($lang == "eng") ? $blog['news_title'] : $blog['news_title_arabic']; ?></a></h5>
     						<span><?= date('F j, Y', strtotime($blog['news_created_at']));?> by <span>Dr.Jeremy Smith</span></span>
     						<p class="overflowing" style="overflow:hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;"><?= ($lang == "eng") ? $blog['news_short_desc'] : $blog['news_short_desc_arabic']; ?>
     						</p>
