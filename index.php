@@ -185,6 +185,11 @@ if($pass)
                 $_GET['slug'] = $pageData['url_suffex'];
                 require 'templates/course-detail.php';
             }
+            else if($pageData['url_type'] == "organization")
+            {
+                $_GET['slug'] = $pageData['url_suffex'];
+                require 'templates/org.php';
+            }
         }
     }
 }

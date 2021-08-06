@@ -53,6 +53,7 @@
     					    <li><a href="<?= base_url();?>classified"> <?= ($lang == "eng") ? $lang_con[204]['lang_eng'] : $lang_con[204]['lang_arabic']; ?></a></li>
     					    <li><a href="<?= base_url();?>professionals"> <?= ($lang == "eng") ? $lang_con[207]['lang_eng'] : $lang_con[207]['lang_arabic']; ?></a></li>
     					    <li><a href="<?= base_url();?>course"> <?= ($lang == "eng") ? $lang_con[176]['lang_eng'] : $lang_con[176]['lang_arabic']; ?></a></li>
+    					    <li><a href="<?= base_url();?>organizations"> <?= ($lang == "eng") ? $lang_con[225]['lang_eng'] : $lang_con[225]['lang_arabic']; ?></a></li>
     						<?php
 		           		    $pSql = query("SELECT * FROM tbl_pages WHERE page_active = 1 AND page_position = 3");
 		           		    while($pData = fetch($pSql))
@@ -77,7 +78,6 @@
     </footer>
 </div>
 <script src="<?= base_url();?>js/jquery-3.3.1.min.js"></script>
-<!--<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>-->
 <script src="<?= base_url();?>js/bootstrap.min.js"></script>	
 <script src="https://saudimedico.com/js/jquery-ui.js"></script>
 <script src="<?= base_url();?>js/modernizr.custom.js"></script>

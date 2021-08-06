@@ -9,15 +9,15 @@ $org_id = get_sess("userdata")['organization_id'];
             <i class="pe-7s-box1"></i>
         </div>
         <div class="header-title">
-            <h1>Doctors</h1>
-            <small>Doctor list</small>
+            <h1>Team</h1>
+            <small>Team list</small>
             <ol class="breadcrumb hidden-xs">
                 <li>
                 	<a href="<?= admin_base_url();?>">
                 		<i class="pe-7s-home"></i> Home
                 	</a>
                 </li>
-                <li class="active">Doctor</li>
+                <li class="active">Team list</li>
             </ol>
         </div>
     </section>
@@ -27,7 +27,7 @@ $org_id = get_sess("userdata")['organization_id'];
 				<div class="panel panel-bd lobidrag">
                     <div class="panel-heading">
                         <div class="btn-group"> 
-                            <a class="btn btn-success" href="<?= admin_base_url();?>add-doctor"> <i class="fa fa-plus"></i> Add Doctor
+                            <a class="btn btn-success" href="<?= admin_base_url();?>add-team"> <i class="fa fa-plus"></i> Add Member
                             </a>
                         </div>
                     </div>
@@ -62,7 +62,7 @@ $org_id = get_sess("userdata")['organization_id'];
                                             <td><?= $row['doc_regNo'];?></td>
                                             <td><?= date("d/m/Y",strtotime($row['doc_created_at']));?></td>
                                             <td>
-                                                <a href="<?= admin_base_url();?>edit-doctor?doc_id=<?= $row['doc_id']; ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>
+                                                <a href="<?= admin_base_url();?>edit-team?doc_id=<?= $row['doc_id']; ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>
                                                 </a>
                                                 <a href="<?= admin_base_url();?>model/doctorModel?act=del-doc&doc_id=<?= $row['doc_id']; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>
                                                 </a>

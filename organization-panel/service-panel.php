@@ -1,7 +1,7 @@
 <?php require_once('layout/header.php');?>
 <?php require_once('layout/sidebar.php');?>
 <?php
-$clinic_id = get_sess("userdata")['clinic_id'];
+$org_id = get_sess("userdata")['organization_id'];
 ?>
 <div class="content-wrapper">
     <section class="content-header">
@@ -50,37 +50,37 @@ $clinic_id = get_sess("userdata")['clinic_id'];
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $sql = query("SELECT * FROM tbl_clinic_service WHERE dpt_clinic_id = '$clinic_id'");
+                                    $sql = query("SELECT * FROM tbl_org_services WHERE org_id = '$org_id'");
                                     while ($row = fetch($sql))
                                     {
                                         ?>
                                         <tr>
                                             <td>
                                                 <?php
-                                                $ext = pathinfo($row['dpt_service_img'], PATHINFO_EXTENSION);
+                                                $ext = pathinfo($row['org_serv_img'], PATHINFO_EXTENSION);
                 							    if($ext == "jpeg" || $ext == "jpg" || $ext == "png" || $ext == "gif" || $ext == "jfif")
                 							    {
                 							        ?>
-                    								<img class="img-fluid" src="<?= file_url().$row['dpt_service_img'];?>" alt="tab-image" style="width:auto;height:150px" />
+                    								<img class="img-fluid" src="<?= file_url().$row['org_serv_img'];?>" alt="tab-image" style="width:auto;height:150px" />
                 							        <?php
                 							    }
                 							    else if($ext == "webm" || $ext == "mpg" || $ext == "mp2" || $ext == "mpeg" || $ext == "mpv" || $ext == "mp4" || $ext == "ogg")
                 							    {
                 							        ?>
                 									<video controls id="myvid" style="width:auto;height:150px">
-                                                        <source src="<?= file_url().$row['dpt_service_img'];?>" type="video/<?= $ext;?>">
+                                                        <source src="<?= file_url().$row['org_serv_img'];?>" type="video/<?= $ext;?>">
                                                     </video>
                 							        <?php
                 							    }
                                                 ?>
                                             </td>
-                                            <td><?= $row['dpt_service_title'];?></td>
-                                            <td><?= ($row['dpt_service_active'] == 1) ? 'Active' : "Not Active";?></td>
-                                            <td><?= date("d/m/Y",strtotime($row['dpt_service_created']));?></td>
+                                            <td><?= $row['org_serv_title'];?></td>
+                                            <td><?= ($row['org_serv_active'] == 1) ? 'Active' : "Not Active";?></td>
+                                            <td><?= date("d/m/Y",strtotime($row['org_serv_created']));?></td>
                                             <td>
-                                                <a href="<?= admin_base_url();?>edit-service?service=<?= $row['dpt_service_id'];?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>
+                                                <a href="<?= admin_base_url();?>edit-service?service=<?= $row['org_service_id'];?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>
                                                 </a>
-                                                <a href="<?= admin_base_url();?>model/departmentModel?act=del-dpt-ser&service=<?= $row['dpt_service_id'];?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>
+                                                <a href="<?= admin_base_url();?>model/departmentModel?act=del-dpt-ser&service=<?= $row['org_service_id'];?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>
                                                 </a>
                                             </td>
                                         </tr>

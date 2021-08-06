@@ -36,10 +36,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     	    $data['doc_image']          != null && $data['doc_image']           != ""
         )
 		{
-		    if(insert($data, 'tbl_org_doc'))
+		    if(insert2($data, 'tbl_org_doc'))
     	    {
-    			set_msg('Success','Doctor is added successfully','success');
-    			jump(admin_base_url()."all-doctor");
+    			set_msg('Success','Member is added successfully','success');
+    			jump(admin_base_url()."all-team");
     		}
     		else
     		{
@@ -84,10 +84,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         )
 		{
 		    where('doc_id',$doc_id);
-		    if(update($data, 'tbl_org_doc'))
+		    if(update2($data, 'tbl_org_doc'))
     	    {
-    			set_msg('Success','Doctor is updated successfully','success');
-    			jump(admin_base_url()."all-doctor");
+    			set_msg('Success','Member is updated successfully','success');
+    			jump(admin_base_url()."all-team");
     		}
     		else
     		{
@@ -257,19 +257,19 @@ else if($_SERVER['REQUEST_METHOD'] == "GET")
 			where('doc_id',$doc_id);
 			if(delete('tbl_org_doc'))
 			{
-			    set_msg('Success','Doctor is deleted successfully','success');
-			    jump(admin_base_url()."all-doctor");
+			    set_msg('Success','Member is deleted successfully','success');
+			    jump(admin_base_url()."all-team");
 			}
 			else
 			{
 			    set_msg('Query Error','Unable to process your request. Please try again later','error');
-			    jump(admin_base_url()."all-doctor");
+			    jump(admin_base_url()."all-team");
 			}
 	    }
 	    else
 	    {
 	        set_msg('Data Error','No Record Found','error');
-	        jump(admin_base_url()."all-doctor");
+	        jump(admin_base_url()."all-team");
 	    }
 	}
 	else

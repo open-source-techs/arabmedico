@@ -145,29 +145,6 @@ $offset = ($page - 1 ) * $limit;
 	 			        <?php
 	 			    }
 	 			    ?>
-					<!-- <div class="blog-page-pagination b-top">
-						<nav aria-label="Page navigation">
-							<ul class="pagination justify-content-center primary-theme">
-							    <?php
-							    $total_pages_sql = query("SELECT COUNT(news_id) as count FROM tbl_news n JOIN tbl_department d ON (d.dpt_id = n.news_category) WHERE news_active = 1 $where");
-                                $total_rows = fetch($total_pages_sql)['count'];
-                                $total_pages = ceil($total_rows / $limit);
-        						for ($i=0; $i < $total_pages; $i++)
-        						{
-        						    $j =  $i+1;
-        						    $link1 = $j;
-        						    if( isset($_GET['cat']))
-    					            { 
-    					                $link1 .= '/'.$_GET['cat'];
-    					            }
-        							?>
-        							<li class="page-item <?= ( ($i+1) == $page ) ? 'active disabled' : ''; ?>"><a class="page-link" href="<?= base_url().$link1;?>"><?= $i + 1;?></a></li>
-        							<?php
-        						}
-        						?>
- 							</ul>	
- 						</nav>					
-					</div> -->
 	 			</div>
 	 		</div>	 		
 	 	</div>
