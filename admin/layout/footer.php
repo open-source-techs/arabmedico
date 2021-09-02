@@ -1,4 +1,5 @@
         <footer class="main-footer">
+            &reg;
             <strong><a href="<?= base_url();?>legal">Arabmedico Ltd</a>.</strong>
         </footer>
     </div>
