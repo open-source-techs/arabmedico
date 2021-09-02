@@ -29,7 +29,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 		else if($type == "clinic")
 		{
 			$data = array();
-			$sql = query("SELECT * FROM tbl_clinic");
+			$sql = query("SELECT * FROM tbl_clinic WHERE clinic_id != ".get_sess("userdata")['clinic_id']);
 			if(nrows($sql) > 0)
 			{
 				$i = 0;
@@ -110,27 +110,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 			}
 			echo json_encode($result);
 		}
-		else if($type == "organization")
-		{
-			$data = array();
-			$sql = query("SELECT * FROM tbl_organization WHERE != ".get_sess("userdata")['organization_id']);
-			if(nrows($sql) > 0)
-			{
-				$i = 0;
-				while($sqlData = fetch($sql))
-				{
-					$data[$i]['id'] = $sqlData['organization_id'];
-					$data[$i]['name'] = $sqlData['organization_name'];
-					$i++;
-				}
-				$result = array("status" => "success", "data" => $data);
-			}
-			else
-			{
-				$result = array("status" => "error", "data" => null);
-			}
-			echo json_encode($result);
-		}
 		else
 		{
 			$result = array("status" => "error", "data" => null);
@@ -140,8 +119,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 	else if(isset($_POST['txt_action']))
     {
         $data['chat_message'] 	= $_POST['txt_message'];
-        $data['sender']       	= get_sess("userdata")['organization_id'];
-        $data['sender_type']  	= "organization";
+        $data['sender']       	= get_sess("userdata")['clinic_id'];
+        $data['sender_type']  	= "clinic";
         $data['receiver']     	= post('txt_receiver');
         $data['receiver_type']	= post('txt_receiverType');
         if(isset($_FILES["chat_media"]) && $_FILES["chat_media"]["name"]!=null)
@@ -174,8 +153,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     else if(isset($_POST['newmessage']))
     {
         $data['chat_message'] 	= $_POST['txt_message'];
-        $data['sender']       	= get_sess("userdata")['organization_id'];
-        $data['sender_type']  	= "organization";
+        $data['sender']       	= get_sess("userdata")['clinic_id'];
+        $data['sender_type']  	= "clinic";
         $data['receiver']     	= post('txt_receiver');
         $data['receiver_type']	= post('txt_receiverType');
         
@@ -203,7 +182,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         $list = (isset($_POST['sender_list'])) ? $_POST['sender_list'] : array() ;
         // print_r($list);
         // die();
-        $doctor_id = get_sess("userdata")['organization_id'];
+        $doctor_id = get_sess("userdata")['clinic_id'];
         if(isset($list) && sizeof($list) > 0)
         {
             $list 	= array_filter($list);
@@ -266,14 +245,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 	        		$data['img'] 	= $docData['candidate_image'];
 	        		$data['type'] 	= 'professional';
 	        	}
-	        	if($data['sender_type'] == "organization")
-                {
-                    $docSQl   = query("SELECT * FROM tbl_organization WHERE organization_id = $senderID");
-                    $docData  = fetch($docSQl);
-                    $userType = 'Organization';
-                    $userName = $docData['organization_name'];
-                    $userDate = $msg['date'];
-                }
                 $res[] = $data;
             }
             echo json_encode($res);
@@ -287,7 +258,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     }
     else if(isset($_POST['fetch_count']))
     {
-    	$receiver = get_sess("userdata")['organization_id'];
+    	$receiver = get_sess("userdata")['clinic_id'];
         $sender_id = post('sender_emp');
         $sql = query("SELECT COUNT(chat_id) as count FROM tbl_chat WHERE sender = $sender_id AND receiver = $receiver AND chat_read = 0");
         $count = fetch($sql)['count'];
@@ -303,7 +274,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     else if(isset($_POST['act']) && $_POST['act'] == "fetch")
     {
         $sender = post('sender_emp');
-        $receiver = get_sess("userdata")['organization_id'];
+        $receiver = get_sess("userdata")['clinic_id'];
         $chatsql = query("SELECT * FROM tbl_chat c WHERE sender = $sender AND receiver = $receiver AND chat_read = 0");
         if(nrows($chatsql) > 0)
         {
@@ -353,15 +324,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         		$res['img'] 	= $docData['candidate_image'];
         		$res['type'] 	= 'professional';
         	}
-        	if($res['sender_type'] == "organization")
-            {
-                $docSQl   		= query("SELECT * FROM tbl_organization WHERE organization_id = $senderID");
-                $docData  		= fetch($docSQl);
-                $res['id'] 		= $docData['organization_id']; 
-                $res['name'] 	= $docData['organization_name']; 
-                $res['img'] 	= $docData['organization_icon']; 
-                $res['type'] 	= 'organization';
-            }
             $res['date'] = date('d/m/Y h:i a', strtotime($res['date']));
             query("UPDATE tbl_chat SET chat_read = 1 WHERE chat_id = ".$res['chat_id']);
             echo json_encode($res);
@@ -380,8 +342,8 @@ else if($_SERVER['REQUEST_METHOD'] == "GET")
 {
 	if(isset($_GET['act']) && $_GET['act'] == 'addContact')
 	{
-		$data['my_id'] 			= get_sess("userdata")['organization_id'];
-		$data['my_type'] 		= 'organization';
+		$data['my_id'] 			= get_sess("userdata")['clinic_id'];
+		$data['my_type'] 		= 'clinic';
 		$data['contact_id'] 	= $_GET['contactID'];
 		$data['contact_type'] 	= $_GET['type'];
 		$contactID 				= get_next_table_id('tbl_user_contact');
@@ -413,14 +375,9 @@ else if($_SERVER['REQUEST_METHOD'] == "GET")
                 $userAcceptLink 	= base_url()."professionals-panel/model/adminUser?act=acceptRequest&contactID=".$contactID;
                 $userrejectLink 	= base_url()."professionals-panel/model/adminUser?act=rejectRequest&contactID=".$contactID;
             }
-            elseif(strtolower($data['contact_type']) == "organization")
-            {
-                $userAcceptLink 	= base_url()."organization-panel/model/adminUser?act=acceptRequest&contactID=".$contactID;
-                $userrejectLink 	= base_url()."organization-panel/model/adminUser?act=rejectRequest&contactID=".$contactID;
-            }
-            $myName = get_sess("userdata")['organization_name'];
-			$mySlug = get_sess("userdata")['organization_slug'];
-			$myImg 	= get_sess("userdata")['organization_icon'];
+            $myName = get_sess("userdata")['clinic_name'];
+			$mySlug = get_sess("userdata")['clinic_slug'];
+			$myImg 	= get_sess("userdata")['clinic_icon'];
 			$message = '<li>
                 <div class="border-gray">
                     <div class="pull-left">
