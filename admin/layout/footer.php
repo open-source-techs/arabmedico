@@ -1,6 +1,5 @@
         <footer class="main-footer">
-            <!-- <div class="pull-right hidden-xs"> <b>Version</b> 1.0</div> -->
-            <strong>Copyright &copy; <?= date('Y');?> <a href="#">Open Source Techs</a>.</strong> All rights reserved.
+            <strong><a href="<?= base_url();?>legal">Arabmedico Ltd</a>.</strong>
         </footer>
     </div>
     <script src="<?= admin_base_url();?>assets/plugins/jQuery/jquery-1.12.4.min.js" type="text/javascript"></script>
