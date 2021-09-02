@@ -260,6 +260,43 @@ while($contacts = fetch($cntctSql))
                                     }
                                 }
 
+                                $userSQl  = query("SELECT * FROM 
+                                    tbl_organization d 
+                                    LEFT JOIN tbl_cities c ON (c.city_id = d.organization_city) 
+                                    LEFT JOIN tbl_org_services cs ON (cs.org_id = d.organization_id  ) 
+                                    WHERE (d.organization_name LIKE '%".$jobTitle."%' 
+                                    OR cs.org_serv_title LIKE '%".$speciality."%' 
+                                    OR c.city_name LIKE '%".$location."%') AND organization_id != ".$organizationID." GROUP BY organization_id");
+                                while($data = fetch($userSQl))
+                                {
+                                    foreach($mycontacts as $contact)
+                                    {
+                                        if($contact['contact_id'] == $data['organization_id'] && $contact['contact_type'] == 'Organization')
+                                        {
+                                            $showContact = false;
+                                        }
+                                    }
+                                    if($showContact)
+                                    {
+                                        ?>
+                                        <div class="user-list-wrapper">
+                                            <div class="user-image">
+                                                <img class="img-fluid img-responsive" src="<?= file_url().$data['organization_icon'];?>">
+                                            </div>
+                                            <div class="user-data">
+                                                <h3><?= $data['organization_name']; ?></h3>
+                                                <p><?= $data['org_serv_title']; ?></p>
+                                                <p><?= 'Organization'; ?></p>
+                                            </div>
+                                            <div class="user-action">
+                                                <a href="<?= admin_base_url();?>model/centerModel?act=addContact&contactID=<?= $data['organization_id']; ?>&type=Organization" class="round-button">Connect</a>
+                                            </div>
+                                            <hr>
+                                        </div>
+                                        <?php
+                                    }
+                                }
+
                                 ?>
                             </div>
                             <?php 
@@ -333,6 +370,15 @@ while($contacts = fetch($cntctSql))
                                     $name     = $userData['candidate_name'];
                                     $ID       = $userData['candidate_id'];
                                     $type     = 'Professional';
+                                }
+                                elseif(strtolower($contactType) == "organization")
+                                {
+                                    $userSQl  = query("SELECT * FROM tbl_organization WHERE organization_id = $senderID");
+                                    $userData = fetch($userSQl);
+                                    $img      = $userData['organization_icon'];
+                                    $name     = $userData['organization_name'];
+                                    $ID       = $userData['organization_id'];
+                                    $type     = 'Organization';
                                 }
                                 ?>
                                 <div class="user-list-wrapper">
