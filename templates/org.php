@@ -434,7 +434,6 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                             </div>
                         </div>
                     </div>
-
                     <section id="blog-1" class="bordered blog-section division">
                         <div class="container">
                             <div class="row">   
@@ -446,7 +445,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                             </div>
                             <div class="row">
                                 <?php
-                                $sql = query("SELECT * FROM tbl_news n JOIN tbl_department d ON (d.dpt_id = n.news_category) WHERE n.news_active = 1 limit 3");
+                                $sql = query("SELECT * FROM tbl_news n LEFT JOIN tbl_department d ON (d.dpt_id = n.news_category) WHERE n.news_active = 1 AND news_user_type = 'organizations' AND news_user_id = $orgID ");
                                 while($blog = fetch($sql))
                                 {
                                     ?>
@@ -456,7 +455,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                                 <img class="img-fluid" src="<?= file_url().$blog['news_image'];?>" alt="blog-post-image" /> 
                                             </div>
                                             <div class="blog-post-txt">
-                                                <h5 class="h5-sm steelblue-color"><a href="<?= base_url();?><?= $blog['news_slug']; ?>"><?= ($lang == "eng") ? $blog['news_title'] : $blog['news_title_arabic']; ?></a></h5>
+                                                <h5 class="h5-sm steelblue-color"><a target="_blank" href="<?= base_url();?><?= $blog['news_slug']; ?>"><?= ($lang == "eng") ? $blog['news_title'] : $blog['news_title_arabic']; ?></a></h5>
                                                 <span><?= date('F j, Y', strtotime($blog['news_created_at']));?> by <span>Dr.Jeremy Smith</span></span>
                                                 <p class="overflowing" style="overflow:hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;"><?= ($lang == "eng") ? $blog['news_short_desc'] : $blog['news_short_desc_arabic']; ?>
                                                 </p>
