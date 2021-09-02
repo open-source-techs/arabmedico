@@ -4,7 +4,7 @@
     }
 </style>
 <aside class="main-sidebar">
-	<div class="sidebar">
+    <div class="sidebar">
         <div class="user-panel">
             <div class="image pull-left">
                 <img src="assets/dist/img/avatar5.png" class="img-circle" alt="User Image">
@@ -93,6 +93,6 @@
                     <span>Logout</span>
                 </a>
             </li>
-		</ul>
-	</div>
+        </ul>
+    </div>
 </aside>
