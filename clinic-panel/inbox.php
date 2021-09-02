@@ -477,6 +477,14 @@ while($contacts = fetch($cntctSql))
                                                     $userName   = $docData['candidate_name'];
                                                     $userType   = 'Professional';
                                                 }
+                                                elseif($senders['sender_type'] == "organization")
+                                                {
+                                                    $docSQl     = query("SELECT * FROM tbl_organization WHERE organization_id = $senderID");
+                                                    $docData    = fetch($docSQl);
+                                                    $userImage  = $docData['organization_icon'];
+                                                    $userName   = $docData['organization_name'];
+                                                    $userType   = 'Organization';
+                                                }
                                                 ?>
                                                 <img style="width: 50px;height: 50px;" style="width: 50px; height: 50px;" src="<?= file_url().$userImage;?>" alt="<?= $userType; ?>-image" />
                                                 <div class="about">
@@ -572,6 +580,14 @@ while($contacts = fetch($cntctSql))
                                                     $userName   = $docData['candidate_name'];
                                                     $userType   = 'Professional';
                                                 }
+                                                elseif($senders['receiver_type'] == "organization")
+                                                {
+                                                    $docSQl     = query("SELECT * FROM tbl_organization WHERE organization_id = $senderID");
+                                                    $docData    = fetch($docSQl);
+                                                    $userImage  = $docData['organization_icon'];
+                                                    $userName   = $docData['organization_name'];
+                                                    $userType   = 'Organization';
+                                                }
                                                 ?>
                                                 <img style="width: 50px;height: 50px;" style="width: 50px; height: 50px;" src="<?= file_url().$userImage;?>" alt="<?= $userType; ?>-image" />
                                                 <div class="about">
@@ -651,6 +667,15 @@ while($contacts = fetch($cntctSql))
                                     $userID     = $docData['candidate_id'];
                                     $userImage  = $docData['candidate_image'];
                                     $userName   = $docData['candidate_name'];
+                                }
+                                elseif($sender_type == "organization")
+                                {
+                                    $docSQl     = query("SELECT * FROM tbl_organization WHERE organization_id = $senderID");
+                                    $docData    = fetch($docSQl);
+                                    $userType   = 'Organization';
+                                    $userID     = $docData['organization_id'];
+                                    $userImage  = $docData['organization_icon'];
+                                    $userName   = $docData['organization_name'];
                                 }
                                 ?>
                                 <div class="chat-header">
@@ -803,6 +828,14 @@ while($contacts = fetch($cntctSql))
                                                         $userSQl  = query("SELECT * FROM tbl_candidate WHERE candidate_id = $senderID");
                                                         $userData = fetch($userSQl);
                                                         $userName = $userData['candidate_name'];
+                                                        $userDate = $msg['date'];
+                                                    }
+                                                    elseif($sender_type == "organization")
+                                                    {
+                                                        $docSQl   = query("SELECT * FROM tbl_organization WHERE organization_id = $senderID");
+                                                        $docData  = fetch($docSQl);
+                                                        $userType = 'Organization';
+                                                        $userName = $docData['organization_name'];
                                                         $userDate = $msg['date'];
                                                     }
                                                     ?>
