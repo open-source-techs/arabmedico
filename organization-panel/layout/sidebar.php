@@ -4,7 +4,7 @@
     }
 </style>
 <aside class="main-sidebar">
-	<div class="sidebar">
+    <div class="sidebar">
         <div class="user-panel">
             <div class="image pull-left">
                 <img src="assets/dist/img/avatar5.png" class="img-circle" alt="User Image">
@@ -39,20 +39,19 @@
                     <span>Slider</span>
                 </a>
             </li>
+            <li class="<?php active_page('news'); ?>">
+                <a href="<?= admin_base_url();?>news">
+                    <i class="fa fa-list-alt"></i>
+                    <span>News</span>
+                </a>
+            </li>
             <li class="<?php active_page('all-certificates'); ?>">
                 <a href="<?= admin_base_url();?>service-panel">
                     <i class="fa fa-sitemap"></i>
                     <span> Services</span>
                 </a>
             </li>
-
-            <li class="<?php active_page('all-team'); ?>">
-                <a href="<?= admin_base_url();?>all-team">
-                    <i class="fa fa-user-md"></i>
-                    <span>Our team</span>
-                </a>
-            </li>
-            <!-- <li class="<?php active_page('contacts'); ?>">
+            <li class="<?php active_page('contacts'); ?>">
                 <a href="<?= admin_base_url();?>my-contacts">
                     <i class="fa fa-users"></i>
                     <span>My Contacts</span>
@@ -63,7 +62,13 @@
                     <i class="fa fa-envelope"></i>
                     <span>Inbox</span>
                 </a>
-            </li> -->
+            </li>
+            <li class="<?php active_page('all-team'); ?>">
+                <a href="<?= admin_base_url();?>all-team">
+                    <i class="fa fa-user-md"></i>
+                    <span>Our team</span>
+                </a>
+            </li>
             <li class="<?php active_page('all-award'); ?>">
                 <a href="<?= admin_base_url();?>all-award">
                     <i class="fa fa-calendar"></i>
@@ -88,6 +93,6 @@
                     <span>Logout</span>
                 </a>
             </li>
-		</ul>
-	</div>
+        </ul>
+    </div>
 </aside>
