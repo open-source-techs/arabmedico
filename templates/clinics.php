@@ -53,6 +53,24 @@ include 'header.php';
         background: none;
         border: none;
     }
+    .doctor-2{
+    	position: relative;
+    }
+    .feature-wrapper{
+    	width: 99%;
+	    background: #00a3c8;
+	    position: absolute;
+	    z-index: 9;
+	    padding: 10px 20px;
+	    border-radius: 0px;
+	    top: -30px;
+	    left: 1px;
+    }
+    .feature-wrapper p{
+    	font-size: 15px !important;
+	    margin: 0px !important;
+	    color: white;
+    }
 </style>
 <section id="doctors-3" class="bg-lightgrey wide-60 doctors-section division">
 	<div class="container">
@@ -61,9 +79,22 @@ include 'header.php';
 		    $sql = query("SELECT * FROM tbl_clinic WHERE clinic_active = 1");
 		    while($doc = fetch($sql))
 		    {
+		    	$currentDate = date('Y-m-d');
+		    	$clinicID = $doc['clinic_id'];
+		    	$fsql = query("SELECT * FROM tbl_feature_clinic WHERE f_clinic_id = $clinicID AND f_list = 'yes' AND  f_end_date >= '$currentDate' AND f_active = 1");
 		        ?>
     			<div class="col-md-6 col-lg-4">
     				<div class="doctor-2">
+    					<?php 
+    					if(nrows($fsql) > 0)
+    					{
+    						?>
+    						<div class="feature-wrapper">
+	    						<p>FEATURED</p>
+	    					</div>
+    						<?php
+    					}
+    					?>
     					<div class="hover-overlay img-holder"> 
     						<img class="img-fluid" src="<?= file_url().$doc['clinic_icon'];?>" alt="doctor-foto">	
     					</div>
