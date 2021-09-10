@@ -209,7 +209,7 @@ else
                     <div class="col-md-4"></div>
                     <div class="col-md-4">
                         <div class="mt-5">
-                            <form method="post" action="#" enctype="multipart/form-data">
+                            <form method="post" action="" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Enter password to contiune</label>
                                     <input type="password" class="form-control" name="txt_pass" id="exampleInputPassword1" placeholder="Password">
