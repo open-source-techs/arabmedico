@@ -19,7 +19,7 @@ if($is_video > 0)
             else
             {
                ?>
-                <video controls autoplay playsinline loop id="myvid">
+                <video controls playsinline loop id="myvid">
                     <source src="<?= ($lang == "eng") ? file_url().$slData['slide_video'] : file_url().$slData['slide_video_ar']; ?>" type="video/mp4">
                 </video>
                <?php
@@ -153,6 +153,12 @@ else
         background: none;
         border: none;
     }
+    .doctor-2{
+        border: none !important;
+    }
+    .doctor-2 .img-holder{
+        padding-top: 109%;
+    }
 </style>
 <section class="about-section division" id="add-1">
     <div class="container p-0">
@@ -213,6 +219,43 @@ else
 		</div>
 	</div>
 </section>
+<section id="services-3" class="bg-lightgrey wide-100 services-section division">
+    <div class="container">
+        <div class="row">   
+            <div class="col-lg-10 offset-lg-1">
+                <h3 class="h3-md steelblue-color text-center"><?= ($lang == "eng") ? $lang_con[227]['lang_eng'] : $lang_con[227]['lang_arabic']; ?></h3>
+            </div> 
+        </div>
+        <div class="row">
+            <div class="col-md-12">                 
+                <div class="owl-carousel owl-theme feature-doctor-holder">
+                    <?php
+                    $currentDate = date('Y-m-d');
+                    $sql = query("SELECT * FROM tbl_feature_doctor f JOIN  tbl_doctor d ON (f.f_doctor_id = d.doc_id) WHERE f_home = 'yes' AND  f_home_end >= '$currentDate' AND f_active = 1");
+                    while($doc = fetch($sql))
+                    {
+                        ?>
+                        <div class="sbox-3 " <?= ($lang == "eng") ? '' : 'style="direction:rtl !important;text-align:right"' ;?>>
+                            <div class="doctor-2">
+                                <div class="hover-overlay img-holder"> 
+                                    <img class="img-fluid" src="<?= file_url().$doc['doc_image'];?>" alt="doctor-foto"> 
+                                </div>
+                                <div class="doctor-meta">
+                                    <h5 class="h5-xs blue-color"><?= ($lang == "eng") ? $doc['doc_name'] : $doc['doc_name_arabic']; ?></h5>
+                                    <span><?= ($lang == "eng") ? $doc['doc_job_title'] : $doc['doc_job_title_arabic']; ?></span>
+                                    <a class="btn btn-sm btn-blue blue-hover mt-15" href="<?= base_url().$doc['doc_slug'];?>" title=""><?= ($lang == "eng") ? $lang_con[90]['lang_eng'] : $lang_con[90]['lang_arabic']; ?></a>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                </div>
+            </div>                                  
+        </div>
+    </div>
+</section>
+
 <!-- TABS-1
 ============================================= -->
 <div class="container p-0">	
@@ -339,6 +382,42 @@ else
         </div>
     </div>
 </section>
+<section id="services-3" class="bg-lightgrey wide-100 services-section division">
+    <div class="container">
+        <div class="row">   
+            <div class="col-lg-10 offset-lg-1">
+                <h3 class="h3-md steelblue-color text-center"><?= ($lang == "eng") ? $lang_con[227]['lang_eng'] : $lang_con[227]['lang_arabic']; ?></h3>
+            </div> 
+        </div>
+        <div class="row">
+            <div class="col-md-12">                 
+                <div class="owl-carousel owl-theme feature-doctor-holder">
+                    <?php
+                    $currentDate = date('Y-m-d');
+                    $sql = query("SELECT * FROM tbl_feature_clinic f JOIN  tbl_clinic d ON (f.f_clinic_id = d.clinic_id) WHERE f_home = 'yes' AND  f_home_end >= '$currentDate' AND f_active = 1");
+                    while($doc = fetch($sql))
+                    {
+                        ?>
+                        <div class="sbox-3 " <?= ($lang == "eng") ? '' : 'style="direction:rtl !important;text-align:right"' ;?>>
+                            <div class="doctor-2">
+                                <div class="hover-overlay img-holder"> 
+                                    <img class="img-fluid" src="<?= file_url().$doc['clinic_icon'];?>" alt="doctor-foto">   
+                                </div>
+                                <div class="doctor-meta">
+                                    <h5 class="h5-xs blue-color"><?= ($lang == "eng") ? $doc['clinic_name'] : $doc['clinic_name_ar']; ?></h5>
+                                    <span><?= ($lang == "eng") ? $doc['clinic_phone'] : $doc['clinic_phone_ar']; ?></span>
+                                    <a class="btn btn-sm btn-blue blue-hover mt-15" href="<?= base_url().$doc['clinic_slug'];?>" title=""><?= ($lang == "eng") ? $lang_con[90]['lang_eng'] : $lang_con[90]['lang_arabic']; ?></a>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                </div>
+            </div>                                  
+        </div>
+    </div>
+</section>
 <section id="reviews-2" class="bordered reviews-section division">
 	<div class="container">
 		<div class="row">	
@@ -376,6 +455,32 @@ else
 		</div>
 	</div>
 </section>
+<section class="about-section division" id="add-3">
+    <div class="container p-0">
+        <div class="col-md-12 p-0">
+            <div class="advertiement-div">
+                <div class="close-add-holder">
+                    <span>Addvertisement</span>
+                    <button class="close-button" data-add-id="add-3"><i class="fa fa-times"></i></button>
+                </div>
+                <div class="owl-carousel owl-theme advertisement-holder">
+                    <?php
+                    $sql = query("SELECT * FROM tbl_advertisment WHERE add_location = 'Landing Pages' AND add_status = 1 ORDER BY rand()");
+                    while($add = fetch($sql))
+                    {
+                        ?>
+                        <div class="add-img-holder" <?= ($lang == "eng") ? '' : 'style="direction:rtl !important;text-align:right"' ;?>>
+                            <img class="img-fluid" src="<?= ($lang == "eng") ? file_url().$add['add_image'] : file_url().$add['add_image_ar'];?>" alt="content-image" />
+                        </div>
+                        <?php
+                    }
+                    ?>
+                </div>
+            </div>
+            <!--</div>-->
+        </div>
+    </div>
+</section>
 <section id="services-3" class="bordered services-section division">
 	<div class="container">
 		<div class="row">	
@@ -407,32 +512,7 @@ else
 		</div>
 	</div>
 </section>
-<section class="about-section division" id="add-3">
-    <div class="container p-0">
-        <div class="col-md-12 p-0">
-            <div class="advertiement-div">
-                <div class="close-add-holder">
-                    <span>Addvertisement</span>
-                    <button class="close-button" data-add-id="add-3"><i class="fa fa-times"></i></button>
-                </div>
-                <div class="owl-carousel owl-theme advertisement-holder">
-				    <?php
-				    $sql = query("SELECT * FROM tbl_advertisment WHERE add_location = 'Landing Pages' AND add_status = 1 ORDER BY rand()");
-         		    while($add = fetch($sql))
-         		    {
-         		        ?>
-    					<div class="add-img-holder" <?= ($lang == "eng") ? '' : 'style="direction:rtl !important;text-align:right"' ;?>>
-					        <img class="img-fluid" src="<?= ($lang == "eng") ? file_url().$add['add_image'] : file_url().$add['add_image_ar'];?>" alt="content-image" />
-    					</div>
-    					<?php
-			        }
-			        ?>
-				</div>
-            </div>
-            <!--</div>-->
-        </div>
-    </div>
-</section>
+
 <section id="blog-1" class="bordered blog-section division">				
     <div class="container">
         <div class="row">	
@@ -585,6 +665,37 @@ include 'footer.php'
 			}
 		}
 	});
+
+    var owlAdd = $('.feature-doctor-holder');
+    owlAdd.owlCarousel({
+        items: 1,
+        autoplay:true,
+        nav:false,
+        dots:false,
+        animateOut: 'fadeOut',
+        autoplayTimeout: 4500,
+        autoplayHoverPause: false,
+        smartSpeed: 1500,
+        responsive:{
+            0:{
+                items:1
+            },
+            767:{
+                items:1
+            },
+            768:{
+                items:2
+            },
+            991:{
+                items:3
+            },
+            1000:{
+                items:3
+            }
+        }
+    });
+
+    
 	$(document).ready(function(){
 	    $(".close-button").click(function(e){
 	        e.preventDefault();

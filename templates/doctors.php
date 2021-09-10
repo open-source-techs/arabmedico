@@ -82,6 +82,21 @@ include 'header.php';
         overflow: hidden;
         font-family:'Montserrat', Arial, Helvetica, sans-serif;
     }
+    .feature-wrapper{
+        width: 90%;
+        background: #00a3c8;
+        position: absolute;
+        z-index: 9;
+        padding: 10px 20px;
+        border-radius: 0px;
+        top: -30px;
+        left: 19px;
+    }
+    .feature-wrapper p{
+        font-size: 15px !important;
+        margin: 0px !important;
+        color: white;
+    }
 </style>
 <section id="doctors-3" class="bg-lightgrey wide-60 doctors-section division">
 	<div class="container">
@@ -197,9 +212,22 @@ include 'header.php';
 		            // echo $sqlEcho;
         		    while($doc = fetch($sql))
         		    {
+                        $currentDate = date('Y-m-d');
+                        $doctorID = $doc['doc_id'];
+                        $fsql = query("SELECT * FROM tbl_feature_doctor WHERE f_doctor_id = $doctorID AND f_list = 'yes' AND  f_end_date >= '$currentDate' AND f_active = 1");
         		        ?>
             			<div class="col-md-6 col-lg-6">
             				<div class="doctor-2">
+                                <?php 
+                                if(nrows($fsql) > 0)
+                                {
+                                    ?>
+                                    <div class="feature-wrapper">
+                                        <p>FEATURED</p>
+                                    </div>
+                                    <?php
+                                }
+                                ?>
             					<div class="hover-overlay img-holder"> 
             						<img class="img-fluid" src="<?= file_url().$doc['doc_image'];?>" alt="doctor-foto">	
             					</div>
