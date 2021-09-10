@@ -228,7 +228,7 @@ else
         </div>
         <div class="row">
             <div class="col-md-12">                 
-                <div class="owl-carousel owl-theme feature-doctor-holder">
+                <div class="owl-carousel owl-theme">
                     <?php
                     $currentDate = date('Y-m-d');
                     $sql = query("SELECT * FROM tbl_feature_doctor f JOIN  tbl_doctor d ON (f.f_doctor_id = d.doc_id) WHERE f_home = 'yes' AND  f_home_end >= '$currentDate' AND f_active = 1");
@@ -391,7 +391,8 @@ else
         </div>
         <div class="row">
             <div class="col-md-12">                 
-                <div class="owl-carousel owl-theme feature-doctor-holder">
+                <!-- feature-doctor-holder -->
+                <div class="owl-carousel owl-theme "> 
                     <?php
                     $currentDate = date('Y-m-d');
                     $sql = query("SELECT * FROM tbl_feature_clinic f JOIN  tbl_clinic d ON (f.f_clinic_id = d.clinic_id) WHERE f_home = 'yes' AND  f_home_end >= '$currentDate' AND f_active = 1");
