@@ -27,6 +27,7 @@ if(!$pass)
         {
             $pass = true;
             $_SESSION['password'] = true;
+            jump(base_url());
         }
         ?>
         <script>
