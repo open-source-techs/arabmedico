@@ -19,7 +19,7 @@ if($is_video > 0)
             else
             {
                ?>
-                <video controls playsinline loop id="myvid">
+                <video controls autoplay playsinline loop id="myvid">
                     <source src="<?= ($lang == "eng") ? file_url().$slData['slide_video'] : file_url().$slData['slide_video_ar']; ?>" type="video/mp4">
                 </video>
                <?php
@@ -386,7 +386,7 @@ else
     <div class="container">
         <div class="row">   
             <div class="col-lg-10 offset-lg-1">
-                <h3 class="h3-md steelblue-color text-center"><?= ($lang == "eng") ? $lang_con[227]['lang_eng'] : $lang_con[227]['lang_arabic']; ?></h3>
+                <h3 class="h3-md steelblue-color text-center"><?= ($lang == "eng") ? $lang_con[228]['lang_eng'] : $lang_con[228]['lang_arabic']; ?></h3>
             </div> 
         </div>
         <div class="row">
