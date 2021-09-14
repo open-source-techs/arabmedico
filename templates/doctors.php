@@ -97,6 +97,83 @@ include 'header.php';
         margin: 0px !important;
         color: white;
     }
+    .tg-tab-widget {
+        background: #f7f7f7;
+        margin: 0;
+    }
+    .tg-widget > h3 {
+        width: 100%;
+        float: left;
+        color: #fff;
+        padding: 20px;
+        font-size: 16px;
+        line-height: 16px;
+        background: #505050;
+        text-transform: uppercase;
+        background-color: #3498db;
+        font-weight: bold;
+    }
+    .tg-tabwidet-content {
+        width: 100%;
+        float: left;
+        padding: 30px;
+        background: #fff;
+    }
+    .tg-widget ul {
+        width: 100%;
+        float: left;
+        padding: 10px 0 0;
+        list-style: none;
+        line-height: 20px;
+    }
+    .tg-tab-widget .tg-tab-pane ul {
+        padding: 0;
+        margin: 0 0 -20px 0;
+        list-style: none;
+    }
+    .tg-tab-widget .tg-tab-pane ul li {
+        width: 100%;
+        float: left;
+        padding: 20px 0;
+        list-style-type: none;
+        line-height: 28px;
+    }
+    .tg-widget ul li figure {
+        float: left;
+        margin: 0 20px 0 0;
+        border: 1px solid #ddd;
+    }
+    .tg-widget ul li figure a img {
+        display: block;
+        height: 80px;
+    }
+    .tg-tab-widget ul li .tg-description {
+        overflow: hidden;
+        float: none;
+        width: auto;
+        font-size: 14px;
+        line-height: 17px;
+        margin: 3px 0 0 0;
+    }
+    .tg-tab-widget .tab-content h3 {
+        font-size: 14px;
+        line-height: 14px;
+        color: #5d5955;
+        margin: 0 0 5px;
+    }
+    .tg-tab-widget .tab-content em {
+        font-style: normal;
+        font-size: 14px;
+        line-height: 14px;
+        display: block;
+        margin: 0 0 7px;
+    }
+    .tg-tab-widget .tab-content .tg-stars {
+        float: left;
+        width: 100%;
+        text-align: left;
+        padding: 0;
+    }
 </style>
 <section id="doctors-3" class="bg-lightgrey wide-60 doctors-section division">
     <div class="container">
@@ -172,6 +249,44 @@ include 'header.php';
                             </form>
                         </div>
                     </div>
+                    <div class="tg-widget tg-tab-widget">
+                        <h3 style="background-color:#3498db; font-weight:bold">Featured Doctors</h3>
+                        <div class="tg-tabwidet-content" style="margin-top:-20px">
+                            <div class="tab-content">
+                                <div class="tg-tab-pane">
+                                    <ul>
+                                    <?php
+                                    $currentDate = date('Y-m-d');
+                                    $sql = query("SELECT * FROM tbl_feature_doctor f JOIN  tbl_doctor d ON (f.f_doctor_id = d.doc_id) WHERE f_list = 'yes' AND  f_end_date >= '$currentDate' AND f_active = 1");
+                                    while($doc = fetch($sql))
+                                    {
+                                        ?>
+                                        <li>
+                                            <figure>
+                                                <a href="<?= base_url().$doc['doc_slug'];?>">
+                                                    <img src="<?= file_url().$doc['doc_image'];?>" alt="<?= ($lang == "eng") ? $doc['doc_name'] : $doc['doc_name_arabic']; ?>">
+                                                </a>
+                                            </figure>
+                                            <div class="tg-description">
+                                                <h3><a href="<?= base_url().$doc['doc_slug'];?>"><?= ($lang == "eng") ? $doc['doc_name'] : $doc['doc_name_arabic']; ?></a></h3>
+                                                <em><?= ($lang == "eng") ? $doc['doc_job_title'] : $doc['doc_job_title_arabic']; ?></em>
+                                                <span class="tg-stars">
+                                                    <i class="fa fa-star" style="color:#dddddd; margin-right:3px;"></i>
+                                                    <i class="fa fa-star" style="color:#dddddd; margin-right:3px;"></i>
+                                                    <i class="fa fa-star" style="color:#dddddd; margin-right:3px;"></i>
+                                                    <i class="fa fa-star" style="color:#dddddd; margin-right:3px;"></i>
+                                                    <i class="fa fa-star" style="color:#dddddd; margin-right:3px;"></i>
+                                                </span>
+                                            </div>
+                                        </li>
+                                    <?php
+                                    }
+                                    ?>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-md-8">
@@ -212,21 +327,21 @@ include 'header.php';
                     // echo $sqlEcho;
                     while($doc = fetch($sql))
                     {
-                        $currentDate = date('Y-m-d');
+                        // $currentDate = date('Y-m-d');
                         $doctorID = $doc['doc_id'];
-                        $fsql = query("SELECT * FROM tbl_feature_doctor WHERE f_doctor_id = $doctorID AND f_list = 'yes' AND  f_end_date >= '$currentDate' AND f_active = 1");
+                        // $fsql = query("SELECT * FROM tbl_feature_doctor WHERE f_doctor_id = $doctorID AND f_list = 'yes' AND  f_end_date >= '$currentDate' AND f_active = 1");
                         ?>
                         <div class="col-md-6 col-lg-6">
                             <div class="doctor-2">
                                 <?php 
-                                if(nrows($fsql) > 0)
-                                {
+                                // if(nrows($fsql) > 0)
+                                // {
                                     ?>
-                                    <div class="feature-wrapper">
+                                    <!-- div class="feature-wrapper">
                                         <p>FEATURED</p>
-                                    </div>
+                                    </div> -->
                                     <?php
-                                }
+                                // }
                                 ?>
                                 <div class="hover-overlay img-holder"> 
                                     <img class="img-fluid" src="<?= file_url().$doc['doc_image'];?>" alt="doctor-foto"> 
