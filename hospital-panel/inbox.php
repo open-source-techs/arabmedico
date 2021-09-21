@@ -1,8 +1,8 @@
 <?php require_once('layout/header.php');?>
 <?php require_once('layout/sidebar.php');?>
 <?php 
-$clinicID = get_sess("userdata")['clinic_id'];
-$cntctSql = query("SELECT * FROM tbl_user_contact WHERE my_id = '$clinicID' AND my_type = 'clinic'");
+$hospitalID = get_sess("userdata")['hospital_id'];
+$cntctSql = query("SELECT * FROM tbl_user_contact WHERE my_id = '$hospitalID' AND my_type = 'hospital'");
 $mycontacts = array();
 while($contacts = fetch($cntctSql))
 {
@@ -408,9 +408,9 @@ while($contacts = fetch($cntctSql))
                             <ul class="user_list list-unstyled mb-0 mt-3 myclass">
                                 <script>var sender = Array();</script>
                                 <?php
-                                $clinicID = get_sess("userdata")['clinic_id'];
+                                $hospitalID = get_sess("userdata")['hospital_id'];
                                 $senderlist =array();
-                                $sendersql = query("SELECT DISTINCT(c.sender), c.sender_type FROM tbl_chat c WHERE c.receiver = $clinicID AND receiver_type = 'clinic'");
+                                $sendersql = query("SELECT DISTINCT(c.sender), c.sender_type FROM tbl_chat c WHERE c.receiver = $hospitalID AND receiver_type = 'hospital'");
                                 while ($senders = fetch($sendersql))
                                 {
                                     $senderID = $senders['sender'];
@@ -485,6 +485,14 @@ while($contacts = fetch($cntctSql))
                                                     $userName   = $docData['organization_name'];
                                                     $userType   = 'Organization';
                                                 }
+                                                else if($senders['sender_type'] == "hospital")
+                                                {
+                                                    $docSQl         = query("SELECT * FROM tbl_hospital WHERE hospital_id = $senderID");
+                                                    $docData        = fetch($docSQl);
+                                                    $userImage  = $docData['hospital_icon'];
+                                                    $userName   = $docData['hospital_name'];
+                                                    $userType   = 'Hospital';
+                                                }
                                                 ?>
                                                 <img style="width: 50px;height: 50px;" style="width: 50px; height: 50px;" src="<?= file_url().$userImage;?>" alt="<?= $userType; ?>-image" />
                                                 <div class="about">
@@ -508,11 +516,11 @@ while($contacts = fetch($cntctSql))
                                 if(isset($senderlist[0]))
                                 {
                                     $send_list = join(",",$senderlist);
-                                    $sendersql = query("SELECT DISTINCT(c.receiver), c.receiver_type FROM tbl_chat c WHERE c.sender_type = 'clinic' AND c.sender = $clinicID AND c.receiver NOT IN ($send_list) ");
+                                    $sendersql = query("SELECT DISTINCT(c.receiver), c.receiver_type FROM tbl_chat c WHERE c.sender_type = 'hospital' AND c.sender = $hospitalID AND c.receiver NOT IN ($send_list) ");
                                 }
                                 else
                                 {
-                                    $sendersql = query("SELECT DISTINCT(c.receiver), c.receiver_type FROM tbl_chat c WHERE c.sender_type = 'clinic' AND c.sender = $clinicID");
+                                    $sendersql = query("SELECT DISTINCT(c.receiver), c.receiver_type FROM tbl_chat c WHERE c.sender_type = 'hospital' AND c.sender = $hospitalID");
                                 }
                                 while ($sender = fetch($sendersql))
                                 {
@@ -587,6 +595,14 @@ while($contacts = fetch($cntctSql))
                                                     $userImage  = $docData['organization_icon'];
                                                     $userName   = $docData['organization_name'];
                                                     $userType   = 'Organization';
+                                                }
+                                                else if($senders['receiver_type'] == "hospital")
+                                                {
+                                                    $docSQl         = query("SELECT * FROM tbl_hospital WHERE hospital_id = $senderID");
+                                                    $docData        = fetch($docSQl);
+                                                    $userImage  = $docData['hospital_icon'];
+                                                    $userName   = $docData['hospital_name'];
+                                                    $userType   = 'Hospital';
                                                 }
                                                 ?>
                                                 <img style="width: 50px;height: 50px;" style="width: 50px; height: 50px;" src="<?= file_url().$userImage;?>" alt="<?= $userType; ?>-image" />
@@ -677,6 +693,15 @@ while($contacts = fetch($cntctSql))
                                     $userImage  = $docData['organization_icon'];
                                     $userName   = $docData['organization_name'];
                                 }
+                                else if($sender_type == "hospital")
+                                {
+                                    $docSQl     = query("SELECT * FROM tbl_hospital WHERE hospital_id = $senderID");
+                                    $docData    = fetch($docSQl);
+                                    $userID     = $docData['hospital_id'];
+                                    $userImage  = $docData['hospital_icon'];
+                                    $userName   = $docData['hospital_name'];
+                                    $userType   = 'Hospital';
+                                }
                                 ?>
                                 <div class="chat-header">
                                     <div class="user">
@@ -708,10 +733,10 @@ while($contacts = fetch($cntctSql))
                                 <hr>
                                 <ul class="chat-history">
                                     <?php
-                                    $msgsql = query("SELECT * FROM tbl_chat WHERE (sender = $senderID AND receiver = $clinicID AND receiver_type = 'clinic' AND sender_type = '$sender_type') OR (sender = $clinicID AND receiver = $senderID AND receiver_type = '$sender_type' AND sender_type = 'clinic') ORDER BY chat_id ASC");
+                                    $msgsql = query("SELECT * FROM tbl_chat WHERE (sender = $senderID AND receiver = $hospitalID AND receiver_type = 'hospital' AND sender_type = '$sender_type') OR (sender = $hospitalID AND receiver = $senderID AND receiver_type = '$sender_type' AND sender_type = 'hospital') ORDER BY chat_id ASC");
                                     while ($msg = fetch($msgsql))
                                     {
-                                        if($msg['sender_type'] == "clinic")
+                                        if($msg['sender_type'] == "hospital")
                                         {
                                             $receiverId = $msg['receiver'];
                                             ?>
@@ -784,7 +809,7 @@ while($contacts = fetch($cntctSql))
                                                 </div>
                                             </li>
                                             <?php
-                                            query("UPDATE `tbl_chat` SET chat_read = 1 WHERE sender = $clinicID AND receiver = $senderID AND receiver_type = '$sender_type' AND sender_type = 'clinic'");
+                                            query("UPDATE `tbl_chat` SET chat_read = 1 WHERE sender = $hospitalID AND receiver = $senderID AND receiver_type = '$sender_type' AND sender_type = 'hospital'");
                                         }
                                         else
                                         {
@@ -836,6 +861,14 @@ while($contacts = fetch($cntctSql))
                                                         $docData  = fetch($docSQl);
                                                         $userType = 'Organization';
                                                         $userName = $docData['organization_name'];
+                                                        $userDate = $msg['date'];
+                                                    }
+                                                    else if($sender_type == "hospital")
+                                                    {
+                                                        $docSQl     = query("SELECT * FROM tbl_hospital WHERE hospital_id = $senderID");
+                                                        $docData    = fetch($docSQl);
+                                                        $userType = 'Hospital';
+                                                        $userName = $docData['hospital_name'];
                                                         $userDate = $msg['date'];
                                                     }
                                                     ?>
@@ -908,7 +941,7 @@ while($contacts = fetch($cntctSql))
                                                 </li> 
                                                 <?php
                                             }
-                                            query("UPDATE tbl_chat SET chat_read = 1 WHERE sender = $senderID AND receiver = $clinicID AND receiver_type = 'clinic' AND sender_type = '$sender_type'");
+                                            query("UPDATE tbl_chat SET chat_read = 1 WHERE sender = $senderID AND receiver = $hospitalID AND receiver_type = 'hospital' AND sender_type = '$sender_type'");
                                         }
                                     }
                                     ?>
@@ -959,6 +992,7 @@ while($contacts = fetch($cntctSql))
                             <option value="employer">Employer</option>
                             <option value="organizer">Organizer</option>
                             <option value="professional">Professional</option>
+                            <option value="hospital">Hospital</option>
                         </select>
                     </div>
                     <div class="form-group col-sm-12">
