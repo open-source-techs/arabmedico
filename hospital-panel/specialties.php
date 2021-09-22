@@ -100,7 +100,7 @@ if(isset($_GET['specialty_id']))
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $sql = query("SELECT * FROM tbl_hostpital_specialty");
+                                    $sql = query("SELECT * FROM tbl_hostpital_specialty WHERE speciality_hospital = $hospital_id ");
                                     while ($row = fetch($sql))
                                     {
                                         ?>
