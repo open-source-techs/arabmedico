@@ -9,10 +9,10 @@ include 'header.php';
 					<nav aria-label="breadcrumb">
 					  	<ol class="breadcrumb">
 					    	<li class="breadcrumb-item"><a href="<?= base_url();?>"><?= ($lang == "eng") ? $lang_con[1]['lang_eng'] : $lang_con[1]['lang_arabic']; ?></a></li>
-					    	<li class="breadcrumb-item active" aria-current="page"><?= ($lang == "eng") ? $lang_con[89]['lang_eng'] : $lang_con[89]['lang_arabic']; ?></li>
+					    	<li class="breadcrumb-item active" aria-current="page"><?= ($lang == "eng") ? $lang_con[17]['lang_eng'] : $lang_con[17]['lang_arabic']; ?></li>
 					  	</ol>
 					</nav>
-					<h4 class="h4-sm steelblue-color"><?= ($lang == "eng") ? $lang_con[89]['lang_eng'] : $lang_con[89]['lang_arabic']; ?></h4>
+					<h4 class="h4-sm steelblue-color"><?= ($lang == "eng") ? $lang_con[17]['lang_eng'] : $lang_con[17]['lang_arabic']; ?></h4>
 				</div>
 			</div>
 		</div>

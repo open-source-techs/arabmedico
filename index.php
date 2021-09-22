@@ -141,6 +141,11 @@ if($pass)
                 $_GET['slug'] = $pageData['url_suffex'];
                 require 'templates/clinic.php';
             }
+            else if($pageData['url_type'] == "hospital")
+            {
+                $_GET['slug'] = $pageData['url_suffex'];
+                require 'templates/hospital.php';
+            }
             else if($pageData['url_type'] == "Doctor")
             {
                 $_GET['slug'] = $pageData['url_suffex'];
