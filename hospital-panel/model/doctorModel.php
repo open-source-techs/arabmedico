@@ -4,9 +4,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 {
     if(isset($_POST['btn_save_doc']))
     {
-        $data['doc_hospital']         = post('hospital_id');
+        $data['doc_hospital']       = post('hospital_id');
 	    $data['doc_name']           = post('txt_doc_name');
 	    $data['doc_name_ar']        = $_POST['txt_doc_name_ar'];
+	    $data['doc_speciality']     = post('txt_doc_speciality');
 	    $data['doc_degree']         = post('txt_doc_degree');
 	    $data['doc_degree_ar']      = $_POST['txt_doc_degree_ar'];
 	    $data['doc_regNo']          = post('txt_doc_regno');
@@ -56,9 +57,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     else if(isset($_POST['btn_edit_doc']))
     {
         $doc_id                     = post('doctor_id');
-        $data['doc_hospital']         = post('hospital_id');
+        $data['doc_hospital']       = post('hospital_id');
 	    $data['doc_name']           = post('txt_doc_name');
 	    $data['doc_name_ar']        = $_POST['txt_doc_name_ar'];
+	    $data['doc_speciality']     = post('txt_doc_speciality');
 	    $data['doc_degree']         = post('txt_doc_degree');
 	    $data['doc_degree_ar']      = $_POST['txt_doc_degree_ar'];
 	    $data['doc_regNo']          = post('txt_doc_regno');
@@ -72,7 +74,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 		}
 		
 		if(
-		    $data['doc_hospital']         != null && $data['doc_hospital']          != "" &&
+		    $data['doc_hospital']       != null && $data['doc_hospital']        != "" &&
     	    $data['doc_name']           != null && $data['doc_name']            != "" &&
     	    $data['doc_name_ar']        != null && $data['doc_name_ar']         != "" &&
     	    $data['doc_degree']         != null && $data['doc_degree']          != "" &&
