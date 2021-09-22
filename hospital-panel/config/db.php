@@ -3,8 +3,8 @@
 	session_start();
 	session_regenerate_id();
 	#Connection to Database
-	$link=mysqli_connect('localhost','root','','db_medical');
-	// $link=mysqli_connect('localhost','arbmdco_panel','OpenSourceTechs','arbmdco_panel');
+	// $link=mysqli_connect('localhost','root','','db_medical');
+	$link=mysqli_connect('localhost','arbmdco_panel','OpenSourceTechs','arbmdco_panel');
 	if (!$link) {
 		jump('error');
 	}
@@ -13,21 +13,21 @@
 	#admin Base_url
 	function admin_base_url()
 	{
-		// return "https://arabmedico.com/hospital-panel/";
-		return "http://localhost/arabmedico/hospital-panel/";
+		return "https://arabmedico.com/hospital-panel/";
+		// return "http://localhost/arabmedico/hospital-panel/";
 	}
 
 	#Base Url Function
 	function base_url()
 	{
-		// return "https://arabmedico.com/";
-		return "http://localhost/arabmedico/";
+		return "https://arabmedico.com/";
+		// return "http://localhost/arabmedico/";
 	}
 	
 	function file_url()
 	{
-	    // return "https://arabmedico.com";
-	    return "http://localhost/arabmedico";
+	    return "https://arabmedico.com";
+	    // return "http://localhost/arabmedico";
 	}
 	#Query Function
 	function query($q){
