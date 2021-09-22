@@ -11,7 +11,7 @@ if(get_sess('hospital_logged_in') == 1)
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>hospital Web Admin | Login</title>
+    <title>Hospital Web Admin | Login</title>
     <link rel="shortcut icon" href="assets/dist/img/ico/favicon.png" type="image/x-icon">
     <link href="<?= admin_base_url();?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="<?= admin_base_url();?>assets/pe-icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet" type="text/css"/>
