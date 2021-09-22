@@ -46,7 +46,7 @@ $hospital_id = get_sess("userdata")['hospital_id'];
                                 <select class="form-control" name="txt_doc_speciality" required>
                                     <option value="">Select Speciality</option>
                                     <?php 
-                                    $spcSql = query("SELECT * FROM tbl_hostpital_specialty WHERE specialty_status = 1");
+                                    $spcSql = query("SELECT * FROM tbl_hostpital_specialty WHERE specialty_status = 1 AND speciality_hospital = $hospital_id ");
                                     while ($spc = fetch($spcSql))
                                     {
                                         ?>

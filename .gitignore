@@ -2,7 +2,7 @@
 #
 upload
 error_log
-
+.htaccess
 admin/config/db.php
 clinic-panel/config/db.php
 doctor-panel/config/db.php

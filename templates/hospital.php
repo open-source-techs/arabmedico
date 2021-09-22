@@ -335,32 +335,46 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                             <div class="appointmentDiv" id="doctors" style="margin:20px 0px 0px 0px;">
                                 <h4 style="color:#124c82;font-weight:100 !important"><?= ($lang == "eng") ? $lang_con[4]['lang_eng'] : $lang_con[4]['lang_arabic']; ?></h4>
                                 <hr>
-                                <div class="row">
+                                <div class="gallery-filter mb-60">
+                                    <button data-filter="*" class="is-checked">All</button>
                                     <?php
-                        		    $sql = query("SELECT * FROM tbl_hospital_doc WHERE doc_hospital = $hospitalID AND doc_active = 1");
-                        		    while($doc = fetch($sql))
-                        		    {
-                        		        ?>
-                            			<div class="col-md-6 col-lg-4">
-                            				<div class="doctor-2">
-                            					<div class="hover-overlay img-holder"> 
-                            						<img class="img-fluid" src="<?= file_url().$doc['doc_image'];?>" alt="doctor-foto">	
-                            					</div>
-                            					<div class="doctor-meta">
-                            						<h5 class="h5-xs blue-color"><?= ($lang == "eng") ? $doc['doc_name'] : $doc['doc_name_ar']; ?></h5>
-                            						<span><?= ($lang == "eng") ? $doc['doc_degree'] : $doc['doc_degree_ar']; ?></span>
-                            						<span><?= ($lang == "eng") ? $doc['doc_designation'] : $doc['doc_designation_ar']; ?></span>
-                            						<span><?= ($lang == "eng") ? $doc['doc_regNo'] : $doc['doc_regNo_ar']; ?></span>
-                            						<!--<a class="btn btn-sm btn-blue blue-hover mt-15" href="<?= base_url()."dr".$pram."/".$doc['doc_slug'];?>" title=""><?= ($lang == "eng") ? $lang_con[90]['lang_eng'] : $lang_con[90]['lang_arabic']; ?></a>-->
-                            					</div>
-                            				</div>
-                            			</div>
-                        		        <?php
-                        		    }
-                        		    ?>
-                    		    </div>
+                                    $sql = query("SELECT * FROM tbl_hostpital_specialty WHERE specialty_status = 1 AND speciality_hospital = $hospitalID");
+                                    while($dpt = fetch($sql))
+                                    {
+                                        ?>
+                                        <button data-filter=".<?= $dpt['specialty_id']; ?>"><?= ($lang == "eng") ? $dpt['specialty_name'] : $dpt['specialty_ar_name']; ?></button>
+                                        <?php
+                                    }
+                                    ?>
+                                </div>
+                                <div class="gallery-items-list">
+                                    <div class="masonry-wrap grid-loaded">
+                                        <?php
+                                        $sql = query("SELECT * FROM tbl_hospital_doc WHERE doc_hospital = $hospitalID AND doc_active = 1");
+                                        while($doc = fetch($sql))
+                                        {
+                                            ?>
+                                            <div class="gallery-item <?= $doc['doc_speciality'];?>">
+                                                <div class="doctor-2">
+                                                    <div class="hover-overlay img-holder"> 
+                                                        <img class="img-fluid" src="<?= file_url().$doc['doc_image'];?>" alt="doctor-foto"> 
+                                                    </div>
+                                                    <div class="doctor-meta">
+                                                        <h5 class="h5-xs blue-color"><?= ($lang == "eng") ? $doc['doc_name'] : $doc['doc_name_ar']; ?></h5>
+                                                        <span><?= ($lang == "eng") ? $doc['doc_degree'] : $doc['doc_degree_ar']; ?></span>
+                                                        <span><?= ($lang == "eng") ? $doc['doc_designation'] : $doc['doc_designation_ar']; ?></span>
+                                                        <span><?= ($lang == "eng") ? $doc['doc_regNo'] : $doc['doc_regNo_ar']; ?></span>
+                                                        <!--<a class="btn btn-sm btn-blue blue-hover mt-15" href="<?= base_url()."dr".$pram."/".$doc['doc_slug'];?>" title=""><?= ($lang == "eng") ? $lang_con[90]['lang_eng'] : $lang_con[90]['lang_arabic']; ?></a>-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <?php
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
                             </div>
-                    	</div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
