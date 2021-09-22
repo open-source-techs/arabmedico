@@ -110,6 +110,27 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 			}
 			echo json_encode($result);
 		}
+		else if($type == "hospital")
+		{
+			$data = array();
+			$sql = query("SELECT * FROM tbl_hospital");
+			if(nrows($sql) > 0)
+			{
+				$i = 0;
+				while($sqlData = fetch($sql))
+				{
+					$data[$i]['id'] = $sqlData['hospital_id'];
+					$data[$i]['name'] = $sqlData['hospital_name'];
+					$i++;
+				}
+				$result = array("status" => "success", "data" => $data);
+			}
+			else
+			{
+				$result = array("status" => "error", "data" => null);
+			}
+			echo json_encode($result);
+		}
 		else
 		{
 			$result = array("status" => "error", "data" => null);
@@ -211,7 +232,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 	        		$data['img'] 	= $docData['doc_image'];
 	        		$data['type'] 	= 'doctor';
 	        	}
-	        	if($data['sender_type'] == "clinic")
+	        	else if($data['sender_type'] == "clinic")
 	        	{
 	        		$docSQl 		= query("SELECT * FROM tbl_clinic WHERE clinic_id = $senderID");
     	            $docData 		= fetch($docSQl);
@@ -220,7 +241,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     	            $data['img'] 	= $docData['clinic_icon'];
     	            $data['type'] 	= 'clinic';
 	        	}
-	        	if($data['sender_type'] == "employer")
+	        	else if($data['sender_type'] == "employer")
 	        	{
 	        		$docSQl 		= query("SELECT * FROM tbl_employer WHERE emp_id = $senderID");
 					$docData 		= fetch($docSQl);
@@ -229,7 +250,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 	        		$data['img'] 	= $docData['emp_logo'];
 	        		$data['type'] 	= 'employer';
 	        	}
-	        	if($data['sender_type'] == "organizer")
+	        	else if($data['sender_type'] == "organizer")
 	        	{
 	        		$docSQl 		= query("SELECT * FROM tbl_organizer WHERE org_id = $senderID");
 					$docData 		= fetch($docSQl);
@@ -238,7 +259,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 	        		$data['img'] 	= $docData['org_icon'];
 	        		$data['type'] 	= 'organizer';
 	        	}
-	        	if($data['sender_type'] == "professional")
+	        	else if($data['sender_type'] == "professional")
 	        	{
 	        		$docSQl 		= query("SELECT * FROM tbl_candidate WHERE candidate_id = $senderID");
 					$docData 		= fetch($docSQl);
@@ -246,6 +267,15 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 	        		$data['name'] 	= $docData['candidate_name'];
 	        		$data['img'] 	= $docData['candidate_image'];
 	        		$data['type'] 	= 'professional';
+	        	}
+	        	else if($data['sender_type'] == "hospital")
+	        	{
+	        		$docSQl 		= query("SELECT * FROM tbl_hospital WHERE hospital_id = $senderID");
+					$docData 		= fetch($docSQl);
+					$data['id']		= $docData['hospital_id'];
+	        		$data['name'] 	= $docData['hospital_name'];
+	        		$data['img'] 	= $docData['hospital_icon'];
+	        		$data['type'] 	= 'hospital';
 	        	}
                 $res[] = $data;
             }
@@ -290,7 +320,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         		$res['img'] 	= $docData['doc_image'];
         		$res['type'] 	= 'doctor';
         	}
-        	if($res['sender_type'] == "clinic")
+        	else if($res['sender_type'] == "clinic")
         	{
         		$docSQl 		= query("SELECT * FROM tbl_clinic WHERE clinic_id = $sender");
 	            $docData 		= fetch($docSQl);
@@ -299,7 +329,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 	            $res['img'] 	= $docData['clinic_icon'];
 	            $res['type'] 	= 'clinic';
         	}
-        	if($res['sender_type'] == "employer")
+        	else if($res['sender_type'] == "employer")
         	{
         		$docSQl 		= query("SELECT * FROM tbl_employer WHERE emp_id = $sender");
 				$docData 		= fetch($docSQl);
@@ -308,7 +338,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         		$res['img'] 	= $docData['emp_logo'];
         		$res['type'] 	= 'employer';
         	}
-        	if($res['sender_type'] == "organizer")
+        	else if($res['sender_type'] == "organizer")
         	{
         		$docSQl 		= query("SELECT * FROM tbl_organizer WHERE org_id = $sender");
 				$docData 		= fetch($docSQl);
@@ -317,7 +347,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         		$res['img'] 	= $docData['org_icon'];
         		$res['type'] 	= 'organizer';
         	}
-        	if($res['sender_type'] == "professional")
+        	else if($res['sender_type'] == "professional")
         	{
         		$docSQl 		= query("SELECT * FROM tbl_candidate WHERE candidate_id = $sender");
 				$docData 		= fetch($docSQl);
@@ -325,6 +355,15 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         		$res['name'] 	= $docData['candidate_name'];
         		$res['img'] 	= $docData['candidate_image'];
         		$res['type'] 	= 'professional';
+        	}
+        	else if($data['sender_type'] == "hospital")
+        	{
+        		$docSQl 		= query("SELECT * FROM tbl_hospital WHERE hospital_id = $senderID");
+				$docData 		= fetch($docSQl);
+				$data['id']		= $docData['hospital_id'];
+        		$data['name'] 	= $docData['hospital_name'];
+        		$data['img'] 	= $docData['hospital_icon'];
+        		$data['type'] 	= 'hospital';
         	}
             $res['date'] = date('d/m/Y h:i a', strtotime($res['date']));
             query("UPDATE tbl_chat SET chat_read = 1 WHERE chat_id = ".$res['chat_id']);
@@ -366,6 +405,11 @@ else if($_SERVER['REQUEST_METHOD'] == "GET")
             {
                 $userAcceptLink 	= base_url()."professionals-panel/model/adminUser?act=acceptRequest&contactID=".$contactID;
                 $userrejectLink 	= base_url()."professionals-panel/model/adminUser?act=rejectRequest&contactID=".$contactID;
+            }
+            elseif(strtolower($data['contact_type']) == "hospital")
+            {
+                $userAcceptLink 	= base_url()."hospital-panel/model/adminUser?act=acceptRequest&contactID=".$contactID;
+                $userrejectLink 	= base_url()."hospital-panel/model/adminUser?act=rejectRequest&contactID=".$contactID;
             }
             $myName = get_sess("userdata")['doc_name'];
 			$mySlug = get_sess("userdata")['doc_slug'];

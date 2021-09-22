@@ -110,6 +110,27 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 			}
 			echo json_encode($result);
 		}
+		else if($type == "hospital")
+		{
+			$data = array();
+			$sql = query("SELECT * FROM tbl_hospital");
+			if(nrows($sql) > 0)
+			{
+				$i = 0;
+				while($sqlData = fetch($sql))
+				{
+					$data[$i]['id'] = $sqlData['hospital_id'];
+					$data[$i]['name'] = $sqlData['hospital_name'];
+					$i++;
+				}
+				$result = array("status" => "success", "data" => $data);
+			}
+			else
+			{
+				$result = array("status" => "error", "data" => null);
+			}
+			echo json_encode($result);
+		}
 		else
 		{
 			$result = array("status" => "error", "data" => null);
@@ -243,6 +264,15 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 	        		$data['img'] 	= $docData['candidate_image'];
 	        		$data['type'] 	= 'professional';
 	        	}
+	        	else if($data['sender_type'] == "hospital")
+	        	{
+	        		$docSQl 		= query("SELECT * FROM tbl_hospital WHERE hospital_id = $senderID");
+					$docData 		= fetch($docSQl);
+					$data['id']		= $docData['hospital_id'];
+	        		$data['name'] 	= $docData['hospital_name'];
+	        		$data['img'] 	= $docData['hospital_icon'];
+	        		$data['type'] 	= 'hospital';
+	        	}
                 $res[] = $data;
             }
             echo json_encode($res);
@@ -322,6 +352,15 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         		$res['img'] 	= $docData['candidate_image'];
         		$res['type'] 	= 'professional';
         	}
+        	else if($data['sender_type'] == "hospital")
+        	{
+        		$docSQl 		= query("SELECT * FROM tbl_hospital WHERE hospital_id = $senderID");
+				$docData 		= fetch($docSQl);
+				$data['id']		= $docData['hospital_id'];
+        		$data['name'] 	= $docData['hospital_name'];
+        		$data['img'] 	= $docData['hospital_icon'];
+        		$data['type'] 	= 'hospital';
+        	}
             $res['date'] = date('d/m/Y h:i a', strtotime($res['date']));
             query("UPDATE tbl_chat SET chat_read = 1 WHERE chat_id = ".$res['chat_id']);
             echo json_encode($res);
@@ -372,6 +411,11 @@ else if($_SERVER['REQUEST_METHOD'] == "GET")
             {
                 $userAcceptLink 	= base_url()."professionals-panel/model/adminUser?act=acceptRequest&contactID=".$contactID;
                 $userrejectLink 	= base_url()."professionals-panel/model/adminUser?act=rejectRequest&contactID=".$contactID;
+            }
+            elseif(strtolower($data['contact_type']) == "hospital")
+            {
+                $userAcceptLink 	= base_url()."hospital-panel/model/adminUser?act=acceptRequest&contactID=".$contactID;
+                $userrejectLink 	= base_url()."hospital-panel/model/adminUser?act=rejectRequest&contactID=".$contactID;
             }
             $myName = get_sess("userdata")['candidate_name'];
 			$mySlug = get_sess("userdata")['candidate_slug'];

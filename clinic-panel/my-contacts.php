@@ -296,7 +296,42 @@ while($contacts = fetch($cntctSql))
                                         <?php
                                     }
                                 }
-
+                                $userSQl  = query("SELECT * FROM 
+                                    tbl_hospital d 
+                                    LEFT JOIN tbl_cities c ON (c.city_id = d.hospital_city) 
+                                    LEFT JOIN tbl_hospital_service cs ON (cs.dpt_hospital_id = d.hospital_id ) 
+                                    WHERE d.hospital_name LIKE '%".$jobTitle."%' 
+                                    OR cs.dpt_service_title LIKE '%".$speciality."%' 
+                                    OR c.city_name LIKE '%".$location."%' GROUP BY clinic_id ");
+                                while($data = fetch($userSQl))
+                                {
+                                    foreach($mycontacts as $contact)
+                                    {
+                                        if($contact['contact_id'] == $data['clinic_id'] && $contact['contact_type'] == 'Hospital')
+                                        {
+                                            $showContact = false;
+                                        }
+                                    }
+                                    if($showContact)
+                                    {
+                                        ?>
+                                        <div class="user-list-wrapper">
+                                            <div class="user-image">
+                                                <img class="img-fluid img-responsive" src="<?= file_url().$data['hospital_icon'];?>">
+                                            </div>
+                                            <div class="user-data">
+                                                <h3><?= $data['hospital_name']; ?></h3>
+                                                <p><?= $data['dpt_service_title']; ?></p>
+                                                <p><?= 'Hospital'; ?></p>
+                                            </div>
+                                            <div class="user-action">
+                                                <a href="<?= admin_base_url();?>model/centerModel?act=addContact&contactID=<?= $data['hospital_id']; ?>&type=Hospital" class="round-button">Connect</a>
+                                            </div>
+                                            <hr>
+                                        </div>
+                                        <?php
+                                    }
+                                }
                                 ?>
                             </div>
                             <?php 
@@ -376,6 +411,15 @@ while($contacts = fetch($cntctSql))
                                     $name     = $userData['organization_name'];
                                     $ID       = $userData['organization_id'];
                                     $type     = 'Organization';
+                                }
+                                else if(strtolower($contactType) == 'hospital')
+                                {
+                                    $userSQl  = query("SELECT * FROM tbl_hospital WHERE hospital_id = $contactID");
+                                    $userData = fetch($userSQl);
+                                    $img      = $userData['hospital_icon'];
+                                    $name     = $userData['hospital_name'];
+                                    $ID       = $userData['hospital_id'];
+                                    $type     = 'Hospital';
                                 }
                                 ?>
                                 <div class="user-list-wrapper">

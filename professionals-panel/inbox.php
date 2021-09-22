@@ -485,6 +485,14 @@ while($contacts = fetch($cntctSql))
                                                     $userName   = $docData['organization_name'];
                                                     $userType   = 'Organization';
                                                 }
+                                                else if($senders['sender_type'] == "hospital")
+                                                {
+                                                    $docSQl         = query("SELECT * FROM tbl_hospital WHERE hospital_id = $senderID");
+                                                    $docData        = fetch($docSQl);
+                                                    $userImage  = $docData['hospital_icon'];
+                                                    $userName   = $docData['hospital_name'];
+                                                    $userType   = 'Hospital';
+                                                }
                                                 ?>
                                                 <img style="width: 50px;height: 50px;" style="width: 50px; height: 50px;" src="<?= file_url().$userImage;?>" alt="<?= $userType; ?>-image" />
                                                 <div class="about">
@@ -588,6 +596,14 @@ while($contacts = fetch($cntctSql))
                                                     $userName   = $docData['organization_name'];
                                                     $userType   = 'Organization';
                                                 }
+                                                else if($senders['receiver_type'] == "hospital")
+                                                {
+                                                    $docSQl         = query("SELECT * FROM tbl_hospital WHERE hospital_id = $senderID");
+                                                    $docData        = fetch($docSQl);
+                                                    $userImage  = $docData['hospital_icon'];
+                                                    $userName   = $docData['hospital_name'];
+                                                    $userType   = 'Hospital';
+                                                }
                                                 ?>
                                                 <img style="width: 50px;height: 50px;" style="width: 50px; height: 50px;" src="<?= file_url().$userImage;?>" alt="<?= $userType; ?>-image" />
                                                 <div class="about">
@@ -676,6 +692,15 @@ while($contacts = fetch($cntctSql))
                                     $userID     = $docData['organization_id'];
                                     $userImage  = $docData['organization_icon'];
                                     $userName   = $docData['organization_name'];
+                                }
+                                else if($sender_type == "hospital")
+                                {
+                                    $docSQl     = query("SELECT * FROM tbl_hospital WHERE hospital_id = $senderID");
+                                    $docData    = fetch($docSQl);
+                                    $userID     = $docData['hospital_id'];
+                                    $userImage  = $docData['hospital_icon'];
+                                    $userName   = $docData['hospital_name'];
+                                    $userType   = 'Hospital';
                                 }
                                 ?>
                                 <div class="chat-header">
@@ -836,6 +861,14 @@ while($contacts = fetch($cntctSql))
                                                         $docData  = fetch($docSQl);
                                                         $userType = 'Organization';
                                                         $userName = $docData['organization_name'];
+                                                        $userDate = $msg['date'];
+                                                    }
+                                                    else if($sender_type == "hospital")
+                                                    {
+                                                        $docSQl     = query("SELECT * FROM tbl_hospital WHERE hospital_id = $senderID");
+                                                        $docData    = fetch($docSQl);
+                                                        $userType = 'Hospital';
+                                                        $userName = $docData['hospital_name'];
                                                         $userDate = $msg['date'];
                                                     }
                                                     ?>
