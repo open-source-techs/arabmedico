@@ -60,7 +60,13 @@
             <li class="<?php active_page('all-certificates'); ?>">
                 <a href="<?= admin_base_url();?>service-panel">
                     <i class="fa fa-sitemap"></i>
-                    <span>hospital Services</span>
+                    <span>Hospital Services</span>
+                </a>
+            </li>
+            <li class="<?php active_page('specialties'); ?>">
+                <a href="<?= admin_base_url();?>specialties">
+                    <i class="fa fa-sitemap"></i>
+                    <span>Hospital Specialities</span>
                 </a>
             </li>
             <li class="<?php active_page('all-certificates'); ?>">

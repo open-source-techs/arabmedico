@@ -42,6 +42,21 @@ $hospital_id = get_sess("userdata")['hospital_id'];
                                 <input type="text" name="txt_doc_name_ar" class="form-control" required>
                             </div>
                             <div class="col-sm-6 form-group">
+                                <label>Select Speciality</label>
+                                <select class="form-control" name="txt_doc_speciality" required>
+                                    <option value="">Select Speciality</option>
+                                    <?php 
+                                    $spcSql = query("SELECT * FROM tbl_hostpital_specialty WHERE specialty_status = 1");
+                                    while ($spc = fetch($spcSql))
+                                    {
+                                        ?>
+                                        <option value="<?= $spc['specialty_id'];?>"><?= $spc['specialty_name'];?> - <?= $spc['specialty_ar_name'];?></option>
+                                        <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="col-sm-6 form-group">
                                 <label>Doctor Degree</label>
                                 <input type="text" name="txt_doc_degree" class="form-control" required>
                             </div>
