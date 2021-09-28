@@ -214,7 +214,19 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                     object-fit: contain;
                     object-position: center;
                 }
+                .gallery-filter button{
+                    margin: 0 5px !important;
+                    padding: 14px 21px !important;
+                    border-radius: 25px !important;
+                    border: 2px solid #d5d5d5 !important;
+                }
+                .gallery-filter button.is-checked{
+                    border: 2px solid #00a3c8 !important;
+                }
                 @media (max-width: 575px){
+                    .masonry-wrap .gallery-item{
+                        padding-top: 0px !important;
+                    }
                     .img-holder2 img {
                         position: absolute;
                         top: 0;
@@ -342,7 +354,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                     while($dpt = fetch($sql))
                                     {
                                         ?>
-                                        <button data-filter=".<?= $dpt['specialty_id']; ?>"><?= ($lang == "eng") ? $dpt['specialty_name'] : $dpt['specialty_ar_name']; ?></button>
+                                        <button data-filter=".spec-<?= $dpt['specialty_id']; ?>"><?= ($lang == "eng") ? $dpt['specialty_name'] : $dpt['specialty_ar_name']; ?></button>
                                         <?php
                                     }
                                     ?>
@@ -354,7 +366,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                         while($doc = fetch($sql))
                                         {
                                             ?>
-                                            <div class="gallery-item <?= $doc['doc_speciality'];?>">
+                                            <div class="gallery-item spec-<?= $doc['doc_speciality'];?>">
                                                 <div class="doctor-2">
                                                     <div class="hover-overlay img-holder"> 
                                                         <img class="img-fluid" src="<?= file_url().$doc['doc_image'];?>" alt="doctor-foto"> 

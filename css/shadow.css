@@ -376,3 +376,12 @@ p.foo-email a,
     border-bottom: 1px solid #ccc !important;
     border: 1px solid #ccc;
 }
+@media (max-width: 575px){
+  .navbar-item{
+    border:  none !important;
+    border-bottom:  none !important;
+  }
+  .navbar-item::after{
+    display: none;
+  }
+}
