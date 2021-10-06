@@ -215,6 +215,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                     object-position: center;
                 }
                 .gallery-filter button{
+                    font-weight: 100 !important;
                     margin: 0 5px !important;
                     padding: 5px 15px !important;
                     border-radius: 25px !important;

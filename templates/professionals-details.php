@@ -45,6 +45,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
         {
             $ipData = fetch($viewsql);
             $previousTime = strtotime($ipData['view_time']);
+            $dif = time() - $previousTime;
             if($dif >= 86400)
             {
                 $dataIP['view_ip']  = $userIP;
