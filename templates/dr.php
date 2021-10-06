@@ -28,15 +28,31 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
             return $ip;  
         }
         $userIP = getIPAddress();
-        $viewsql = query("SELECT * FROM tbl_doc_views where view_ip = $userIP AND view_doc = $docID");
-        $IPCount = nrows($sql);
+        $viewCountSql = query("SELECT * FROM tbl_doc_views where view_ip = '$userIP' AND view_doc = $docID");
+        $viewsql = query("SELECT * FROM tbl_doc_views where view_ip = '$userIP' AND view_doc = $docID ORDER BY view_id DESC LIMIT 1");
+        $IPCount = nrows($viewsql);
+        $viewCount = nrows($viewCountSql);
         if($IPCount <= 0)
         {
             $dataIP['view_ip']  = $userIP;
             $dataIP['view_doc'] = $docID;
             if(insert($dataIP, 'tbl_doc_views'))
             {
-                $IPCount++;
+                $viewCount++;
+            }
+        }
+        else
+        {
+            $ipData = fetch($viewsql);
+            $previousTime = strtotime($ipData['view_time']);
+            if($dif >= 86400)
+            {
+                $dataIP['view_ip']  = $userIP;
+                $dataIP['view_doc'] = $docID;
+                if(insert($dataIP, 'tbl_doc_views'))
+                {
+                    $viewCount++;
+                }
             }
         }
 
@@ -175,7 +191,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                     <i class="fa fa-star" style="color:#dddddd; margin-right:3px;"></i>
                                     <i class="fa fa-star" style="color:#dddddd; margin-right:3px;"></i>
                                     <i class="fa fa-star" style="color:#dddddd; margin-right:3px;"></i>
-                                    <span style="font-size:18px; color:#148c82"> / <?= $IPCount;?> <?= ($lang == "eng") ? $lang_con[224]['lang_eng'] : $lang_con[224]['lang_arabic']; ?></span>
+                                    <span style="font-size:18px; color:#148c82"> / <?= $viewCount;?> <?= ($lang == "eng") ? $lang_con[224]['lang_eng'] : $lang_con[224]['lang_arabic']; ?></span>
                                 </div>
                                 <div class="doctor-photo-btn text-center">
             						<a href="<?= base_url()."appointment";?>&dep=<?= $doc['doctor_department']; ?>&doc=<?= $doc['doc_id'];?>" class="btn btn-md btn-blue blue-hover"><?= ($lang == "eng") ? $lang_con[113]['lang_eng'] : $lang_con[113]['lang_arabic']; ?></a>
@@ -1276,7 +1292,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                     <i class="fa fa-star" style="color:#dddddd; margin-right:3px;"></i>
                                     <i class="fa fa-star" style="color:#dddddd; margin-right:3px;"></i>
                                     <i class="fa fa-star" style="color:#dddddd; margin-right:3px;"></i>
-                                    <span style="font-size:18px; color:#148c82"> <?= $IPCount;?> / <?= ($lang == "eng") ? $lang_con[224]['lang_eng'] : $lang_con[224]['lang_arabic']; ?></span>
+                                    <span style="font-size:18px; color:#148c82"> <?= $viewCount;?> / <?= ($lang == "eng") ? $lang_con[224]['lang_eng'] : $lang_con[224]['lang_arabic']; ?></span>
                                 </div>
                                 <div class="doctor-photo-btn text-center">
             						<a href="<?= base_url()."appointment";?>&dep=<?= $doc['doctor_department']; ?>&doc=<?= $doc['doc_id'];?>" class="btn btn-md btn-blue blue-hover"><?= ($lang == "eng") ? $lang_con[113]['lang_eng'] : $lang_con[113]['lang_arabic']; ?></a>
