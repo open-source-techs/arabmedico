@@ -27,15 +27,32 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
         }
         $candidateID = $candidate['candidate_id'];
         $userIP = getIPAddress();
-        $viewsql = query("SELECT * FROM tbl_can_views where view_ip = $userIP AND view_can = $candidateID");
-        $IPCount = nrows($sql);
+
+        $viewCountSql = query("SELECT * FROM tbl_can_views where view_ip = '$userIP' AND view_can = $docID");
+        $viewsql = query("SELECT * FROM tbl_can_views where view_ip = '$userIP' AND view_can = $candidateID ORDER BY view_id DESC LIMIT 1");
+        $IPCount = nrows($viewsql);
+        $viewCount = nrows($viewCountSql);
         if($IPCount <= 0)
         {
             $dataIP['view_ip']  = $userIP;
-            $dataIP['view_can'] = $candidateID;
+            $dataIP['view_doc'] = $docID;
             if(insert($dataIP, 'tbl_can_views'))
             {
-                $IPCount++;
+                $viewCount++;
+            }
+        }
+        else
+        {
+            $ipData = fetch($viewsql);
+            $previousTime = strtotime($ipData['view_time']);
+            if($dif >= 86400)
+            {
+                $dataIP['view_ip']  = $userIP;
+                $dataIP['view_doc'] = $docID;
+                if(insert($dataIP, 'tbl_can_views'))
+                {
+                    $viewCount++;
+                }
             }
         }
 
@@ -159,7 +176,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                                 </div> -->
 
                                 <div style="font-size:18px; text-align:center; padding:5px;">
-                                    <span style="font-size:18px; color:#148c82"> <?= $IPCount; ?> / <?= ($lang == "eng") ? $lang_con[224]['lang_eng'] : $lang_con[224]['lang_arabic']; ?></span>
+                                    <span style="font-size:18px; color:#148c82"> <?= $viewCount; ?> / <?= ($lang == "eng") ? $lang_con[224]['lang_eng'] : $lang_con[224]['lang_arabic']; ?></span>
                                 </div>
                                 <div style="padding:5px; margin-top:-10px; margin-bottom:10px;">
                                     <div class="doctor-photo-btn text-center">
