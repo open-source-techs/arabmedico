@@ -28,7 +28,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
         $candidateID = $candidate['candidate_id'];
         $userIP = getIPAddress();
 
-        $viewCountSql = query("SELECT * FROM tbl_can_views where view_ip = '$userIP' AND view_can = $docID");
+        $viewCountSql = query("SELECT * FROM tbl_can_views where view_can = $docID");
         $viewsql = query("SELECT * FROM tbl_can_views where view_ip = '$userIP' AND view_can = $candidateID ORDER BY view_id DESC LIMIT 1");
         $IPCount = nrows($viewsql);
         $viewCount = nrows($viewCountSql);

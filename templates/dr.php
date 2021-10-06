@@ -28,7 +28,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
             return $ip;  
         }
         $userIP = getIPAddress();
-        $viewCountSql = query("SELECT * FROM tbl_doc_views where view_ip = '$userIP' AND view_doc = $docID");
+        $viewCountSql = query("SELECT * FROM tbl_doc_views where view_doc = $docID");
         $viewsql = query("SELECT * FROM tbl_doc_views where view_ip = '$userIP' AND view_doc = $docID ORDER BY view_id DESC LIMIT 1");
         $IPCount = nrows($viewsql);
         $viewCount = nrows($viewCountSql);
