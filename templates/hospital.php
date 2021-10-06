@@ -216,7 +216,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                 }
                 .gallery-filter button{
                     margin: 0 5px !important;
-                    padding: 14px 21px !important;
+                    padding: 5px 15px !important;
                     border-radius: 25px !important;
                     border: 2px solid #d5d5d5 !important;
                 }
@@ -347,7 +347,7 @@ if(isset($_GET['slug']) && $_GET['slug'] != "" && $_GET['slug'] != null)
                             <div class="appointmentDiv" id="doctors" style="margin:20px 0px 0px 0px;">
                                 <h4 style="color:#124c82;font-weight:100 !important"><?= ($lang == "eng") ? $lang_con[4]['lang_eng'] : $lang_con[4]['lang_arabic']; ?></h4>
                                 <hr>
-                                <div class="gallery-filter mb-60">
+                                <div class="gallery-filter mb-20">
                                     <button data-filter="*" class="is-checked">All</button>
                                     <?php
                                     $sql = query("SELECT * FROM tbl_hostpital_specialty WHERE specialty_status = 1 AND speciality_hospital = $hospitalID");
